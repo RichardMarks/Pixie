@@ -1,0 +1,12 @@
+*.ncb
+*.suo
+*.user
+*.sln.docstates
+*.log
+*.pch
+*.pdb
+PixieLib/BuildTemp/
+Thumbs.db
+Desktop.ini
+.DS_Store
+$RECYCLE.BIN/
