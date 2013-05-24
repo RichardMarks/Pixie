@@ -5,8 +5,9 @@
 *.log
 *.pch
 *.pdb
-PixieLib/BuildTemp/
 Thumbs.db
 Desktop.ini
 .DS_Store
 $RECYCLE.BIN/
+PixieLib/BuildTemp/
+PixieAGT/BuildTemp/

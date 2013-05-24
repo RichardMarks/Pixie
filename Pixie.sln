@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixieLib", "PixieLib\PixieLib.vcproj", "{5A4F45F1-D06B-4819-9406-0EEC9E70001D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixieAGT", "PixieAGT\PixieAGT.vcproj", "{6356102D-276C-480C-95C7-7F8ABAD47A81}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +18,10 @@ Global
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D}.Debug|Win32.Build.0 = Debug|Win32
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D}.Release|Win32.ActiveCfg = Release|Win32
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D}.Release|Win32.Build.0 = Release|Win32
+		{6356102D-276C-480C-95C7-7F8ABAD47A81}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6356102D-276C-480C-95C7-7F8ABAD47A81}.Debug|Win32.Build.0 = Debug|Win32
+		{6356102D-276C-480C-95C7-7F8ABAD47A81}.Release|Win32.ActiveCfg = Release|Win32
+		{6356102D-276C-480C-95C7-7F8ABAD47A81}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
