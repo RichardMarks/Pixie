@@ -12,7 +12,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	
 	// We need to set up the screen, and the easiest way is by declaring a Screen object.
 	Screen screen(640,480, false);	// 640,480 is the resolution we want our game to be using
-	screen.MatchWindowToScreenSize();
+	//screen.MatchWindowToScreenSize();
 
 	// For every run through the game loop, we need to calculate the time elapsed
 	FrameTime time;	// A FrameTime object is the easiest way to measure the frames time
