@@ -37,23 +37,28 @@ Platform_Win32_Screen::Platform_Win32_Screen(Platform_Win32_OS* os):
 	// Check commandline flags
 	if (os->GetCommandLineString())
 		{
-		char* cmdline=strdup(os->GetCommandLineString());
+//		char* cmdline=strdup(os->GetCommandLineString());
+		char* cmdline=_strdup(os->GetCommandLineString());
 		char* token=strtok(cmdline," ");
 		while (token)
 			{
-			if (stricmp(token,"-window")==0)
+//			if (stricmp(token,"-window")==0)
+			if (_stricmp(token,"-window")==0)
 				{
 				fullscreen_=false;
 				}
-			if (stricmp(token,"-showfps")==0)
+//			if (stricmp(token,"-showfps")==0)
+			if (_stricmp(token,"-showfps")==0)
 				{
 				showfps_=true;
 				}
-			if (stricmp(token,"-forceddraw")==0)
+//			if (stricmp(token,"-forceddraw")==0)
+			if (_stricmp(token,"-forceddraw")==0)
 				{
 				forceddraw_=true;
 				}
-			if (stricmp(token,"-forcegdi")==0)
+//			if (stricmp(token,"-forcegdi")==0)
+			if (_stricmp(token,"-forcegdi")==0)
 				{
 				forcegdi_=true;
 				}
@@ -409,31 +414,36 @@ void Platform_Win32_Screen::TransformCursorCoordinates(float& x, float& y)
 
 void Platform_Win32_Screen::OnCustomEvent(const char* eventId, void* userData)
 	{
-	if (stricmp(eventId,"OnGainFocus")==0)
+//	if (stricmp(eventId,"OnGainFocus")==0)
+	if (_stricmp(eventId,"OnGainFocus")==0)
 		{
 		OnGainFocus();
 		return;
 		}
 
-	if (stricmp(eventId,"OnLoseFocus")==0)
+//	if (stricmp(eventId,"OnLoseFocus")==0)
+    if (_stricmp(eventId,"OnLoseFocus")==0)
 		{
 		OnLoseFocus();
 		return;
 		}
 
-	if (stricmp(eventId,"OnRestore")==0)
+//	if (stricmp(eventId,"OnRestore")==0)
+	if (_stricmp(eventId,"OnRestore")==0)
 		{
 		OnRestore();
 		return;
 		}
 
-	if (stricmp(eventId,"OnMinimize")==0)
+//	if (stricmp(eventId,"OnMinimize")==0)
+	if (_stricmp(eventId,"OnMinimize")==0)
 		{
 		OnMinimize();
 		return;
 		}
 
-	if (stricmp(eventId,"OnWmSize")==0)
+//	if (stricmp(eventId,"OnWmSize")==0)
+	if (_stricmp(eventId,"OnWmSize")==0)
 		{
 		int width=*(static_cast<int*>(userData));
 		int height=*((static_cast<int*>(userData))+1);

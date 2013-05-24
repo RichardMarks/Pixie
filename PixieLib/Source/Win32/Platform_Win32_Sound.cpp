@@ -25,15 +25,18 @@ Platform_Win32_Sound::Platform_Win32_Sound(Platform_Win32_OS* os):
 	bool forcewmm=false;
 	if (os->GetCommandLineString())
 		{
-		char* cmdline=strdup(os->GetCommandLineString());
+//		char* cmdline=strdup(os->GetCommandLineString());
+		char* cmdline=_strdup(os->GetCommandLineString());
 		char* token=strtok(cmdline," ");
 		while (token)
 			{
-			if (stricmp(token,"-nosound")==0)
+//			if (stricmp(token,"-nosound")==0)
+			if (_stricmp(token,"-nosound")==0)
 				{
 				nosound=true;
 				}
-			if (stricmp(token,"-forcewmm")==0)
+//			if (stricmp(token,"-forcewmm")==0)
+			if (_stricmp(token,"-forcewmm")==0)
 				{
 				forcewmm=true;
 				}

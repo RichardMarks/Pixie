@@ -30,7 +30,8 @@ Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLin
 	// Store a copy of the command line
 	if (commandLine)
 		{
-		commandLine_=strdup(commandLine);
+//		commandLine_=strdup(commandLine);
+		commandLine_=_strdup(commandLine);
 		}
 
 	// Retrieve the path of our executable
@@ -45,7 +46,8 @@ Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLin
 		{
 		*end='\0';
 		}
-	executablePath_=strdup(path);
+//	executablePath_=strdup(path);
+	executablePath_=_strdup(path);
 	
 	// Setup the main application window
 	RegisterWindowClass(hInstance,"Pixie");
@@ -500,7 +502,8 @@ void Platform_Win32_OS::ReportFatalError(const char* message, const char* file, 
 
 void Platform_Win32_OS::OnCustomEvent(const char* eventId, void* userData)
 	{
-	if (stricmp(eventId,"SetCursor")==0)
+//	if (stricmp(eventId,"SetCursor")==0)
+	if (_stricmp(eventId,"SetCursor")==0)
 		{
 		cursor_=(HCURSOR)userData;;
 		return;

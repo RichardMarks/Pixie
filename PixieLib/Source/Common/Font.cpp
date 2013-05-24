@@ -268,7 +268,7 @@ void Font::Blit(Bitmap& bitmap, int x, int y, const char* text, int spacing, uns
 		return;
 		}
 	int textLength=StrLen(text);
-	int previousCharacter=0;
+//	int previousCharacter=0;
 	for (int i=0; i<layerCount_; i++)
 		{	
 		int xp=x;

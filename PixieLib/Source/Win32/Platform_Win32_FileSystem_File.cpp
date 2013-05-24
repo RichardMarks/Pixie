@@ -22,7 +22,8 @@ Platform_Win32_FileSystem_File::Platform_Win32_FileSystem_File(const char* path)
 
 	if (path)
 		{
-		path_=strdup(path);
+//		path_=strdup(path);
+		path_=_strdup(path);
 		}
 	
 	}

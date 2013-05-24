@@ -274,7 +274,8 @@ bool GifLoader::Load(const Asset& asset)
 			cel->pixels=new unsigned char[Width*Height];
 			
 			// Call LZW/GIF decompressor
-			int l=LZWDecoder(
+//			int l=LZWDecoder(
+			LZWDecoder(
 				(char*) pCompressedImage,
 				(char*) cel->pixels,
 				firstbyte, Width,

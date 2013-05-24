@@ -54,7 +54,8 @@ Platform_Win32_Input::~Platform_Win32_Input()
 
 void Platform_Win32_Input::OnCustomEvent(const char* eventId,void* userData)
 	{
-	if (stricmp(eventId,"OnWmChar")==0)
+//	if (stricmp(eventId,"OnWmChar")==0)
+	if (_stricmp(eventId,"OnWmChar")==0)
 		{
 		int ascii=*(static_cast<int*>(userData));
 		int keycode=*((static_cast<int*>(userData))+1);
@@ -65,7 +66,8 @@ void Platform_Win32_Input::OnCustomEvent(const char* eventId,void* userData)
 		return;
 		}
 
-	if (stricmp(eventId,"OnWmKeyUp")==0)
+//	if (stricmp(eventId,"OnWmKeyUp")==0)
+	if (_stricmp(eventId,"OnWmKeyUp")==0)
 		{
 		int keycode=*(static_cast<int*>(userData));
 		if (keyboardDevice_)

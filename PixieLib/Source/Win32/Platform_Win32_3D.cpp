@@ -42,15 +42,18 @@ Platform_Win32_3D::Platform_Win32_3D(Platform_Win32_OS* os):
 	bool forcegdi=false;
 	if (os->GetCommandLineString())
 		{
-		char* cmdline=strdup(os->GetCommandLineString());
+//		char* cmdline=strdup(os->GetCommandLineString());
+		char* cmdline=_strdup(os->GetCommandLineString());
 		char* token=strtok(cmdline," ");
 		while (token)
 			{
-			if (stricmp(token,"-window")==0)
+//			if (stricmp(token,"-window")==0)
+			if (_stricmp(token,"-window")==0)
 				{
 				fullscreen_=false;
 				}
-			if (stricmp(token,"-showfps")==0)
+//			if (stricmp(token,"-showfps")==0)
+			if (_stricmp(token,"-showfps")==0)
 				{
 				showfps_=true;
 				}

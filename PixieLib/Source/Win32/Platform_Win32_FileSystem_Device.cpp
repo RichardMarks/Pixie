@@ -21,7 +21,8 @@ Platform_Win32_FileSystem_Device::Platform_Win32_FileSystem_Device(const char* d
 
 	if (deviceName)
 		{
-		name_=strdup(deviceName);
+//		name_=strdup(deviceName);
+        name_=_strdup(deviceName);
 		}
 	}
 

@@ -21,7 +21,7 @@
 			OutputDirectory=".\BuildTemp\$(ConfigurationName)"
 			IntermediateDirectory=".\BuildTemp\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,6 +40,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4100 &#x0D;&#x0A;/wd4127&#x0D;&#x0A;/wd4189"
 				Optimization="0"
 				AdditionalIncludeDirectories=".\Source\Common"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;D3D_DEBUG_INFO;COMPILED_FROM_DSP;XML_STATIC;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;_LIB"
@@ -84,7 +85,7 @@
 			OutputDirectory=".\BuildTemp\$(ConfigurationName)"
 			IntermediateDirectory=".\BuildTemp\$(ConfigurationName)"
 			ConfigurationType="4"
-			CharacterSet="1"
+			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -104,6 +105,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/wd4100 &#x0D;&#x0A;/wd4127&#x0D;&#x0A;/wd4189"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories=".\Source\Common"

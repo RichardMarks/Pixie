@@ -28,7 +28,8 @@ Platform_Win32_FileSystem_Directory::Platform_Win32_FileSystem_Directory(const c
 
 	if (path)
 		{
-		path_=strdup(path);
+//		path_=strdup(path);
+		path_=_strdup(path);
 		}
 	
 	Rescan();
@@ -139,7 +140,8 @@ void Platform_Win32_FileSystem_Directory::Rescan()
 			{
 			if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 				{
-				if ((stricmp(findFileData.cFileName,".")!=0) && (stricmp(findFileData.cFileName,"..")!=0))
+//				if ((stricmp(findFileData.cFileName,".")!=0) && (stricmp(findFileData.cFileName,"..")!=0))
+				if ((_stricmp(findFileData.cFileName,".")!=0) && (_stricmp(findFileData.cFileName,"..")!=0))
 					{
 					if (!subdirectories_)
 						{
@@ -152,7 +154,8 @@ void Platform_Win32_FileSystem_Directory::Rescan()
 						subdirectories_=static_cast<const char**>(realloc(subdirectories_,subdirectoryMaxCount_*sizeof(const char*)));
 						
 						}
-					subdirectories_[subdirectoryCount_]=strdup(findFileData.cFileName);
+//					subdirectories_[subdirectoryCount_]=strdup(findFileData.cFileName);
+					subdirectories_[subdirectoryCount_]=_strdup(findFileData.cFileName);
 					subdirectoryCount_++;
 					}
 				}
@@ -169,7 +172,8 @@ void Platform_Win32_FileSystem_Directory::Rescan()
 					files_=static_cast<const char**>(realloc(files_,fileMaxCount_*sizeof(const char*)));
 					
 					}
-				files_[fileCount_]=strdup(findFileData.cFileName);
+//				files_[fileCount_]=strdup(findFileData.cFileName);
+				files_[fileCount_]=_strdup(findFileData.cFileName);
 				fileCount_++;
 				}
 
