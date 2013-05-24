@@ -1,5 +1,22 @@
-Pixie Game Engine v0.9d
+Pixie Game Engine v0.9e
 =======================
+Modified version of Pixie by Richard Marks www.ccpssolutions.com
+
+## Includes:
+
+ + Microsoft Visual C++ 2008 Express Projects and Solutions
+ + PixieLib
+ + Pixie Toolset (PixieAGT, PixieFGT, PixiePCT, and PixiePVT (previously known as PixView)
+ + Pixie Samples
+
+## Changes:
+
+ + Native MSVC 2008 Express vcproj and sln files
+ + PixieFGT updated to use Array instead of now-non-existing DynamicArray.
+ + Slight modifications to PixieLib to reduce excess warnings given by MSVC 2008 Express
+
+=======================
+## Original readme.txt 
 
 By: Mattias Gustavsson
 
@@ -17,5 +34,3 @@ license specified.
 
 /Mattias gustavsson
 
-=======================
-Modified version by Richard Marks www.ccpssolutions.com
