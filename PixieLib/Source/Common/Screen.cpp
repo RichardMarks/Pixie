@@ -15,6 +15,15 @@ Screen::Screen(int width, int height):
 	backBuffer_->Clear();
 	}
 
+Screen::Screen(int width, int height, bool fullscreen):
+	backBuffer_(0),
+	backgroundColor_(0)
+	{
+	backBuffer_=new Bitmap_16bit(width,height);
+	backBuffer_->Clear();
+    this->SetFullscreen(fullscreen);
+	}
+
 
 //*** Destructor ***
 

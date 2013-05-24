@@ -11,7 +11,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	GameHelper gameHelper("HelloWorld"); // "HelloWorld" will be shown in the window title bar
 	
 	// We need to set up the screen, and the easiest way is by declaring a Screen object.
-	Screen screen(640,480);	// 640,480 is the resolution we want our game to be using
+	Screen screen(640,480, false);	// 640,480 is the resolution we want our game to be using
 	screen.MatchWindowToScreenSize();
 
 	// For every run through the game loop, we need to calculate the time elapsed
