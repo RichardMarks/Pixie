@@ -9,8 +9,6 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 $RECYCLE.BIN/
-PixieLib/BuildTemp/
-PixieAGT/BuildTemp/
-PixieFGT/BuildTemp/
-PixiePCT/BuildTemp/
-PixiePVT/BuildTemp/
+Pixie*/BuildTemp/
+Sample*/BuildTemp/
+

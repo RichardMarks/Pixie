@@ -23,6 +23,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixiePVT", "PixiePVT\PixieP
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample1_HelloWorld", "Sample1_HelloWorld\Sample1_HelloWorld.vcproj", "{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +54,10 @@ Global
 		{7A7387A4-62B2-4C1D-B43C-9BE1E31009ED}.Debug|Win32.Build.0 = Debug|Win32
 		{7A7387A4-62B2-4C1D-B43C-9BE1E31009ED}.Release|Win32.ActiveCfg = Release|Win32
 		{7A7387A4-62B2-4C1D-B43C-9BE1E31009ED}.Release|Win32.Build.0 = Release|Win32
+		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Debug|Win32.Build.0 = Debug|Win32
+		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Release|Win32.ActiveCfg = Release|Win32
+		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
