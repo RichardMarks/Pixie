@@ -28,6 +28,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample1_HelloWorld", "Sampl
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample2_BouncingBall", "Sample2_BouncingBall\Sample2_BouncingBall.vcproj", "{016CB556-8730-44FE-80C2-199A2F761EA4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -58,6 +63,10 @@ Global
 		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Debug|Win32.Build.0 = Debug|Win32
 		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Release|Win32.ActiveCfg = Release|Win32
 		{BC4FA7C5-7024-44B4-BD32-729DC9C53B6A}.Release|Win32.Build.0 = Release|Win32
+		{016CB556-8730-44FE-80C2-199A2F761EA4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{016CB556-8730-44FE-80C2-199A2F761EA4}.Debug|Win32.Build.0 = Debug|Win32
+		{016CB556-8730-44FE-80C2-199A2F761EA4}.Release|Win32.ActiveCfg = Release|Win32
+		{016CB556-8730-44FE-80C2-199A2F761EA4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
