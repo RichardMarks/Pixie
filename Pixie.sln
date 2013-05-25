@@ -38,6 +38,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample3_MultiBalls", "Sampl
 		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixiePPT", "PixiePPT\PixiePPT.vcproj", "{6F9553C6-0E39-4969-B9CA-9ECFDE206CAE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sample4_Snake", "Sample4_Snake\Sample4_Snake.vcproj", "{428EE571-BA55-4ABC-88F9-37E52C7C55D6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -76,6 +86,14 @@ Global
 		{558D7D81-FC1A-45EE-A040-0FBD8A906A8B}.Debug|Win32.Build.0 = Debug|Win32
 		{558D7D81-FC1A-45EE-A040-0FBD8A906A8B}.Release|Win32.ActiveCfg = Release|Win32
 		{558D7D81-FC1A-45EE-A040-0FBD8A906A8B}.Release|Win32.Build.0 = Release|Win32
+		{6F9553C6-0E39-4969-B9CA-9ECFDE206CAE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{6F9553C6-0E39-4969-B9CA-9ECFDE206CAE}.Debug|Win32.Build.0 = Debug|Win32
+		{6F9553C6-0E39-4969-B9CA-9ECFDE206CAE}.Release|Win32.ActiveCfg = Release|Win32
+		{6F9553C6-0E39-4969-B9CA-9ECFDE206CAE}.Release|Win32.Build.0 = Release|Win32
+		{428EE571-BA55-4ABC-88F9-37E52C7C55D6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{428EE571-BA55-4ABC-88F9-37E52C7C55D6}.Debug|Win32.Build.0 = Debug|Win32
+		{428EE571-BA55-4ABC-88F9-37E52C7C55D6}.Release|Win32.ActiveCfg = Release|Win32
+		{428EE571-BA55-4ABC-88F9-37E52C7C55D6}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
