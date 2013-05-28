@@ -18,6 +18,9 @@ struct Kerning
 	int amount;
 	};
 
+// Checks to see if the specified font is available
+bool ValidateRequestedFont(const char* fontname);
+
 // Retrieves all kerning pairs for the specified font
 void GetKerning(const char* fontname, int fontsize, bool antialias, Array<Kerning>& kerning);
 

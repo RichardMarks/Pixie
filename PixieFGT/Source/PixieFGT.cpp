@@ -18,24 +18,31 @@ void PixieFGTMain(const char* commandLine)
 	{
 	CommandLine cmd(commandLine);
 
-	printf("Pixie Font Generation Tool 1.0\n\n");
+	printf("Pixie Font Generation Tool 1.1\n\n");
 
 	// Check param syntax
 	if (cmd.GetCommandLineStringCount()<3)
 		{
-		printf("SYNTAX: \nPixieFGT fontname fontsize [spacing] [-antialias]");
+		printf("SYNTAX: \nPixieFGT fontname fontsize [spacing] [-antialias] [-texture]\n");
 		return;
 		}
 
 	// Get font filename
 	StringId fontname=cmd.GetCommandLineString(1);
 	
+    // Ensure that the font is available
+    if (!ValidateRequestedFont(fontname.GetString()))
+    {
+        printf("ERROR: invalid font name specified: %s\n", fontname.GetString());
+        return;
+    }
+
 	// Get font size
 	int fontsize=StringToInt(cmd.GetCommandLineString(2).GetString());
 
 	if (fontsize<=0)
 		{
-		printf("ERROR: invalid font size specified");
+            printf("ERROR: invalid font size specified: %d\n", fontsize);
 		return;
 		}
 
@@ -77,16 +84,27 @@ void PixieFGTMain(const char* commandLine)
 	GetKerning(fontname.GetString(),fontsize,antialias,kerning);
  
 	// Generate glyphs
-	printf("Generating characters...\n");
 	int baseline=0;
 	Array<Glyph*> glyphs;
-	for (unsigned char ascii=32; ascii<128; ascii++)
-		{
-		Image* glyphImage=GenerateGlyphImage(ascii,fontname.GetString(),fontsize,antialias,glyphWidth+glyphWidth/2,glyphHeight+glyphHeight/2);
+    HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+
+	for (unsigned char i = 0; i < 96; i++)
+	    {
+		unsigned char ascii = 32 + i;
+        Image* glyphImage=GenerateGlyphImage(ascii,fontname.GetString(),fontsize,antialias,glyphWidth+glyphWidth/2,glyphHeight+glyphHeight/2);
 		Glyph* glyph=CreateGlyph(ascii,glyphImage,antialias,glyphWidths.Get(ascii-32),baseline);
 		glyphs.Add(glyph);
 		delete glyphImage;
-		}
+        
+        int percentageDone = (int)(100.0f * ((float)i) / 95.0f);
+        GetConsoleScreenBufferInfo(consoleHandle, &consoleInfo);
+        COORD consoleCursorPosition = consoleInfo.dwCursorPosition;
+        consoleCursorPosition.Y--;
+        SetConsoleCursorPosition(consoleHandle, consoleCursorPosition);
+        printf("\nGenerating characters... %d%% done", percentageDone);
+	    }
+    printf("\n\n");
 
 	// Generate filename (strip spaces from font name and concatenate font size)
 	int maxLen=StrLen(fontname.GetString())+10;
@@ -106,10 +124,12 @@ void PixieFGTMain(const char* commandLine)
 
 	if (!texture)
 		{
+        printf("Creating Strip %s...\n", filename);
 		CreateStrip(filename,glyphs,spacing);
 		}
 	else
 		{
+        printf("Creating Texture %s...\n", filename);
 		CreateTexture(filename,glyphs,spacing);
 		}
 
@@ -117,6 +137,7 @@ void PixieFGTMain(const char* commandLine)
 	StrCpy(xmlFilename,filename);
 	StrCat(xmlFilename,".xml");
 
+    printf("Writing XML %s...\n", xmlFilename);
 	FILE* fp=fopen(xmlFilename,"w");
 	int lineSpacing=glyphHeight;
 	if (antialias)
@@ -166,6 +187,43 @@ void PixieFGTMain(const char* commandLine)
 	printf("Done!\n\n\n");
 	}
 
+//*** ValidateFont ***
+
+Array<int> fontValidationArray;
+int CALLBACK EnumFontFamExProcCallback(ENUMLOGFONTEX* logfont, NEWTEXTMETRICEX* metric, int fontType, LPARAM lParam)
+    {
+    fontValidationArray.Add(0);
+    return 1;
+    }
+bool ValidateRequestedFont(const char* fontname)
+    {
+    fontValidationArray.Clear();
+
+    // length of name must be less than LF_FACESIZE
+    if (StrLen(fontname) >= LF_FACESIZE)
+        {
+        printf("ERROR: Font name \"%s\" contains too many characters.\n", fontname);
+        return false;
+        }
+
+    LOGFONT logfont;
+    MemSet(&logfont, 0, sizeof(LOGFONT));
+
+    logfont.lfCharSet = DEFAULT_CHARSET;
+    StrCpy(logfont.lfFaceName, fontname);
+
+    HDC hdc = GetDC(NULL);
+    EnumFontFamiliesExA(hdc, &logfont, (FONTENUMPROC)EnumFontFamExProcCallback, 0, 0);
+    ReleaseDC(NULL, hdc);
+
+    if (fontValidationArray.GetItemCount() == 0)
+        {
+        printf("ERROR: Font name \"%s\" not found.\n", fontname);
+        return false;
+        }
+
+    return true;
+    }
 
 //*** GetKerningPairs ***
 
