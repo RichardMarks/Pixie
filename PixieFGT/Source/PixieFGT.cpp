@@ -2,13 +2,7 @@
 
 #include "PixieFGT.h"
 
-#include <assert.h>
 #include <windows.h>
-#include <stdio.h>
-#include <cstdarg>
-
-void ProgressMessage(const char* text, ...);
-
 
 const char* PixieFGT::version = "2.0";
 
@@ -63,7 +57,7 @@ void PixieFGT::Main(const char *commandLineString)
 	}
 
 	// get runtime flags
-	bool antialias = cmd.IsCommandLineFlagSet("antialias");
+	bool antialias = cmd.IsCommandLineFlagSet("antialias") || cmd.IsCommandLineFlagSet("aa");
     pixietools::FGTTechnique renderingTechnique = pixietools::FGT_STRIP;
 	if (cmd.IsCommandLineFlagSet("texture"))
     {
@@ -100,15 +94,17 @@ void PixieFGT::DisplayProgramUsage()
         "Usage Syntax:\n"
         "    PixieFGT can be run in two modes of operation:\n\n"
         "    Inline Mode:\n"
-        "    Font information is passed the PixieFGT through the command line."
+        "    Font information is passed to PixieFGT through the command line.\n"
         "    PixieFGT fontname fontsize [spacing] [-antialias] [-texture|-strip]\n\n"
         "        fontname   : Specifies the name of the font to use (must be installed in the system)\n"
         "        fontsize   : Specifies the size of the font to generate (larger sizes will take longer)\n"
         "        spacing    : Specifies the spacing to use between each character glyph. Defaults to zero.\n"
         "        -antialias : Specifies to use Anti-Aliased (Non-Jagged Edges) Rendering of the font\n"
+        "        -aa        : Same as above\n"
         "        -texture   : Specifies to output the rendered font to a power-of-two texture\n"
         "        -strip     : (Deprecated flag, now the default. specifies to output the rendered font to a horizontal image strip)\n\n"
         "    Configuration Mode:\n"
+        "    Font information is passed to PixieFGT through an XML configuration file.\n"
         "    PixieFGT -cfg cfgfile\n\n"
         "        -cfg       : Specifies that we want to load a configuration file\n"
         "        cfgfile    : Specifies the name of the configuration file.\n\n");

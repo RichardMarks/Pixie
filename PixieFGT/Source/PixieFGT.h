@@ -7,18 +7,17 @@
 
 #include "PixieFGTConfiguration.h"
 
- 
 // Structure to hold kerning information
 struct Kerning
-	{
+{
 	char first;
 	char second;
 	int amount;
-	};
+};
 
 // Structure to hold glyph data
 struct Glyph
-	{
+{
 	char ascii;
 	int width;
 	int xoffset;
@@ -30,13 +29,16 @@ struct Glyph
 	int y1;
 	int x2;
 	int y2;
-	};
+};
 
-
+// The entire functionality of the new font generation tool is contained within this class
+// with the exception of the new configuration. see PixieFGTConfiguration.h for more information
 class PixieFGT
 {
 public:
+
     static const char* version;
+
     PixieFGT();
     ~PixieFGT();
 
@@ -45,17 +47,14 @@ public:
 private:
 
     PixieFGTConfiguration cfgtool;
-
     Array<Glyph*> glyphs;
     Array<int> glyphWidths;
     Array<Kerning> kerning;
-
 	int glyphWidth;
 	int glyphHeight;
     int baseline;
 
     void DisplayProgramUsage();
-
     bool ValidateRequestedFont(const char* fontname);
 
     // FontDef Processor
