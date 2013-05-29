@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="PixieFGT"
-	ProjectGUID="{B977A771-1369-4E10-B910-20096E66CB6E}"
-	RootNamespace="PixieFGT"
+	Name="Sample5_SpaceShooter"
+	ProjectGUID="{BBFC047F-2B39-4082-9021-85BB4D209B24}"
+	RootNamespace="Sample5_SpaceShooter"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -18,10 +18,10 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\BuildTemp\$(ConfigurationName)"
-			IntermediateDirectory=".\BuildTemp\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="2"
+			CharacterSet="1"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,16 +40,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/wd4100"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\Source\External;..\PixieLib\Source\Common"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS,_CRT_SECURE_NO_DEPRECATE,_CRT_NON_CONFORMING_SWPRINTFS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
-				WarnAsError="true"
+				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -65,7 +62,7 @@
 				Name="VCLinkerTool"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
-				SubSystem="1"
+				SubSystem="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -92,8 +89,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory=".\BuildTemp\$(ConfigurationName)"
-			IntermediateDirectory=".\BuildTemp\$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
+			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -115,16 +112,13 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/wd4100"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\Source\External;..\PixieLib\Source\Common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS,_CRT_SECURE_NO_DEPRECATE,_CRT_NON_CONFORMING_SWPRINTFS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				WarningLevel="4"
-				WarnAsError="true"
+				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -140,7 +134,7 @@
 				Name="VCLinkerTool"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				SubSystem="1"
+				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -189,30 +183,6 @@
 		</Filter>
 		<File
 			RelativePath=".\Source\Main.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGT.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGT.h"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGTConfiguration.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGTConfiguration.h"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\External\tinyxml2.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\External\tinyxml2.h"
 			>
 		</File>
 	</Files>

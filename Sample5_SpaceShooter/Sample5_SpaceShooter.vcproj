@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="PixieFGT"
-	ProjectGUID="{B977A771-1369-4E10-B910-20096E66CB6E}"
-	RootNamespace="PixieFGT"
+	Name="Sample5_SpaceShooter"
+	ProjectGUID="{BBFC047F-2B39-4082-9021-85BB4D209B24}"
+	RootNamespace="Sample5_SpaceShooter"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -42,8 +42,8 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/wd4100"
 				Optimization="0"
-				AdditionalIncludeDirectories=".\Source\External;..\PixieLib\Source\Common"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS,_CRT_SECURE_NO_DEPRECATE,_CRT_NON_CONFORMING_SWPRINTFS"
+				AdditionalIncludeDirectories="..\PixieLib\Source\Common"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -65,7 +65,7 @@
 				Name="VCLinkerTool"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
-				SubSystem="1"
+				SubSystem="2"
 				TargetMachine="1"
 			/>
 			<Tool
@@ -95,7 +95,7 @@
 			OutputDirectory=".\BuildTemp\$(ConfigurationName)"
 			IntermediateDirectory=".\BuildTemp\$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -118,8 +118,8 @@
 				AdditionalOptions="/wd4100"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories=".\Source\External;..\PixieLib\Source\Common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS,_CRT_SECURE_NO_DEPRECATE,_CRT_NON_CONFORMING_SWPRINTFS"
+				AdditionalIncludeDirectories="..\PixieLib\Source\Common"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -140,7 +140,7 @@
 				Name="VCLinkerTool"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
-				SubSystem="1"
+				SubSystem="2"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
 				TargetMachine="1"
@@ -188,31 +188,19 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath=".\Source\Constants.h"
+			>
+		</File>
+		<File
 			RelativePath=".\Source\Main.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\Source\PixieFGT.cpp"
+			RelativePath=".\Source\TitleState.cpp"
 			>
 		</File>
 		<File
-			RelativePath=".\Source\PixieFGT.h"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGTConfiguration.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\PixieFGTConfiguration.h"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\External\tinyxml2.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\Source\External\tinyxml2.h"
+			RelativePath=".\Source\TitleState.h"
 			>
 		</File>
 	</Files>

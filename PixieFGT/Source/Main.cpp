@@ -52,12 +52,13 @@ int main(int argc, const char* argv[])
 		}
 
 	// Run the converter
-	PixieFGTMain(commandLine);
+	PixieFGT tool;
+    tool.Main(commandLine);
 	
 
 	// Exit
 	delete[] commandLine;
-	Sleep(2000);
+	Sleep(1000);
 	return 0;
 	}
 
