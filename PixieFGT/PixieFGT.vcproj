@@ -200,6 +200,26 @@
 			>
 		</File>
 		<File
+			RelativePath=".\Source\PixieFGT_AA.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\PixieFGT_FontDefProcessor.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\PixieFGT_NOAA.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\PixieFGT_RenderStrip.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\PixieFGT_RenderTexture.cpp"
+			>
+		</File>
+		<File
 			RelativePath=".\Source\PixieFGTConfiguration.cpp"
 			>
 		</File>
