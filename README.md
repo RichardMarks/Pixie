@@ -11,9 +11,16 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
 
 ## Changes:
 
+ + PixieFGT completely refactored and now faster and has the ability to process multiple fonts via an XML configuration file. Will document the XML format soon.
+ + Added New Sample (See Sample4_Snake directory)
+ + (Ignore Sample5_SpaceShooter directory for now. It is incomplete.)
+
+
  + Native MSVC 2008 Express vcproj and sln files
  + PixieFGT updated to use Array instead of now-non-existing DynamicArray.
  + Slight modifications to PixieLib to reduce excess warnings given by MSVC 2008 Express
+
+
 
 =======================
 ## Original readme.txt 
