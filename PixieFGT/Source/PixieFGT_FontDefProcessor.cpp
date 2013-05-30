@@ -91,18 +91,16 @@ void PixieFGT::FGTFontDefProcessor(pixietools::FGTFontDef& fontdef)
         ((fontdef.technique == pixietools::FGT_TEXTURE) ? "RenderTexture" : "RenderStrip"),
         filename, xmlFilename);
 
-    // generate font glyphs and xml dataset file
+    // generate font glyphs
     if (fontdef.antialias)
     {
         this->AA_CalculateMaximumGlyphSize(fontname.GetString(), fontdef.size);
         this->AA_BuildGlyphTable(fontname.GetString(), fontdef.size);
-        this->AA_WriteXML(xmlFilename, filename, fontname.GetString(), fontdef.size);
     }
     else
     {
         this->NOAA_CalculateMaximumGlyphSize(fontname.GetString(), fontdef.size);
         this->NOAA_BuildGlyphTable(fontname.GetString(), fontdef.size);
-        this->NOAA_WriteXML(xmlFilename, filename, fontname.GetString(), fontdef.size);
     }
 
     // render font glyphs to image file using specified rendering technique
@@ -119,6 +117,16 @@ void PixieFGT::FGTFontDefProcessor(pixietools::FGTFontDef& fontdef)
         } break;
 
     default: break;
+    }
+
+    // generate xml dataset file
+    if (fontdef.antialias)
+    {
+        this->AA_WriteXML(xmlFilename, filename, fontname.GetString(), fontdef.size);
+    }
+    else
+    {
+        this->NOAA_WriteXML(xmlFilename, filename, fontname.GetString(), fontdef.size);
     }
 
     delete [] xmlFilename;

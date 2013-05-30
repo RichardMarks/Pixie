@@ -13,6 +13,7 @@ private:
     static GameState* CreateInstance();
 
     Sprite titleBg;
+    StaticText menuText;
 
     TitleState();
     virtual void Update(float deltaTime);

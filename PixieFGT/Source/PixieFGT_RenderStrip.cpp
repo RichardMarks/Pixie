@@ -3,7 +3,7 @@
 
 void PixieFGT::RenderStrip(const char* filename, Array<struct Glyph*> glyphs, int spacing)
 {
-    printf("Creating Strip %s...\n", filename);
+    printf("Rendering Strip...\n");
 
     int hpitch = 0;
     int vpitch = 0;
@@ -39,7 +39,16 @@ void PixieFGT::RenderStrip(const char* filename, Array<struct Glyph*> glyphs, in
 	    glyph->x2 = xp + glyph->hpitch - 1 + spacing * 2;
 	    glyph->y1 = 0;
 	    glyph->y2 = glyph->vpitch - 1 + spacing * 2;
-
+#if 0
+        printf("xp=%04d, xoffset=%04d, yoffset=%04d, x1=%04d, x2=%04d, y1=%04d, y2=%04d\n", 
+            xp, 
+            glyph->xoffset, 
+            glyph->yoffset, 
+            glyph->x1, 
+            glyph->x2, 
+            glyph->y1, 
+            glyph->y2);
+#endif
 	    xp += glyph->hpitch + spacing * 2;
 	}
 
@@ -47,6 +56,8 @@ void PixieFGT::RenderStrip(const char* filename, Array<struct Glyph*> glyphs, in
     
     StrCpy(imageFilename, filename);
     StrCat(imageFilename, ".tga");
+
+    printf("Saving %s...\n", imageFilename);
     
     image.Save<ImageFormat_TGA>(imageFilename);
 

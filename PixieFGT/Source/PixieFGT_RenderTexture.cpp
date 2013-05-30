@@ -3,7 +3,8 @@
 
 void PixieFGT::RenderTexture(const char* filename, Array<struct Glyph*> glyphs, int spacing)
 {
-    printf("Creating Texture %s...\n", filename);
+    printf("Rendering Texture...\n");
+
     // calculate total size
     int size = 0;
     for (int i = 0; i < glyphs.GetItemCount(); i++)
@@ -79,6 +80,8 @@ void PixieFGT::RenderTexture(const char* filename, Array<struct Glyph*> glyphs, 
     StrCpy(imageFilename, filename);
     StrCat(imageFilename, ".tga");
     
+    printf("Saving %s...\n", imageFilename);
+
     image->Save<ImageFormat_TGA>(imageFilename);
     
     delete [] imageFilename;

@@ -144,7 +144,7 @@ void PixieFGT::AA_BuildGlyphTable(const char* fontname, int fontsize)
 
 void PixieFGT::AA_WriteXML(const char* xmlFilename, const char* fontFilename, const char* fontname, int fontsize)
 {
-    printf("Writing XML %s...\n", xmlFilename);
+    printf("Saving %s...\n", xmlFilename);
 
 	int lineSpacing = (int)(glyphHeight / (float)ANTIALIAS_FACTOR + 0.5f);
 

@@ -17,6 +17,8 @@ GameState* TitleState::CreateInstance()
 TitleState::TitleState()
 {
     titleBg.SetBitmap("titlebg.png");
+    menuText.SetFont("MainframeBB30.fnt");
+    menuText.SetText("Testing Pixie Font System");
 }
 
 void TitleState::Update(float deltaTime)
