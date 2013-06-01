@@ -151,2604 +151,2185 @@
 	<Files>
 		<Filter
 			Name="Common"
-			>
+			Filter="">
 			<Filter
 				Name="Platform"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\Platform.cpp"
-					>
+					RelativePath=".\Source\Common\Platform.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Platform.h"
-					>
+					RelativePath=".\Source\Common\Platform.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PlatformEventListener.h"
-					>
+					RelativePath=".\Source\Common\PlatformEventListener.h">
 				</File>
 				<Filter
 					Name="OS"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_OS.h"
-						>
+						RelativePath=".\Source\Common\Platform_OS.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="Time"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_Time.h"
-						>
+						RelativePath=".\Source\Common\Platform_Time.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="Sound"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_Sound.h"
-						>
+						RelativePath=".\Source\Common\Platform_Sound.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_Sound_SoundStream.h"
-						>
+						RelativePath=".\Source\Common\Platform_Sound_SoundStream.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="Input"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_Input.h"
-						>
+						RelativePath=".\Source\Common\Platform_Input.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_Input_KeyboardDevice.h"
-						>
+						RelativePath=".\Source\Common\Platform_Input_KeyboardDevice.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_Input_MouseDevice.h"
-						>
+						RelativePath=".\Source\Common\Platform_Input_MouseDevice.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="FileSystem"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_FileSystem.h"
-						>
+						RelativePath=".\Source\Common\Platform_FileSystem.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_FileSystem_Device.h"
-						>
+						RelativePath=".\Source\Common\Platform_FileSystem_Device.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_FileSystem_Directory.h"
-						>
+						RelativePath=".\Source\Common\Platform_FileSystem_Directory.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_FileSystem_File.h"
-						>
+						RelativePath=".\Source\Common\Platform_FileSystem_File.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="Screen"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_Screen.h"
-						>
+						RelativePath=".\Source\Common\Platform_Screen.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="Network"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_Network.h"
-						>
+						RelativePath=".\Source\Common\Platform_Network.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_Network_Client.h"
-						>
+						RelativePath=".\Source\Common\Platform_Network_Client.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_Network_Server.h"
-						>
+						RelativePath=".\Source\Common\Platform_Network_Server.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="3D"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Platform_3D.h"
-						>
+						RelativePath=".\Source\Common\Platform_3D.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_3D_IndexBuffer.h"
-						>
+						RelativePath=".\Source\Common\Platform_3D_IndexBuffer.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_3D_Texture.h"
-						>
+						RelativePath=".\Source\Common\Platform_3D_Texture.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Platform_3D_VertexBuffer.h"
-						>
+						RelativePath=".\Source\Common\Platform_3D_VertexBuffer.h">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Core"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\Archive.cpp"
-					>
+					RelativePath=".\Source\Common\Archive.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Archive.h"
-					>
+					RelativePath=".\Source\Common\Archive.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveDirectory.cpp"
-					>
+					RelativePath=".\Source\Common\ArchiveDirectory.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveDirectory.h"
-					>
+					RelativePath=".\Source\Common\ArchiveDirectory.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveFile.cpp"
-					>
+					RelativePath=".\Source\Common\ArchiveFile.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveFile.h"
-					>
+					RelativePath=".\Source\Common\ArchiveFile.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveGenerator.cpp"
-					>
+					RelativePath=".\Source\Common\ArchiveGenerator.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveGenerator.h"
-					>
+					RelativePath=".\Source\Common\ArchiveGenerator.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveManager.cpp"
-					>
+					RelativePath=".\Source\Common\ArchiveManager.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ArchiveManager.h"
-					>
+					RelativePath=".\Source\Common\ArchiveManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Asset.cpp"
-					>
+					RelativePath=".\Source\Common\Asset.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Asset.h"
-					>
+					RelativePath=".\Source\Common\Asset.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\AssetEnumerator.cpp"
-					>
+					RelativePath=".\Source\Common\AssetEnumerator.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\AssetEnumerator.h"
-					>
+					RelativePath=".\Source\Common\AssetEnumerator.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\CommandLine.cpp"
-					>
+					RelativePath=".\Source\Common\CommandLine.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\CommandLine.h"
-					>
+					RelativePath=".\Source\Common\CommandLine.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Debug.h"
-					>
+					RelativePath=".\Source\Common\Debug.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\DebugFont.cpp"
-					>
+					RelativePath=".\Source\Common\DebugFont.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\DebugFont.h"
-					>
+					RelativePath=".\Source\Common\DebugFont.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Filename.cpp"
-					>
+					RelativePath=".\Source\Common\Filename.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Filename.h"
-					>
+					RelativePath=".\Source\Common\Filename.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\FrameTime.cpp"
-					>
+					RelativePath=".\Source\Common\FrameTime.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\FrameTime.h"
-					>
+					RelativePath=".\Source\Common\FrameTime.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\GameState.cpp"
-					>
+					RelativePath=".\Source\Common\GameState.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\GameState.h"
-					>
+					RelativePath=".\Source\Common\GameState.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\GameStateManager.cpp"
-					>
+					RelativePath=".\Source\Common\GameStateManager.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\GameStateManager.h"
-					>
+					RelativePath=".\Source\Common\GameStateManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Random.cpp"
-					>
+					RelativePath=".\Source\Common\Random.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Random.h"
-					>
+					RelativePath=".\Source\Common\Random.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Singleton.h"
-					>
+					RelativePath=".\Source\Common\Singleton.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Singleton.inl"
-					>
+					RelativePath=".\Source\Common\Singleton.inl">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StandardLibrary.cpp"
-					>
+					RelativePath=".\Source\Common\StandardLibrary.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StandardLibrary.h"
-					>
+					RelativePath=".\Source\Common\StandardLibrary.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StringId.cpp"
-					>
+					RelativePath=".\Source\Common\StringId.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StringId.h"
-					>
+					RelativePath=".\Source\Common\StringId.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StringIdTable.cpp"
-					>
+					RelativePath=".\Source\Common\StringIdTable.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\StringIdTable.h"
-					>
+					RelativePath=".\Source\Common\StringIdTable.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\SystemFont.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\SystemFont.h">
 				</File>
 				<Filter
 					Name="Containers"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Array.h"
-						>
+						RelativePath=".\Source\Common\Array.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Array.inl"
-						>
+						RelativePath=".\Source\Common\Array.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ArrayIterator.h"
-						>
+						RelativePath=".\Source\Common\ArrayIterator.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ArrayIterator.inl"
-						>
+						RelativePath=".\Source\Common\ArrayIterator.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\DynamicBuffer.cpp"
-						>
+						RelativePath=".\Source\Common\Bag.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\DynamicBuffer.h"
-						>
+						RelativePath=".\Source\Common\Bag.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTable.h"
-						>
+						RelativePath=".\Source\Common\BagIterator.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTable.inl"
-						>
+						RelativePath=".\Source\Common\BagIterator.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableIterator.h"
-						>
+						RelativePath=".\Source\Common\DynamicBuffer.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableIterator.inl"
-						>
+						RelativePath=".\Source\Common\DynamicBuffer.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey.h"
-						>
+						RelativePath=".\Source\Common\HashTable.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_Int.cpp"
-						>
+						RelativePath=".\Source\Common\HashTable.inl">
+					</File>
+					<File
+						RelativePath=".\Source\Common\HashTableIterator.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\HashTableIterator.inl">
+					</File>
+					<File
+						RelativePath=".\Source\Common\HashTableKey.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\HashTableKey_Int.cpp">
 						<FileConfiguration
-							Name="Win32 Debug|Win32"
-							>
+							Name="Win32 Debug|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								CompileAs="0"
-							/>
+								CompileAs="0"/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_Int.h"
-						>
+						RelativePath=".\Source\Common\HashTableKey_Int.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_Pointer.cpp"
-						>
+						RelativePath=".\Source\Common\HashTableKey_Pointer.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_Pointer.h"
-						>
+						RelativePath=".\Source\Common\HashTableKey_Pointer.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_String.cpp"
-						>
+						RelativePath=".\Source\Common\HashTableKey_String.cpp">
 						<FileConfiguration
-							Name="Win32 Debug|Win32"
-							>
+							Name="Win32 Debug|Win32">
 							<Tool
 								Name="VCCLCompilerTool"
-								CompileAs="0"
-							/>
+								CompileAs="0"/>
 						</FileConfiguration>
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_String.h"
-						>
+						RelativePath=".\Source\Common\HashTableKey_String.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_StringId.cpp"
-						>
+						RelativePath=".\Source\Common\HashTableKey_StringId.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\HashTableKey_StringId.h"
-						>
+						RelativePath=".\Source\Common\HashTableKey_StringId.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\MemoryPool.h"
-						>
+						RelativePath=".\Source\Common\IdTable.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\MemoryPool.inl"
-						>
+						RelativePath=".\Source\Common\IdTable.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\PriorityQueue.h"
-						>
+						RelativePath=".\Source\Common\MemoryPool.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\PriorityQueue.inl"
-						>
+						RelativePath=".\Source\Common\MemoryPool.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\PriorityQueueIterator.h"
-						>
+						RelativePath=".\Source\Common\PodCheck.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\PriorityQueueIterator.inl"
-						>
+						RelativePath=".\Source\Common\PriorityQueue.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\StaticBuffer.cpp"
-						>
+						RelativePath=".\Source\Common\PriorityQueue.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\StaticBuffer.h"
-						>
+						RelativePath=".\Source\Common\PriorityQueueIterator.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\PriorityQueueIterator.inl">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StaticBuffer.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StaticBuffer.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StaticIdTable.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StaticIdTable.inl">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StringPool.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\StringPool.h">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Audio"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\Audio.cpp"
-					>
+					RelativePath=".\Source\Common\Audio.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Audio.h"
-					>
+					RelativePath=".\Source\Common\Audio.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Music.cpp"
-					>
+					RelativePath=".\Source\Common\Music.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Music.h"
-					>
+					RelativePath=".\Source\Common\Music.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\MusicManager.cpp"
-					>
+					RelativePath=".\Source\Common\MusicManager.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\MusicManager.h"
-					>
+					RelativePath=".\Source\Common\MusicManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Sound.cpp"
-					>
+					RelativePath=".\Source\Common\Sound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Sound.h"
-					>
+					RelativePath=".\Source\Common\Sound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\SoundInstance.cpp"
-					>
+					RelativePath=".\Source\Common\SoundInstance.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\SoundInstance.h"
-					>
+					RelativePath=".\Source\Common\SoundInstance.h">
 				</File>
 				<Filter
 					Name="AudioFormats"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\AudioFormat.cpp"
-						>
+						RelativePath=".\Source\Common\AudioFormat.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat.h"
-						>
+						RelativePath=".\Source\Common\AudioFormat.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_MOD.cpp"
-						>
+						RelativePath=".\Source\Common\AudioFormat_MOD.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_MOD.h"
-						>
+						RelativePath=".\Source\Common\AudioFormat_MOD.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_OGG.cpp"
-						>
+						RelativePath=".\Source\Common\AudioFormat_OGG.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_OGG.h"
-						>
+						RelativePath=".\Source\Common\AudioFormat_OGG.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_YM.cpp"
-						>
+						RelativePath=".\Source\Common\AudioFormat_YM.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\AudioFormat_YM.h"
-						>
+						RelativePath=".\Source\Common\AudioFormat_YM.h">
 					</File>
 					<Filter
 						Name="ogg"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\ogg\analysis.c"
-							>
+							RelativePath=".\Source\Common\ogg\analysis.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\backends.h"
-							>
+							RelativePath=".\Source\Common\ogg\backends.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\barkmel.c"
-							>
+							RelativePath=".\Source\Common\ogg\barkmel.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\bitrate.c"
-							>
+							RelativePath=".\Source\Common\ogg\bitrate.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\bitrate.h"
-							>
+							RelativePath=".\Source\Common\ogg\bitrate.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\bitwise.c"
-							>
+							RelativePath=".\Source\Common\ogg\bitwise.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\block.c"
-							>
+							RelativePath=".\Source\Common\ogg\block.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\codebook.c"
-							>
+							RelativePath=".\Source\Common\ogg\codebook.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\codebook.h"
-							>
+							RelativePath=".\Source\Common\ogg\codebook.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\codec.h"
-							>
+							RelativePath=".\Source\Common\ogg\codec.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\codec_internal.h"
-							>
+							RelativePath=".\Source\Common\ogg\codec_internal.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\envelope.c"
-							>
+							RelativePath=".\Source\Common\ogg\envelope.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\envelope.h"
-							>
+							RelativePath=".\Source\Common\ogg\envelope.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\floor0.c"
-							>
+							RelativePath=".\Source\Common\ogg\floor0.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\floor1.c"
-							>
+							RelativePath=".\Source\Common\ogg\floor1.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\framing.c"
-							>
+							RelativePath=".\Source\Common\ogg\framing.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\highlevel.h"
-							>
+							RelativePath=".\Source\Common\ogg\highlevel.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\info.c"
-							>
+							RelativePath=".\Source\Common\ogg\info.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lookup.h"
-							>
+							RelativePath=".\Source\Common\ogg\lookup.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lookup.inl"
-							>
+							RelativePath=".\Source\Common\ogg\lookup.inl">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lookup_data.h"
-							>
+							RelativePath=".\Source\Common\ogg\lookup_data.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lpc.c"
-							>
+							RelativePath=".\Source\Common\ogg\lpc.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lpc.h"
-							>
+							RelativePath=".\Source\Common\ogg\lpc.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lsp.c"
-							>
+							RelativePath=".\Source\Common\ogg\lsp.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\lsp.h"
-							>
+							RelativePath=".\Source\Common\ogg\lsp.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\mapping0.c"
-							>
+							RelativePath=".\Source\Common\ogg\mapping0.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\masking.h"
-							>
+							RelativePath=".\Source\Common\ogg\masking.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\mdct.c"
-							>
+							RelativePath=".\Source\Common\ogg\mdct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\mdct.h"
-							>
+							RelativePath=".\Source\Common\ogg\mdct.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\misc.h"
-							>
+							RelativePath=".\Source\Common\ogg\misc.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\ogg.h"
-							>
+							RelativePath=".\Source\Common\ogg\ogg.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\os.h"
-							>
+							RelativePath=".\Source\Common\ogg\os.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\os_types.h"
-							>
+							RelativePath=".\Source\Common\ogg\os_types.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\psy.c"
-							>
+							RelativePath=".\Source\Common\ogg\psy.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\psy.h"
-							>
+							RelativePath=".\Source\Common\ogg\psy.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\registry.c"
-							>
+							RelativePath=".\Source\Common\ogg\registry.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\registry.h"
-							>
+							RelativePath=".\Source\Common\ogg\registry.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\res0.c"
-							>
+							RelativePath=".\Source\Common\ogg\res0.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\scales.h"
-							>
+							RelativePath=".\Source\Common\ogg\scales.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\sharedbook.c"
-							>
+							RelativePath=".\Source\Common\ogg\sharedbook.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\smallft.c"
-							>
+							RelativePath=".\Source\Common\ogg\smallft.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\smallft.h"
-							>
+							RelativePath=".\Source\Common\ogg\smallft.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\synthesis.c"
-							>
+							RelativePath=".\Source\Common\ogg\synthesis.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\vorbisenc.c"
-							>
+							RelativePath=".\Source\Common\ogg\vorbisenc.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\vorbisenc.h"
-							>
+							RelativePath=".\Source\Common\ogg\vorbisenc.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\vorbisfile.c"
-							>
+							RelativePath=".\Source\Common\ogg\vorbisfile.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\vorbisfile.h"
-							>
+							RelativePath=".\Source\Common\ogg\vorbisfile.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\window.c"
-							>
+							RelativePath=".\Source\Common\ogg\window.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\ogg\window.h"
-							>
+							RelativePath=".\Source\Common\ogg\window.h">
 						</File>
 						<Filter
 							Name="books"
-							>
+							Filter="">
 							<Filter
 								Name="coupled"
-								>
+								Filter="">
 								<File
-									RelativePath=".\Source\Common\ogg\books\coupled\res_books_stereo.h"
-									>
+									RelativePath=".\Source\Common\ogg\books\coupled\res_books_stereo.h">
 								</File>
 							</Filter>
 							<Filter
 								Name="floor"
-								>
+								Filter="">
 								<File
-									RelativePath=".\Source\Common\ogg\books\floor\floor_books.h"
-									>
+									RelativePath=".\Source\Common\ogg\books\floor\floor_books.h">
 								</File>
 							</Filter>
 							<Filter
 								Name="uncoupled"
-								>
+								Filter="">
 								<File
-									RelativePath=".\Source\Common\ogg\books\uncoupled\res_books_uncoupled.h"
-									>
+									RelativePath=".\Source\Common\ogg\books\uncoupled\res_books_uncoupled.h">
 								</File>
 							</Filter>
 						</Filter>
 						<Filter
 							Name="modes"
-							>
+							Filter="">
 							<File
-								RelativePath=".\Source\Common\ogg\modes\floor_all.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\floor_all.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\psych_11.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\psych_11.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\psych_16.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\psych_16.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\psych_44.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\psych_44.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\psych_8.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\psych_8.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\residue_16.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\residue_16.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\residue_44.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\residue_44.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\residue_44u.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\residue_44u.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\residue_8.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\residue_8.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_11.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_11.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_16.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_16.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_22.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_22.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_32.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_32.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_44.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_44.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_44u.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_44u.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_8.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_8.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\ogg\modes\setup_X.h"
-								>
+								RelativePath=".\Source\Common\ogg\modes\setup_X.h">
 							</File>
 						</Filter>
 					</Filter>
 					<Filter
 						Name="modplug"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\modplug\fastmix.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\fastmix.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\it_defs.h"
-							>
+							RelativePath=".\Source\Common\modplug\it_defs.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_669.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_669.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_amf.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_amf.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_ams.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_ams.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_dbm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_dbm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_dmf.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_dmf.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_dsm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_dsm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_far.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_far.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_it.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_it.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_mdl.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_mdl.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_med.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_med.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_mod.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_mod.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_mt2.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_mt2.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_mtm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_mtm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_okt.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_okt.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_psm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_psm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_ptm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_ptm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_s3m.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_s3m.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_stm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_stm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_ult.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_ult.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_umx.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_umx.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_wav.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_wav.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\load_xm.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\load_xm.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\mmcmp.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\mmcmp.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\modplug.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\modplug.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\modplug.h"
-							>
+							RelativePath=".\Source\Common\modplug\modplug.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\snd_dsp.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\snd_dsp.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\snd_flt.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\snd_flt.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\snd_fx.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\snd_fx.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\sndfile.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\sndfile.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\sndfile.h"
-							>
+							RelativePath=".\Source\Common\modplug\sndfile.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\sndmix.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\sndmix.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\stdafx.h"
-							>
+							RelativePath=".\Source\Common\modplug\stdafx.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\modplug\tables.cpp"
-							>
+							RelativePath=".\Source\Common\modplug\tables.cpp">
 						</File>
 					</Filter>
 					<Filter
 						Name="stsound"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\stsound\digidrum.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\digidrum.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\digidrum.h"
-							>
+							RelativePath=".\Source\Common\stsound\digidrum.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\LZH.H"
-							>
+							RelativePath=".\Source\Common\stsound\LZH.H">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\LzhLib.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\LzhLib.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\StSoundLibrary.h"
-							>
+							RelativePath=".\Source\Common\stsound\StSoundLibrary.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\Ym2149Ex.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\Ym2149Ex.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\Ym2149Ex.h"
-							>
+							RelativePath=".\Source\Common\stsound\Ym2149Ex.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\Ymload.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\Ymload.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\Ymload.h"
-							>
+							RelativePath=".\Source\Common\stsound\Ymload.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\YmMusic.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\YmMusic.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\YmMusic.h"
-							>
+							RelativePath=".\Source\Common\stsound\YmMusic.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\YmTypes.h"
-							>
+							RelativePath=".\Source\Common\stsound\YmTypes.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\stsound\YmUserInterface.cpp"
-							>
+							RelativePath=".\Source\Common\stsound\YmUserInterface.cpp">
 						</File>
 					</Filter>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Graphics"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\BitmapStrip.cpp"
-					>
+					RelativePath=".\Source\Common\BitmapStrip.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\BitmapStrip.h"
-					>
+					RelativePath=".\Source\Common\BitmapStrip.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ColorHelper.h"
-					>
+					RelativePath=".\Source\Common\ColorHelper.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Font.cpp"
-					>
+					RelativePath=".\Source\Common\Font.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Font.h"
-					>
+					RelativePath=".\Source\Common\Font.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Image.cpp"
-					>
+					RelativePath=".\Source\Common\Image.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Image.h"
-					>
+					RelativePath=".\Source\Common\Image.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Screen.cpp"
-					>
+					RelativePath=".\Source\Common\Screen.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Screen.h"
-					>
+					RelativePath=".\Source\Common\Screen.h">
 				</File>
 				<Filter
 					Name="ImageFormats"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\ImageFormat.cpp"
-						>
+						RelativePath=".\Source\Common\ImageFormat.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat.h"
-						>
+						RelativePath=".\Source\Common\ImageFormat.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_GIF.cpp"
-						>
+						RelativePath=".\Source\Common\ImageFormat_GIF.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_GIF.h"
-						>
+						RelativePath=".\Source\Common\ImageFormat_GIF.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_JPG.cpp"
-						>
+						RelativePath=".\Source\Common\ImageFormat_JPG.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_JPG.h"
-						>
+						RelativePath=".\Source\Common\ImageFormat_JPG.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_PNG.cpp"
-						>
+						RelativePath=".\Source\Common\ImageFormat_PNG.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_PNG.h"
-						>
+						RelativePath=".\Source\Common\ImageFormat_PNG.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_TGA.cpp"
-						>
+						RelativePath=".\Source\Common\ImageFormat_TGA.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\ImageFormat_TGA.h"
-						>
+						RelativePath=".\Source\Common\ImageFormat_TGA.h">
 					</File>
 					<Filter
 						Name="targa"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\targa\targa.c"
-							>
+							RelativePath=".\Source\Common\targa\targa.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\targa\targa.h"
-							>
+							RelativePath=".\Source\Common\targa\targa.h">
 						</File>
 					</Filter>
 					<Filter
 						Name="gif"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\gif\gif.cpp"
-							>
+							RelativePath=".\Source\Common\gif\gif.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\gif\gif.h"
-							>
+							RelativePath=".\Source\Common\gif\gif.h">
 						</File>
 					</Filter>
 					<Filter
 						Name="libpng"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\libpng\License"
-							>
+							RelativePath=".\Source\Common\libpng\License">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\png.c"
-							>
+							RelativePath=".\Source\Common\libpng\png.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\png.h"
-							>
+							RelativePath=".\Source\Common\libpng\png.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngconf.h"
-							>
+							RelativePath=".\Source\Common\libpng\pngconf.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngerror.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngerror.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngget.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngget.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngmem.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngmem.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngpread.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngpread.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngread.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngread.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngrio.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngrio.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngrtran.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngrtran.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngrutil.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngrutil.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngset.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngset.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngtrans.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngtrans.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngwio.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngwio.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngwrite.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngwrite.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngwtran.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngwtran.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\pngwutil.c"
-							>
+							RelativePath=".\Source\Common\libpng\pngwutil.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\libpng\Readme"
-							>
+							RelativePath=".\Source\Common\libpng\Readme">
 						</File>
 					</Filter>
 					<Filter
 						Name="jpeglib"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\jpeglib\jaricom.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jaricom.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcapimin.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcapimin.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcapistd.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcapistd.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcarith.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcarith.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jccoefct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jccoefct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jccolor.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jccolor.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcdctmgr.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcdctmgr.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jchuff.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jchuff.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcinit.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcinit.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcmainct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcmainct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcmarker.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcmarker.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcmaster.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcmaster.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcomapi.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcomapi.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jconfig.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jconfig.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcparam.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcparam.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcprepct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcprepct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jcsample.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jcsample.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jctrans.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jctrans.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdapimin.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdapimin.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdapistd.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdapistd.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdarith.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdarith.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdatadst.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdatadst.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdatasrc.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdatasrc.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdcoefct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdcoefct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdcolor.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdcolor.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdct.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdct.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jddctmgr.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jddctmgr.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdhuff.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdhuff.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdinput.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdinput.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdmainct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdmainct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdmarker.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdmarker.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdmaster.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdmaster.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdmerge.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdmerge.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdpostct.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdpostct.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdsample.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdsample.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jdtrans.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jdtrans.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jerror.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jerror.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jerror.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jerror.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jfdctflt.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jfdctflt.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jfdctfst.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jfdctfst.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jfdctint.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jfdctint.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jidctflt.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jidctflt.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jidctfst.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jidctfst.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jidctint.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jidctint.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jinclude.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jinclude.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jmemmgr.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jmemmgr.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jmemnobs.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jmemnobs.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jmemsys.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jmemsys.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jmorecfg.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jmorecfg.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jpegint.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jpegint.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jpeglib.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jpeglib.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jquant1.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jquant1.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jquant2.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jquant2.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jutils.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\jutils.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\jversion.h"
-							>
+							RelativePath=".\Source\Common\jpeglib\jversion.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\memsrc.c"
-							>
+							RelativePath=".\Source\Common\jpeglib\memsrc.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\jpeglib\Readme"
-							>
+							RelativePath=".\Source\Common\jpeglib\Readme">
 						</File>
 					</Filter>
 					<Filter
 						Name="zlib"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\zlib\adler32.c"
-							>
+							RelativePath=".\Source\Common\zlib\adler32.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\compress.c"
-							>
+							RelativePath=".\Source\Common\zlib\compress.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\crc32.c"
-							>
+							RelativePath=".\Source\Common\zlib\crc32.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\crc32.h"
-							>
+							RelativePath=".\Source\Common\zlib\crc32.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\deflate.c"
-							>
+							RelativePath=".\Source\Common\zlib\deflate.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\deflate.h"
-							>
+							RelativePath=".\Source\Common\zlib\deflate.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\gzio.c"
-							>
+							RelativePath=".\Source\Common\zlib\gzio.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\infback.c"
-							>
+							RelativePath=".\Source\Common\zlib\infback.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inffast.c"
-							>
+							RelativePath=".\Source\Common\zlib\inffast.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inffast.h"
-							>
+							RelativePath=".\Source\Common\zlib\inffast.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inffixed.h"
-							>
+							RelativePath=".\Source\Common\zlib\inffixed.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inflate.c"
-							>
+							RelativePath=".\Source\Common\zlib\inflate.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inflate.h"
-							>
+							RelativePath=".\Source\Common\zlib\inflate.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inftrees.c"
-							>
+							RelativePath=".\Source\Common\zlib\inftrees.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\inftrees.h"
-							>
+							RelativePath=".\Source\Common\zlib\inftrees.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\Readme"
-							>
+							RelativePath=".\Source\Common\zlib\Readme">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\trees.c"
-							>
+							RelativePath=".\Source\Common\zlib\trees.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\trees.h"
-							>
+							RelativePath=".\Source\Common\zlib\trees.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\uncompr.c"
-							>
+							RelativePath=".\Source\Common\zlib\uncompr.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\zconf.h"
-							>
+							RelativePath=".\Source\Common\zlib\zconf.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\zconf.in.h"
-							>
+							RelativePath=".\Source\Common\zlib\zconf.in.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\zlib.h"
-							>
+							RelativePath=".\Source\Common\zlib\zlib.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\zutil.c"
-							>
+							RelativePath=".\Source\Common\zlib\zutil.c">
 						</File>
 						<File
-							RelativePath=".\Source\Common\zlib\zutil.h"
-							>
+							RelativePath=".\Source\Common\zlib\zutil.h">
 						</File>
 					</Filter>
 				</Filter>
 				<Filter
 					Name="SpriteSystem"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\SpriteEventListener.cpp"
-						>
+						RelativePath=".\Source\Common\SpriteEventListener.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\SpriteEventListener.h"
-						>
+						RelativePath=".\Source\Common\SpriteEventListener.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\SpriteManager.cpp"
-						>
+						RelativePath=".\Source\Common\SpriteManager.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\SpriteManager.h"
-						>
+						RelativePath=".\Source\Common\SpriteManager.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\SpriteSystem.cpp"
-						>
+						RelativePath=".\Source\Common\SpriteSystem.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\SpriteSystem.h"
-						>
+						RelativePath=".\Source\Common\SpriteSystem.h">
 					</File>
 					<Filter
 						Name="SpriteActionSystem"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\SpriteAction.cpp"
-							>
+							RelativePath=".\Source\Common\SpriteAction.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\SpriteAction.h"
-							>
+							RelativePath=".\Source\Common\SpriteAction.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\SpriteController.cpp"
-							>
+							RelativePath=".\Source\Common\SpriteController.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\SpriteController.h"
-							>
+							RelativePath=".\Source\Common\SpriteController.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\SpriteControllerManager.cpp"
-							>
+							RelativePath=".\Source\Common\SpriteControllerManager.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\SpriteControllerManager.h"
-							>
+							RelativePath=".\Source\Common\SpriteControllerManager.h">
 						</File>
 						<Filter
 							Name="SpriteActions"
-							>
+							Filter="">
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaFade.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaFade.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaFade.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaFade.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaPulse.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaPulse.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaPulse.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaPulse.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaSine.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaSine.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_AlphaSine.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_AlphaSine.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_ButtonStateCrossFade.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_ButtonStateCrossFade.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_ButtonStateCrossFade.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_ButtonStateCrossFade.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_ColorFade.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_ColorFade.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_ColorFade.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_ColorFade.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_SineWave.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_SineWave.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_SineWave.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_SineWave.h">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_SmoothArrival.cpp"
-								>
+								RelativePath=".\Source\Common\SpriteAction_SmoothArrival.cpp">
 							</File>
 							<File
-								RelativePath=".\Source\Common\SpriteAction_SmoothArrival.h"
-								>
+								RelativePath=".\Source\Common\SpriteAction_SmoothArrival.h">
 							</File>
 						</Filter>
 					</Filter>
 					<Filter
 						Name="SpriteComponents"
-						>
+						Filter="">
 						<File
-							RelativePath=".\Source\Common\Button.cpp"
-							>
+							RelativePath=".\Source\Common\Button.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\Button.h"
-							>
+							RelativePath=".\Source\Common\Button.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\DragAndDropSprite.cpp"
-							>
+							RelativePath=".\Source\Common\DragAndDropSprite.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\DragAndDropSprite.h"
-							>
+							RelativePath=".\Source\Common\DragAndDropSprite.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\DragAndDropTarget.cpp"
-							>
+							RelativePath=".\Source\Common\DragAndDropTarget.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\DragAndDropTarget.h"
-							>
+							RelativePath=".\Source\Common\DragAndDropTarget.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\Rectangle.cpp"
-							>
+							RelativePath=".\Source\Common\Rectangle.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\Rectangle.h"
-							>
+							RelativePath=".\Source\Common\Rectangle.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\RenderCall.cpp"
-							>
+							RelativePath=".\Source\Common\RenderCall.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\RenderCall.h"
-							>
+							RelativePath=".\Source\Common\RenderCall.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\Sprite.cpp"
-							>
+							RelativePath=".\Source\Common\Sprite.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\Sprite.h"
-							>
+							RelativePath=".\Source\Common\Sprite.h">
 						</File>
 						<File
-							RelativePath=".\Source\Common\StaticText.cpp"
-							>
+							RelativePath=".\Source\Common\StaticText.cpp">
 						</File>
 						<File
-							RelativePath=".\Source\Common\StaticText.h"
-							>
+							RelativePath=".\Source\Common\StaticText.h">
 						</File>
 					</Filter>
 				</Filter>
 				<Filter
 					Name="Bitmaps"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Bitmap.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap.h"
-						>
+						RelativePath=".\Source\Common\Bitmap.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bit.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bit.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bit.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bit.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bitAlpha.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bitAlpha.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bitAlpha.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bitAlpha.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bitAlphaCrop.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bitAlphaCrop.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_16bitAlphaCrop.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_16bitAlphaCrop.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_Alpha.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_Alpha.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_Alpha.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_Alpha.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_RLE16.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_RLE16.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_RLE16.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_RLE16.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_RLE8.cpp"
-						>
+						RelativePath=".\Source\Common\Bitmap_RLE8.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Bitmap_RLE8.h"
-						>
+						RelativePath=".\Source\Common\Bitmap_RLE8.h">
 					</File>
 				</Filter>
 				<Filter
 					Name="BitmapHelpers"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\Blitter.h"
-						>
+						RelativePath=".\Source\Common\Blitter.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\Blitter.inl"
-						>
+						RelativePath=".\Source\Common\Blitter.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\BlitterRLE16.cpp"
-						>
+						RelativePath=".\Source\Common\BlitterRLE16.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\BlitterRLE16.h"
-						>
+						RelativePath=".\Source\Common\BlitterRLE16.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\BlitterRLE8.h"
-						>
+						RelativePath=".\Source\Common\BlitterRLE8.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\BlitterRLE8.inl"
-						>
+						RelativePath=".\Source\Common\BlitterRLE8.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\CopperRLE16.cpp"
-						>
+						RelativePath=".\Source\Common\CopperRLE16.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\CopperRLE16.h"
-						>
+						RelativePath=".\Source\Common\CopperRLE16.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\CopperRLE8.cpp"
-						>
+						RelativePath=".\Source\Common\CopperRLE8.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\CopperRLE8.h"
-						>
+						RelativePath=".\Source\Common\CopperRLE8.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\FloydSteinbergDither.cpp"
-						>
+						RelativePath=".\Source\Common\FloydSteinbergDither.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\FloydSteinbergDither.h"
-						>
+						RelativePath=".\Source\Common\FloydSteinbergDither.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\GenerateRLE16.cpp"
-						>
+						RelativePath=".\Source\Common\GenerateRLE16.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\GenerateRLE16.h"
-						>
+						RelativePath=".\Source\Common\GenerateRLE16.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\GenerateRLE8.cpp"
-						>
+						RelativePath=".\Source\Common\GenerateRLE8.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\GenerateRLE8.h"
-						>
+						RelativePath=".\Source\Common\GenerateRLE8.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\MedianCutPalettizer.cpp"
-						>
+						RelativePath=".\Source\Common\MaxBlitterRLE8.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\MedianCutPalettizer.h"
-						>
+						RelativePath=".\Source\Common\MaxBlitterRLE8.inl">
 					</File>
 					<File
-						RelativePath=".\Source\Common\QuadBlitter.cpp"
-						>
+						RelativePath=".\Source\Common\MedianCutPalettizer.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\QuadBlitter.h"
-						>
+						RelativePath=".\Source\Common\MedianCutPalettizer.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\QuadBlitter_scanning.inl"
-						>
+						RelativePath=".\Source\Common\QuadBlitter.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\QuadBlitter.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\QuadBlitter_scanning.inl">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Input"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\InputManager.cpp"
-					>
+					RelativePath=".\Source\Common\InputManager.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\InputManager.h"
-					>
+					RelativePath=".\Source\Common\InputManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\KeyCodes.h"
-					>
+					RelativePath=".\Source\Common\KeyCodes.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Resources"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\Resource_BitmapStrip.cpp"
-					>
+					RelativePath=".\Source\Common\Resource.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Resource_BitmapStrip.h"
-					>
+					RelativePath=".\Source\Common\Resource.inl">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Resource_Font.cpp"
-					>
+					RelativePath=".\Source\Common\ResourceManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\Resource_Font.h"
-					>
+					RelativePath=".\Source\Common\ResourceManager.inl">
 				</File>
-				<File
-					RelativePath=".\Source\Common\Resource_Sound.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Source\Common\Resource_Sound.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Source\Common\ResourceManager.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\Source\Common\ResourceManager.h"
-					>
-				</File>
+				<Filter
+					Name="Old"
+					Filter="">
+					<File
+						RelativePath=".\Source\Common\OldResourceManager.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\OldResourceManager.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_BitmapStrip.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_BitmapStrip.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_Font.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_Font.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_Sound.cpp">
+					</File>
+					<File
+						RelativePath=".\Source\Common\Resource_Sound.h">
+					</File>
+				</Filter>
 			</Filter>
 			<Filter
 				Name="MarkupText"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\MarkupTextBlock.cpp"
-					>
+					RelativePath=".\Source\Common\MarkupTextBlock.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\MarkupTextBlock.h"
-					>
+					RelativePath=".\Source\Common\MarkupTextBlock.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\MarkupTextManager.cpp"
-					>
+					RelativePath=".\Source\Common\MarkupTextManager.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\MarkupTextManager.h"
-					>
+					RelativePath=".\Source\Common\MarkupTextManager.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\TextWindow.cpp"
-					>
+					RelativePath=".\Source\Common\TextWindow.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\TextWindow.h"
-					>
+					RelativePath=".\Source\Common\TextWindow.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="AI"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\PathFinder.cpp"
-					>
+					RelativePath=".\Source\Common\PathFinder.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PathFinder.h"
-					>
+					RelativePath=".\Source\Common\PathFinder.inl">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PathFinderAgent.h"
-					>
+					RelativePath=".\Source\Common\PathFinderAgent.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PathFinderCell.h"
-					>
+					RelativePath=".\Source\Common\PathFinderCell.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Network"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\ClientConnection.cpp"
-					>
+					RelativePath=".\Source\Common\ClientConnection.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ClientConnection.h"
-					>
+					RelativePath=".\Source\Common\ClientConnection.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\HTTP.cpp"
-					>
+					RelativePath=".\Source\Common\HTTP.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\HTTP.h"
-					>
+					RelativePath=".\Source\Common\HTTP.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\HTTP_Resource.cpp"
-					>
+					RelativePath=".\Source\Common\HTTP_Resource.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\HTTP_Resource.h"
-					>
+					RelativePath=".\Source\Common\HTTP_Resource.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ServerConnection.cpp"
-					>
+					RelativePath=".\Source\Common\ServerConnection.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\ServerConnection.h"
-					>
+					RelativePath=".\Source\Common\ServerConnection.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="XML"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\XMLAttributeList.cpp"
-					>
+					RelativePath=".\Source\Common\XMLAttributeList.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLAttributeList.h"
-					>
+					RelativePath=".\Source\Common\XMLAttributeList.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLObject.cpp"
-					>
+					RelativePath=".\Source\Common\XMLObject.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLObject.h"
-					>
+					RelativePath=".\Source\Common\XMLObject.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLTextParser.cpp"
-					>
+					RelativePath=".\Source\Common\XMLTextParser.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLTextParser.h"
-					>
+					RelativePath=".\Source\Common\XMLTextParser.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\XMLVariant.h"
-					>
+					RelativePath=".\Source\Common\XMLVariant.h">
 				</File>
 				<Filter
 					Name="irrxml"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Common\irrxml\CXMLReaderImpl.h"
-						>
+						RelativePath=".\Source\Common\irrxml\CXMLReaderImpl.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\fast_atof.h"
-						>
+						RelativePath=".\Source\Common\irrxml\fast_atof.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\heapsort.h"
-						>
+						RelativePath=".\Source\Common\irrxml\heapsort.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\irrArray.h"
-						>
+						RelativePath=".\Source\Common\irrxml\irrArray.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\irrString.h"
-						>
+						RelativePath=".\Source\Common\irrxml\irrString.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\irrTypes.h"
-						>
+						RelativePath=".\Source\Common\irrxml\irrTypes.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\irrXML.cpp"
-						>
+						RelativePath=".\Source\Common\irrxml\irrXML.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\irrXML.h"
-						>
+						RelativePath=".\Source\Common\irrxml\irrXML.h">
 					</File>
 					<File
-						RelativePath=".\Source\Common\irrxml\readme.txt"
-						>
+						RelativePath=".\Source\Common\irrxml\readme.txt">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Helpers"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Common\GameHelper.cpp"
-					>
+					RelativePath=".\Source\Common\GameHelper.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\GameHelper.h"
-					>
+					RelativePath=".\Source\Common\GameHelper.h">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PlatformHelper.cpp"
-					>
+					RelativePath=".\Source\Common\PlatformHelper.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Common\PlatformHelper.h"
-					>
+					RelativePath=".\Source\Common\PlatformHelper.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="YAML"
+				Filter="">
+				<File
+					RelativePath=".\Source\Common\YAMLObject.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\YAMLObject.h">
+				</File>
+				<Filter
+					Name="libyaml"
+					Filter="">
+					<File
+						RelativePath=".\Source\Common\libyaml\api.c">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\License">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\parser.c">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\reader.c">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\scanner.c">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\yaml.h">
+					</File>
+					<File
+						RelativePath=".\Source\Common\libyaml\yaml_private.h">
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="TVision"
+				Filter="">
+				<File
+					RelativePath=".\Source\Common\TButton.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TButton.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TCanvas.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TCanvas.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TCheckbox.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TCheckbox.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TColor.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TDraw.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TDraw.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TPoint.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TRadioButton.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TRadioButton.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TRect.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TRect.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TStaticText.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TStaticText.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TView.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\TView.h">
+				</File>
+			</Filter>
+			<Filter
+				Name="DebugPage"
+				Filter="">
+				<File
+					RelativePath=".\Source\Common\DebugPage.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\DebugPage.h">
+				</File>
+				<File
+					RelativePath=".\Source\Common\DebugPageManager.cpp">
+				</File>
+				<File
+					RelativePath=".\Source\Common\DebugPageManager.h">
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="Win32"
-			>
+			Filter="">
 			<File
-				RelativePath=".\Source\Win32\Platform_Win32.cpp"
-				>
+				RelativePath=".\Source\Win32\Platform_Win32.cpp">
 			</File>
 			<Filter
 				Name="OS"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_OS.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_OS.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_OS.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_OS.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Time"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Time.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Time.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Time.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Time.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Input"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input_KeyboardDevice.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input_KeyboardDevice.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input_KeyboardDevice.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input_KeyboardDevice.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input_MouseDevice.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input_MouseDevice.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Input_MouseDevice.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Input_MouseDevice.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="FileSystem"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Device.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Device.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Device.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Device.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Directory.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Directory.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Directory.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_Directory.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_File.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_File.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_File.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_FileSystem_File.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Screen"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_D3D9.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_D3D9.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_D3D9.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_D3D9.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_DDraw.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_DDraw.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_DDraw.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_DDraw.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_GDI.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_GDI.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_GDI.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_GDI.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Screen_Technology.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Screen_Technology.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Network"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network_Client.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network_Client.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network_Client.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network_Client.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network_Server.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network_Server.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Network_Server.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Network_Server.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="3D"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_IndexBuffer.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_IndexBuffer.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_IndexBuffer.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_IndexBuffer.h">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
-							Name="VCCustomBuildTool"
-						/>
+							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_Technology.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_Technology.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_Texture.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_Texture.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_Texture.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_Texture.h">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
-							Name="VCCustomBuildTool"
-						/>
+							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_VertexBuffer.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_VertexBuffer.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_3D_VertexBuffer.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_3D_VertexBuffer.h">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
-							Name="VCCustomBuildTool"
-						/>
+							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
 				</File>
 				<Filter
 					Name="D3D9"
-					>
+					Filter="">
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9.cpp"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9.h"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9.h">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_IndexBuffer.cpp"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_IndexBuffer.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_IndexBuffer.h"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_IndexBuffer.h">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_Texture.cpp"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_Texture.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_Texture.h"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_Texture.h">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_VertexBuffer.cpp"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_VertexBuffer.cpp">
 					</File>
 					<File
-						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_VertexBuffer.h"
-						>
+						RelativePath=".\Source\Win32\Platform_Win32_3D_D3D9_VertexBuffer.h">
 					</File>
 				</Filter>
 			</Filter>
 			<Filter
 				Name="Sound"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound.cpp">
 					<FileConfiguration
-						Name="Win32 Debug|Win32"
-						>
+						Name="Win32 Debug|Win32">
 						<Tool
 							Name="VCCLCompilerTool"
-							CompileAs="0"
-						/>
+							CompileAs="0"/>
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_DSound.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_DSound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_DSound.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_DSound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_NoSound.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_NoSound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_NoSound.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_NoSound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_DSound.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_DSound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_DSound.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_DSound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_NoSound.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_NoSound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_NoSound.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_NoSound.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_WMM.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_WMM.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_WMM.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_SoundStream_WMM.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_Technology.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_Technology.h">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_WMM.cpp"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_WMM.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\Win32\Platform_Win32_Sound_WMM.h"
-					>
+					RelativePath=".\Source\Win32\Platform_Win32_Sound_WMM.h">
 				</File>
 			</Filter>
 		</Filter>
 		<Filter
 			Name="NULL"
-			>
+			Filter="">
 			<File
-				RelativePath=".\Source\NULL\Platform_NULL.cpp"
-				>
+				RelativePath=".\Source\NULL\Platform_NULL.cpp">
 			</File>
 			<Filter
 				Name="OS"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_OS.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_OS.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_OS.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_OS.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Time"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Time.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Time.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Time.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Time.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Sound"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Sound.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Sound.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Sound.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Sound.h">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Sound_SoundStream.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Sound_SoundStream.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Sound_SoundStream.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Sound_SoundStream.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Input"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input.h">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input_KeyboardDevice.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input_KeyboardDevice.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input_KeyboardDevice.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input_KeyboardDevice.h">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input_MouseDevice.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input_MouseDevice.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Input_MouseDevice.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Input_MouseDevice.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="FileSystem"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem.h">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_Directory.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_Directory.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_Directory.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_Directory.h">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_File.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_File.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_File.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_FileSystem_File.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Screen"
-				>
+				Filter="">
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Screen.cpp"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Screen.cpp">
 				</File>
 				<File
-					RelativePath=".\Source\NULL\Platform_NULL_Screen.h"
-					>
+					RelativePath=".\Source\NULL\Platform_NULL_Screen.h">
 				</File>
 			</Filter>
 			<Filter
 				Name="Network"
-				>
+				Filter="">
 			</Filter>
 			<Filter
 				Name="3D"
-				>
+				Filter="">
 			</Filter>
 		</Filter>
 		<File
-			RelativePath=".\Source\Documentation.h"
-			>
+			RelativePath=".\Source\Documentation.h">
 		</File>
 		<File
-			RelativePath=".\Source\Common\Pixie.h"
-			>
+			RelativePath=".\Source\Common\Pixie.h">
 		</File>
 	</Files>
 	<Globals>
