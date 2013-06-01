@@ -47,6 +47,9 @@ MissionDebriefState::MissionDebriefState()
     acceptButton.SetBitmap(Button::State_Normal, "Assets/MissionDebrief/Accept_Normal.pix");
     acceptButton.SetBitmap(Button::State_Highlighted, "Assets/MissionDebrief/Accept_Highlighted.pix");
     acceptButton.SetBitmap(Button::State_Pressed, "Assets/MissionDebrief/Accept_Highlighted.pix");
+
+    declineButton.UseBoundingBox(true);
+    acceptButton.UseBoundingBox(true);
 }
 
 void MissionDebriefState::Update(float deltaTime)
