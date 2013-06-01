@@ -44,8 +44,17 @@ class SpriteManager
 		virtual void SetOriginX(float x);
 		virtual void SetOriginY(float y);
 
+		virtual void HighlightNext();
+		virtual void HighlightPrevious();
+		virtual void SelectHighlighted();
+		virtual int GetHighlightedIndex();
+
 	protected:
 		void SendEvent(StringId event, void* userData);
+
+	private:
+		Sprite* FindLowestIndex();
+		Sprite* FindHighestIndex();
 
 	private:
 		Array<Sprite*> sprites_;
@@ -53,6 +62,8 @@ class SpriteManager
 		float originX_;
 		float originY_;
 		float priority_;
+		Sprite* currentHighlighted_;
+		bool activatedHighlighted_;
 	};
 
 

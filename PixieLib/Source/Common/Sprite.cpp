@@ -7,6 +7,7 @@
 #include "SpriteControllerManager.h"
 #include "Resource_BitmapStrip.h"
 #include "SpriteSystem.h"
+#include "StandardLibrary.h"
 
 //*** Constructor ***
 
@@ -20,7 +21,8 @@ Sprite::Sprite():
 	color_(0xffff),
 	alpha_(0xff),
 	priority_(0),
-	cel_(0)
+	cel_(0),
+	selectionIndex_(-1)
 	{
 	if (SpriteSystem::IsInstanceCreated())
 		{
@@ -29,6 +31,61 @@ Sprite::Sprite():
 		}
 	}
 
+
+//*** Copy Constructor ***
+
+Sprite::Sprite(const Sprite& spriteToCopy):
+	spriteManager_(spriteToCopy.spriteManager_),
+	x_(spriteToCopy.x_),
+	y_(spriteToCopy.y_),
+	originX_(spriteToCopy.originX_),
+	originY_(spriteToCopy.originY_),
+	visible_(spriteToCopy.visible_),
+	color_(spriteToCopy.color_),
+	alpha_(spriteToCopy.alpha_),
+	priority_(spriteToCopy.priority_),
+	cel_(spriteToCopy.cel_),
+	bitmapStrip_(spriteToCopy.bitmapStrip_)
+	{
+	if (spriteManager_)
+		{
+		spriteManager_->AddSprite(this);
+		}
+	}
+
+//*** Assignment operator ***
+
+const Sprite& Sprite::operator = (const Sprite& spriteToCopy)
+	{
+	if (spriteManager_)
+		{
+		spriteManager_->RemoveSprite(this);
+		}
+
+	if (SpriteControllerManager::IsInstanceCreated())
+		{
+		siSpriteControllerManager->SpriteDeleted(this);
+		}
+
+	spriteManager_ = spriteToCopy.spriteManager_;
+	x_ = spriteToCopy.x_;
+	y_ = spriteToCopy.y_;
+	originX_ = spriteToCopy.originX_;
+	originY_ = spriteToCopy.originY_;
+	visible_ = spriteToCopy.visible_;
+	color_ = spriteToCopy.color_;
+	alpha_ = spriteToCopy.alpha_;
+	priority_ = spriteToCopy.priority_;
+	cel_ = spriteToCopy.cel_;
+	bitmapStrip_ = spriteToCopy.bitmapStrip_;
+
+	if (spriteManager_)
+		{
+		spriteManager_->AddSprite(this);
+		}
+
+	return *this;
+	}
 
 //*** Constructor ***
 
@@ -300,7 +357,7 @@ bool Sprite::PickPixel(int x, int y) const
 	if (GetBitmap().GetCelCount()!=0)
 		{
 		const Bitmap& bitmap=GetBitmap().GetCel((int)GetCel());
-		if (bitmap.GetPixelAlpha(x-(int)(GetX()-GetOriginX()),y-(int)(GetY()-GetOriginY()))>128)
+		if (bitmap.GetPixelAlpha(x-(int)(GetX()-GetOriginX()),y-(int)(GetY()-GetOriginY()))>64)
 			{
 			return true;
 			}
@@ -319,13 +376,29 @@ void Sprite::Render(Bitmap& bitmap)
 		return;
 		}
 
-	GetBitmap().Blit((int)GetCel(),bitmap,(int)(GetX()-GetOriginX()),(int)(GetY()-GetOriginY()),GetColor(),GetAlpha());
+	GetBitmap().Blit((int)GetCel(),bitmap,Round(GetX()-GetOriginX()),Round(GetY()-GetOriginY()),GetColor(),GetAlpha());
 	}
 
 
 //*** OnMouseOver ***
 
-bool Sprite::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData)
+bool Sprite::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit)
 	{
 	return false;
+	}
+
+
+//*** SetSelectionIndex ***
+
+void Sprite::SetSelectionIndex( int index )
+	{
+	selectionIndex_ = index;
+	}
+
+
+//*** FetSelectionIndex ***
+
+int Sprite::GetSelectionIndex() const
+	{
+	return selectionIndex_;
 	}

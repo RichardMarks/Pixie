@@ -18,7 +18,8 @@ Button::Button():
 	stateCrossFadeTime_(0.25f),
 	stateCrossFadeFromState_(State_Normal),
 	stateCrossFadeFromAlpha_(0),
-	stateCrossFadeToAlpha_(0)
+	stateCrossFadeToAlpha_(0),
+	usingBoundingBox_( false )
 	{
 	}
 
@@ -34,7 +35,8 @@ Button::Button(SpriteManager* spriteManager):
 	stateCrossFadeTime_(0.25f),
 	stateCrossFadeFromState_(State_Normal),
 	stateCrossFadeFromAlpha_(0),
-	stateCrossFadeToAlpha_(0)
+	stateCrossFadeToAlpha_(0),
+	usingBoundingBox_( false )
 	{
 	}
 
@@ -235,7 +237,7 @@ void Button::Render(Bitmap& bitmap)
 
 //*** OnMouseOver ***
 
-bool Button::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData)
+bool Button::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit)
 	{
 	if (!enabled_)
 		{
@@ -248,23 +250,21 @@ bool Button::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& us
 		}
 
 	const Bitmap& bitmap=GetBitmap().GetCel((int)GetCel());
-#if 0
-	if (bitmap.GetPixelAlpha(x-(int)(GetX()+GetOriginX()),y-(int)(GetY()+GetOriginY()))>128)
-    const Bitmap& bitmap=GetBitmap().GetCel((int)GetCel());
 	int xp = x-(int)(GetX()-GetOriginX());
 	int yp = y-(int)(GetY()-GetOriginY());
-	unsigned char alpha = bitmap.GetPixelAlpha(xp,yp);
-	if (alpha>128)
-#else
-    int bho = bitmap.GetHOffset();
-    int bvo = bitmap.GetVOffset();
-    int bhp = bitmap.GetHPitch();
-    int bvp = bitmap.GetVPitch();
-    
-    int xp = x - (int)(GetX() - GetOriginX());
-    int yp = y - (int)(GetY() - GetOriginY());
-    if (xp > bho && xp < bho + bhp && yp > bvo && yp < bvo + bvp)
-#endif
+	bool hovering = false;
+	if( usingBoundingBox_ )
+		{
+		hovering = ( xp > bitmap.GetHOffset() && xp < bitmap.GetHOffset() + bitmap.GetHPitch() &&
+			yp > bitmap.GetVOffset() && yp < bitmap.GetVOffset() + bitmap.GetVPitch() );
+		}
+	else
+		{
+		unsigned char alpha = bitmap.GetPixelAlpha(xp,yp);
+		hovering =  ( alpha > 128 );
+		}
+
+	if( hovering || forcehit )
 		{
 		if (enabled_)
 			{
@@ -289,3 +289,17 @@ bool Button::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& us
 	}
 
 
+//*** UseBoundingBox ***
+
+void Button::UseBoundingBox( bool useBoundingBox )
+	{
+	usingBoundingBox_ = useBoundingBox;
+	}
+
+
+//*** IsUsingBoundingBox ***
+
+bool Button::IsUsingBoundingBox() const
+	{
+	return usingBoundingBox_;
+	}

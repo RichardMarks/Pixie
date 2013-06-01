@@ -57,13 +57,16 @@ class Button:public Sprite
 		virtual float GetCrossFadeTime() const;
 		virtual void SetCrossFadeTime(float time = 0.0f );
 
+		virtual void UseBoundingBox( bool useBoundingBox );
+		virtual bool IsUsingBoundingBox() const;
+
 	protected:
 		friend class SpriteAction_ButtonStateCrossFade;
 
 		virtual void SetStateCrossFadeAlpha(unsigned char fromAlpha, unsigned char toAlpha);
 
 		virtual void Render(Bitmap& bitmap);
-		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData);
+		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit);
 		
 
 	private:
@@ -77,6 +80,7 @@ class Button:public Sprite
 		State stateCrossFadeFromState_;
 		unsigned char stateCrossFadeFromAlpha_;
 		unsigned char stateCrossFadeToAlpha_;
+		bool usingBoundingBox_;
 	};
 
 

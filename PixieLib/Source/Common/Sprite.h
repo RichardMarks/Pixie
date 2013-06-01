@@ -31,8 +31,12 @@ class Sprite
 	{
 	public:
 		Sprite();
+		Sprite(const Sprite& spriteToCopy);
 		Sprite(SpriteManager* spriteManager);
 		virtual ~Sprite();
+
+		const Sprite& operator = (const Sprite& spriteToCopy);
+		
 
 		virtual SpriteManager* GetSpriteManager() const;
 		virtual void SetSpriteManager(SpriteManager* spriteManager);
@@ -69,12 +73,15 @@ class Sprite
 
 		virtual bool PickPixel(int x, int y) const;
 
+		virtual void SetSelectionIndex( int index );
+		virtual int GetSelectionIndex() const;
+
 	protected:
 		friend class SpriteManager;
 
 		virtual void Render(Bitmap& bitmap);
 
-		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData);
+		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit);
 
 	private:
 		SpriteManager* spriteManager_;
@@ -87,6 +94,7 @@ class Sprite
 		unsigned char alpha_;
 		float priority_;
 		float cel_;
+		int selectionIndex_;
 		Resource_BitmapStrip bitmapStrip_;
 	};
 

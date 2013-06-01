@@ -35,6 +35,8 @@ TitleState::TitleState()
     quitButton.SetBitmap(Button::State_Normal, "Assets/Title/Quit_Normal.pix");
     quitButton.SetBitmap(Button::State_Highlighted, "Assets/Title/Quit_Highlighted.pix");
     quitButton.SetBitmap(Button::State_Pressed, "Assets/Title/Quit_Highlighted.pix");
+
+    
 }
 
 void TitleState::Update(float deltaTime)
