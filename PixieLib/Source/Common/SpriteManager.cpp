@@ -37,7 +37,7 @@ void SpriteManager::AddSprite(Sprite* sprite)
 		Sprite* existingSprite=sprites_.Get(i);
 		if (sprite->GetPriority()<existingSprite->GetPriority())
 			{
-			sprites_.InsertBefore(i,sprite);
+			sprites_.InsertBefore(sprite,i);
 			return;
 			}
 		}

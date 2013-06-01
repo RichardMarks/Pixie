@@ -110,7 +110,7 @@
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories=".\Source\Common"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;COMPILED_FROM_DSP;XML_STATIC;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS;_LIB"
-				RuntimeLibrary="2"
+				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
