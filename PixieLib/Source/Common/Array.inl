@@ -1,6 +1,9 @@
 //*** Array.inl ***
 
 #include "Debug.h"
+#include "StandardLibrary.h"
+#include <new>
+
 
 //*** Constructor ***
 
@@ -28,8 +31,8 @@ Array<TYPE>::Array(const Array<TYPE>& arrayToCopy ):
 		return;
 		}
 
-	items_=new TYPE[capacity_];
-
+	// Allocate raw memory for entries
+	items_=(TYPE*)Malloc(sizeof(TYPE)*capacity_);
 	Assert(items_,"Couldn't allocate memory for array");
 	if (!items_)
 		{
@@ -39,7 +42,8 @@ Array<TYPE>::Array(const Array<TYPE>& arrayToCopy ):
 	// Copy each item of the other array
 	for (int i=0; i<itemCount_; i++)
 		{
-		items_[i]=arrayToCopy.items_[i];
+		// Copy using placement new and copy constructor
+		new (&items_[i]) TYPE( arrayToCopy.items_[i] );
 		}
 	}	
 
@@ -50,9 +54,16 @@ Array<TYPE>::Array(const Array<TYPE>& arrayToCopy ):
 template <class TYPE> 
 const Array<TYPE>& Array<TYPE>::operator =(const Array<TYPE>& arrayToCopy)
 	{ 
+	// Call destructor manually on existing items
+	for (int i=0; i<itemCount_; i++)
+		{
+		items_[i].~TYPE();
+		}
+
 	if (items_)
 		{
-		delete[] items_;
+		// Release memory
+		Free(items_);
 		items_=0;
 		}
 
@@ -62,8 +73,8 @@ const Array<TYPE>& Array<TYPE>::operator =(const Array<TYPE>& arrayToCopy)
 
 	if (arrayToCopy.items_)
 		{
-		items_=new TYPE[capacity_];
-
+		// Allocate raw memory for entries
+		items_=(TYPE*)Malloc(sizeof(TYPE)*capacity_);
 		Assert(items_,"Couldn't allocate memory for array");
 		if (!items_)
 			{
@@ -73,7 +84,8 @@ const Array<TYPE>& Array<TYPE>::operator =(const Array<TYPE>& arrayToCopy)
 		// Copy each item of the other array
 		for (int i=0; i<itemCount_; i++)
 			{
-			items_[i]=arrayToCopy.items_[i];
+			// Copy using placement new and copy constructor
+			new (&items_[i]) TYPE( arrayToCopy.items_[i] );
 			}
 		}
 
@@ -86,10 +98,17 @@ const Array<TYPE>& Array<TYPE>::operator =(const Array<TYPE>& arrayToCopy)
 template <class TYPE> 
 Array<TYPE>::~Array()
 	{
+	// Call destructor manually on items
+	for (int i=0; i<itemCount_; i++)
+		{
+		items_[i].~TYPE();
+		}
+
 	// Free memory used by the array
 	if (items_)
 		{
-		delete[] items_;
+		// Release memory
+		Free(items_);
 		items_=0;
 		}
 	}
@@ -109,7 +128,8 @@ TYPE& Array<TYPE>::Add(const TYPE& item)
 			newCapacity*=2;
 			}
 		// Create a new array with twice the size
-		TYPE* newItems=new TYPE[newCapacity];
+		// Allocate raw memory for entries
+		TYPE* newItems=(TYPE*)Malloc(sizeof(TYPE)*newCapacity);
 		Assert(newItems,"Couldn't allocate memory for array");
 		if (!newItems)
 			{
@@ -119,14 +139,21 @@ TYPE& Array<TYPE>::Add(const TYPE& item)
 		// Copy each item from the old array to the new one
 		for (int i=0; i<itemCount_; i++)
 			{
-			newItems[i]=items_[i];
+			// Copy using placement new and copy constructor
+			new (&newItems[i]) TYPE( items_[i] );
+			}
+
+		// Call destructor manually on items to be deleted
+		for (int i=0; i<itemCount_; i++)
+			{
+			items_[i].~TYPE();
 			}
 
 		// Delete the old array
 		if (items_)
 			{
-			delete[] items_;
-			items_=0;
+			// Release memory
+			Free(items_);
 			}
 
 		// Store the pointer to the new array instead of the old
@@ -137,9 +164,11 @@ TYPE& Array<TYPE>::Add(const TYPE& item)
 		}
 
 	// Set the item
-	items_[itemCount_]=item;
+	new (&items_[itemCount_]) TYPE(item); // Placement new to copy item
+
 	TYPE& returnValue=items_[itemCount_];
 	itemCount_++;
+
 	return returnValue;
 	}
 
@@ -147,16 +176,17 @@ TYPE& Array<TYPE>::Add(const TYPE& item)
 //*** InsertBefore (index) ***
 
 template <class TYPE> 
-void Array<TYPE>::InsertBefore(const TYPE& item,int index)
+TYPE& Array<TYPE>::InsertBefore(int index, const TYPE& item)
 	{
 	Assert(index>=0 && index<itemCount_,"Index out of range");
 	if (index<0 || index>=itemCount_)
 		{
-		return;
+		static TYPE defaultValue;
+		return defaultValue;
 		}
 
 	// Make room
-	Add(item);
+	TYPE& result = Add(item);
 
 	// If there were already items in the array, they need to be shifted
 	if (itemCount_>1)
@@ -164,19 +194,24 @@ void Array<TYPE>::InsertBefore(const TYPE& item,int index)
 		// Shift existing items 
 		for (int i=itemCount_-1; i>index; i--)
 			{
-			items_[i]=items_[i-1];
+			items_[i].~TYPE();
+			new (&items_[i]) TYPE(items_[i-1]);
 			}
 		
 		// Insert the new item at the specified index
-		items_[index]=item;
+		items_[index].~TYPE();
+		new (&items_[index]) TYPE(item);
+		return items_[index];
 		}
+
+	return result;
 	}
 
 
 //*** InsertBefore (iterator) ***
 
 template <class TYPE> 
-void Array<TYPE>::InsertBefore(const TYPE& item, const ArrayIterator<TYPE>& insertBefore)
+TYPE& Array<TYPE>::InsertBefore(const ArrayIterator<TYPE>& insertBefore, const TYPE& item)
 	{
 	// Find index
 	int index=insertBefore.GetCurrentIndex();
@@ -184,24 +219,28 @@ void Array<TYPE>::InsertBefore(const TYPE& item, const ArrayIterator<TYPE>& inse
 	if (index>=0 && index<itemCount_)
 		{
 		// Insert the item
-		InsertBefore(item,index);
+		return InsertBefore(index,item);
 		}
+
+	static TYPE defaultValue;
+	return defaultValue;
 	}
 
 
 //*** InsertAfter (index) ***
 
 template <class TYPE> 
-void Array<TYPE>::InsertAfter(const TYPE& item,int index)
+TYPE& Array<TYPE>::InsertAfter(int index, const TYPE& item)
 	{
 	Assert(index>=0 && index<itemCount_,"Index out of range");
 	if (index<0 || index>=itemCount_)
 		{
-		return;
+		static TYPE defaultValue;
+		return defaultValue;
 		}
 
 	// Make room
-	Add(item);
+	TYPE& result = Add(item);
 
 	// We're actually interested in the item AFTER the specified index
 	index++;
@@ -212,27 +251,35 @@ void Array<TYPE>::InsertAfter(const TYPE& item,int index)
 		// Shift existing items 
 		for (int i=itemCount_-1; i>index; i--)
 			{
-			items_[i]=items_[i-1];
+			items_[i].~TYPE();
+			new (&items_[i]) TYPE(items_[i-1]);
 			}
 
 		// Insert the new item at the specified index
-		items_[index]=item;
+		items_[index].~TYPE();
+		new (&items_[index]) TYPE(item);
+		result = items_[index];
 		}
+	
+	return result;
 	}
 
 
 //*** InsertAfter (iterator) ***
 
 template <class TYPE> 
-void Array<TYPE>::InsertAfter(const TYPE& item, const ArrayIterator<TYPE>& insertAfter)
+TYPE& Array<TYPE>::InsertAfter(const ArrayIterator<TYPE>& insertAfter, const TYPE& item)
 	{
 	int index=insertAfter.GetCurrentIndex();
 	Assert(index>=0 && index<itemCount_,"Iterator out of bounds");
 	if (index>=0 && index<itemCount_)
 		{
 		// Insert the item
-		InsertAfter(item,index);
+		return InsertAfter(index,item);
 		}
+
+	static TYPE defaultValue;
+	return defaultValue;
 	}
 
 
@@ -250,6 +297,9 @@ void Array<TYPE>::RemoveLast()
 	// Do not downsize array - performance is more important than memory
 	// and chances are that we will soon be adding a new item anyway
 	itemCount_--;
+
+	// Call destructor on removed object
+	items_[itemCount_].~TYPE();	
 	}
 
 
@@ -268,17 +318,24 @@ void Array<TYPE>::Remove(int index)
 	if (index==itemCount_-1)
 		{
 		itemCount_--;
+
+		// Call destructor on removed object
+		items_[itemCount_].~TYPE();	
 		return;
 		}
 	
 	// Move items after the item to be removed
 	for (int i=index; i<itemCount_-1; i++)
 		{
-		items_[i]=items_[i+1];
+		items_[i].~TYPE();
+		new (&items_[i]) TYPE(items_[i+1]);
 		}
 	
 	// Decrease the total number of items
 	itemCount_--;
+
+	// Call destructor on removed object
+	items_[itemCount_].~TYPE();	
 	}
 	
 
@@ -312,13 +369,13 @@ template <class TYPE>
 TYPE& Array<TYPE>::Get(int index) const
 	{
 	Assert(items_ && index>=0 && index<itemCount_,"Index out of range");
-	if (!items_ || index<0 || index>=itemCount_)
+	if (items_ && index>=0 && index<itemCount_)
 		{
-		static TYPE defaultValue;
-		return defaultValue;
+		return items_[index];
 		}
 
-	return items_[index];
+	static TYPE defaultValue;
+	return defaultValue;
 	}
 
 
@@ -363,7 +420,8 @@ void Array<TYPE>::Set(int index, const TYPE& item)
 			}
 
 		// Create a new array with the new size
-		TYPE* newItems=new TYPE[newCapacity];
+		// Allocate raw memory for entries
+		TYPE* newItems=(TYPE*)Malloc(sizeof(TYPE)*newCapacity);
 		Assert(newItems,"Couldn't allocate memory for array");
 		if (!newItems)
 			{
@@ -373,14 +431,21 @@ void Array<TYPE>::Set(int index, const TYPE& item)
 		// Copy each item from the old array to the new one
 		for (int i=0; i<itemCount_; i++)
 			{
-			newItems[i]=items_[i];
+			// Copy using placement new and copy constructor
+			new (&newItems[i]) TYPE( items_[i] );
+			}
+
+		// Call destructor manually on items to be deleted
+		for (int i=0; i<itemCount_; i++)
+			{
+			items_[i].~TYPE();
 			}
 
 		// Delete the old array
 		if (items_)
 			{
-			delete[] items_;
-			items_=0;
+			// Release memory
+			Free(items_);
 			}
 
 		// Store pointer to the new array
@@ -394,6 +459,12 @@ void Array<TYPE>::Set(int index, const TYPE& item)
 	// currently used range to reflect this
 	if (index>=itemCount_)
 		{
+		// Placement new on items which are now valid part of array
+		for (int i=itemCount_; i<=index; i++)
+			{
+			new (&items_[i]) TYPE;
+			}
+
 		itemCount_=index+1;
 		}
 
@@ -402,7 +473,8 @@ void Array<TYPE>::Set(int index, const TYPE& item)
 	// Set the item
 	if (items_ && index>=0 && index<capacity_)
 		{
-		items_[index]=item;
+		items_[index].~TYPE();
+		new (&items_[index]) TYPE(item);
 		}
 	}
 
@@ -441,15 +513,24 @@ void Array<TYPE>::SetCapacity(int capacity)
 		return;
 		}
 
+	// Truncate array if necessary
 	if (itemCount_>capacity)
 		{
+		// Call destructor manually on extra items
+		for (int i=capacity; i<itemCount_; i++)
+			{
+			items_[i].~TYPE();
+			}
+
 		itemCount_=capacity;
 		}
+
 
 	if (items_)
 		{
 		// Create a new array with the new size
-		TYPE* newItems=new TYPE[capacity];
+		// Allocate raw memory for entries
+		TYPE* newItems=(TYPE*)Malloc(sizeof(TYPE)*capacity);
 		Assert(newItems,"Couldn't allocate memory for array");
 		if (!newItems)
 			{
@@ -459,11 +540,19 @@ void Array<TYPE>::SetCapacity(int capacity)
 		// Copy each item from the old array to the new one
 		for (int i=0; i<itemCount_; i++)
 			{
-			newItems[i]=items_[i];
+			// Copy using placement new and copy constructor
+			new (&newItems[i]) TYPE( items_[i] );
 			}
 
 		// Delete the old array
-		delete[] items_;
+		// Call destructor manually on existing items
+		for (int i=0; i<itemCount_; i++)
+			{
+			items_[i].~TYPE();
+			}
+
+		// Release memory
+		Free(items_);
 
 		// Store pointer to the new array
 		items_=newItems;
@@ -480,6 +569,12 @@ void Array<TYPE>::SetCapacity(int capacity)
 template <class TYPE> 
 void Array<TYPE>::Clear(bool releaseMemory)
 	{	
+	// Call destructor manually on existing items
+	for (int i=0; i<itemCount_; i++)
+		{
+		items_[i].~TYPE();
+		}
+
 	// Clear used range
 	itemCount_=0;
 	
@@ -489,7 +584,8 @@ void Array<TYPE>::Clear(bool releaseMemory)
 		// Free the memory
 		if (items_)
 			{
-			delete[] items_;
+			// Release memory
+			Free(items_);
 			items_=0;
 			}
 		

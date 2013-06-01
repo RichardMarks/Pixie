@@ -12,6 +12,7 @@
 
 // Includes
 #include "StringId.h"
+#include "Filename.h"
 
 // Forward declares
 class Sound;

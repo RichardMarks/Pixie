@@ -45,19 +45,6 @@ class StringIdTable
 		~StringIdTable();
 
 		/**
-		 * Calculates a hash value for the specified string, by looping
-		 * through all characters and performing some bit-wise operations
-		 * to get a good distribution of hash values across a wide selction
-		 * of string data.
-		 *
-		 * \returns	The hash value for the specified string
-		 */
-		unsigned int CalculateHash(
-			const char* idString	///< String to calculate hash value for
-			) const;
-
-
-		/**
 		 * Looks up the specified string in the shared string table, using the
 		 * pre-calculated hash-value for faster lookup. If the string is not 
 		 * found in the table, it is inserted, and the shared string pointer
@@ -66,11 +53,23 @@ class StringIdTable
 		 * \returns	The shared pointer for the specified id-string
 		 */
 		const char* FindIdString(
-			unsigned int hash,	///< The hash-value for the specified idString, as calculated by the CalculateHash method
 			const char* idString	///< The idString to find in or insert into the string table
 			);
 
 	private:
+		/**
+		 * Calculates a hash value for the specified string, by looping
+		 * through all characters and performing some bit-wise operations
+		 * to get a good distribution of hash values across a wide selction
+		 * of string data.
+		 *
+		 * \returns	The hash value for the specified string
+		 */
+		unsigned int CalculateHash(
+			const char* idString,	///< String to calculate hash value for
+			int* stringLength ///< To receive the length of the string
+			) const;
+
 		/**
 		 * Stores a copy of the specified string in the pre-allocated string storage
 		 * block. Will allocate an additional block if the current block is full.
@@ -79,9 +78,10 @@ class StringIdTable
 		 *
 		 * \returns	A pointer to the copy
 		 */
-		char* StringIdTable::StoreString(
+		char* StoreString(
 			unsigned int hash, ///< Pre-calculated hash number for the string
-			const char* string	///< String to store a copy of
+			const char* string,	///< String to store a copy of
+			int length ///< The length of the string
 			);
 
 		// The following will generate a compiler error if there is an attempt to create a second instance of the class

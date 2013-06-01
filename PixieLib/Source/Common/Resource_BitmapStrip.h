@@ -14,11 +14,11 @@
 // Includes
 #include "StringId.h"
 #include "Bitmap.h"
+#include "Filename.h"
 
 // Forward declares
 class BitmapStrip;
 class Image;
-class Filename;
 
 
 // Resource_BitmapStrip

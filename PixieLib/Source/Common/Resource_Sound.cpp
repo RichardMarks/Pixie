@@ -1,7 +1,7 @@
 //*** Resource_Sound.cpp ***
 
 #include "Resource_Sound.h"
-#include "ResourceManager.h"
+#include "OldResourceManager.h"
 #include "Sound.h"
 #include "Filename.h"
 
@@ -18,18 +18,8 @@ Resource_Sound::Resource_Sound():
 
 Resource_Sound::Resource_Sound(const Filename& filename)
 	{
-	sound_=siResourceManager->GetSound(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(sound_);
-	}
-
-
-//*** Constructor ***
-
-Resource_Sound::Resource_Sound(const char* filenameStr)
-	{
-	Filename filename(filenameStr);
-	sound_=siResourceManager->GetSound(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(sound_);
+	sound_=siOldResourceManager->GetSound(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
 		
@@ -38,8 +28,18 @@ Resource_Sound::Resource_Sound(const char* filenameStr)
 Resource_Sound::Resource_Sound(StringId filenameId)
 	{
 	Filename filename(filenameId);
-	sound_=siResourceManager->GetSound(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(sound_);
+	sound_=siOldResourceManager->GetSound(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(sound_);
+	}
+
+		
+//*** Constructor ***
+
+Resource_Sound::Resource_Sound(const char* filenameStr)
+	{
+	Filename filename(filenameStr);
+	sound_=siOldResourceManager->GetSound(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
 		
@@ -49,7 +49,7 @@ Resource_Sound::~Resource_Sound()
 	{ 
 	if (sound_)
 		{
-		siResourceManager->DecreaseReferenceCount(sound_);
+		siOldResourceManager->DecreaseReferenceCount(sound_);
 		}
 	}
 
@@ -59,7 +59,7 @@ Resource_Sound::~Resource_Sound()
 Resource_Sound::Resource_Sound(const Resource_Sound& resource):
 	sound_(resource.sound_) 
 	{ 
-	siResourceManager->IncreaseReferenceCount(sound_);
+	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
 
@@ -68,7 +68,7 @@ Resource_Sound::Resource_Sound(const Resource_Sound& resource):
 const Resource_Sound& Resource_Sound::operator =(const Resource_Sound& resource)
 	{ 
 	sound_=resource.sound_;
-	siResourceManager->IncreaseReferenceCount(sound_);
+	siOldResourceManager->IncreaseReferenceCount(sound_);
 	return *this;
 	}
 

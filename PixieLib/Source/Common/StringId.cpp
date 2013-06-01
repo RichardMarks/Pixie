@@ -6,8 +6,7 @@
 //*** Constructor ***
 
 StringId::StringId():
-	idString_(0),
-	hash_(0)
+	idString_(0)
 	{
 	}
 
@@ -15,18 +14,14 @@ StringId::StringId():
 //*** Constructor ***
 
 StringId::StringId(const char* idString):
-	idString_(0),
-	hash_(0)
+	idString_(0)
 	{
 	// Only initialize if idString is a non-zero pointer, and of non-zero length
 	if (idString && idString[0])
 		{
-		// Calculate hash value for the string
-		hash_=StringIdTable::GetInstance().CalculateHash(idString);
-
 		// Do a lookup in the shared table to find this string if it already exists, or
 		// to insert it into the shared table if it does not
-		idString_=StringIdTable::GetInstance().FindIdString(hash_,idString);
+		idString_=StringIdTable::GetInstance().FindIdString(idString);
 		}
 	}
 
@@ -43,7 +38,14 @@ const char* StringId::GetString() const
 
 unsigned int StringId::GetHash() const
 	{ 
-	return hash_;
+	if (!idString_)
+		{
+		return 0;
+		}
+	
+	// Hash number is stored immediately before the string
+	const unsigned int* hash = reinterpret_cast<const unsigned int*>(idString_-sizeof(unsigned int));
+	return *hash;
 	}
 
 
@@ -52,7 +54,6 @@ unsigned int StringId::GetHash() const
 StringId::StringId(const StringId& stringId)
 	{
 	idString_=stringId.idString_;	
-	hash_=stringId.hash_;
 	}
 
 
@@ -61,7 +62,6 @@ StringId::StringId(const StringId& stringId)
 const StringId& StringId::operator=(const StringId& stringId)
 	{
 	idString_=stringId.idString_;
-	hash_=stringId.hash_;
 	return *this;
 	}
 

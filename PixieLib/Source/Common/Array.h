@@ -64,7 +64,7 @@ class Array
 		 * resizing has to be done, very little work is done.
 		 */
 		TYPE& Add(
-			const TYPE& item	///< Item to insert at the end of the array
+			const TYPE& item = TYPE()	///< Item to insert at the end of the array
 			);
 
 		/**
@@ -72,9 +72,9 @@ class Array
 		 * all items after it will be moved one slot. The array will be resized if necessary. If the specified index is
 		 * not within valid range, the item will not be inserted, and in debug builds an assertion is triggered.
  		 */
-		void InsertBefore(
-			const TYPE& item,	///< Item to insert
-			int index	///< Index before which the new item will be inserted. 
+		TYPE& InsertBefore(
+			int index,	///< Index before which the new item will be inserted. 
+			const TYPE& item = TYPE()	///< Item to insert
 			);
 			
 		/**
@@ -82,9 +82,9 @@ class Array
 		 * all items after it will be moved one slot. The array will be resized if necessary. If the specified position
 		 * is not within valid range, the item will not be inserted, and in debug builds an assertion is triggered.
  		 */
-		void InsertBefore(
-			const TYPE& item,	///< Item to insert
-			const ArrayIterator<TYPE>& insertBefore	///< Iterator indicating the item before which to insert the new one
+		TYPE& InsertBefore(
+			const ArrayIterator<TYPE>& insertBefore,	///< Iterator indicating the item before which to insert the new one
+			const TYPE& item = TYPE()	///< Item to insert
 			);
 
 		/**
@@ -92,9 +92,9 @@ class Array
 		 * all items after it will be moved one slot. The array will be resized if necessary. If the specified index is
 		 * not within valid range, the item will not be inserted, and in debug builds an assertion is triggered.
  		 */
-		void InsertAfter(
-			const TYPE& item,	///< Item to insert
-			int index	///< Index after which the new item will be inserted. 
+		TYPE& InsertAfter(
+			int index,	///< Index after which the new item will be inserted. 
+			const TYPE& item = TYPE() ///< Item to insert
 
 			);
 
@@ -103,9 +103,9 @@ class Array
 		 * all items after it will be moved one slot. The array will be resized if necessary. If the specified position
 		 * is not within valid range, the item will not be inserted, and in debug builds an assertion is triggered.
  		 */
-		void InsertAfter(
-			const TYPE& item,	///< Item to insert
-			const ArrayIterator<TYPE>& insertAfter	///< Iterator indicating the item after which to insert the new one
+		TYPE& InsertAfter(
+			const ArrayIterator<TYPE>& insertAfter,	///< Iterator indicating the item after which to insert the new one
+			const TYPE& item = TYPE()	///< Item to insert
 			);
 
 		/**

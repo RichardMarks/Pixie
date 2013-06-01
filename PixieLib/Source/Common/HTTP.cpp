@@ -5,7 +5,7 @@
 #include "Platform_Network_Client.h"
 #include "StandardLibrary.h"
 #include "HTTP_Resource.h"
-#include "ArrayIterator.h"
+#include "BagIterator.h"
 
 
 
@@ -381,7 +381,7 @@ void HTTP::DiscardRequest(int requestHandle)
 			{
 			delete request->resource;
 			}
-		ArrayIterator<Request*> it(requests_);
+		BagIterator<Request*> it(requests_);
 		if (it.Find(request))
 			{
 			requests_.Remove(it);

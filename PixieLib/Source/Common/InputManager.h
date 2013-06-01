@@ -19,7 +19,9 @@
 // Includes
 #include "Singleton.h"
 #include "Array.h"
+#include "Bag.h"
 #include "KeyCodes.h"
+#include "Filename.h"
 
 // Forward declares
 class Platform_Input_MouseDevice;
@@ -79,7 +81,7 @@ class InputManager:public Singleton<InputManager>
 			int index
 			);
 
-		void CreateCursor(int id, const char* image, int hotspotX, int hotspotY);
+		void CreateCursor(int id, const Filename& image, int hotspotX, int hotspotY);
 
 		void SetCursor(int id);
 
@@ -106,7 +108,7 @@ class InputManager:public Singleton<InputManager>
 			int id;
 			int handle;
 			};
-		Array<Cursor> cursors_;
+		Bag<Cursor> cursors_;
 		int currentCursor_;
 		bool cursorHidden_;
 	};

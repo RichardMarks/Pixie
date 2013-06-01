@@ -46,7 +46,7 @@ HashTable<HASHTABLEKEY, TYPE>::~HashTable()
 //*** Insert ***
 
 template<class HASHTABLEKEY, class TYPE> 
-void HashTable<HASHTABLEKEY, TYPE>::Insert(const HASHTABLEKEY& key, const TYPE& data)
+TYPE& HashTable<HASHTABLEKEY, TYPE>::Insert(const HASHTABLEKEY& key, const TYPE& data)
 	{
 	// If the table is more than two-thirds full, double its size and reinsert the items
 	if (itemCount_>=(slotCount_-(slotCount_/3)))
@@ -126,6 +126,7 @@ void HashTable<HASHTABLEKEY, TYPE>::Insert(const HASHTABLEKEY& key, const TYPE& 
 
 	// Increase the number of items		
 	itemCount_++;
+	return newItem.data;
 	}
 
 

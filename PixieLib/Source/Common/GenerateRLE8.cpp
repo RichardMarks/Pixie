@@ -30,7 +30,10 @@ GenerateRLE8::GenerateRLE8(const Image& image, Bitmap_RLE8* bitmap, bool dither)
 	colorCount_(0),
 	palette_(0)
 	{
-	CreateFromImage(&image, dither);
+	if( image.GetWidth() > 0 && image.GetHeight() > 0 )
+		{
+		CreateFromImage(&image, dither);
+		}
 
 	bitmap->usesMask_=usesMask_;
 	bitmap->xOffset_=xOffset_;
@@ -113,7 +116,8 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 	// First, create palettized version
 	unsigned char* data=0;
 	unsigned char* mask=0;
-	Palettize(image,&data,&mask,&palette_,&colorCount_,dither);
+	int alphaCount = 0;
+	Palettize(image,&data,&mask,&palette_,&colorCount_,&alphaCount,dither);
 	
 	if (mask)
 		usesMask_=1;
@@ -129,7 +133,7 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 		}
 
 	// Create RLE mask
-	if (mask)
+	if (mask && alphaCount )
 		{
 		alphaSize_=GetRLESize_Alpha(data,mask);
 		if (alphaSize_>0)
@@ -469,7 +473,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 
 //*** Palettize ***
 
-void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, bool dither)	
+void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, int* alphaCount, bool dither)	
 	{
 	int usedPaletteEntries=0;
 	*data=static_cast<unsigned char*>(Malloc(sizeof(unsigned char)*activeWidth_*activeHeight_));
@@ -478,6 +482,8 @@ void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned c
 	unsigned char* maskimg=*mask;
 	bool maskUsed=false;
 	bool maskUsedTrans=false;
+
+	*alphaCount = 0;
 
 	// Create palette
 	unsigned short pal16[256];
@@ -500,6 +506,8 @@ void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned c
 		MedianCutPalettizer::PalettizeImage(image->GetPointer(),image->GetWidth(), image->GetHeight(),pal,usedPaletteEntries,palettized);
 		}
 
+	int emptyCount = 0;
+	int fullCount = 0;
 	for (int y=0; y<activeHeight_; y++)
 		{
 		for (int x=0; x<activeWidth_; x++)
@@ -517,8 +525,17 @@ void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned c
 				maskUsed=true;
 				if (a>0)
 					{
+					(*alphaCount)++;
 					maskUsedTrans=true;
 					}
+				else
+					{
+					emptyCount ++;
+					}
+				}
+			else
+				{
+				fullCount++;
 				}
 			}
 		}

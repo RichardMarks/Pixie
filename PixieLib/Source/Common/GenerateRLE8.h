@@ -33,7 +33,7 @@ class GenerateRLE8
 		int	GetRunLength_Alpha(unsigned char* data, unsigned char* mask,int size);
 		int	GetUniquesLength_Alpha(unsigned char* data, unsigned char* mask,int size);
 		int CreateRLE_Alpha(unsigned char* source, unsigned char* mask, unsigned char* destination);
-		void Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, bool dither);
+		void Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, int* alphaCount, bool dither);
 		void Crop(const Image* image, int* minX, int* minY, int* maxX, int* maxY);
 
 	private:

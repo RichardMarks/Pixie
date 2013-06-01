@@ -1,6 +1,6 @@
-//*** ResourceManager.cpp ***
+//*** OldResourceManager.cpp ***
 
-#include "ResourceManager.h"
+#include "OldResourceManager.h"
 #include "Debug.h"
 #include "BitmapStrip.h"
 #include "Bitmap.h"
@@ -19,14 +19,14 @@
 
 //*** Constructor ***
 
-ResourceManager::ResourceManager()
+OldResourceManager::OldResourceManager()
 	{
 	}
 
 
 //*** Destructor ***
 
-ResourceManager::~ResourceManager()
+OldResourceManager::~OldResourceManager()
 	{
 	// Delete all bitmap strips
 	HashTableIterator<HashTableKey_Pointer,BitmapStripEntry*> itBS(bitmapStrips_);
@@ -63,7 +63,7 @@ ResourceManager::~ResourceManager()
 
 //*** GetBitmapStripEntry ***
 
-ResourceManager::BitmapStripEntry* ResourceManager::GetBitmapStripEntry(const BitmapStrip* bitmapStrip)
+OldResourceManager::BitmapStripEntry* OldResourceManager::GetBitmapStripEntry(const BitmapStrip* bitmapStrip)
 	{
 	HashTableIterator<HashTableKey_Pointer,BitmapStripEntry*> it(bitmapStrips_);
 	if (it.Find(HashTableKey_Pointer(bitmapStrip)))
@@ -83,7 +83,7 @@ ResourceManager::BitmapStripEntry* ResourceManager::GetBitmapStripEntry(const Bi
 
 //*** GetFontEntry ***
 
-ResourceManager::FontEntry* ResourceManager::GetFontEntry(const Font* font)
+OldResourceManager::FontEntry* OldResourceManager::GetFontEntry(const Font* font)
 	{
 	HashTableIterator<HashTableKey_Pointer,FontEntry*> it(fonts_);
 	if (it.Find(HashTableKey_Pointer(font)))
@@ -102,7 +102,7 @@ ResourceManager::FontEntry* ResourceManager::GetFontEntry(const Font* font)
 
 //*** GetSoundEntry ***
 
-ResourceManager::SoundEntry* ResourceManager::GetSoundEntry(const Sound* sound)
+OldResourceManager::SoundEntry* OldResourceManager::GetSoundEntry(const Sound* sound)
 	{
 	HashTableIterator<HashTableKey_Pointer,SoundEntry*> it(sounds_);
 	if (it.Find(HashTableKey_Pointer(sound)))
@@ -121,7 +121,7 @@ ResourceManager::SoundEntry* ResourceManager::GetSoundEntry(const Sound* sound)
 
 //*** IncreaseReferenceCount ***
 
-void ResourceManager::IncreaseReferenceCount(const BitmapStrip* bitmapStrip)
+void OldResourceManager::IncreaseReferenceCount(const BitmapStrip* bitmapStrip)
 	{	
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
 	entry->referenceCount++;
@@ -130,7 +130,7 @@ void ResourceManager::IncreaseReferenceCount(const BitmapStrip* bitmapStrip)
 
 //*** DecreaseReferenceCount ***
 
-void ResourceManager::DecreaseReferenceCount(const BitmapStrip* bitmapStrip)
+void OldResourceManager::DecreaseReferenceCount(const BitmapStrip* bitmapStrip)
 	{
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
 	Assert(entry->referenceCount>=1,"Tried to decrease reference count when already 0");
@@ -152,7 +152,7 @@ void ResourceManager::DecreaseReferenceCount(const BitmapStrip* bitmapStrip)
 
 //*** IncreaseReferenceCount ***
 
-void ResourceManager::IncreaseReferenceCount(const Font* font)
+void OldResourceManager::IncreaseReferenceCount(const Font* font)
 	{	
 	FontEntry* entry=GetFontEntry(font);
 	entry->referenceCount++;
@@ -161,7 +161,7 @@ void ResourceManager::IncreaseReferenceCount(const Font* font)
 
 //*** DecreaseReferenceCount ***
 
-void ResourceManager::DecreaseReferenceCount(const Font* font)
+void OldResourceManager::DecreaseReferenceCount(const Font* font)
 	{
 	FontEntry* entry=GetFontEntry(font);
 	Assert(entry->referenceCount>=1,"Tried to decrease reference count when already 0");
@@ -183,7 +183,7 @@ void ResourceManager::DecreaseReferenceCount(const Font* font)
 
 //*** IncreaseReferenceCount ***
 
-void ResourceManager::IncreaseReferenceCount(const Sound* sound)
+void OldResourceManager::IncreaseReferenceCount(const Sound* sound)
 	{	
 	SoundEntry* entry=GetSoundEntry(sound);
 	entry->referenceCount++;
@@ -192,7 +192,7 @@ void ResourceManager::IncreaseReferenceCount(const Sound* sound)
 
 //*** DecreaseReferenceCount ***
 
-void ResourceManager::DecreaseReferenceCount(const Sound* sound)
+void OldResourceManager::DecreaseReferenceCount(const Sound* sound)
 	{
 	SoundEntry* entry=GetSoundEntry(sound);
 	Assert(entry->referenceCount>=1,"Tried to decrease reference count when already 0");
@@ -215,8 +215,12 @@ void ResourceManager::DecreaseReferenceCount(const Sound* sound)
 
 //*** GetBitmapStrip ***
 
-const BitmapStrip* ResourceManager::GetBitmapStrip(StringId filename, int celCount)
+const BitmapStrip* OldResourceManager::GetBitmapStrip(StringId filename, int celCount)
 	{
+	if (!filename.GetString())
+		{
+		return 0;
+		}
 	HashTableIterator<HashTableKey_Pointer,BitmapStripEntry*> it(bitmapStrips_);
 	while(it.IsValid())
 		{
@@ -277,7 +281,7 @@ const BitmapStrip* ResourceManager::GetBitmapStrip(StringId filename, int celCou
 
 //*** GetBitmapStrip ***
 
-const BitmapStrip* ResourceManager::GetBitmapStrip(const Image& image)
+const BitmapStrip* OldResourceManager::GetBitmapStrip(const Image& image)
 	{
 	const BitmapStrip* bitmapStrip=new BitmapStrip(image);
 
@@ -289,7 +293,7 @@ const BitmapStrip* ResourceManager::GetBitmapStrip(const Image& image)
 
 //*** GetBitmapStrip ***
 
-const BitmapStrip* ResourceManager::GetBitmapStrip(const Bitmap* bitmap)
+const BitmapStrip* OldResourceManager::GetBitmapStrip(const Bitmap* bitmap)
 	{
 	const BitmapStrip* bitmapStrip=new BitmapStrip(bitmap);
 
@@ -301,8 +305,12 @@ const BitmapStrip* ResourceManager::GetBitmapStrip(const Bitmap* bitmap)
 
 //*** GetFont ***
 
-const Font* ResourceManager::GetFont(StringId filename)
+const Font* OldResourceManager::GetFont(StringId filename)
 	{
+	if (!filename.GetString())
+		{
+		return 0;
+		}
 	HashTableIterator<HashTableKey_Pointer,FontEntry*> it(fonts_);
 	while(it.IsValid())
 		{
@@ -335,8 +343,12 @@ const Font* ResourceManager::GetFont(StringId filename)
 
 //*** GetSound ***
 
-const Sound* ResourceManager::GetSound(StringId filename)
+const Sound* OldResourceManager::GetSound(StringId filename)
 	{
+	if (!filename.GetString())
+		{
+		return 0;
+		}
 	HashTableIterator<HashTableKey_Pointer,SoundEntry*> it(sounds_);
 	while(it.IsValid())
 		{
@@ -359,7 +371,7 @@ const Sound* ResourceManager::GetSound(StringId filename)
 
 //*** LoadBitmapStrip ***
 
-void ResourceManager::LoadBitmapStrip(const Filename& filename, int celCount)
+void OldResourceManager::LoadBitmapStrip(const Filename& filename, int celCount)
 	{
 	const BitmapStrip* bitmapStrip=GetBitmapStrip(filename.GetStringId(),celCount);
 	IncreaseReferenceCount(bitmapStrip);
@@ -368,7 +380,7 @@ void ResourceManager::LoadBitmapStrip(const Filename& filename, int celCount)
 
 //*** UnloadBitmapStrip ***
 
-void ResourceManager::UnloadBitmapStrip(const Filename& filename)
+void OldResourceManager::UnloadBitmapStrip(const Filename& filename)
 	{
 	const BitmapStrip* bitmapStrip=GetBitmapStrip(filename.GetStringId());
 	DecreaseReferenceCount(bitmapStrip);
@@ -377,7 +389,7 @@ void ResourceManager::UnloadBitmapStrip(const Filename& filename)
 
 //*** LoadFont ***
 
-void ResourceManager::LoadFont(const Filename& filename)
+void OldResourceManager::LoadFont(const Filename& filename)
 	{
 	const Font* font=GetFont(filename.GetStringId());
 	IncreaseReferenceCount(font);
@@ -386,7 +398,7 @@ void ResourceManager::LoadFont(const Filename& filename)
 
 //*** UnloadFont ***
 
-void ResourceManager::UnloadFont(const Filename& filename)
+void OldResourceManager::UnloadFont(const Filename& filename)
 	{
 	const Font* font=GetFont(filename.GetStringId());
 	DecreaseReferenceCount(font);
@@ -395,7 +407,7 @@ void ResourceManager::UnloadFont(const Filename& filename)
 
 //*** LoadSound ***
 
-void ResourceManager::LoadSound(const Filename& filename)
+void OldResourceManager::LoadSound(const Filename& filename)
 	{
 	const Sound* sound=GetSound(filename.GetStringId());
 	IncreaseReferenceCount(sound);
@@ -404,7 +416,7 @@ void ResourceManager::LoadSound(const Filename& filename)
 
 //*** UnloadSound ***
 
-void ResourceManager::UnloadSound(const Filename& filename)
+void OldResourceManager::UnloadSound(const Filename& filename)
 	{
 	const Sound* sound=GetSound(filename.GetStringId());
 	DecreaseReferenceCount(sound);

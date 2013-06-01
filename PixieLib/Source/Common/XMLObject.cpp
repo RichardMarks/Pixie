@@ -33,11 +33,11 @@ void XMLObject::XML_ElementEnd(StringId _name)
 void XMLObject::XML_Attribute(StringId _name, const XMLVariant& _value) 
 	{ 
 	// If running a debug build, report unknown XML attributes
-#ifdef _DEBUG
-	char buffer[256];
-	SNPrintF(buffer,255,"Unexpected XML attribute \"%s\"",_name.GetString());
-	Assert(false,buffer);
-#endif
+//#ifdef _DEBUG
+//	char buffer[256];
+//	SNPrintF(buffer,255,"Unexpected XML attribute \"%s\"",_name.GetString());
+//	Assert(false,buffer);
+//#endif
 	} 
 
 

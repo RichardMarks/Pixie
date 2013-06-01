@@ -193,7 +193,8 @@ void Font::LoadFont(const Filename& filename)
 		const char* filename=layers_.Get(i);
 		char filenameFullPath[1024];
 		SNPrintF(filenameFullPath,1024,"%s%s",path,filename);
-		Image layer(filenameFullPath);
+		Filename fn(filenameFullPath);
+		Image layer(fn);
 		
 		for (int i=0; i<256; i++)
 			{
@@ -205,7 +206,8 @@ void Font::LoadFont(const Filename& filename)
 					{
 					for (int x=0; x<character.width; x++)
 						{
-						image.SetPixel(x,y,layer.GetPixel(character.x+x,character.y+y));
+						unsigned int pixel = layer.GetPixel(character.x+x,character.y+y);
+						image.SetPixel(x,y,pixel);
 						}
 					}
 				Bitmap* bitmap= new Bitmap_RLE8(image);
@@ -268,7 +270,7 @@ void Font::Blit(Bitmap& bitmap, int x, int y, const char* text, int spacing, uns
 		return;
 		}
 	int textLength=StrLen(text);
-//	int previousCharacter=0;
+	int previousCharacter=0;
 	for (int i=0; i<layerCount_; i++)
 		{	
 		int xp=x;
@@ -659,7 +661,15 @@ void Font::ReadFromAssetNew(const Asset* asset)
 			{
 			Bitmap* bitmap=new Bitmap_RLE8();
 			bitmap->ReadFromAsset(asset);
-			character.layers.Add(bitmap);
+			if (character.ascii>=0 && character.ascii<=255)
+				{
+				character.layers.Add(bitmap);
+				}
+			else
+				{
+				delete bitmap;
+				}
+
 			}
 
 		if (character.ascii>=0 && character.ascii<=255)
@@ -684,5 +694,3 @@ void Font::ReadFromAssetNew(const Asset* asset)
 			}
 		}
 	}
-
-

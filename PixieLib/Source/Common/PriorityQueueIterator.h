@@ -13,17 +13,17 @@
 // Includes
 
 // Forward declares
-template <class TYPE> class PriorityQueue;
+template <typename TYPE, class COMPARE> class PriorityQueue;
 
 // PriorityQueueIterator
-template <class TYPE> 
+template <typename TYPE, class COMPARE> 
 class PriorityQueueIterator
 	{
 	public:
 		/**
 		 * Constructor
 		 */
-		PriorityQueueIterator(const PriorityQueue<TYPE>& priorityQueue);
+		PriorityQueueIterator(const PriorityQueue<TYPE,COMPARE>& priorityQueue);
 	
 		/**
 		 * Returns the first item in the queue, and resets the iterator
@@ -88,7 +88,7 @@ class PriorityQueueIterator
 
 	private:
 		int get_;				///< Index of the current item of the GetFirst()/GetNext() operations
-		const PriorityQueue<TYPE>* queue_;	///< The queue that this iterator is used to iterate through
+		const PriorityQueue<TYPE,COMPARE>* queue_;	///< The queue that this iterator is used to iterate through
 	};
 	
 // Implementation	

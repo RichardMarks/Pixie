@@ -139,7 +139,7 @@ TYPE* MemoryPool<TYPE>::Allocate()
 	TYPE* memory=entries_[entriesCount_];
 
 	// Create an object at the allocated memory position, and return it to the caller
-	TYPE* object=new (memory) TYPE;
+	TYPE* object=new (memory) TYPE[];
 	return object;
 	}
 

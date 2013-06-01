@@ -37,9 +37,16 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			unsigned short backgroundColor
 			);
 	
-		virtual void SetInterpolationMode(
-			bool enabled
+		virtual bool Present(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int modulate,
+			unsigned int backgroundColor
 			);
+
+		virtual void SetInterpolationMode(
+			bool enabled		);
 
 		virtual void TransformCursorCoordinates(float& x, float& y);
 
@@ -58,6 +65,18 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			int bitmapHeight, 
 			unsigned short modulate);
 
+		bool CopyBitmapToBackBuffer(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int backgroundColor
+			);
+
+		bool CopyBackBufferToFrontBuffer(
+			int bitmapWidth, 
+			int bitmapHeight, 
+			unsigned int modulate);
+
 	private:
 		struct HWND__* windowHandle_;
 		bool interpolationMode_;
@@ -67,8 +86,10 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 		void* d3dDLL_;
 		IDirect3D9* direct3D_;
 		IDirect3DDevice9* device_;
-		IDirect3DTexture9* backbuffer1_;
-		IDirect3DTexture9* backbuffer2_;
+		IDirect3DTexture9* backbuffer16a_;
+		IDirect3DTexture9* backbuffer16b_;
+		IDirect3DTexture9* backbuffer32a_;
+		IDirect3DTexture9* backbuffer32b_;
 		int backbufferWidth_;
 		int backbufferHeight_;
 		bool usingDynamicTexture_;

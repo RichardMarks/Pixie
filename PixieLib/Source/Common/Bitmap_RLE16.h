@@ -59,8 +59,8 @@ class Bitmap_RLE16:public Bitmap
 
 		virtual void BlendPixel(int x, int y, unsigned short color, unsigned char alpha, Transformation transformation = NoTransformation);
 
-		virtual void Blit(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation) const;
-		virtual void Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation) const;
+		virtual void Blit(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation, bool maxBlit = false ) const;
+		virtual void Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation, bool maxBlit = false ) const;
 
 		virtual void Copy(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, Transformation transformation = NoTransformation) const;
 		virtual void Copy(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, Transformation transformation = NoTransformation) const;
@@ -73,6 +73,7 @@ class Bitmap_RLE16:public Bitmap
 
 	private:
 
+		unsigned char RLEGetPixelAlpha(int x, int y) const;
 		void BlitRLE(Bitmap& target, int xp, int yp) const;
 
 	private:

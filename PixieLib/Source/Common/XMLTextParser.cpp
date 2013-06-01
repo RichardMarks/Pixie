@@ -258,6 +258,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 				int length=StrLen(text);
 				if (length<=0)
 					{
+					delete xml;
 					return;
 					}
 
@@ -270,6 +271,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 
 				if (!bufferedText)
 					{
+					delete xml;
 					return;
 					}
 				

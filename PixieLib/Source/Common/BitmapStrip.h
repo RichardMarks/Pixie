@@ -78,6 +78,9 @@ class BitmapStrip
 
 
 		operator const Bitmap&() const;
+
+		void ReadFromAsset(const Asset* asset);
+
 	private:
 		Array<const Bitmap*> cels_;	///< Collection of Bitmaps making up the strip
 	};

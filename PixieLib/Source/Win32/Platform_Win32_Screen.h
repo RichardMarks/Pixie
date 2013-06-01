@@ -35,6 +35,13 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 			unsigned short backgroundColor = 0x0000
 			);
 
+		virtual void Present(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int modulate = 0xffffffff,
+			unsigned int backgroundColor = 0x00000000
+			);
 
 		virtual void SetInterpolationMode(bool enabled);
 
@@ -88,6 +95,8 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 		void DebugText(unsigned short* colorData, int hPitch, int vPitch, int x, int y, const char* text, unsigned short color);
 		void BlitCharacter(unsigned short* colorData, int hPitch, int vPitch, int sx, int sy, int dx, int dy, unsigned short color);
 
+		void DebugText(unsigned int* colorData, int hPitch, int vPitch, int x, int y, const char* text, unsigned int color);
+		void BlitCharacter(unsigned int* colorData, int hPitch, int vPitch, int sx, int sy, int dx, int dy, unsigned int color);
 	private:
 		static unsigned int Platform_Win32_Screen::DebugFontData[];
 		struct HWND__* windowHandle_;

@@ -25,12 +25,6 @@ class Screen
 			int height
 			);
 
-        Screen(
-            int width,
-            int height,
-            bool fullscreen
-            );
-
 		~Screen();
 
 		Bitmap& GetBackBuffer();

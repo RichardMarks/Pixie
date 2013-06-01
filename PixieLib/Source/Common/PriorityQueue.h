@@ -5,6 +5,7 @@
  * \brief	
  * \author	Mattias Gustavsson
  * 
+ * \todo	Change allocation scheme to use malloc/free and placement new, to ensure only objects in use are created
  */
 
 #ifndef __PriorityQueue_H__
@@ -14,21 +15,27 @@
 
 // Forward declares
 
+//	class ExampleCompare
+//		{
+//		public:
+//			/**
+//			 * Returns true if value a is higher priority than value b
+//			 */
+//			static bool Compare(const int& a, const int& b)
+//				{
+//				return (a > b);
+//				}
+//		};
+
 // PriorityQueue
-template<class TYPE> 
+template<typename TYPE, class COMPARE> 
 class PriorityQueue
 	{
 	public:
 		/**
-		 * Returns true if value a is higher priority than value b
-		 */
-		typedef bool (*CompareFunction)(const TYPE& a, const TYPE& b);
-
-		/**
 		 * Constructor
 		 */
 		PriorityQueue(	
-			CompareFunction compareFunction,
 			int initialCapacity = 64	///< Maximum number of items the PriorityQueue can initially store. 
 			);
 		
@@ -36,14 +43,14 @@ class PriorityQueue
 		 * Copy Constructor
 		 */
 		PriorityQueue(	
-			const PriorityQueue<TYPE>& priorityQueueToCopy
+			const PriorityQueue<TYPE,COMPARE>& priorityQueueToCopy
 			);
 
 		/**
 		 * Assignment operator
 		 */
-		const PriorityQueue<TYPE>& operator = (	
-			const PriorityQueue<TYPE>& priorityQueueToCopy
+		const PriorityQueue<TYPE,COMPARE>& operator = (	
+			const PriorityQueue<TYPE,COMPARE>& priorityQueueToCopy
 			);
 
 		/**
@@ -104,7 +111,6 @@ class PriorityQueue
 			);
 
 	private:
-		CompareFunction compareFunction_;
 		int initialCapacity_;	///< Maximum number of items the array can initially store. 
 		int capacity_;		///< Maximum number of items that can currently be stored in the array
 		int itemCount_;		///< Number of items currently stored in the array

@@ -852,6 +852,10 @@ float Clamp(
 	);
 
 
+float Floor (
+	float x 
+	);
+
 /**
  * Exchanges the value of variables, assigning the contents of the first variable to the second variable, and the 
  * contents of the second to the first.
@@ -882,6 +886,10 @@ void Swap(
 	);
 
 
+unsigned int GetNearestPowerOfTwo(unsigned int v);
 
+float saturate( float v );
+float smoothstep( float min, float max, float x );
+float smootherstep( float min, float max, float x );
 
 #endif /* __StandardLibrary_H__ */

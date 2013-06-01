@@ -18,7 +18,7 @@
 #include "MusicManager.h"
 #include "SpriteSystem.h"
 #include "SpriteControllerManager.h"
-#include "ResourceManager.h"
+#include "OldResourceManager.h"
 #include "GameStateManager.h"
 
 // Forward declares
@@ -41,7 +41,7 @@ class GameHelper
 		MusicManager musicManager_;
 		SpriteSystem spriteSystem_;
 		SpriteControllerManager spriteControllerManager_;
-		ResourceManager resourceManager_;
+		OldResourceManager resourceManager_;
 		GameStateManager gameStateManager_;
 
 	};

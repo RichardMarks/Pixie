@@ -36,19 +36,6 @@ AssetEnumerator::AssetEnumerator(const StringId& filenameId):
 	}
 
 
-//*** Constructor ***
-
-AssetEnumerator::AssetEnumerator(const char* filenameStr):
-	directory_(0),
-	archiveDirectory_(0),
-	nameBuffer_(0),
-	nameBufferSize_(0)
-	{
-	Filename filename(filenameStr);
-	CreateFromFilename(filename);
-	}
-
-
 //*** CreateFromFilename ***
 
 void AssetEnumerator::CreateFromFilename(const Filename& filename)

@@ -1,7 +1,7 @@
 //*** Resource_BitmapStrip.cpp ***
 
 #include "Resource_BitmapStrip.h"
-#include "ResourceManager.h"
+#include "OldResourceManager.h"
 #include "Filename.h"
 #include "BitmapStrip.h"
 #include "Bitmap_16bit.h"
@@ -27,10 +27,10 @@ Resource_BitmapStrip::Resource_BitmapStrip(const BitmapStrip* bitmapStrip):
 Resource_BitmapStrip::Resource_BitmapStrip(const Bitmap* bitmap):
 	bitmapStrip_(0)
 	{
-	bitmapStrip_=siResourceManager->GetBitmapStrip(bitmap);
+	bitmapStrip_=siOldResourceManager->GetBitmapStrip(bitmap);
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -40,10 +40,10 @@ Resource_BitmapStrip::Resource_BitmapStrip(const Bitmap* bitmap):
 Resource_BitmapStrip::Resource_BitmapStrip(const Filename& filename, int celCount):
 	bitmapStrip_(0)
 	{
-	bitmapStrip_=siResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
+	bitmapStrip_=siOldResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -53,14 +53,11 @@ Resource_BitmapStrip::Resource_BitmapStrip(const Filename& filename, int celCoun
 Resource_BitmapStrip::Resource_BitmapStrip(const char* filenameStr, int celCount):
 	bitmapStrip_(0)
 	{
-	if (filenameStr)
+	Filename filename(filenameStr);
+	bitmapStrip_=siOldResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
+	if (bitmapStrip_)
 		{
-		Filename filename(filenameStr);
-		bitmapStrip_=siResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
-		if (bitmapStrip_)
-			{
-			siResourceManager->IncreaseReferenceCount(bitmapStrip_);
-			}
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -71,10 +68,10 @@ Resource_BitmapStrip::Resource_BitmapStrip(StringId filenameId, int celCount):
 	bitmapStrip_(0)
 	{
 	Filename filename(filenameId);
-	bitmapStrip_=siResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
+	bitmapStrip_=siOldResourceManager->GetBitmapStrip(filename.GetStringId(),celCount);
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -84,10 +81,10 @@ Resource_BitmapStrip::Resource_BitmapStrip(StringId filenameId, int celCount):
 Resource_BitmapStrip::Resource_BitmapStrip(const Image& image):
 	bitmapStrip_(0)
 	{
-	bitmapStrip_=siResourceManager->GetBitmapStrip(image);
+	bitmapStrip_=siOldResourceManager->GetBitmapStrip(image);
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -98,7 +95,7 @@ Resource_BitmapStrip::~Resource_BitmapStrip()
 	{ 
 	if (bitmapStrip_)
 		{
-		siResourceManager->DecreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->DecreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -110,7 +107,7 @@ Resource_BitmapStrip::Resource_BitmapStrip(const Resource_BitmapStrip& resource)
 	{ 
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	}
 
@@ -121,12 +118,12 @@ const Resource_BitmapStrip& Resource_BitmapStrip::operator =(const Resource_Bitm
 	{ 
 	if (bitmapStrip_)
 		{
-		siResourceManager->DecreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->DecreaseReferenceCount(bitmapStrip_);
 		}
 	bitmapStrip_=resource.bitmapStrip_;
 	if (bitmapStrip_)
 		{
-		siResourceManager->IncreaseReferenceCount(bitmapStrip_);
+		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
 		}
 	return *this;
 	}

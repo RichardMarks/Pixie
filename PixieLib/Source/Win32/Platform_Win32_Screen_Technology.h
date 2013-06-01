@@ -32,6 +32,14 @@ class Platform_Win32_Screen_Technology
 			unsigned short backgroundColor
 			) = 0;
 
+		virtual bool Present(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int modulate,
+			unsigned int backgroundColor
+			) = 0;
+
 		virtual void SetInterpolationMode(bool enabled) = 0;
 
 	

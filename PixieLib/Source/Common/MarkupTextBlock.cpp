@@ -177,14 +177,14 @@ const char* MarkupTextBlock::GetNextToken()
 		}
 
 	// If this is the start of a markup code, look for its end marker
-	if (pmlString_[currentTokenPosition_]=='[')
+	if (pmlString_[currentTokenPosition_]=='[' || pmlString_[currentTokenPosition_]=='<')
 		{
 		int codeStart=currentTokenPosition_;
 		while (currentTokenPosition_<tokenStreamSize_)
 			{
 			currentTokenPosition_++;
 			char c=pmlString_[currentTokenPosition_];
-			if (c==']')
+			if (c==']' || c=='>')
 				{
 				currentTokenPosition_++;
 				currentTokenIsMarkupCode_=true;
@@ -205,7 +205,7 @@ const char* MarkupTextBlock::GetNextToken()
 		{
 		currentTokenPosition_++;
 		char c=pmlString_[currentTokenPosition_];
-		if (c<=32 || c=='[' || c==']')
+		if (c<=32 || c=='[' || c==']' || c=='<' || c=='>')
 			{
 			break;
 			}
@@ -328,7 +328,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 		if (currentTokenIsMarkupCode_)
 			{
 			// [br] line breaks
-			if (StrICmp(token,"[br]")==0)
+			if (StrICmp(token,"[br]")==0 || StrICmp(token,"<br>")==0)
 				{
 				xp=x1;
 				if (font)
@@ -343,7 +343,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [var=...] horizontal spacing
-			if (StrNICmp(token,"[var=",5)==0)
+			if (StrNICmp(token,"[var=",5)==0 || StrNICmp(token,"<var=",5)==0)
 				{
 				int l=Min(StrLen(token)-6,1023);
 				StrNCpy(varbuffer,&token[5],l);
@@ -356,25 +356,25 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [hspace=...] horizontal spacing
-			if (StrNICmp(token,"[hspace=",8)==0)
+			if (StrNICmp(token,"[hspace=",8)==0 || StrNICmp(token,"<hspace=",8)==0)
 				{
 				xp+=StringToInt(&token[8]);
 				}
 
 			// [vspace=...] vertical spacing
-			if (StrNICmp(token,"[vspace=",8)==0)
+			if (StrNICmp(token,"[vspace=",8)==0 || StrNICmp(token,"<vspace=",8)==0)
 				{
 				yp+=StringToInt(&token[8]);
 				}
 
 			// [halign=...] horizontal alignment
-			if (StrNICmp(token,"[halign=",8)==0)
+			if (StrNICmp(token,"[halign=",8)==0 || StrNICmp(token,"<halign=",8)==0)
 				{
 				xp=StringToInt(&token[8]);
 				}
 
 			// [valign=...] vertical alignment
-			if (StrNICmp(token,"[valign=",8)==0)
+			if (StrNICmp(token,"[valign=",8)==0 || StrNICmp(token,"<valign=",8)==0)
 				{
 				yp=StringToInt(&token[8]);
 				}
@@ -382,7 +382,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 			bool fontChanged=false;
 
 			// [style=] special font style
-			if (StrNICmp(token,"[style=",7)==0)
+			if (StrNICmp(token,"[style=",7)==0 || StrNICmp(token,"<style=",7)==0)
 				{
 				isStyle=true;
 				int l=Min(StrLen(token)-8,255);
@@ -393,49 +393,49 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [/style] end of special font style
-			if (StrICmp(token,"[/b]")==0)
+			if (StrICmp(token,"[/style]")==0 || StrICmp(token,"</style>")==0)
 				{
 				isStyle=false;
 				fontChanged=true;
 				}
 
 			// [b] bold font
-			if (StrICmp(token,"[b]")==0)
+			if (StrICmp(token,"[b]")==0 || StrICmp(token,"<b>")==0)
 				{
 				isBold=true;
 				fontChanged=true;
 				}
 
 			// [/b] non-bold font
-			if (StrICmp(token,"[/b]")==0)
+			if (StrICmp(token,"[/b]")==0 || StrICmp(token,"</b>")==0)
 				{
 				isBold=false;
 				fontChanged=true;
 				}
 
 			// [i] italic font
-			if (StrICmp(token,"[i]")==0)
+			if (StrICmp(token,"[i]")==0 || StrICmp(token,"<i>")==0)
 				{
 				isItalic=true;
 				fontChanged=true;
 				}
 
 			// [/i] non-italic font
-			if (StrICmp(token,"[/i]")==0)
+			if (StrICmp(token,"[/i]")==0 || StrICmp(token,"</i>")==0)
 				{
 				isItalic=false;
 				fontChanged=true;
 				}
 
 			// [h] headline
-			if (StrICmp(token,"[h]")==0)
+			if (StrICmp(token,"[h]")==0 || StrICmp(token,"<h>")==0)
 				{
 				isHeadline=true;
 				fontChanged=true;
 				}
 
 			// [/h] non-headline
-			if (StrICmp(token,"[/h]")==0)
+			if (StrICmp(token,"[/h]")==0 || StrICmp(token,"</h>")==0)
 				{
 				isHeadline=false;
 				fontChanged=true;
@@ -454,7 +454,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [link=..] hyperlink
-			if (StrNICmp(token,"[link=",6)==0)
+			if (StrNICmp(token,"[link=",6)==0 || StrNICmp(token,"<link=",6)==0)
 				{
 				isLink=true;
 				fontChanged=true;
@@ -465,14 +465,14 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [/link] hyperlink end
-			if (StrICmp(token,"[/link]")==0)
+			if (StrICmp(token,"[/link]")==0 || StrICmp(token,"</link>")==0)
 				{
 				isLink=false;
 				fontChanged=true;
 				}
 
 			// [option=..] option
-			if (StrNICmp(token,"[option=",8)==0)
+			if (StrNICmp(token,"[option=",8)==0 || StrNICmp(token,"<option=",8)==0)
 				{
 				isOption=true;
 				fontChanged=true;
@@ -483,21 +483,21 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				}
 
 			// [/option] option end
-			if (StrICmp(token,"[/option]")==0)
+			if (StrICmp(token,"[/option]")==0 || StrICmp(token,"</option>")==0)
 				{
 				isOption=false;
 				fontChanged=true;
 				}
 
 			// [optiondisabled] disabled option
-			if (StrICmp(token,"[optiondisabled]")==0)
+			if (StrICmp(token,"[optiondisabled]")==0 || StrICmp(token,"<optiondisabled>")==0)
 				{
 				isDisabledOption=true;
 				fontChanged=true;
 				}
 
 			// [/optiondisabled] disabled option end
-			if (StrICmp(token,"[/optiondisabled]")==0)
+			if (StrICmp(token,"[/optiondisabled]")==0 || StrICmp(token,"</optiondisabled>")==0)
 				{
 				isDisabledOption=false;
 				fontChanged=true;

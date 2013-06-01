@@ -9,6 +9,7 @@
 #include "GenerateRLE8.h"
 #include "BlitterRLE8.h"
 #include "CopperRLE8.h"
+#include "MaxBlitterRLE8.h"
 
 
 const char* Pixie_Rle_Header="PIXRLE8B";
@@ -115,33 +116,6 @@ Bitmap_RLE8::~Bitmap_RLE8()
 		}
 	}
 
-//*** GetHPitch ***
-
-int Bitmap_RLE8::GetHPitch() const
-    {
-    return activeWidth_;
-    }
-
-//*** GetVPitch ***
-
-int Bitmap_RLE8::GetVPitch() const
-    {
-    return activeHeight_;
-    }
-
-//*** GetHOffset ***
-
-int Bitmap_RLE8::GetHOffset() const
-    {
-    return xOffset_;
-    }
-
-//*** GetVOffset ***
-
-int Bitmap_RLE8::GetVOffset() const
-    {
-    return yOffset_;
-    }
 
 //*** GetWidth ***
 
@@ -282,17 +256,24 @@ void Bitmap_RLE8::BlendPixel(int x, int y,unsigned short color, unsigned char al
 
 //*** Blit ***
 
-void Bitmap_RLE8::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap_RLE8::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit) const
 	{
-	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation);
+	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation, maxBlit );
 	}
 
 
 //*** Blit ***
 
-void Bitmap_RLE8::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap_RLE8::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit) const
 	{
-	BlitRLE(x1,y1,x2,y2,static_cast<Bitmap_16bit*>(&target),x,y,modulate,alpha);
+	if( !maxBlit )
+		{
+		BlitRLE(x1,y1,x2,y2,static_cast<Bitmap_16bit*>(&target),x,y,modulate,alpha);
+		}
+	else
+		{
+		MaxBlitRLE(x1,y1,x2,y2,static_cast<Bitmap_16bit*>(&target),x,y,modulate,alpha);
+		}
 	}
 
 
@@ -559,6 +540,187 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 
 //*** Blit ***
 
+void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,int x, int y, unsigned short modulate, unsigned char alpha) const
+	{
+	// Check for empty bitmap
+	if (!opaqueData_ && !alphaData_)
+		{
+		return;
+		}
+
+	if (alpha==0)
+		{
+		return;
+		}
+
+
+	int clipX1=x+xOffset_;
+	int clipY1=y+yOffset_;
+	int clipX2=x+xOffset_+(x2-x1);
+	int clipY2=y+yOffset_+(y2-y1);
+
+	x-=x1;
+	y-=y1;
+
+	if (clipX1<0)
+		clipX1=0;
+	if (clipY1<0)
+		clipY1=0;
+	if (clipX2>=target->GetWidth())
+		clipX2=target->GetWidth()-1;
+	if (clipY2>=target->GetHeight())
+		clipY2=target->GetHeight()-1;
+	
+	// Set up palette
+	currentPalette_=palette_;
+	if (modulate!=0xffff)
+		{
+		if (!modulatedPalette_)
+			{
+			modulatedPalette_=static_cast<unsigned short*>(Malloc(sizeof(unsigned short)*colorCount_));
+			}
+		for (int i=0; i<colorCount_; i++)
+			{
+			int c=palette_[i];
+			unsigned int r=(c & 0xf800)>>11;
+			unsigned int g=(c & 0x7e0)>>5;
+			unsigned int b=(c & 0x1f);
+			unsigned int mr=(modulate & 0xf800)>>11;
+			unsigned int mg=(modulate & 0x7e0)>>5;
+			unsigned int mb=(modulate & 0x1f);
+			r*=mr;
+			g*=mg;
+			b*=mb;
+			r>>=5;
+			g>>=6;
+			b>>=5;
+			modulatedPalette_[i]=(unsigned short)((r<<11)|(g<<5)|(b));
+			}
+		currentPalette_=modulatedPalette_;
+		}
+	int targetDelta=target->GetWidth()-activeWidth_;
+	int tx1=x+xOffset_;
+	int ty1=y+yOffset_;
+	int tx2=tx1+activeWidth_-1;
+	int ty2=ty1+activeHeight_-1;
+	unsigned short* data=&(target->GetColorData())[tx1+ty1*target->GetWidth()];
+	
+	// Do we need to clip?
+	if (tx1>=clipX1 && ty1>=clipY1 && tx2<=clipX2 && ty2<=clipY2)
+		{
+		// Render opaque part
+		if (opaqueData_)
+			{
+			if (usesMask_)
+				{
+				if (alpha==255)
+					{
+					MaxBlitterRLE8::Opaque_Unclipped_Masked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1);
+					}
+				else 
+					{
+					MaxBlitterRLE8::Opaque_Unclipped_Masked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,alpha);
+					}
+				}
+			else
+				{
+				if (alpha==255)
+					{
+					MaxBlitterRLE8::Opaque_Unclipped_Unmasked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1);
+					}
+				else
+					{
+					MaxBlitterRLE8::Opaque_Unclipped_Unmasked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,alpha);
+					}
+				}
+			}
+			
+		// Render alpha part
+		if (alphaData_)			
+			{
+			if (alpha==255)
+				{
+				MaxBlitterRLE8::Alpha_Unclipped(alphaData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1);
+				}
+			else
+				{
+				MaxBlitterRLE8::Alpha_Unclipped_Transparent(alphaData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,alpha);
+				}
+			}
+		}
+	else	// Yes, clipping required
+		{
+		// Trivial rejection test
+		if (tx2<clipX1 || ty2<clipY1 || tx1>clipX2 || ty1>clipY2)
+			return;
+		
+		// Calculate visible part
+		int xStart=0;
+		int yStart=0;
+		int xEnd=0;
+		int yEnd=0;
+
+		if (tx1<clipX1)
+			{
+			xStart=clipX1-tx1;
+			}
+		if (ty1<clipY1)
+			{
+			yStart=clipY1-ty1;
+			}
+		if (tx2>clipX2)
+			{
+			xEnd=tx2-clipX2+1;
+			}
+		if (ty2>clipY2)
+			{
+			yEnd=ty2-clipY2+1;
+			}
+		
+		// Render opaque part
+		if (opaqueData_)
+			{
+			if (usesMask_)
+				{
+				if (alpha==255)
+					{
+					MaxBlitterRLE8::Opaque_Clipped_Masked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd);
+					}
+				else
+					{
+					MaxBlitterRLE8::Opaque_Clipped_Masked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd,alpha);
+					}
+				}
+			else
+				{
+				if (alpha==255)
+					{
+					MaxBlitterRLE8::Opaque_Clipped_Unmasked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd);
+					}
+				else
+					{
+					MaxBlitterRLE8::Opaque_Clipped_Unmasked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd,alpha);
+					}
+				}
+			}
+			
+		// Render alpha part
+		if (alphaData_)			
+			{
+			if (alpha==255)
+				{
+				MaxBlitterRLE8::Alpha_Clipped(alphaData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd);
+				}
+			else
+				{
+				MaxBlitterRLE8::Alpha_Clipped_Transparent(alphaData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,xStart,yStart,xEnd,yEnd,alpha);
+				}
+			}
+		}
+	}
+
+//*** Blit ***
+
 void Bitmap_RLE8::BlitRLE(Bitmap_16bitAlpha* target,int x, int y, unsigned short modulate) const
 	{
 	Blit(0,0,activeWidth_-1,activeHeight_-1,*target,x,y,modulate);
@@ -785,9 +947,8 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 				int c=*dataRLE;
 				if (xi==x-xOffset_)
 					{
-					if (c==255)
-						return 0;
-					return 255;
+					if (c!=255)
+						return 255;
 					}
 				++dataRLE;
 				xi++;
@@ -798,9 +959,8 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 			int c=*dataRLE;
 			if (xi==x-xOffset_ || (xi+len)>=x-xOffset_)
 				{
-				if (c==255)
-					return 0;
-				return 255;
+				if (c!=255)
+					return 255;
 				}
 
 			++dataRLE;
@@ -985,4 +1145,20 @@ int Bitmap_RLE8::GetX2() const
 int Bitmap_RLE8::GetY2() const
 	{
 	return yOffset_+activeHeight_;
+	}
+
+
+//*** GetOpaqueSize ***
+
+unsigned int Bitmap_RLE8::GetOpaqueSize() const
+	{
+	return opaqueSize_;
+	}
+
+
+//*** GetOpaqueData ***
+
+unsigned char* Bitmap_RLE8::GetOpaqueData() const
+	{
+	return opaqueData_;
 	}

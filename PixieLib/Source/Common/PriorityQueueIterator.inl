@@ -5,8 +5,8 @@
 
 //*** Constructor ***
 
-template <class TYPE>
-PriorityQueueIterator<TYPE>::PriorityQueueIterator(const PriorityQueue<TYPE>& queue):
+template <typename TYPE, class COMPARE>
+PriorityQueueIterator<TYPE, COMPARE>::PriorityQueueIterator(const PriorityQueue<TYPE, COMPARE>& queue):
 	queue_(&queue),
 	get_(0)
 	{
@@ -16,8 +16,8 @@ PriorityQueueIterator<TYPE>::PriorityQueueIterator(const PriorityQueue<TYPE>& qu
 
 //*** MoveFirst ***
 
-template <class TYPE>
-void PriorityQueueIterator<TYPE>::MoveFirst()
+template <typename TYPE, class COMPARE>
+void PriorityQueueIterator<TYPE, COMPARE>::MoveFirst()
 	{
 	get_=0;
 	}
@@ -25,8 +25,8 @@ void PriorityQueueIterator<TYPE>::MoveFirst()
 
 //*** MoveNext***
 
-template <class TYPE>
-void PriorityQueueIterator<TYPE>::MoveNext()
+template <typename TYPE, class COMPARE>
+void PriorityQueueIterator<TYPE, COMPARE>::MoveNext()
 	{
 	if (get_<queue_.GetItemCount())
 		{
@@ -37,8 +37,8 @@ void PriorityQueueIterator<TYPE>::MoveNext()
 
 //*** MoveLast ***
 
-template <class TYPE>
-void PriorityQueueIterator<TYPE>::MoveLast()
+template <typename TYPE, class COMPARE>
+void PriorityQueueIterator<TYPE, COMPARE>::MoveLast()
 	{
 	get_=queue_->GetItemCount()-1;
 	}
@@ -46,8 +46,8 @@ void PriorityQueueIterator<TYPE>::MoveLast()
 
 //*** GetPrevious***
 
-template <class TYPE>
-void PriorityQueueIterator<TYPE>::MovePrevious()
+template <typename TYPE, class COMPARE>
+void PriorityQueueIterator<TYPE, COMPARE>::MovePrevious()
 	{
 	if (get_>=0)
 		{
@@ -58,8 +58,8 @@ void PriorityQueueIterator<TYPE>::MovePrevious()
 
 //*** GetCurrent ***
 
-template <class TYPE>
-TYPE& PriorityQueueIterator<TYPE>::GetCurrent() const
+template <typename TYPE, class COMPARE>
+TYPE& PriorityQueueIterator<TYPE, COMPARE>::GetCurrent() const
 	{
 	Assert(get_>=0 && get_<queue_->GetItemCount(),"Invalid get location");
 	if (get_>=0 && get_<queue_->GetItemCount())
@@ -74,8 +74,8 @@ TYPE& PriorityQueueIterator<TYPE>::GetCurrent() const
 
 //*** IsValid ***
 
-template <class TYPE>
-bool PriorityQueueIterator<TYPE>::IsValid() const
+template <typename TYPE, class COMPARE>
+bool PriorityQueueIterator<TYPE, COMPARE>::IsValid() const
 	{
 	if (get_>=0 && get_<queue_->GetItemCount())
 		{
@@ -88,8 +88,8 @@ bool PriorityQueueIterator<TYPE>::IsValid() const
 
 //*** Find ***
 
-template <class TYPE>
-bool PriorityQueueIterator<TYPE>::Find(const TYPE& data)
+template <typename TYPE, class COMPARE>
+bool PriorityQueueIterator<TYPE, COMPARE>::Find(const TYPE& data)
 	{
 	// Loop through all items
 	for (int i=0; i<queue_->GetItemCount(); i++)
@@ -112,8 +112,8 @@ bool PriorityQueueIterator<TYPE>::Find(const TYPE& data)
 
 //*** GetCurrentIndex ***
 
-template <class TYPE>
-int PriorityQueueIterator<TYPE>::GetCurrentIndex() const
+template <typename TYPE, class COMPARE>
+int PriorityQueueIterator<TYPE, COMPARE>::GetCurrentIndex() const
 	{
 	return get_;
 	}

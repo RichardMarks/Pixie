@@ -34,6 +34,14 @@ class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
 			unsigned short backgroundColor
 			);
 
+		virtual bool Present(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int modulate,
+			unsigned int backgroundColor
+			);
+
 		virtual void SetInterpolationMode(bool enabled);
 
 		virtual void TransformCursorCoordinates(float& x, float& y);

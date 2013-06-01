@@ -42,11 +42,6 @@ class Bitmap_RLE8:public Bitmap
 		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );							
 		virtual void Fill(unsigned short color, unsigned char alpha = 255);
 
-        virtual int GetHPitch() const;
-        virtual int GetVPitch() const;
-        virtual int GetHOffset() const;
-        virtual int GetVOffset() const;
-
 		virtual int GetWidth(Transformation transformation = NoTransformation) const;		
 		virtual int GetHeight(Transformation transformation = NoTransformation) const;
 
@@ -58,8 +53,8 @@ class Bitmap_RLE8:public Bitmap
 
 		virtual void BlendPixel(int x, int y, unsigned short color, unsigned char alpha, Transformation transformation = NoTransformation);
 
-		virtual void Blit(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation) const;
-		virtual void Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation) const;
+		virtual void Blit(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation, bool maxBlit = false ) const;
+		virtual void Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, unsigned char alpha = 255, Transformation transformation = NoTransformation, bool maxBlit = false ) const;
 
 		virtual void Copy(Bitmap& target, int x, int y, unsigned short modulate = 0xffff, Transformation transformation = NoTransformation) const;
 		virtual void Copy(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate = 0xffff, Transformation transformation = NoTransformation) const;
@@ -70,10 +65,18 @@ class Bitmap_RLE8:public Bitmap
 		virtual void WriteToAsset(Asset* asset) const;
 		virtual void ReadFromAsset(const Asset* asset);
 
+		int GetX1() const;
+		int GetY1() const;
+		int GetX2() const;
+		int GetY2() const;
+
+		unsigned int GetOpaqueSize() const;
+		unsigned char* GetOpaqueData() const;	
 
 	private:
 		void BlitRLE(Bitmap_16bit* target,int x, int y, unsigned short modulate=0xffff, unsigned char alpha = 255) const;
 		void BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,int x, int y, unsigned short modulate=0xffff, unsigned char alpha = 255) const;
+		void MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,int x, int y, unsigned short modulate=0xffff, unsigned char alpha = 255) const;
 
 		void BlitRLE(Bitmap_16bitAlpha* target,int x, int y, unsigned short modulate) const;
 		void BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* target,int x, int y, unsigned short modulate) const;
@@ -81,10 +84,6 @@ class Bitmap_RLE8:public Bitmap
 		unsigned char RLEGetPixelAlpha(int x, int y) const;
 		unsigned short RLEGetPixelColor(int x, int y) const;
 
-		int GetX1() const;
-		int GetY1() const;
-		int GetX2() const;
-		int GetY2() const;
 
 
 	private:

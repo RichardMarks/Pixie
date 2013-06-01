@@ -73,15 +73,12 @@ class Sprite
 
 		virtual bool PickPixel(int x, int y) const;
 
-		virtual void SetSelectionIndex( int index );
-		virtual int GetSelectionIndex() const;
-
 	protected:
 		friend class SpriteManager;
 
 		virtual void Render(Bitmap& bitmap);
 
-		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit);
+		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData);
 
 	private:
 		SpriteManager* spriteManager_;
@@ -94,7 +91,6 @@ class Sprite
 		unsigned char alpha_;
 		float priority_;
 		float cel_;
-		int selectionIndex_;
 		Resource_BitmapStrip bitmapStrip_;
 	};
 

@@ -28,7 +28,7 @@ void ArrayIterator<TYPE>::MoveFirst()
 template <class TYPE>
 void ArrayIterator<TYPE>::MoveNext()
 	{
-	if (get_<array_.GetItemCount())
+	if (get_<array_->GetItemCount())
 		{
 		get_++;
 		}

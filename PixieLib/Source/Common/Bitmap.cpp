@@ -365,7 +365,7 @@ unsigned short Bitmap::GetPixelColor(int x, int y, Transformation transformation
 		TransformCoordinates(x,y,transformation);
 		x-=hOffset_;
 		y-=vOffset_;
-		if (x>=0 && x<=hPitch_ && y>=0 && y<vPitch_)
+		if (x>=0 && x<hPitch_ && y>=0 && y<vPitch_)
 			{
 			return color_[x+y*hPitch_];
 			}
@@ -381,7 +381,7 @@ unsigned char Bitmap::GetPixelAlpha(int x, int y, Transformation transformation)
 	TransformCoordinates(x,y,transformation);
 	x-=hOffset_;
 	y-=vOffset_;
-	if (x>=0 && x<=hPitch_ && y>=0 && y<vPitch_)
+	if (x>=0 && x<hPitch_ && y>=0 && y<vPitch_)
 		{
 		if (alpha_)
 			{
@@ -402,7 +402,7 @@ void Bitmap::SetPixelColor(int x, int y,unsigned short color, Transformation tra
 		TransformCoordinates(x,y,transformation);
 		x-=hOffset_;
 		y-=vOffset_;
-		if (x>=0 && x<=hPitch_ && y>=0 && y<vPitch_)
+		if (x>=0 && x<hPitch_ && y>=0 && y<vPitch_)
 			{
 			color_[x+y*hPitch_]=color;
 			}
@@ -419,7 +419,7 @@ void Bitmap::SetPixelAlpha(int x, int y,unsigned char alpha, Transformation tran
 		TransformCoordinates(x,y,transformation);
 		x-=hOffset_;
 		y-=vOffset_;
-		if (x>=0 && x<=hPitch_ && y>=0 && y<vPitch_)
+		if (x>=0 && x<hPitch_ && y>=0 && y<vPitch_)
 			{
 			alpha_[x+y*hPitch_]=alpha;
 			}
@@ -436,7 +436,7 @@ void Bitmap::BlendPixel(int x, int y,unsigned short color, unsigned char alpha, 
 		TransformCoordinates(x,y,transformation);
 		x-=hOffset_;
 		y-=vOffset_;
-		if (x>=0 && x<=hPitch_ && y>=0 && y<vPitch_)
+		if (x>=0 && x<hPitch_ && y>=0 && y<vPitch_)
 			{
 			if (alpha==255)
 				{
@@ -454,15 +454,15 @@ void Bitmap::BlendPixel(int x, int y,unsigned short color, unsigned char alpha, 
 
 //*** Blit ***
 
-void Bitmap::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit) const
 	{
-	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation);
+	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation, maxBlit );
 	}
 
 
 //*** Blit ***
 
-void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit ) const
 	{
 	// Don't do anything if alpha is set to 0, as that means every pixel would be written at 100% transparent
 	if (alpha==0)

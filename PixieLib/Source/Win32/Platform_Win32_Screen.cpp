@@ -37,28 +37,23 @@ Platform_Win32_Screen::Platform_Win32_Screen(Platform_Win32_OS* os):
 	// Check commandline flags
 	if (os->GetCommandLineString())
 		{
-//		char* cmdline=strdup(os->GetCommandLineString());
-		char* cmdline=_strdup(os->GetCommandLineString());
+		char* cmdline=strdup(os->GetCommandLineString());
 		char* token=strtok(cmdline," ");
 		while (token)
 			{
-//			if (stricmp(token,"-window")==0)
-			if (_stricmp(token,"-window")==0)
+			if (stricmp(token,"-window")==0)
 				{
 				fullscreen_=false;
 				}
-//			if (stricmp(token,"-showfps")==0)
-			if (_stricmp(token,"-showfps")==0)
+			if (stricmp(token,"-showfps")==0)
 				{
 				showfps_=true;
 				}
-//			if (stricmp(token,"-forceddraw")==0)
-			if (_stricmp(token,"-forceddraw")==0)
+			if (stricmp(token,"-forceddraw")==0)
 				{
 				forceddraw_=true;
 				}
-//			if (stricmp(token,"-forcegdi")==0)
-			if (_stricmp(token,"-forcegdi")==0)
+			if (stricmp(token,"-forcegdi")==0)
 				{
 				forcegdi_=true;
 				}
@@ -197,6 +192,67 @@ void Platform_Win32_Screen::Present(unsigned short* bitmapData, int bitmapWidth,
 		Present(bitmapData,bitmapWidth,bitmapHeight,modulate,backgroundColor);
 		}
 	}
+
+
+//*** Present ***
+
+void Platform_Win32_Screen::Present(unsigned int* bitmapData, int bitmapWidth, int bitmapHeight, unsigned int modulate, unsigned int backgroundColor)
+	{
+	if (!firstTimeInitializeCalled_)
+		{
+		FirstTimeInitialize();
+		firstTimeInitializeCalled_=true;
+		}
+
+	if (!technologyInstance_)
+		{
+		return;
+		}
+	
+	// Framerate counter
+	if (showfps_ && Platform::GetPlatform_Time())
+		{
+
+		static float previousTime=Platform::GetPlatform_Time()->GetTime();
+		static float accumulatedTime=0;
+		static int currentFrameCount=0;
+		static int frames=0;
+		float newTime=Platform::GetPlatform_Time()->GetTime();
+		float deltaTime=newTime-previousTime;
+		accumulatedTime+=deltaTime;
+		frames++;
+		if (accumulatedTime>=1)
+			{
+			accumulatedTime-=1;
+			currentFrameCount=frames;
+			frames=0;
+			}
+		previousTime=newTime;
+		static char fps[20];
+		_snprintf(fps,20,"%02d",currentFrameCount);
+		unsigned int color=0xffffffff; // White
+		if (technology_==Technology_DDraw)
+			{
+			color=0xffff00ff; // Magenta
+			}
+		if (technology_==Technology_GDI)
+			{
+			color=0xff00ffff; // Cyan
+			}
+		DebugText(bitmapData,bitmapWidth,bitmapHeight,6,6,fps,0);
+		DebugText(bitmapData,bitmapWidth,bitmapHeight,5,5,fps,color);
+
+		}
+
+
+	bool result=technologyInstance_->Present(bitmapData,bitmapWidth,bitmapHeight,modulate,backgroundColor);
+	if (!result)
+		{
+		DowngradeTechnology();
+		Present(bitmapData,bitmapWidth,bitmapHeight,modulate,backgroundColor);
+		}
+	}
+
 
 //*** SetTechnology ***
 
@@ -414,36 +470,31 @@ void Platform_Win32_Screen::TransformCursorCoordinates(float& x, float& y)
 
 void Platform_Win32_Screen::OnCustomEvent(const char* eventId, void* userData)
 	{
-//	if (stricmp(eventId,"OnGainFocus")==0)
-	if (_stricmp(eventId,"OnGainFocus")==0)
+	if (stricmp(eventId,"OnGainFocus")==0)
 		{
 		OnGainFocus();
 		return;
 		}
 
-//	if (stricmp(eventId,"OnLoseFocus")==0)
-    if (_stricmp(eventId,"OnLoseFocus")==0)
+	if (stricmp(eventId,"OnLoseFocus")==0)
 		{
 		OnLoseFocus();
 		return;
 		}
 
-//	if (stricmp(eventId,"OnRestore")==0)
-	if (_stricmp(eventId,"OnRestore")==0)
+	if (stricmp(eventId,"OnRestore")==0)
 		{
 		OnRestore();
 		return;
 		}
 
-//	if (stricmp(eventId,"OnMinimize")==0)
-	if (_stricmp(eventId,"OnMinimize")==0)
+	if (stricmp(eventId,"OnMinimize")==0)
 		{
 		OnMinimize();
 		return;
 		}
 
-//	if (stricmp(eventId,"OnWmSize")==0)
-	if (_stricmp(eventId,"OnWmSize")==0)
+	if (stricmp(eventId,"OnWmSize")==0)
 		{
 		int width=*(static_cast<int*>(userData));
 		int height=*((static_cast<int*>(userData))+1);
@@ -621,6 +672,61 @@ void Platform_Win32_Screen::DebugText(unsigned short* colorData, int hPitch, int
 //*** BlitCharacter ***
 
 void Platform_Win32_Screen::BlitCharacter(unsigned short* colorData, int hPitch, int vPitch, int sx, int sy, int dx, int dy, unsigned short color)
+	{
+	for (int y=0; y<16; y++)
+		{
+		for (int x=0; x<8; x++)
+			{
+			int u=(sx+x)/32;
+			int l=(sx+x)-u*32;
+			unsigned int h=DebugFontData[u+(sy+y)*4];
+			if (h & (1<<l))
+				{
+				int xp=dx+x;
+				int yp=dy+y;
+				if (xp>=0 && xp<hPitch && yp>=0 && yp<vPitch)
+					{
+					colorData[xp+yp*hPitch]=color;
+					}
+				}
+			}
+		}	
+	}
+
+//*** DebugText ***
+
+void Platform_Win32_Screen::DebugText(unsigned int* colorData, int hPitch, int vPitch, int x, int y, const char* text, unsigned int color)
+	{
+	// Draw text
+	int xp=x;
+	for (unsigned int i=0; i<strlen(text); i++)
+		{
+		char c=text[i];
+		if (c>=32 && c<=192)
+			{
+			c-=32;
+
+			// Source coordinates
+			int sx=((c%14)*9);
+			int sy=((c/14)*16);
+
+			// Destination coordinates
+			int dx=xp;
+			int dy=y;
+
+			// Render
+			BlitCharacter(colorData,hPitch,vPitch,sx,sy,dx,dy,color);
+
+			// Increase draw position
+			xp=xp+8;
+			}
+		}
+	}
+
+
+//*** BlitCharacter ***
+
+void Platform_Win32_Screen::BlitCharacter(unsigned int* colorData, int hPitch, int vPitch, int sx, int sy, int dx, int dy, unsigned int color)
 	{
 	for (int y=0; y<16; y++)
 		{

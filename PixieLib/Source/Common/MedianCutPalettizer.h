@@ -33,6 +33,14 @@ class MedianCutPalettizer
 			);
 
 		static int GeneratePalette(
+			unsigned short* imageData, 
+			int imageWidth,
+			int imageHeight,
+			unsigned short* palette, 
+			int paletteMaxCount
+			);
+
+		static int GeneratePalette(
 			unsigned int* imageData, 
 			int imageWidth,
 			int imageHeight,
@@ -48,6 +56,15 @@ class MedianCutPalettizer
 			int imageWidth,
 			int imageHeight,
 			unsigned int* palette, 
+			int paletteCount,
+			unsigned char* outputData
+			);
+
+		static void PalettizeImage(
+			unsigned short* imageData, 
+			int imageWidth,
+			int imageHeight,
+			unsigned short* palette, 
 			int paletteCount,
 			unsigned char* outputData
 			);

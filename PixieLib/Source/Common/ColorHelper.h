@@ -101,6 +101,57 @@ __forceinline unsigned short RGBSubtract16(
 		));
 	}
 
+
+
+
+
+__forceinline unsigned int RGBModulate32(
+	unsigned int color1, 
+	unsigned int color2
+	)
+	{
+	return
+		((unsigned int)(
+			((((((unsigned int)color1 & 0xff000000)>>24)*(((unsigned int)color2 & 0xff000000)>>24)))>>8) <<24 |
+			((((((unsigned int)color1 & 0x00ff0000)>>16)*(((unsigned int)color2 & 0x00ff0000)>>16)))>>8) <<16 |
+			((((((unsigned int)color1 & 0x0000ff00)>>8 )*(((unsigned int)color2 & 0x0000ff00)>>8 )))>>8) <<8  |
+			((((((unsigned int)color1 & 0x000000ff)    )*(((unsigned int)color2 & 0x000000ff)    )))>>8)
+		));
+	}
+
+__forceinline unsigned int RGBAdd32(
+	unsigned int color1, 
+	unsigned int color2
+	)
+	{
+	#define MIN(x,y) (x<y?x:y)
+	return
+		((unsigned int)(
+			MIN((((unsigned int)color1 & 0xff000000)>>24)+(((unsigned int)color2 & 0xff000000)>>24),0xff) <<24 |
+			MIN((((unsigned int)color1 & 0x00ff0000)>>16)+(((unsigned int)color2 & 0x00ff0000)>>16),0xff) <<16 |
+			MIN((((unsigned int)color1 & 0x0000ff00)>>8 )+(((unsigned int)color2 & 0x0000ff00)>>8 ),0xff) <<8  |
+			MIN((((unsigned int)color1 & 0x000000ff)    )+(((unsigned int)color2 & 0x000000ff)    ),0xff)
+		));
+	}
+
+__forceinline unsigned int RGBSubtract32(
+	unsigned int color1, 
+	unsigned int color2
+	)
+	{
+	#define MAX(x,y) (x>y?x:y)
+	return
+		((unsigned int)(
+		MAX((((unsigned int)color1 & 0xff000000)>>24)+(((unsigned int)color2 & 0xff000000)>>24),0) <<24 |
+		MAX((((unsigned int)color1 & 0x00ff0000)>>16)+(((unsigned int)color2 & 0x00ff0000)>>16),0) <<16 |
+		MAX((((unsigned int)color1 & 0x0000ff00)>>8 )+(((unsigned int)color2 & 0x0000ff00)>>8 ),0) <<8  |
+		MAX((((unsigned int)color1 & 0x000000ff)    )+(((unsigned int)color2 & 0x000000ff)    ),0)
+		));
+	}
+
+
+
+
 __forceinline unsigned short RGB16(
 	unsigned char r, 
 	unsigned char g, 
@@ -301,6 +352,24 @@ __forceinline float RGB32TOFLOATB(
 	)
 	{
 	return (((float)((color & 0x000000ff)))/((float)0xff));
+	}
+
+
+__forceinline unsigned short RGBMin16(
+	unsigned short color1, 
+	unsigned short color2
+	)	
+	{
+	#define MIN(x,y) (x<y?x:y)
+	unsigned int r1 = (((unsigned int)color1 & 0xf800)>>11);
+	unsigned int g1 = (((unsigned int)color1 & 0x07e0)>>5 );
+	unsigned int b1 = (((unsigned int)color1 & 0x001f)    );
+	unsigned int r2 = (((unsigned int)color2 & 0xf800)>>11);
+	unsigned int g2 = (((unsigned int)color2 & 0x07e0)>>5 );
+	unsigned int b2 = (((unsigned int)color2 & 0x001f)    );
+	return (unsigned short)
+		( ( MIN(r1,r2) << 11 ) | ( MIN(g1,g2) << 5 ) | ( MIN(b1,b2) ) );
+
 	}
 
 #endif /* __ColorHelper_H__ */

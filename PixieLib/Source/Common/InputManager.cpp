@@ -266,7 +266,7 @@ char InputManager::GetCharacter(int index)
 
 //*** CreateCursor ***
 
-void InputManager::CreateCursor(int id, const char* image, int hotspotX, int hotspotY)
+void InputManager::CreateCursor(int id, const Filename& image, int hotspotX, int hotspotY)
 	{
 	for (int i=0; i<cursors_.GetItemCount(); i++)
 		{
@@ -280,7 +280,7 @@ void InputManager::CreateCursor(int id, const char* image, int hotspotX, int hot
 	Cursor cursor;
 	cursor.id=id;
 	cursor.handle=0;
-	if (image && Platform::GetPlatform_Input())
+	if (image.GetString() && Platform::GetPlatform_Input())
 		{
 		Bitmap_16bitAlpha cursorImage(image);
 		cursor.handle=Platform::GetPlatform_Input()->CreateMouseCursor(cursorImage.GetHPitch(),cursorImage.GetVPitch(),hotspotX,hotspotY,cursorImage.GetColorData(),cursorImage.GetAlphaData());

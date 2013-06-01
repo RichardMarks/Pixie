@@ -47,7 +47,7 @@
 		{\
 		ErrorTerm = -DeltaY + 1;   \
 		}\
-	(*tempBuffer).x=(unsigned short)X0; \
+	(*tempBuffer).x=(int)X0; \
 	INT_ASSIGN_UV\
 	while ( DeltaY-- )\
 		{\
@@ -60,7 +60,7 @@
 			ErrorTerm -= height; \
 			}\
 		tempBuffer+=2;\
-		(*tempBuffer).x=(unsigned short)X0; \
+		(*tempBuffer).x=(int)X0; \
 		INT_ASSIGN_UV\
 		}\
 	}\
@@ -74,7 +74,7 @@
 	int DeltaXx2 = DeltaX + DeltaX;\
 	int DeltaXx2MinusDeltaYx2 = DeltaXx2 - ( DeltaY + DeltaY );\
 	int ErrorTerm = DeltaXx2 - DeltaY;\
-	(*tempBuffer).x=(unsigned short)X0; \
+	(*tempBuffer).x=(int)X0; \
 	INT_ASSIGN_UV\
 	while ( DeltaY-- ) \
 		{\
@@ -92,7 +92,7 @@
 			ErrorTerm += DeltaXx2;\
 			}\
 		tempBuffer+=2;\
-		(*tempBuffer).x=(unsigned short)X0; \
+		(*tempBuffer).x=(int)X0; \
 		INT_ASSIGN_UV\
 		}\
 	}\
@@ -266,6 +266,15 @@
 		{
 		if (p0x<p1x)
 			{
+			if (p2x<p3x)
+				{
+				Swap(p3x,p2x);
+				Swap(p3y,p2y);
+				#ifdef USE_UV
+					Swap(s3x,s2x);
+					Swap(s3y,s2y);
+				#endif
+				}
 			#ifdef USE_UV
 				SET_UV(s0x,s0y,s3x,s3y);
 			#endif
@@ -278,6 +287,15 @@
 			}
 		else
 			{
+			if (p2x>p3x)
+				{
+				Swap(p3x,p2x);
+				Swap(p3y,p2y);
+				#ifdef USE_UV
+					Swap(s3x,s2x);
+					Swap(s3y,s2y);
+				#endif
+				}
 			#ifdef USE_UV
 				SET_UV(s1x,s1y,s2x,s2y);
 			#endif

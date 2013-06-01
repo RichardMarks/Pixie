@@ -5,21 +5,20 @@
 
 //*** Constructor ***
 
-template <class TYPE> 
-PriorityQueue<TYPE>::PriorityQueue(CompareFunction compareFunction, int initialCapacity):
-	compareFunction_(compareFunction),
+template <typename TYPE, class COMPARE> 
+PriorityQueue<TYPE, COMPARE>::PriorityQueue(int initialCapacity):
 	initialCapacity_(initialCapacity),
 	capacity_(initialCapacity),
 	itemCount_(0),
-	items_(0)	{
+	items_(0)	
+	{
 	}	
 
 
 //*** Copy Constructor ***
 
-template <class TYPE> 
-PriorityQueue<TYPE>::PriorityQueue(const PriorityQueue<TYPE>& priorityQueueToCopy ):
-	compareFunction_(priorityQueueToCopy.compareFunction_),
+template <typename TYPE, class COMPARE> 
+PriorityQueue<TYPE, COMPARE>::PriorityQueue(const PriorityQueue<TYPE, COMPARE>& priorityQueueToCopy ):
 	initialCapacity_(priorityQueueToCopy.initialCapacity_),
 	capacity_(priorityQueueToCopy.capacity_),
 	itemCount_(priorityQueueToCopy.itemCount_),
@@ -48,8 +47,8 @@ PriorityQueue<TYPE>::PriorityQueue(const PriorityQueue<TYPE>& priorityQueueToCop
 //*** Assignment operator ***
 
 
-template <class TYPE> 
-const PriorityQueue<TYPE>& PriorityQueue<TYPE>::operator =(const PriorityQueue<TYPE>& priorityQueueToCopy)
+template <typename TYPE, class COMPARE> 
+const PriorityQueue<TYPE, COMPARE>& PriorityQueue<TYPE, COMPARE>::operator =(const PriorityQueue<TYPE, COMPARE>& priorityQueueToCopy)
 	{ 
 	if (items_)
 		{
@@ -57,7 +56,6 @@ const PriorityQueue<TYPE>& PriorityQueue<TYPE>::operator =(const PriorityQueue<T
 		items_=0;
 		}
 
-	compareFunction_=priorityQueueToCopy.compareFunction_;
 	initialCapacity_=priorityQueueToCopy.initialCapacity_;
 	capacity_=priorityQueueToCopy.capacity_;
 	itemCount_=priorityQueueToCopy.itemCount_;
@@ -86,8 +84,8 @@ const PriorityQueue<TYPE>& PriorityQueue<TYPE>::operator =(const PriorityQueue<T
 
 //*** Destructor ***
 
-template <class TYPE> 
-PriorityQueue<TYPE>::~PriorityQueue()
+template <typename TYPE, class COMPARE> 
+PriorityQueue<TYPE, COMPARE>::~PriorityQueue()
 	{
 	// Free memory used by the array
 	if (items_)
@@ -99,8 +97,8 @@ PriorityQueue<TYPE>::~PriorityQueue()
 
 //*** Add ***
 
-template <class TYPE> 
-TYPE& PriorityQueue<TYPE>::Add(const TYPE& item)
+template <typename TYPE, class COMPARE> 
+TYPE& PriorityQueue<TYPE, COMPARE>::Add(const TYPE& item)
 	{
 	// Check if the array is full
 	if (!items_ || itemCount_>=capacity_)
@@ -145,7 +143,7 @@ TYPE& PriorityQueue<TYPE>::Add(const TYPE& item)
 
 	// "Bubble" the item to the right position in the tree
 	int index=itemCount_;
-	while (index>1 && compareFunction_(items_[index-1],items_[index/2-1]))
+	while (index>1 && COMPARE::Compare(items_[index-1],items_[index/2-1]))
 		{
 		// Swap items
 		TYPE temp=items_[index/2-1];
@@ -161,8 +159,8 @@ TYPE& PriorityQueue<TYPE>::Add(const TYPE& item)
 
 //*** Remove ***
 
-template <class TYPE> 
-TYPE PriorityQueue<TYPE>::Remove()
+template <typename TYPE, class COMPARE> 
+TYPE PriorityQueue<TYPE, COMPARE>::Remove()
 	{
 	if (itemCount_==0)
 		{
@@ -187,11 +185,11 @@ TYPE PriorityQueue<TYPE>::Remove()
 		if ((2*u+1)<=itemCount_) 
 			{
 			// Select the lowest of the two children.
-			if (!compareFunction_(items_[u-1],items_[2*u -1]))
+			if (!COMPARE::Compare(items_[u-1],items_[2*u -1]))
 				{
 				v=2*u;
 				}
-			if (!compareFunction_(items_[v-1],items_[2*u+1 -1]))
+			if (!COMPARE::Compare(items_[v-1],items_[2*u+1 -1]))
 				{
 				v=2*u+1;
 				}
@@ -201,7 +199,7 @@ TYPE PriorityQueue<TYPE>::Remove()
 		else if (2*u<=itemCount_)
 			{
 			// Check if the cost is greater than the child
-			if (!compareFunction_(items_[u-1],items_[2*u-1]))
+			if (!COMPARE::Compare(items_[u-1],items_[2*u-1]))
 				{
 				v=2*u;
 				}
@@ -222,10 +220,10 @@ TYPE PriorityQueue<TYPE>::Remove()
 
 //*** Update ***
 
-template <class TYPE> 
-void PriorityQueue<TYPE>::Update(int index)
+template <typename TYPE, class COMPARE> 
+void PriorityQueue<TYPE, COMPARE>::Update(int index)
 	{
-	while (index>1 && compareFunction_(items_[index-1],items_[index/2-1]))
+	while (index>1 && COMPARE::Compare(items_[index-1],items_[index/2-1]))
 		{
 		// Swap items
 		TYPE temp=items_[index/2-1];
@@ -239,8 +237,8 @@ void PriorityQueue<TYPE>::Update(int index)
 
 //*** Clear ***
 
-template <class TYPE> 
-void PriorityQueue<TYPE>::Clear(bool releaseMemory)
+template <typename TYPE, class COMPARE> 
+void PriorityQueue<TYPE, COMPARE>::Clear(bool releaseMemory)
 	{	
 	// Clear used range
 	itemCount_=0;
@@ -263,8 +261,8 @@ void PriorityQueue<TYPE>::Clear(bool releaseMemory)
 
 //*** ItemExists ***
 
-template <class TYPE>
-bool PriorityQueue<TYPE>::ItemExists(const TYPE& item) const
+template <typename TYPE, class COMPARE>
+bool PriorityQueue<TYPE, COMPARE>::ItemExists(const TYPE& item) const
 	{
 	for (int i=0; i<itemCount_; i++)
 		{
@@ -280,8 +278,8 @@ bool PriorityQueue<TYPE>::ItemExists(const TYPE& item) const
 
 //*** GetItemCount ***
 
-template <class TYPE> 
-int PriorityQueue<TYPE>::GetItemCount() const
+template <typename TYPE, class COMPARE> 
+int PriorityQueue<TYPE, COMPARE>::GetItemCount() const
 	{
 	return itemCount_;
 	}
@@ -289,8 +287,8 @@ int PriorityQueue<TYPE>::GetItemCount() const
 
 //*** Get ***
 
-template <class TYPE> 
-TYPE& PriorityQueue<TYPE>::Get(int index) const
+template <typename TYPE, class COMPARE> 
+TYPE& PriorityQueue<TYPE, COMPARE>::Get(int index) const
 	{
 	return items_[index];
 	}
@@ -298,8 +296,8 @@ TYPE& PriorityQueue<TYPE>::Get(int index) const
 
 //*** GetCapacity ***
 
-template <class TYPE> 
-int PriorityQueue<TYPE>::GetCapacity() const
+template <typename TYPE, class COMPARE> 
+int PriorityQueue<TYPE, COMPARE>::GetCapacity() const
 	{
 	return capacity_;
 	}
@@ -307,8 +305,8 @@ int PriorityQueue<TYPE>::GetCapacity() const
 
 //*** SetCapacity ***
 
-template <class TYPE> 
-void PriorityQueue<TYPE>::SetCapacity(int capacity)
+template <typename TYPE, class COMPARE> 
+void PriorityQueue<TYPE, COMPARE>::SetCapacity(int capacity)
 	{
 	if (itemCount_>capacity)
 		{

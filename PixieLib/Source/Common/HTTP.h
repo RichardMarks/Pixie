@@ -18,7 +18,7 @@
 // Includes
 #include "Singleton.h"
 #include "StringId.h"
-#include "Array.h"
+#include "Bag.h"
 #include "DynamicBuffer.h"
 
 // Forward declares
@@ -110,7 +110,7 @@ class HTTP : public Singleton<HTTP>
 			HTTP_Resource* resource;
 			};
 
-		Array<Request*> requests_;
+		Bag<Request*> requests_;
 	};
 
 

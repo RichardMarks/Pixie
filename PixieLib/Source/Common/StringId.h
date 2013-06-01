@@ -118,7 +118,6 @@ class StringId
 
 	private:
 		const char* idString_;	///< Pointer to the (shared) string for this id
-		unsigned int hash_;	///< Stores the hash value for the string (so we only have to calculate it once)
 	};
 
 

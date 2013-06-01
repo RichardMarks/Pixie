@@ -58,6 +58,15 @@ class Platform_Screen
 			) = 0;
 
 
+		virtual void Present(
+			unsigned int* bitmapData,	///< Bitmap data (pixels) in 32-bit X8R8G8B8 format
+			int bitmapWidth, ///< Width of the bitmap data, in pixels
+			int bitmapHeight,///< Height of the bitmap data, in pixels
+			unsigned int modulate = 0xffffffff,	///< Optional color modifier. Every pixel of the bitmap will be multiplied by this X8R8G8B8 color value, in the fastest way possible for the platform.
+			unsigned int backgroundColor = 0x00000000	///< Optional background color. In the case where the bitmap won't fit tightly on the screen, there will be borders above/below or to the left/right (or both). They will be the X8R8G8B8 color specified here
+			) = 0;
+
+
 		/**
 		 * Enables or disables fullscreen mode. On some platforms, it is possible to run the game
 		 * in a window, instead of having it cover the whole screen (which is the default behavior,

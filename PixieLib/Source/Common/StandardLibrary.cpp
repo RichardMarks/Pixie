@@ -42,9 +42,9 @@ void SRand(unsigned int seed)
 
 	if (seed==1) 
 		{
-		seed=5489;
+		seed=0x5ee39c34;   // Default seed
 		}
-	standardLibrary_random.Seed(seed); // Use the mersienne twister algorithm instead of the stdlib one
+	standardLibrary_random.Seed(seed); // Use the WELL algorithm instead of the stdlib one
 	}		
 
 
@@ -54,7 +54,7 @@ unsigned int Rand()
 	{
 	// return rand();
 
-	return standardLibrary_random.RandomInteger(); // Use the mersienne twister algorithm instead of the stdlib one
+	return standardLibrary_random.RandomInteger(); // Use the WELL algorithm instead of the stdlib one
 	}		
 
 
@@ -590,6 +590,16 @@ float Clamp(float value, float min, float max)
 	}
 
 
+//*** Floor ***
+
+float Floor(
+	float x 
+	)
+	{
+	return floor( x );
+	}
+
+
 //*** Swap ***
 
 void Swap(int& x, int& y)
@@ -617,4 +627,53 @@ void Swap(float& x, float& y)
 	float t=x;
 	x=y;
 	y=t;
+	}
+
+
+//*** GetNearestPowerOfTwo ***
+
+inline unsigned int GetNearestPowerOfTwo(unsigned int v)
+	{
+	 // compute the next highest power of 2 of 32-bit v
+	v--;
+	v |= v >> 1;
+	v |= v >> 2;
+	v |= v >> 4;
+	v |= v >> 8;
+	v |= v >> 16;
+	v++;	
+
+	return v;
+	}
+
+
+//*** saturate ***
+
+float saturate( float v )
+	{
+	float t = v < 0.0f ? 0.0f : v;
+
+	return t > 1.0f ? 1.0f : t;
+	}
+
+
+//*** smoothstep ***
+
+float smoothstep( float min, float max, float x )
+	{
+    // Scale, bias and saturate x to 0..1 range
+    x = saturate( ( x - min ) / ( max - min ) ); 
+    // Evaluate polynomial
+    return x * x * ( 3 - 2 * x );
+	}
+
+
+//*** smootherstep ***
+
+float smootherstep( float min, float max, float x )
+	{
+    // Scale, and saturate x to 0..1 range
+    x = saturate( ( x - min ) / ( max - min ) );
+    // Evaluate polynomial
+    return x * x * x * ( x * ( x * 6 - 15 ) + 10 );
 	}

@@ -26,213 +26,7 @@ BitmapStrip::BitmapStrip(const Asset& asset)
 	{
 	if (asset.Open())
 		{
-		char header[8];
-		asset.Read(header,8);
-
-		// Is this an old-style pixie RLE file?
-		if (StrNCmp(header,"PIXIE_RL",8)==0)
-			{
-			// Yes, so read the extra header byte
-			char c;
-			asset.Read(&c);
-			Assert(c=='E',"Invalid header");
-			if (c!='E')
-				{
-				asset.Close();
-				return;
-				}
-
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_RLE8();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this an old-style pixie ABM file?
-		else if (StrNCmp(header,"PIXIE_AB",8)==0)
-			{
-			// Yes, so read the extra header byte
-			char c;
-			asset.Read(&c);
-			Assert(c=='M',"Invalid header");
-			if (c!='M')
-				{
-				asset.Close();
-				return;
-				}
-
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				Bitmap* bitmap=new Bitmap_16bitAlpha();
-				bitmap->ReadFromAsset(&asset);
-				cels_.Add(bitmap);
-				}
-			}
-
-		// Is this an old-style pixie BM file?
-		else if (StrNCmp(header,"PIXIE_BM",8)==0)
-			{
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				Bitmap* bitmap=new Bitmap_16bit();
-				bitmap->ReadFromAsset(&asset);
-				cels_.Add(bitmap);
-				}
-			}
-
-		// Is this an old-style pixie AM file?
-		else if (StrNCmp(header,"PIXIE_AM",8)==0)
-			{
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				Bitmap* bitmap=new Bitmap_Alpha();
-				bitmap->ReadFromAsset(&asset);
-				cels_.Add(bitmap);
-				}
-			}
-
-		// Is this a Bitmap_RLE8 file?
-		else if (StrNCmp(header,"PIXRLE8B",8)==0)
-			{
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_RLE8();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this a Bitmap_RLE16 file?
-		else if (StrNCmp(header,"PIXRLE16",8)==0)
-			{
-			// Read the data
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_RLE16();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this a Bitmap_16bit file?
-		else if (StrNCmp(header,"PIX16BIT",8)==0)
-			{
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_16bit();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this a Bitmap_16bitAlpha file?
-		else if (StrNCmp(header,"PIX16BAL",8)==0)
-			{
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_16bitAlpha();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this a Bitmap_16bitAlphaCrop file?
-		else if (StrNCmp(header,"PIX16BAC",8)==0)
-			{
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_16bitAlphaCrop();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Is this a Bitmap_Alpha file?
-		else if (StrNCmp(header,"PIXALPHA",8)==0)
-			{
-			int version=0;
-			asset.Read(&version);
-			if (version==0)
-				{
-				int celCount=0;
-				asset.Read(&celCount);
-				// Create and load a bitmap for each cel
-				for (int i=0; i<Max(1,celCount); i++)
-					{
-					Bitmap* bitmap=new Bitmap_Alpha();
-					bitmap->ReadFromAsset(&asset);
-					cels_.Add(bitmap);
-					}
-				}
-			}
-
-		// Unknown file type
-		else
-			{
-			Assert(false,"Invalid header");
-			}
-
+		ReadFromAsset( &asset );
 		asset.Close();
 		}
 	// Report missing file
@@ -273,7 +67,7 @@ BitmapStrip::BitmapStrip(const Image& image)
 				}
 			}
 
-		Bitmap* cel=new Bitmap_16bitAlphaCrop(celImage);
+		Bitmap* cel=new Bitmap_16bitAlpha(celImage);
 		cels_.Add(cel);
 		}
 	}
@@ -339,4 +133,218 @@ BitmapStrip::operator const Bitmap&() const
 		}
 
 	return *cels_.Get(0);
+	}
+
+
+//*** ReadFromAsset ***
+
+void BitmapStrip::ReadFromAsset(const Asset* asset)
+	{
+	char header[8];
+	asset->Read(header,8);
+
+	// Is this an old-style pixie RLE file?
+	if (StrNCmp(header,"PIXIE_RL",8)==0)
+		{
+		// Yes, so read the extra header byte
+		char c;
+		asset->Read(&c);
+		Assert(c=='E',"Invalid header");
+		if (c!='E')
+			{
+			asset->Close();
+			return;
+			}
+
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_RLE8();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this an old-style pixie ABM file?
+	else if (StrNCmp(header,"PIXIE_AB",8)==0)
+		{
+		// Yes, so read the extra header byte
+		char c;
+		asset->Read(&c);
+		Assert(c=='M',"Invalid header");
+		if (c!='M')
+			{
+			asset->Close();
+			return;
+			}
+
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			Bitmap* bitmap=new Bitmap_16bitAlpha();
+			bitmap->ReadFromAsset(asset);
+			cels_.Add(bitmap);
+			}
+		}
+
+	// Is this an old-style pixie BM file?
+	else if (StrNCmp(header,"PIXIE_BM",8)==0)
+		{
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			Bitmap* bitmap=new Bitmap_16bit();
+			bitmap->ReadFromAsset(asset);
+			cels_.Add(bitmap);
+			}
+		}
+
+	// Is this an old-style pixie AM file?
+	else if (StrNCmp(header,"PIXIE_AM",8)==0)
+		{
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			Bitmap* bitmap=new Bitmap_Alpha();
+			bitmap->ReadFromAsset(asset);
+			cels_.Add(bitmap);
+			}
+		}
+
+	// Is this a Bitmap_RLE8 file?
+	else if (StrNCmp(header,"PIXRLE8B",8)==0)
+		{
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_RLE8();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this a Bitmap_RLE16 file?
+	else if (StrNCmp(header,"PIXRLE16",8)==0)
+		{
+		// Read the data
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_RLE16();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this a Bitmap_16bit file?
+	else if (StrNCmp(header,"PIX16BIT",8)==0)
+		{
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_16bit();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this a Bitmap_16bitAlpha file?
+	else if (StrNCmp(header,"PIX16BAL",8)==0)
+		{
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_16bitAlpha();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this a Bitmap_16bitAlphaCrop file?
+	else if (StrNCmp(header,"PIX16BAC",8)==0)
+		{
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_16bitAlphaCrop();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Is this a Bitmap_Alpha file?
+	else if (StrNCmp(header,"PIXALPHA",8)==0)
+		{
+		int version=0;
+		asset->Read(&version);
+		if (version==0)
+			{
+			int celCount=0;
+			asset->Read(&celCount);
+			// Create and load a bitmap for each cel
+			for (int i=0; i<Max(1,celCount); i++)
+				{
+				Bitmap* bitmap=new Bitmap_Alpha();
+				bitmap->ReadFromAsset(asset);
+				cels_.Add(bitmap);
+				}
+			}
+		}
+
+	// Unknown file type
+	else
+		{
+		Assert(false,"Invalid header");
+		}
+
 	}

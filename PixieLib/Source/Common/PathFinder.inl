@@ -5,7 +5,8 @@
 #include "PriorityQueueIterator.h"
 #include "HashTableIterator.h"
 
-bool PathFinder::PriorityCompareFunction(PathFinder::PathFinderNode* const &a, PathFinder::PathFinderNode* const &b)
+template <class CELL>
+bool PathFinder<CELL>::PriorityCompare::Compare(PathFinderNode* const &a, PathFinderNode* const &b)
 	{
 	if (a->nodeScore < b->nodeScore)
 		{
@@ -18,9 +19,10 @@ bool PathFinder::PriorityCompareFunction(PathFinder::PathFinderNode* const &a, P
 
 //*** Constructor *** 
 
-PathFinder::PathFinder():
+template <class CELL>
+PathFinder<CELL>::PathFinder():
 	memoryPool_(1024),
-	openNodes_(PriorityCompareFunction,1024),
+	openNodes_(1024),
 	nodes_(1024)
 	{
 
@@ -29,7 +31,8 @@ PathFinder::PathFinder():
 
 //*** GetNodeFromCell ***
 
-PathFinder::PathFinderNode* PathFinder::GetNodeFromCell(const PathFinderCell* cell)
+template <class CELL>
+typename PathFinder<CELL>::PathFinderNode* PathFinder<CELL>::GetNodeFromCell(const CELL* cell)
 	{
 	// See if a node already exists for this cell
 	HashTableIterator<HashTableKey_Pointer,PathFinderNode*> it(nodes_);
@@ -55,7 +58,8 @@ PathFinder::PathFinderNode* PathFinder::GetNodeFromCell(const PathFinderCell* ce
 
 //*** BuildPath ***
 
-void PathFinder::BuildPath(PathFinderNode* node, Array<const PathFinderCell*>& path)
+template <class CELL>
+void PathFinder<CELL>::BuildPath(PathFinderNode* node, Array<const CELL*>& path)
 	{
 	// Clear any existing path that might be stored
 	path.Clear();
@@ -74,12 +78,14 @@ void PathFinder::BuildPath(PathFinderNode* node, Array<const PathFinderCell*>& p
 
 //*** FindPath ***
 
-bool PathFinder::FindPath(const PathFinderAgent* agent, const PathFinderCell* start, const PathFinderCell* end, Array<const PathFinderCell*>& path, int iterationSafetyLimit)
+template <class CELL> template <class AGENT>
+bool PathFinder<CELL>::FindPath(const AGENT* agent, const CELL* start, const CELL* end, Array<const CELL*>& path, int iterationSafetyLimit)
 	{
 	Assert(start,"Invalid start node");
 	Assert(end,"Invalid end node");
 	if (!start || !end)
 		{
+		ClearLists();
 		return false;
 		}
 
@@ -102,6 +108,7 @@ bool PathFinder::FindPath(const PathFinderAgent* agent, const PathFinderCell* st
 		Assert(n,"Invalid node!");
 		if (!n)
 			{
+			ClearLists();
 			return false;
 			}
 
@@ -127,7 +134,7 @@ bool PathFinder::FindPath(const PathFinderAgent* agent, const PathFinderCell* st
 		// Go through all the neighbours
 		for (int i=0; i <n->cell->GetNeighbourCount(agent); i++)
 			{
-			const PathFinderCell* ncell=n->cell->GetNeighbour(agent, i);
+			const CELL* ncell=n->cell->GetNeighbour(agent, i);
 
 			// Skip if node data is not valid (means no neighbour)
 			if (!ncell)
@@ -148,7 +155,7 @@ bool PathFinder::FindPath(const PathFinderAgent* agent, const PathFinderCell* st
 			float nnCost = n->cell->CalculateCost(agent,nn->cell); // Cost to get from current node to neighbour				
 			float nnTotalCost = n->costFromStart + nnCost; // Total cost from start to get to this node
 
-			PriorityQueueIterator<PathFinderNode*> it(openNodes_);
+			PriorityQueueIterator<PathFinderNode*,PriorityCompare> it(openNodes_);
 			int nnIndex=-1;
 			if (it.Find(nn))
 				{
@@ -200,7 +207,8 @@ bool PathFinder::FindPath(const PathFinderAgent* agent, const PathFinderCell* st
 
 //*** ClearLists ***
 
-void PathFinder::ClearLists()
+template <class CELL>
+void PathFinder<CELL>::ClearLists()
 	{
 	// Loop through the main node list and return all elements to the memory pool
 	HashTableIterator<HashTableKey_Pointer,PathFinderNode*> it(nodes_);

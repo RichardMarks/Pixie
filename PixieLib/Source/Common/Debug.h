@@ -70,5 +70,11 @@
 
 #endif
 
+#define CTASTR2(pre,post) pre ## post
+#define CTASTR(pre,post) CTASTR2(pre,post)
+#define StaticAssert(cond,msg) \
+    typedef struct CTASTR(StaticAssert_,__COUNTER__) { int msg : !!(cond); } \
+        CTASTR(static_assertion_failed_,__COUNTER__)
+
 
 #endif /* __Debug_H__ */

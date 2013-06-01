@@ -24,8 +24,6 @@
 #include "HashTable.h"
 #include "HashTableKey_Pointer.h"
 #include "MemoryPool.h"
-#include "PathFinderAgent.h"
-#include "PathFinderCell.h"
 #include "PriorityQueue.h"
 #include "Array.h"
 
@@ -33,6 +31,7 @@
 
 
 // PathFinder
+template <class CELL>
 class PathFinder
 	{
 	public:
@@ -43,11 +42,11 @@ class PathFinder
 		 *
 		 * \returns	True if a path was found, False if not
 		 */
-		bool FindPath(
-			const PathFinderAgent* agent,	///< The agent that is to travel along the path
-			const PathFinderCell* start,	///< The start cell of the path
-			const PathFinderCell* end,		///< The desired goal cell of the path
-			Array<const PathFinderCell*>& path, ///< Array that will hold the resulting path, if one was found
+		template<class AGENT> bool FindPath(
+			const AGENT* agent,	///< The agent that is to travel along the path
+			const CELL* start,	///< The start cell of the path
+			const CELL* end,		///< The desired goal cell of the path
+			Array<const CELL*>& path, ///< Array that will hold the resulting path, if one was found
 			int iterationSafetyLimit=80000 ///< Maximum number of iterations before aborting pathfinding. This is a safety limit, to avoid having the program hang for too long. Specify 0 for no limit.
 			);			
 		
@@ -62,7 +61,7 @@ class PathFinder
 			float estimatedCostToGoal; ///< A heuristic estimate of the cost of getting to the goal node from this node
 			float nodeScore; ///< An overall score of this node, used when ordering nodes in a priority queue
 			PathFinderNode* parent; ///< A pointer to the node we visited before this one
-			const PathFinderCell* cell; ///< A pointer to the cell that this node represents
+			const CELL* cell; ///< A pointer to the cell that this node represents
 			bool closed; ///< Is set to true when the node is moved to the closed list
 			};
 
@@ -80,22 +79,29 @@ class PathFinder
 		 *
 		 * \returns	A node for the specified cell
 		 */
-		PathFinderNode*	GetNodeFromCell(const PathFinderCell* cell);
+		PathFinderNode*	GetNodeFromCell(const CELL* cell);
 
 		/**
 		 * Once a path have been found, this function will be called, which will construct a
 		 * path from the stored node cell. The result will be put into the array
 		 * specified by the caller, and will consist of an array of pointers to cells.
 		 */
-		void BuildPath(PathFinderNode* node,Array<const PathFinderCell*>& path);
+		void BuildPath(PathFinderNode* node,Array<const CELL*>& path);
 
+		class PriorityCompare
+			{
+			public:
+				static bool Compare(typename PathFinderNode* const &a, PathFinderNode* const &b);
+			};
 
-		static bool PriorityCompareFunction(PathFinderNode* const &a, PathFinderNode* const &b);
 	private:
-		PriorityQueue<PathFinderNode*> openNodes_; // List of "open" nodes
+		PriorityQueue<PathFinderNode*,PriorityCompare> openNodes_; // List of "open" nodes
 		HashTable<HashTableKey_Pointer,PathFinderNode*> nodes_; // List of all nodes that this pathfinder uses
 		MemoryPool<PathFinderNode> memoryPool_; // Memory pool used to speed up dynamic allocation
 	
 	};
+
+// Implementation
+#include "PathFinder.inl"
 
 #endif // __PathFinder_H__

@@ -231,7 +231,8 @@ class Bitmap
 			int y,	///< Y-coordinate in the target bitmap. The top left corner of this bitmap will be drawn at this coordinate on the target bitmap
 			unsigned short modulate = 0xffff,	///< 16 bit color value (R5G6B5) to modulate the source pixels with before they are written. 
 			unsigned char alpha = 255,	///< Level of transparency the bitmap will be written with. 0=Fully transparent, 255=Fully Opaque
-			Transformation transformation = NoTransformation	///< Specifies the desired transformation to use for this operation
+			Transformation transformation = NoTransformation,	///< Specifies the desired transformation to use for this operation
+			bool maxBlit = false
 			) const;
 
 		/**
@@ -249,7 +250,8 @@ class Bitmap
 			int y,	///< Y-coordinate in the target bitmap. The top left corner of the blitted section will be drawn at this coordinate on the target bitmap
 			unsigned short modulate = 0xffff,///< 16 bit color value (R5G6B5) to modulate the source pixels with before they are written. 
 			unsigned char alpha = 255,	///< Level of transparency the bitmap will be written with. 0=Fully transparent, 255=Fully Opaque
-			Transformation transformation = NoTransformation ///< Specifies the desired transformation to use for this operation
+			Transformation transformation = NoTransformation, ///< Specifies the desired transformation to use for this operation
+			bool maxBlit = false
 			) const;
 
 		virtual void Copy(

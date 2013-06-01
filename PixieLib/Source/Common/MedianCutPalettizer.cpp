@@ -218,6 +218,88 @@ unsigned char FindNearestColor(unsigned int color, unsigned int* palette, int pa
 	}
 
 
+unsigned char FindNearestColor(unsigned short color, unsigned short* palette, int paletteCount) 
+	{
+    int i, distanceSquared, minDistanceSquared, bestIndex = 0;
+    minDistanceSquared = 255*255 + 255*255 + 255*255 + 1;
+    for (i=0; i<paletteCount; i++) 
+		{
+		unsigned char cR=((unsigned char)((RGB16TO32(color)&0x00ff0000)>>16));
+		unsigned char cG=((unsigned char)((RGB16TO32(color)&0x0000ff00)>>8 ));
+		unsigned char cB=((unsigned char)((RGB16TO32(color)&0x000000ff)    ));
+		unsigned char pR=((unsigned char)((RGB16TO32(palette[i])&0x00ff0000)>>16));
+		unsigned char pG=((unsigned char)((RGB16TO32(palette[i])&0x0000ff00)>>8 ));
+		unsigned char pB=((unsigned char)((RGB16TO32(palette[i])&0x000000ff)    ));
+        int Rdiff = ((int)cR) - pR;
+        int Gdiff = ((int)cG) - pG;
+        int Bdiff = ((int)cB) - pB;
+        distanceSquared = Rdiff*Rdiff + Gdiff*Gdiff + Bdiff*Bdiff;
+        if (distanceSquared < minDistanceSquared) 
+			{
+            minDistanceSquared = distanceSquared;
+            bestIndex = i;
+			}
+		}
+    return (unsigned char)bestIndex;
+	}
+
+
+//*** GeneratePalette ***
+
+int MedianCutPalettizer::GeneratePalette(unsigned short* imageData, int imageWidth, int imageHeight, unsigned short* palette, int paletteMaxCount)
+	{
+	int colorCount=imageWidth*imageHeight;
+	Point* data=new Point[colorCount];
+	int dataSize=0;
+	for (int p=0; p<colorCount; p++)
+		{
+		unsigned int color=RGB16TO32(*imageData);
+		imageData++;
+		unsigned char a=((unsigned char)((color&0xff000000)>>24));
+		if (a>0)
+			{
+			unsigned char r=((unsigned char)((color&0x00ff0000)>>16));
+			unsigned char g=((unsigned char)((color&0x0000ff00)>>8 ));
+			unsigned char b=((unsigned char)((color&0x000000ff)    ));
+			data[dataSize].x[0]=r;
+			data[dataSize].x[1]=g;
+			data[dataSize].x[2]=b;
+			dataSize++;
+			}
+		}
+	std::list<Point> result=medianCut(data,dataSize,paletteMaxCount);
+	delete[] data;
+	
+	std::list<Point>::iterator it=result.begin();
+	int i=0;
+	while (it!=result.end() && i<paletteMaxCount)
+		{
+		Point p=*it;
+		unsigned int c=0xff000000;
+		c|=p.x[0]<<16;
+		c|=p.x[1]<<8;
+		c|=p.x[2];
+		int found=false;
+		for (int j=0; j<i; j++)
+			{
+			if (palette[j]==RGB32TO16(c))
+				{
+				found=true;
+				break;
+				}
+			}
+		if (!found)
+			{
+			palette[i]=RGB32TO16(c);
+			i++;
+			}
+		it++;
+		}
+
+	return i;
+	}
+
+
 //*** GeneratePalette ***
 
 int MedianCutPalettizer::GeneratePalette(unsigned int* imageData, int imageWidth, int imageHeight, unsigned int* palette, int paletteMaxCount)
@@ -335,6 +417,23 @@ int MedianCutPalettizer::GeneratePalette(unsigned int* imageData, int imageWidth
 //*** PalettizeImage ***
 
 void MedianCutPalettizer::PalettizeImage(unsigned int* imageData, int imageWidth, int imageHeight, unsigned int* palette, int paletteCount, unsigned char* outputData)
+	{
+	for (int y=0; y<imageHeight; y++)
+		{
+		for (int x=0; x<imageWidth; x++)
+			{
+			unsigned char paletteIndex=FindNearestColor(*imageData,palette,paletteCount);
+			*outputData=paletteIndex;
+			imageData++;
+			outputData++;
+			}
+		}
+	}
+
+
+//*** PalettizeImage ***
+
+void MedianCutPalettizer::PalettizeImage(unsigned short* imageData, int imageWidth, int imageHeight, unsigned short* palette, int paletteCount, unsigned char* outputData)
 	{
 	for (int y=0; y<imageHeight; y++)
 		{

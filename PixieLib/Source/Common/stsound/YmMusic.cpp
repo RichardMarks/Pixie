@@ -622,8 +622,7 @@ ymTrackerLine_t *pLine;
 	  	for (i=0;i<nbVoice;i++)
 		{
 			ymint n;
-// silence warning C4189: 'freq' : local variable is initialized but not referenced
-//			ymint freq = 
+			ymint freq = 
 			pVoice[i].sampleFreq = ((ymint)pLine->freqHigh<<8) | pLine->freqLow;
 			if (pVoice[i].sampleFreq)
 			{
@@ -688,10 +687,7 @@ double	step;
 #ifdef _LINEAR_OVRS
 			ymint vb = va;
 			if (samplePos < (sampleEnd-(1<<YMTPREC)))
-            {
-//				ymint vb = pVolumeTab[pSample[(samplePos>>YMTPREC)+1]];
-                vb = pVolumeTab[pSample[(samplePos>>YMTPREC)+1]];
-            }
+				ymint vb = pVolumeTab[pSample[(samplePos>>YMTPREC)+1]];
 			ymint frac = samplePos & ((1<<YMTPREC)-1);
 			va += (((vb-va)*frac)>>YMTPREC);
 #endif

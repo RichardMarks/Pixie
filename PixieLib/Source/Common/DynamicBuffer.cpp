@@ -132,6 +132,7 @@ void DynamicBuffer::SetSize(unsigned int size)
 		{
 		position_=size_;
 		}
+	Resize(size-position_);										
 	}
 
 

@@ -1,4 +1,4 @@
-Pixie Game Engine v0.9e
+Pixie Game Engine v0.9f
 =======================
 Modified version of Pixie by Richard Marks www.ccpssolutions.com
 
@@ -6,10 +6,21 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
 
  + Microsoft Visual C++ 2008 Express Projects and Solutions
  + PixieLib
- + Pixie Toolset (PixieAGT, PixieFGT, PixiePCT, and PixiePVT (previously known as PixView)
+ + Pixie Toolset
+  + PixieAGT - Pixie Archive Generation Tool
+  + PixieFGT - Pixie Font Generation Tool
+  + PixiePCT - Pixie Picture Conversion Tool
+  + PixiePPT - Pixie Project Patch Tool
+  + PixiePVT - Pixie Pix Viewer Tool (previously known as PixView)
  + Pixie Samples
+  + Hello World
+  + Bouncing Ball
+  + Multi Balls
+  + Snake
 
 ## Changes:
+
+ + Merged in 'BleedingEdge' version of PixieLib from Mattias Gustavsson
 
  + PixieFGT completely refactored and now faster and has the ability to process multiple fonts via an XML configuration file. Will document the XML format soon.
  + Added New Sample (See Sample4_Snake directory)

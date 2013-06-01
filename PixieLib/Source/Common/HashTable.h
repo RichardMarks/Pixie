@@ -10,6 +10,8 @@
  * value), which is used to find which array entry to place the item in. This means there's no looping through the array
  * when finding an item, as the hash value is used to go straight into the right array entry.
  *
+ * \todo	Change allocation scheme to use malloc/free and placement new, to ensure only objects in use are created
+ * \todo	Add copy constructor/assignment operator
  */
 
 #ifndef __HashTable_H__
@@ -42,7 +44,7 @@ class HashTable
 		/**		
 		 * Insert an item into the table, associating it with the specified key.		 
 		 */
-		void Insert(
+		TYPE& Insert(
 			const HASHTABLEKEY& key,	///< Key to be used when searching the table for this item
 			const TYPE& data			///< Item to be added.
 			);

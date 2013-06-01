@@ -23,6 +23,32 @@ class Filename;
 class Font:XMLObject
 	{
 	public:
+		struct Character
+			{
+			int ascii;
+			int spacing;
+			int x;
+			int y;
+			int width;
+			int height;
+			int xoffset;
+			int yoffset;
+			bool isBlank;
+			Array<Bitmap*> layers;
+
+			Character():
+				ascii(0),
+				spacing(0),
+				x(0),
+				y(0),
+				width(0),
+				height(0),
+				xoffset(0),
+				yoffset(0),
+				isBlank(false)
+				{ }
+			};
+
 		Font();
 
 		Font(
@@ -87,9 +113,10 @@ class Font:XMLObject
 		void ReadFromAsset(const Asset* asset);
 		void ReadFromAssetNew(const Asset* asset);
 
-	private:
-		struct Character;
 		const Character& GetCharacter(int ascii) const;
+	private:
+
+
 		int GetKerning(int first, int second) const;
 
 
@@ -104,31 +131,6 @@ class Font:XMLObject
 		virtual void XML_Attribute(StringId _name, const XMLVariant& _value);
 
 	private:
-		struct Character
-			{
-			int ascii;
-			int spacing;
-			int x;
-			int y;
-			int width;
-			int height;
-			int xoffset;
-			int yoffset;
-			bool isBlank;
-			Array<Bitmap*> layers;
-
-			Character():
-				ascii(0),
-				spacing(0),
-				x(0),
-				y(0),
-				width(0),
-				height(0),
-				xoffset(0),
-				yoffset(0),
-				isBlank(false)
-				{ }
-			};
 		
 		struct Kerning
 			{

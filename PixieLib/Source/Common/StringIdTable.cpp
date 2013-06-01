@@ -69,18 +69,24 @@ StringIdTable::~StringIdTable()
 
 //*** CalculateHash ***
 
-unsigned int StringIdTable::CalculateHash(const char* idString) const
+unsigned int StringIdTable::CalculateHash(const char* idString, int* stringLength) const
 	{
 	unsigned long hash = 5381; // Seed value
 
 	// Modify hash for each character in the string
 	const char* stringData=idString;
-	while (*stringData)
+	while ( char c = *stringData )
 		{
+		// Convert character to upper case
+		char u = (c <= 'z' && c >= 'a') ? c-('a'-'A') : c; 
+
 		// A little bit-manipulation magic to get a nice distribution of values
-		hash = ((hash << 5) + hash) ^ ToUpper(*stringData);
+        hash = ((hash << 5) + hash) ^ u;
+
 		stringData++;
 		}
+
+	(*stringLength) = (stringData - idString);
 
 	// Return the final hash value
 	return hash;
@@ -89,8 +95,12 @@ unsigned int StringIdTable::CalculateHash(const char* idString) const
 
 //*** FindIdString ***
 
-const char* StringIdTable::FindIdString(unsigned int hash, const char* idString)
+const char* StringIdTable::FindIdString(const char* idString)
 	{
+	// Calculate hash value for the string (and get the string length at the same time)
+	int stringLength = 0;
+	unsigned int hash = CalculateHash(idString, &stringLength);
+
 	// Find slot for this string. This simply uses the passed in hash value, and modulates it by the number of slots. 
 	// Note that as the number of slots is always a power-of-two-number, we can use a binary AND instead of modulo
 	unsigned int slot=hash&(idStringTableSlots_-1);
@@ -170,7 +180,7 @@ const char* StringIdTable::FindIdString(unsigned int hash, const char* idString)
 		}
 
 	// Create a duplicate of the string
-	char* newEntry=StoreString(hash, idString); 
+	char* newEntry=StoreString(hash, idString, stringLength); 
 	
 	// And store it in the table
 	idStringTable_[slot]=newEntry;
@@ -185,11 +195,8 @@ const char* StringIdTable::FindIdString(unsigned int hash, const char* idString)
 
 //*** StoreString ***
  
-char* StringIdTable::StoreString(unsigned int hash, const char* string)
+char* StringIdTable::StoreString(unsigned int hash, const char* string, int length)
 	{
-	// Get the length of the string
-	int length=(int)StrLen(string);
-
 	// Calculate space needed to store the string
 	int spaceNeeded=length+1+4; // Add space for terminator (1) and for storing hash number (4)
 

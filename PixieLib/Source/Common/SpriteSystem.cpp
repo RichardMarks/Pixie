@@ -161,7 +161,6 @@ void SpriteSystem::RemoveSpriteManager(SpriteManager* spriteManager)
 
 		// Remove the sprite manager
 		spriteManagers_.Remove(it);
-		delete spriteManager;
 		
 		return;
 		}
@@ -186,7 +185,7 @@ void SpriteSystem::UpdatePriority(SpriteManager* spriteManager)
 			SpriteManager* existingManager=spriteManagers_.Get(i);
 			if (spriteManager->GetPriority()<existingManager->GetPriority())
 				{
-				spriteManagers_.InsertBefore(spriteManager,i);
+				spriteManagers_.InsertBefore(i,spriteManager);
 				return;
 				}
 			}

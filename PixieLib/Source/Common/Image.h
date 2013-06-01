@@ -6,7 +6,6 @@
  * \author	Mattias Gustavsson	
  * 
  * \todo	More transformations/manipulation (contrast, saturation, hue, blur, sharpen, resize...)
- * \todo	Get rid of orientation stuff - it goes in the bitmap instead
  */
 
 #ifndef __Image_H__
@@ -24,20 +23,9 @@ class Bitmap;
 class Image
 	{
 	public: 
-		enum Orientation
-			{
-			Rotate_0,
-			Rotate_90,
-			Rotate_180,
-			Rotate_270,
-			Mirror_X,
-			Mirror_Y,
-			Orientations_Count
-			};
-
 		Image();
-		Image(const Asset& asset, Orientation orientation = Rotate_0);
-		Image(const Asset& asset, int celCount, Orientation orientation = Rotate_0);
+		Image(const Asset& asset);
+		Image(const Asset& asset, int celCount);
 		Image(int width, int height);
 		Image(int width, int height, int celCount);
 		Image(const Image& image);
@@ -47,8 +35,6 @@ class Image
 
 		const Image& operator=(const Image& image);
 		
-
-		void SetOrientation(Orientation orientation);
 
 		int GetWidth() const;
 
@@ -67,7 +53,15 @@ class Image
 
 		float GetCelDelay(int cel) const;
 
-		void AdjustBrightness(float redMultiplier, float greenMultiplier, float blueMultiplier);
+		void BilinearSample( int c, float x, float y, float& r, float& g, float& b, float& a ) const;
+
+		void Brightness(float value);
+		void Contrast(float value);
+		void Saturation(float value);
+		void Hue(float value);
+		void Sharpen( float radius = 0.1f );
+
+		void Bleed( int iterations );
 
 		unsigned int* GetPointer() const;
 
@@ -81,7 +75,6 @@ class Image
 		unsigned int* data_;
 		int celCount_;
 		Array<float> celDelay_;
-		Orientation orientation_;
 	};
 
 

@@ -325,11 +325,11 @@ void Bitmap_RLE16::SetPixelAlpha(int x, int y,unsigned char alpha, Transformatio
 
 unsigned char Bitmap_RLE16::GetPixelAlpha(int x, int y, Transformation transformation) const
 	{
-//	if (x>=0 && x<GetWidth(transformation) && y>=0 && y<GetHeight(transformation))
-//		{
-//		TransformCoordinates(x,y,transformation);
-//		return RLEGetPixelAlpha(x,y);
-//		}
+	if (x>=0 && x<GetWidth(transformation) && y>=0 && y<GetHeight(transformation))
+		{
+		TransformCoordinates(x,y,transformation);
+		return RLEGetPixelAlpha(x,y);
+		}
 
 	return 0;
 	}
@@ -344,15 +344,15 @@ void Bitmap_RLE16::BlendPixel(int x, int y,unsigned short color, unsigned char a
 
 //*** Blit ***
 
-void Bitmap_RLE16::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap_RLE16::Blit(Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit) const
 	{
-	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation);
+	Blit(0, 0, width_-1, height_-1, target, x, y, modulate, alpha, transformation, maxBlit);
 	}
 
 
 //*** Blit ***
 
-void Bitmap_RLE16::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation) const
+void Bitmap_RLE16::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, unsigned short modulate, unsigned char alpha, Transformation transformation, bool maxBlit) const
 	{
 	BlitRLE(target,x,y);
 	}
@@ -455,4 +455,93 @@ void Bitmap_RLE16::BlitRLE(Bitmap& target, int xp, int yp) const
 				}
 			}
 		}
+	}
+
+
+//*** RLEGetPixelAlpha ***
+
+unsigned char Bitmap_RLE16::RLEGetPixelAlpha(int xp, int yp) const
+	{
+	xp-=hOffset_;
+	yp-=vOffset_;
+
+	unsigned short* data=reinterpret_cast<unsigned short*>(opaqueData_);
+	int size=opaqueSize_;
+	int x=0;
+	int y=0;
+	while (size>0)
+		{
+		unsigned short blank=*data;
+		data++;
+		size-=2;
+		x+=blank;
+		if (x>=hPitch_)
+			{
+			x-=hPitch_;
+			y++;
+			}
+
+		unsigned short nonblank=*data;
+		data++;
+		size-=2;
+		while (nonblank>0)
+			{
+			nonblank--;
+			unsigned short col=*data;
+			data++;
+			size-=2;
+			if (x==xp && y==yp)
+				{
+				return 255;
+				}
+			x++;
+			if (x>=hPitch_)
+				{
+				x-=hPitch_;
+				y++;
+				}
+			}
+		}
+
+	unsigned char* alphadata=alphaData_;
+	size=alphaSize_;
+	x=0;
+	y=0;
+	while (size>0)
+		{
+		unsigned short blank=*reinterpret_cast<unsigned short*>(alphadata);
+		alphadata+=2;
+		size-=2;
+		x+=blank;
+		if (x>=hPitch_)
+			{
+			x-=hPitch_;
+			y++;
+			}
+
+		unsigned short nonblank=*reinterpret_cast<unsigned short*>(alphadata);
+		alphadata+=2;
+		size-=2;
+		while (nonblank>0)
+			{
+			nonblank--;
+			unsigned short col=*reinterpret_cast<unsigned short*>(alphadata);
+			alphadata+=2;
+			size-=2;
+			unsigned char alpha=*static_cast<unsigned char*>(alphadata);
+			if (x==xp && y==yp)
+				{
+				return alpha;
+				}
+			alphadata+=1;
+			size-=1;
+			x++;
+			if (x>=hPitch_)
+				{
+				x-=hPitch_;
+				y++;
+				}
+			}
+		}
+	return 0;
 	}

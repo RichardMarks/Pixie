@@ -20,8 +20,10 @@ Platform_Win32_Screen_D3D9::Platform_Win32_Screen_D3D9(struct HWND__* windowHand
 	d3dDLL_(0),
 	direct3D_(0),
 	device_(0),
-	backbuffer1_(0),
-	backbuffer2_(0),
+	backbuffer16a_(0),
+	backbuffer16b_(0),
+	backbuffer32a_(0),
+	backbuffer32b_(0),
 	backbufferWidth_(0),
 	backbufferHeight_(0),
 	usingDynamicTexture_(false),
@@ -74,7 +76,7 @@ bool Platform_Win32_Screen_D3D9::Setup()
 
 		d3dpp.BackBufferWidth=screenWidth_;
 		d3dpp.BackBufferHeight=screenHeight_;
-		d3dpp.BackBufferFormat=D3DFMT_R5G6B5;
+		d3dpp.BackBufferFormat=D3DFMT_X8R8G8B8;
 		d3dpp.BackBufferCount=2;
 		d3dpp.MultiSampleType=D3DMULTISAMPLE_NONE;
 		d3dpp.MultiSampleQuality=0;
@@ -141,16 +143,25 @@ Platform_Win32_Screen_D3D9::~Platform_Win32_Screen_D3D9()
 	{
 	DebugPrint(("Destroying Platform_Win32_Screen_D3D9...\n"));
 
-	if (backbuffer1_)
+	if (backbuffer16a_)
 		{
-		backbuffer1_->Release();
+		backbuffer16a_->Release();
 		}
 
-	if (backbuffer2_)
+	if (backbuffer16b_)
 		{
-		backbuffer2_->Release();
+		backbuffer16b_->Release();
 		}
 
+	if (backbuffer32a_)
+		{
+		backbuffer32a_->Release();
+		}
+
+	if (backbuffer32b_)
+		{
+		backbuffer32b_->Release();
+		}
 	if (device_)
 		{
 		device_->Release();
@@ -234,9 +245,82 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned short* bitmapData, int bitmapW
 		}
 
 	// Swap buffers
-	IDirect3DTexture9* temp=backbuffer2_;
-	backbuffer2_=backbuffer1_;
-	backbuffer1_=temp;
+	IDirect3DTexture9* temp=backbuffer16b_;
+	backbuffer16b_=backbuffer16a_;
+	backbuffer16a_=temp;
+	if (!buffer1Filled_)
+		{
+		buffer1Filled_=true;
+		}
+	else if (!buffer2Filled_)
+		{
+		buffer2Filled_=true;
+		}
+
+
+	return true;
+	}
+
+
+//*** Present ***
+
+bool Platform_Win32_Screen_D3D9::Present(unsigned int* bitmapData, int bitmapWidth, int bitmapHeight, unsigned int modulate, unsigned int backgroundColor)
+	{
+	lastPresentWidth_=bitmapWidth;
+	lastPresentHeight_=bitmapHeight;
+	unsigned int color=backgroundColor;
+		
+	
+	HRESULT result=S_OK;
+
+	result=device_->Clear( 0, 0, D3DCLEAR_TARGET, color, 0, 0);
+	if (FAILED(result))
+		{
+		DebugPrint(("Clear failed\n"));
+		return false;
+		}
+
+	result=device_->BeginScene();
+	if (FAILED(result))
+		{
+		DebugPrint(("BeginScene failed\n"));
+		return false;
+		}
+	
+
+	if (!CopyBitmapToBackBuffer(bitmapData,bitmapWidth,bitmapHeight,backgroundColor))
+		{
+		DebugPrint(("CopyBitmapToBackBuffer failed\n"));
+		return false;
+		}
+
+	if (buffer2Filled_)
+		{
+		if (!CopyBackBufferToFrontBuffer(bitmapWidth, bitmapHeight, modulate))
+			{		
+			DebugPrint(("CopyBackBufferToFrontBuffer failed\n"));
+			return false;
+			}
+		}
+	
+	result=device_->EndScene();
+	if (FAILED(result))
+		{
+		DebugPrint(("EndScene failed\n"));
+		return false;
+		}	
+	
+	result=device_->Present(0, 0, 0, 0 );
+	if (FAILED(result))
+		{
+		DebugPrint(("Present failed\n"));
+		return false;
+		}
+
+	// Swap buffers
+	IDirect3DTexture9* temp=backbuffer32b_;
+	backbuffer32b_=backbuffer32a_;
+	backbuffer32a_=temp;
 	if (!buffer1Filled_)
 		{
 		buffer1Filled_=true;
@@ -255,7 +339,7 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned short* bitmapData, int bitmapW
 
 bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned short* bitmapData, int bitmapWidth, int bitmapHeight, unsigned short backgroundColor)
 	{
-	if (!backbuffer1_ || backbufferWidth_<bitmapWidth || backbufferHeight_<bitmapHeight)
+	if (!backbuffer16a_ || backbufferWidth_<bitmapWidth || backbufferHeight_<bitmapHeight)
 		{
 		if (!CreateBackBuffers(bitmapWidth,bitmapHeight))
 			{
@@ -268,7 +352,7 @@ bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned short* bitmapDa
 	HRESULT result=S_OK;
 	if (usingDynamicTexture_)
 		{
-		result=backbuffer1_->LockRect(0,&lockedRect,0,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
+		result=backbuffer16a_->LockRect(0,&lockedRect,0,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
 		}
 	else
 		{
@@ -277,7 +361,7 @@ bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned short* bitmapDa
 		rect.left=0;
 		rect.right=bitmapWidth;
 		rect.bottom=bitmapHeight;
-		result=backbuffer1_->LockRect(0,&lockedRect,&rect,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
+		result=backbuffer16a_->LockRect(0,&lockedRect,&rect,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
 		}
 
 	if (FAILED(result))
@@ -340,7 +424,7 @@ bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned short* bitmapDa
 */
 
 
-	result=backbuffer1_->UnlockRect(0);
+	result=backbuffer16a_->UnlockRect(0);
 	if (FAILED(result))
 		{
 		DebugPrint(("Failed to unlock backbuffer\n"));
@@ -437,7 +521,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	HRESULT result=S_OK;
 
 	
-	result=device_->SetTexture(0,backbuffer2_);
+	result=device_->SetTexture(0,backbuffer16b_);
 	if (FAILED(result))
 		{
 		DebugPrint(("SetTexture failed\n"));
@@ -471,6 +555,224 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	}
 
 
+//*** CopyBitmapToBackBuffer ***
+
+bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned int* bitmapData, int bitmapWidth, int bitmapHeight, unsigned int backgroundColor)
+	{
+	if (!backbuffer32a_ || backbufferWidth_<bitmapWidth || backbufferHeight_<bitmapHeight)
+		{
+		if (!CreateBackBuffers(bitmapWidth,bitmapHeight))
+			{
+			DebugPrint(("Couldn't create backbuffers\n"));
+			return false;
+			}
+		}
+
+	D3DLOCKED_RECT lockedRect;
+	HRESULT result=S_OK;
+	if (usingDynamicTexture_)
+		{
+		result=backbuffer32a_->LockRect(0,&lockedRect,0,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
+		}
+	else
+		{
+		RECT rect;
+		rect.top=0; 
+		rect.left=0;
+		rect.right=bitmapWidth;
+		rect.bottom=bitmapHeight;
+		result=backbuffer32a_->LockRect(0,&lockedRect,&rect,D3DLOCK_DISCARD | D3DLOCK_NOOVERWRITE );
+		}
+
+	if (FAILED(result))
+		{
+		DebugPrint(("Failed to lock backbuffer\n"));
+		return false;
+		}
+
+	unsigned char* destination=static_cast<unsigned char*>(lockedRect.pBits);
+	int pitch=lockedRect.Pitch;
+	unsigned char* source=reinterpret_cast<unsigned char*>(bitmapData);
+	int bitmapPitch=bitmapWidth*4;
+	int dwords=bitmapWidth;
+
+
+	if (pitch==bitmapPitch)
+		{
+		memcpy(destination,source,pitch*bitmapHeight);
+		}
+	else
+		{
+		if (interpolationMode_)
+			{
+			for (int y=0; y<bitmapHeight; y++)
+				{
+				memcpy(destination,source,bitmapPitch);
+//				*((unsigned int*)(destination[bitmapPitch]))=backgroundColor;
+				destination+=pitch;
+				source+=bitmapPitch;
+				}
+			}
+		else
+			{
+			for (int y=0; y<bitmapHeight; y++)
+				{
+				memcpy(destination,source,bitmapPitch);
+				destination+=pitch;
+				source+=bitmapPitch;
+				}
+			}
+		}
+
+/*	if (interpolationMode_)
+		{
+		unsigned short* dest=static_cast<unsigned short*>(destination);
+		int width=bitmap->GetWidth();
+		for (int x=0; x<width; x++)
+			{
+			*dest=backgroundColor;
+			dest++;
+			}
+		dest+=pitch;
+		for (int x=0; x<width; x++)
+			{
+			*dest=backgroundColor;
+			dest++;
+			}
+		}
+*/
+
+
+	result=backbuffer32a_->UnlockRect(0);
+	if (FAILED(result))
+		{
+		DebugPrint(("Failed to unlock backbuffer\n"));
+		return false;
+		}
+
+	return true;
+	}
+
+
+//*** CopyBackBufferToFrontBuffer ***
+
+bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, int bitmapHeight, unsigned int modulate)
+	{
+	struct Vertex
+		{
+		float x;
+		float y;
+		float z;
+		float rhw;
+		unsigned int color;
+		float u;
+		float v;
+		};
+
+	Vertex quad[4];
+
+	float x1=0;
+	float y1=0;
+	float x2=0;
+	float y2=0;
+
+	unsigned int color=modulate;
+	if (interpolationMode_)
+		{
+		float hscale=screenWidth_/(float)bitmapWidth;
+		float vscale=screenHeight_/(float)bitmapHeight;
+		float pixelScale=min(hscale,vscale);
+
+		float hborder=(screenWidth_-pixelScale*bitmapWidth)/2;
+		float vborder=(screenHeight_-pixelScale*bitmapHeight)/2;
+		x1=hborder;
+		y1=vborder;
+		x2=x1+pixelScale*bitmapWidth;
+		y2=y1+pixelScale*bitmapHeight;
+		}
+	else
+		{
+		int hscale=screenWidth_/bitmapWidth;
+		int vscale=screenHeight_/bitmapHeight;
+		int pixelScale=min(hscale,vscale);
+
+		int hborder=(screenWidth_-pixelScale*bitmapWidth)/2;
+		int vborder=(screenHeight_-pixelScale*bitmapHeight)/2;
+		x1=(float)hborder;
+		y1=(float)vborder;
+		x2=x1+(float)(pixelScale*bitmapWidth);
+		y2=y1+(float)(pixelScale*bitmapHeight);
+		}
+	
+
+	quad[0].x=x2-0.5f;
+	quad[0].y=y2-0.5f;
+	quad[0].z=0;
+	quad[0].rhw=0.5f;
+	quad[0].color=color;
+	quad[0].u=bitmapWidth/(float)backbufferWidth_;
+	quad[0].v=bitmapHeight/(float)backbufferHeight_;	
+
+	quad[1].x=x1-0.5f;
+	quad[1].y=y2-0.5f;
+	quad[1].z=0;
+	quad[1].rhw=0.5f;
+	quad[1].color=color;
+	quad[1].u=0;
+	quad[1].v=bitmapHeight/(float)backbufferHeight_;	
+
+	quad[2].x=x2-0.5f;
+	quad[2].y=y1-0.5f;
+	quad[2].z=0;
+	quad[2].rhw=0.5f;
+	quad[2].color=color;
+	quad[2].u=bitmapWidth/(float)backbufferWidth_;
+	quad[2].v=0;	
+
+	quad[3].x=x1-0.5f;
+	quad[3].y=y1-0.5f;
+	quad[3].z=0;
+	quad[3].rhw=0.5f;
+	quad[3].color=color;
+	quad[3].u=0;
+	quad[3].v=0;	
+
+	HRESULT result=S_OK;
+
+	
+	result=device_->SetTexture(0,backbuffer32b_);
+	if (FAILED(result))
+		{
+		DebugPrint(("SetTexture failed\n"));
+		return false;
+		}
+	
+	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	if (FAILED(result))
+		{
+		DebugPrint(("SetFVF failed\n"));
+		return false;
+		}	
+
+
+	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	if (FAILED(result))
+		{
+		DebugPrint(("SetFVF failed\n"));
+		return false;
+		}	
+
+	result=device_->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,quad,sizeof(Vertex));
+	if (FAILED(result))
+		{
+		DebugPrint(("DrawPrimitiveUP\n"));
+		return false;
+		}
+
+
+	return true;
+	}
+
 //*** SetInterpolationMode *** 
 
 void Platform_Win32_Screen_D3D9::SetInterpolationMode(bool enabled)
@@ -500,16 +802,28 @@ void Platform_Win32_Screen_D3D9::SetInterpolationMode(bool enabled)
 
 bool Platform_Win32_Screen_D3D9::CreateBackBuffers(int width, int height)
 	{
-	if (backbuffer1_)
+	if (backbuffer16a_)
 		{
-		backbuffer1_->Release();
-		backbuffer1_=0;
+		backbuffer16a_->Release();
+		backbuffer16a_=0;
 		}
 
-	if (backbuffer2_)
+	if (backbuffer16b_)
 		{
-		backbuffer2_->Release();
-		backbuffer2_=0;
+		backbuffer16b_->Release();
+		backbuffer16b_=0;
+		}
+
+	if (backbuffer32a_)
+		{
+		backbuffer32a_->Release();
+		backbuffer32a_=0;
+		}
+
+	if (backbuffer32b_)
+		{
+		backbuffer32b_->Release();
+		backbuffer32b_=0;
 		}
 
 	// Create back buffer
@@ -528,17 +842,29 @@ bool Platform_Win32_Screen_D3D9::CreateBackBuffers(int width, int height)
 	device_->GetDeviceCaps(&caps);
 	if (caps.Caps2 & D3DCAPS2_DYNAMICTEXTURES)
 		{
-		HRESULT ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_R5G6B5,D3DPOOL_DEFAULT,&backbuffer1_,0);
+		HRESULT ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_R5G6B5,D3DPOOL_DEFAULT,&backbuffer16a_,0);
 		if (FAILED(ret))
 			{
 			DebugPrint(("Dynamic textures not supported, using static textures\n"));
-			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_R5G6B5,D3DPOOL_MANAGED,&backbuffer1_,0);
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_R5G6B5,D3DPOOL_MANAGED,&backbuffer16a_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer1\n"));
 				return false;
 				}			
-			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_R5G6B5,D3DPOOL_MANAGED,&backbuffer2_,0);
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_X8R8G8B8,D3DPOOL_MANAGED,&backbuffer32a_,0);
+			if (FAILED(ret))
+				{
+				DebugPrint(("Couldn't create backbuffer1\n"));
+				return false;
+				}			
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_R5G6B5,D3DPOOL_MANAGED,&backbuffer16b_,0);
+			if (FAILED(ret))
+				{
+				DebugPrint(("Couldn't create backbuffer2\n"));
+				return false;
+				}			
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_X8R8G8B8,D3DPOOL_MANAGED,&backbuffer32b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
@@ -547,7 +873,19 @@ bool Platform_Win32_Screen_D3D9::CreateBackBuffers(int width, int height)
 			}
 		else
 			{
-			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_R5G6B5,D3DPOOL_DEFAULT,&backbuffer2_,0);
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT,&backbuffer32a_,0);
+			if (FAILED(ret))
+				{
+				DebugPrint(("Couldn't create backbuffer2\n"));
+				return false;
+				}			
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_R5G6B5,D3DPOOL_DEFAULT,&backbuffer16b_,0);
+			if (FAILED(ret))
+				{
+				DebugPrint(("Couldn't create backbuffer2\n"));
+				return false;
+				}			
+			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT,&backbuffer32b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));

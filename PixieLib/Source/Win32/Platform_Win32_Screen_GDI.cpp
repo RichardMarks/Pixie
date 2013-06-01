@@ -134,6 +134,14 @@ bool Platform_Win32_Screen_GDI::Present(unsigned short* bitmapData, int bitmapWi
 	}
 
 
+//*** Present ***
+
+bool Platform_Win32_Screen_GDI::Present(unsigned int* bitmapData, int bitmapWidth, int bitmapHeight, unsigned int modulate, unsigned int backgroundColor)
+	{
+	return true;
+	}
+
+
 //*** ModulateBitmap ***
 
 void Platform_Win32_Screen_GDI::ModulateBitmap(unsigned short* bitmapData, int bitmapWidth, int bitmapHeight, unsigned short modulate)

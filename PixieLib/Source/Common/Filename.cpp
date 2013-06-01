@@ -4,6 +4,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+StringPool Filename::stringPool_(64,64);
 
 //*** Default Constructor ***
 
@@ -19,10 +20,15 @@ Filename::Filename():
 Filename::Filename(const char* filename):
 	filenameString_(0)
 	{
+	if (!filename)
+		{
+		return;
+		}
 	// Make sure filename conforms to standard format
 	Assert(VerifyFilename(filename),
-		"Paths and filenames must use forward slash '/' as path separator, must not end with a path separator and must not be of zero length.");
-	filenameString_=CorrectFilename(filename);
+		"Paths and filenames must use forward slash '/' as path separator, must not end with a path separator and must "
+		"not be of zero length.");
+	filenameString_ = CorrectFilename( filename );
 	}
 
 
@@ -31,10 +37,16 @@ Filename::Filename(const char* filename):
 Filename::Filename(const StringId& filename):
 	filenameString_(0)
 	{
+	if (!filename.GetString())
+		{
+		return;
+		}
+
 	// Make sure filename conforms to standard format
 	Assert(VerifyFilename(filename.GetString()),
-		"Paths and filenames must use forward slash '/' as path separator, must not end with a path separator and must not be of zero length.");
-	filenameId_=CorrectFilename(filename);
+		"Paths and filenames must use forward slash '/' as path separator, must not end with a path separator and must "
+		"not be of zero length.");
+	filenameId_ = CorrectFilename(filename);
 	}
 
 
@@ -46,7 +58,8 @@ Filename::Filename(const Filename& filename):
 	{
 	if (filename.filenameString_)
 		{
-		filenameString_=StrDup(filename.filenameString_);
+		filenameString_=filename.filenameString_;
+		stringPool_.IncreaseReferenceCount(filenameString_);
 		}
 	}
 
@@ -57,7 +70,7 @@ Filename::~Filename()
 	{
 	if (filenameString_)
 		{
-		Free(filenameString_);
+		stringPool_.DecreaseReferenceCount(filenameString_);
 		filenameString_=0;
 		}
 	}
@@ -67,16 +80,22 @@ Filename::~Filename()
 
 const Filename& Filename::operator=(const Filename& filename)
 	{
+	filenameId_=filename.filenameId_;
+	if (filenameString_==filename.filenameString_)
+		{
+		return *this;
+		}
+
 	if (filenameString_)
 		{
-		Free(filenameString_);
+		stringPool_.DecreaseReferenceCount(filenameString_);
 		filenameString_=0;
 		}
 
-	filenameId_=filename.filenameId_;
 	if (filename.filenameString_)
 		{
-		filenameString_=StrDup(filename.filenameString_);
+		filenameString_=filename.filenameString_;
+		stringPool_.IncreaseReferenceCount(filenameString_);
 		}
 
 	return *this;
@@ -89,6 +108,10 @@ bool Filename::operator==(const Filename& filename) const
 	{
 	if (filenameString_ || filename.filenameString_)
 		{
+		if (filenameString_==filename.filenameString_)
+			{
+			return true;
+			}
 		if (GetString()==0 || filename.GetString()==0)
 			{
 			return false;
@@ -128,7 +151,7 @@ StringId Filename::GetStringId() const
 	if (filenameString_)
 		{
 		filenameId_=StringId(filenameString_);
-		Free(filenameString_);
+		stringPool_.DecreaseReferenceCount(filenameString_);
 		filenameString_=0;
 		}
 
@@ -180,29 +203,45 @@ StringId Filename::CorrectFilename(StringId filename)
 		return StringId(".");
 		}
 
-	// Create a correct copy of the string
-	char* string=CorrectFilename(filename.GetString());
-	StringId returnValue(string);
-	Free(string);
+	// Create a copy of the string
+	char* string=StrDup(filename.GetString());
+	int length=StrLen(string);
 
+	// Replace all backslash separators with forward slash
+	for (int i=0; i<length; i++)
+		{
+		if (string[i]=='\\')
+			{
+			string[i]='/';
+			}
+		}
+
+	// If there's a trailing path separator, remove it
+	if (string[length-1]=='/')
+		{
+		string[length-1]=0;
+		}
+	
+	StringId returnValue =StringId(string);
+	Free(string);
 	return returnValue;
 	}
 
 
 //*** CorrectFilename ***
 
-char* Filename::CorrectFilename(const char* filename)
+const char* Filename::CorrectFilename(const char* filename)
 	{
 	// If it's already a valid filename, just use as is
 	if (VerifyFilename(filename))
 		{
-		return StrDup(filename);
+		return stringPool_.GetPoolString(filename);
 		}
 
 	// Empty string is interpreted as the current path
 	if (filename==0 || filename[0]==0)
 		{
-		return StrDup(".");
+		return stringPool_.GetPoolString(".");
 		}
 
 	// Create a copy of the string
@@ -224,6 +263,8 @@ char* Filename::CorrectFilename(const char* filename)
 		string[length-1]=0;
 		}
 	
-	return string;
+	const char* poolString = stringPool_.GetPoolString(string);
+	Free(string);
+	return poolString;
 	}
 

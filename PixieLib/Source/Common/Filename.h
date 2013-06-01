@@ -13,6 +13,7 @@
 
 // Includes
 #include "StringId.h"
+#include "StringPool.h"
 
 // Forward declares
 
@@ -85,14 +86,16 @@ class Filename
 	private:
 		bool VerifyFilename(const char* filename);
 		
-		char* CorrectFilename(const char* filename);
+		const char* CorrectFilename(const char* filename);
 		
 		StringId CorrectFilename(StringId filename);
 
 
 	private:
-		mutable char* filenameString_;	
+		mutable const char* filenameString_;	
 		mutable StringId filenameId_;
+		
+		static StringPool stringPool_;
 	};
 
 

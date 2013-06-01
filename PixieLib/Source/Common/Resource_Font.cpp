@@ -1,7 +1,7 @@
 //*** Resource_Font.cpp ***
 
 #include "Resource_Font.h"
-#include "ResourceManager.h"
+#include "OldResourceManager.h"
 #include "Filename.h"
 #include "Font.h"
 
@@ -18,8 +18,8 @@ Resource_Font::Resource_Font():
 
 Resource_Font::Resource_Font(const Filename& filename)
 	{
-	font_=siResourceManager->GetFont(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(font_);
+	font_=siOldResourceManager->GetFont(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
 
 
@@ -28,8 +28,8 @@ Resource_Font::Resource_Font(const Filename& filename)
 Resource_Font::Resource_Font(const char* filenameStr)
 	{
 	Filename filename(filenameStr);
-	font_=siResourceManager->GetFont(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(font_);
+	font_=siOldResourceManager->GetFont(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
 		
 
@@ -38,8 +38,8 @@ Resource_Font::Resource_Font(const char* filenameStr)
 Resource_Font::Resource_Font(StringId filenameId)
 	{
 	Filename filename(filenameId);
-	font_=siResourceManager->GetFont(filename.GetStringId());
-	siResourceManager->IncreaseReferenceCount(font_);
+	font_=siOldResourceManager->GetFont(filename.GetStringId());
+	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
 		
 
@@ -49,7 +49,7 @@ Resource_Font::~Resource_Font()
 	{ 
 	if (font_)
 		{
-		siResourceManager->DecreaseReferenceCount(font_);
+		siOldResourceManager->DecreaseReferenceCount(font_);
 		}
 	}
 
@@ -59,7 +59,7 @@ Resource_Font::~Resource_Font()
 Resource_Font::Resource_Font(const Resource_Font& resource):
 	font_(resource.font_) 
 	{ 
-	siResourceManager->IncreaseReferenceCount(font_);
+	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
 
 
@@ -68,7 +68,7 @@ Resource_Font::Resource_Font(const Resource_Font& resource):
 const Resource_Font& Resource_Font::operator =(const Resource_Font& resource)
 	{ 
 	font_=resource.font_;
-	siResourceManager->IncreaseReferenceCount(font_);
+	siOldResourceManager->IncreaseReferenceCount(font_);
 	return *this;
 	}
 

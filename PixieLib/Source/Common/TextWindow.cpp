@@ -247,6 +247,7 @@ void TextWindow::Render(Bitmap& bitmap)
 		int y1=bs+pd;
 		int x2=windowBitmap_->GetWidth()-bs-pd;
 		int y2=windowBitmap_->GetHeight()-bs-1-pd;
+		windowBitmap_->Fill(backgroundColor_);
 		content_.Render(*windowBitmap_,x1,y1,x2,y2,0,0);
 		redraw_=false;
 		}

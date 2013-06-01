@@ -363,6 +363,14 @@ bool Platform_Win32_Screen_DDraw::Present(unsigned short* bitmapData, int bitmap
 	}
 
 
+//*** Present ***
+
+bool Platform_Win32_Screen_DDraw::Present(unsigned int* bitmapData, int bitmapWidth, int bitmapHeight, unsigned int modulate, unsigned int backgroundColor)
+	{
+	return true;
+	}
+
+
 //*** CopyBitmapToBackBufferNoInterpolation ***
 
 bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferNoInterpolation(unsigned short* bitmapData, int bitmapWidth, int bitmapHeight, unsigned short modulate, unsigned short backgroundColor, bool clearBorders)

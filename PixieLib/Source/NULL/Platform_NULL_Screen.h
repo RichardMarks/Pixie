@@ -31,6 +31,13 @@ class Platform_NULL_Screen:public Platform_Screen
 			unsigned short backgroundColor = 0x0000
 			);
 
+		virtual void Present(
+			unsigned int* bitmapData,
+			int bitmapWidth,
+			int bitmapHeight,
+			unsigned int modulate = 0xffffffff,
+			unsigned int backgroundColor = 0x00000000
+			);
 
 		virtual void SetInterpolationMode(bool enabled);
 

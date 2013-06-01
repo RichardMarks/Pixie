@@ -30,8 +30,7 @@ Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLin
 	// Store a copy of the command line
 	if (commandLine)
 		{
-//		commandLine_=strdup(commandLine);
-		commandLine_=_strdup(commandLine);
+		commandLine_=strdup(commandLine);
 		}
 
 	// Retrieve the path of our executable
@@ -46,8 +45,7 @@ Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLin
 		{
 		*end='\0';
 		}
-//	executablePath_=strdup(path);
-	executablePath_=_strdup(path);
+	executablePath_=strdup(path);
 	
 	// Setup the main application window
 	RegisterWindowClass(hInstance,"Pixie");
@@ -408,10 +406,12 @@ void Platform_Win32_OS::DisplayAssertMessage(const char* expression, const char*
 		Platform::GetPlatform_3D()->SetFullscreen(false);
 		}
 	char buf[4096];
-	_snprintf(buf,4095,"ASSERTION FAILED!\n\n%s\n\nExpression: %s\nFile: %s\nLine: %d\n",message,expression,file,line);
-	OutputDebugString("******************************************\n");
+	_snprintf(buf, 4095, 
+		"ASSERTION FAILED!\n\n%s\n\nExpression: %s\n\n%s(%d)\n",
+		message, expression, file, line);
+	OutputDebugString("\n******************************************\n");
 	OutputDebugString(buf);
-	OutputDebugString("******************************************\n");
+	OutputDebugString("******************************************\n\n");
 	int result=MessageBox(0,buf,"Pixie Assert",MB_ICONWARNING | MB_ABORTRETRYIGNORE);
 	switch (result)
 		{
@@ -472,10 +472,10 @@ void Platform_Win32_OS::ReportFatalError(const char* message, const char* file, 
 		}
 
 	char buf[4096];
-	_snprintf(buf,4095,"FATAL ERROR!\n\n%s\n\nIt is not possible to recover from this error. The program will now terminate.\n\nFile: %s\nLine: %d\n",message,file,line);
-	OutputDebugString("******************************************\n");
+	_snprintf(buf,4095,"FATAL ERROR!\n\n%s\n\nIt is not possible to recover from this error. The program will now terminate.\n\n%s(%d)\n",message,file,line);
+	OutputDebugString("\n******************************************\n");
 	OutputDebugString(buf);
-	OutputDebugString("******************************************\n");
+	OutputDebugString("******************************************\n\n");
 	int result=MessageBox(0,buf,"Pixie Fatal Error",MB_ICONSTOP | mbtype);
 	switch (result)
 		{
@@ -502,8 +502,7 @@ void Platform_Win32_OS::ReportFatalError(const char* message, const char* file, 
 
 void Platform_Win32_OS::OnCustomEvent(const char* eventId, void* userData)
 	{
-//	if (stricmp(eventId,"SetCursor")==0)
-	if (_stricmp(eventId,"SetCursor")==0)
+	if (stricmp(eventId,"SetCursor")==0)
 		{
 		cursor_=(HCURSOR)userData;;
 		return;
