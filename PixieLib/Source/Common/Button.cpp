@@ -248,7 +248,23 @@ bool Button::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& us
 		}
 
 	const Bitmap& bitmap=GetBitmap().GetCel((int)GetCel());
+#if 0
 	if (bitmap.GetPixelAlpha(x-(int)(GetX()+GetOriginX()),y-(int)(GetY()+GetOriginY()))>128)
+    const Bitmap& bitmap=GetBitmap().GetCel((int)GetCel());
+	int xp = x-(int)(GetX()-GetOriginX());
+	int yp = y-(int)(GetY()-GetOriginY());
+	unsigned char alpha = bitmap.GetPixelAlpha(xp,yp);
+	if (alpha>128)
+#else
+    int bho = bitmap.GetHOffset();
+    int bvo = bitmap.GetVOffset();
+    int bhp = bitmap.GetHPitch();
+    int bvp = bitmap.GetVPitch();
+    
+    int xp = x - (int)(GetX() - GetOriginX());
+    int yp = y - (int)(GetY() - GetOriginY());
+    if (xp > bho && xp < bho + bhp && yp > bvo && yp < bvo + bvp)
+#endif
 		{
 		if (enabled_)
 			{

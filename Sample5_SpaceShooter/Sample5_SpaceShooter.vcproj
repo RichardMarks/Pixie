@@ -46,7 +46,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_DEPRECATE;_CRT_NON_CONFORMING_SWPRINTFS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="4"
 				WarnAsError="true"
@@ -193,6 +193,14 @@
 		</File>
 		<File
 			RelativePath=".\Source\Main.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\MissionDebriefState.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\MissionDebriefState.h"
 			>
 		</File>
 		<File

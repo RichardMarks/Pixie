@@ -3,7 +3,7 @@
 
 #include "Pixie.h"
 
-class TitleState : public GameState
+class TitleState : public GameState, public SpriteEventListener
 {
 public:
     static const char* ID;
@@ -12,11 +12,15 @@ public:
 private:
     static GameState* CreateInstance();
 
-    Sprite titleBg;
-    StaticText menuText;
+    Sprite bg;
+    Button startButton;
+    Button continueButton;
+    Button quitButton;
 
     TitleState();
     virtual void Update(float deltaTime);
+
+    virtual void OnSpriteEvent(StringId eventId, void* userData);
 
 };
 

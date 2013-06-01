@@ -5,6 +5,7 @@
 
 #include "Constants.h"
 #include "TitleState.h"
+#include "MissionDebriefState.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -17,6 +18,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     GameStateManager& gsm = *GameStateManager::GetInstance();
 
     TitleState::Register(gsm);
+    MissionDebriefState::Register(gsm);
+
+    input.CreateCursor(0, "Assets/PlanetCursor.pix", 16, 16);
 
     gsm.SwitchState(TitleState::ID);
 
