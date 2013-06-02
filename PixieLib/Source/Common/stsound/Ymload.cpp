@@ -60,7 +60,7 @@ static	void	signeSample(ymu8 *ptr,yms32 size)
 char	*mstrdup(char *in)
 {
 		char *out = (char*)malloc(strlen(in)+1);
-		if (out) StrCpy(out,in);
+		if (out) pixie::StrCpy(out,in);
 		return out;
 }
 

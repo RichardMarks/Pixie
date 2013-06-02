@@ -379,7 +379,7 @@ void CSoundFile::ResetMidiCfg()
 	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_NOTEOFF*32], "9c n 0");
 	lstrcpy(&m_MidiCfg.szMidiGlb[MIDIOUT_PROGRAM*32], "Cc p");
 	lstrcpy(&m_MidiCfg.szMidiSFXExt[0], "F0F000z");
-	for (int iz=0; iz<16; iz++) SNPrintF(&m_MidiCfg.szMidiZXXExt[iz*32],128*32, "F0F001%02X", iz*8);
+	for (int iz=0; iz<16; iz++) pixie::SNPrintF(&m_MidiCfg.szMidiZXXExt[iz*32],128*32, "F0F001%02X", iz*8);
 }
 
 
@@ -778,8 +778,8 @@ UINT CSoundFile::GetSampleName(UINT nSample,LPSTR s) const
         char sztmp[40] = "";      // changed from CHAR
 	memcpy(sztmp, m_szNames[nSample],32);
 	sztmp[31] = 0;
-	if (s) StrCpy(s, sztmp);
-	return StrLen(sztmp);
+	if (s) pixie::StrCpy(s, sztmp);
+	return pixie::StrLen(sztmp);
 }
 
 
@@ -795,8 +795,8 @@ UINT CSoundFile::GetInstrumentName(UINT nInstr,LPSTR s) const
 	INSTRUMENTHEADER *penv = Headers[nInstr];
 	memcpy(sztmp, penv->name, 32);
 	sztmp[31] = 0;
-	if (s) StrCpy(s, sztmp);
-	return StrLen(sztmp);
+	if (s) pixie::StrCpy(s, sztmp);
+	return pixie::StrLen(sztmp);
 }
 
 

@@ -13,11 +13,10 @@
 
 // Includes
 #include "SpriteAction.h"
+namespace pixie {
 
 // Forward declares
 class Sprite;
-
-namespace pixie {
 
 // SpriteAction_AlphaFade
 class SpriteAction_AlphaFade:public SpriteAction

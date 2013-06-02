@@ -15,8 +15,8 @@
 #include "ImageFormat.h"
 
 // Forward declares
-class GifLoader;
 namespace pixie {
+class GifLoader;
 
 // ImageFormat_GIF
 class ImageFormat_GIF:public ImageFormat

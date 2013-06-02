@@ -27,6 +27,8 @@
 #include "Asset.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 GifLoader::~GifLoader()
 	{
 	for (int i=0; i<cels_.GetItemCount(); i++)
@@ -456,3 +458,5 @@ int LZWDecoder (char * bufIn, char * bufOut,
 
 	return whichBit;
 }
+
+};

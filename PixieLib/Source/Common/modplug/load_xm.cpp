@@ -88,7 +88,7 @@ BOOL CSoundFile::ReadXM(const BYTE *lpStream, DWORD dwMemLength)
 
 	m_nChannels = 0;
 	if ((!lpStream) || (dwMemLength < 0x200)) return FALSE;
-	if (StrNICmp((LPCSTR)lpStream, "Extended Module", 15)) return FALSE;
+	if (pixie::StrNICmp((LPCSTR)lpStream, "Extended Module", 15)) return FALSE;
 
 	memcpy(m_szNames[0], lpStream+17, 20);
 	dwHdrSize = bswapLE32(*((DWORD *)(lpStream+60)));

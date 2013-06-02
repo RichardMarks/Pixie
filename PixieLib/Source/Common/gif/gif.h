@@ -30,7 +30,7 @@
 
 // Includes
 #include "Array.h"
-
+namespace pixie {
 // Forward declares
 class Asset;
 
@@ -64,5 +64,5 @@ class GifLoader
 	Array<Cel*> cels_;
 	};
 
-
+};
 #endif /* __gif_H__ */

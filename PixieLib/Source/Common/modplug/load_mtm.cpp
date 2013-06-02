@@ -57,7 +57,7 @@ BOOL CSoundFile::ReadMTM(LPCBYTE lpStream, DWORD dwMemLength)
 	 || (pmh->numsamples >= MAX_SAMPLES) || (!pmh->numsamples)
 	 || (!pmh->numtracks) || (!pmh->numchannels)
 	 || (!pmh->lastpattern) || (pmh->lastpattern > MAX_PATTERNS)) return FALSE;
-	StrNCpy(m_szNames[0], pmh->songname, 20);
+	pixie::StrNCpy(m_szNames[0], pmh->songname, 20);
 	m_szNames[0][20] = 0;
 	if (dwMemPos + 37*pmh->numsamples + 128 + 192*pmh->numtracks
 	 + 64 * (pmh->lastpattern+1) + pmh->commentsize >= dwMemLength) return FALSE;
@@ -68,7 +68,7 @@ BOOL CSoundFile::ReadMTM(LPCBYTE lpStream, DWORD dwMemLength)
 	for	(UINT i=1; i<=m_nSamples; i++)
 	{
 		MTMSAMPLE *pms = (MTMSAMPLE *)(lpStream + dwMemPos);
-		StrNCpy(m_szNames[i], pms->samplename, 22);
+		pixie::StrNCpy(m_szNames[i], pms->samplename, 22);
 		m_szNames[i][22] = 0;
 		Ins[i].nVolume = pms->volume << 2;
 		Ins[i].nGlobalVol = 64;

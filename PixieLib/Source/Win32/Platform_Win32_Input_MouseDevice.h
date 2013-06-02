@@ -16,6 +16,7 @@
 
 // Forward declares
 struct IDirectInputDeviceA;
+struct HWND__;
 namespace pixie {
 // Platform_Win32_Input_MouseDevice
 class Platform_Win32_Input_MouseDevice: public Platform_Input_MouseDevice

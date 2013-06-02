@@ -12,6 +12,7 @@
 // MG: Make sure this uses my standard library wrappers
 #include "StandardLibrary.h"
 
+
 #pragma warning (disable:4201)
 #pragma warning (disable:4514)
 #pragma warning (disable:4244)
@@ -79,9 +80,9 @@ inline LONG MulDiv (long a, long b, long c)
 #define MODPLUG_NO_FILESAVE
 #define NO_AGC
 #define LPCTSTR LPCSTR
-#define lstrcpyn StrNCpy
-#define lstrcpy StrCpy
-#define lstrcmp StrCmp
+#define lstrcpyn pixie::StrNCpy
+#define lstrcpy pixie::StrCpy
+#define lstrcmp pixie::StrCmp
 #define WAVE_FORMAT_PCM 1
 //#define ENABLE_EQ
 
