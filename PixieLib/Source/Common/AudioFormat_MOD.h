@@ -1,13 +1,13 @@
 /**
  * \class	AudioFormat_MOD
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __AudioFormat_MOD_H__
 #define __AudioFormat_MOD_H__
 
@@ -16,6 +16,8 @@
 
 // Forward declares
 struct _ModPlugFile;
+
+namespace pixie {
 
 // AudioFormat_MOD
 class AudioFormat_MOD:public AudioFormat
@@ -31,7 +33,7 @@ class AudioFormat_MOD:public AudioFormat
 		AudioFormat_MOD(
 			const Asset& asset
 			);
-		
+
 		/**
 		 * Destructor
 		 */
@@ -44,7 +46,7 @@ class AudioFormat_MOD:public AudioFormat
 		virtual int GetChannels();
 
 		/**
-		 * Returns the frequency of the audio data in number of 
+		 * Returns the frequency of the audio data in number of
 		 * samples per second
 		 */
 		virtual int GetFrequency();
@@ -90,5 +92,7 @@ class AudioFormat_MOD:public AudioFormat
 		_ModPlugFile* modFile_;
 		int position_;
 	};
+
+}; // namespace pixie
 
 #endif /* __AudioFormat_MOD_H__ */

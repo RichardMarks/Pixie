@@ -1,11 +1,11 @@
 /**
  * \file	ColorHelper.h
- * 
+ *
  * \ingroup	graphics
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * The ColorHelper.h file defines a bunch of functions which can be used to
- * perform common color operations, such as calculating 32 or 16 bit 
+ * perform common color operations, such as calculating 32 or 16 bit
  * color values given separate r, g and b components, or blend two colors
  * using a specified blend factor.
  */
@@ -15,14 +15,16 @@
 
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 /**
- * Helper function for alpha blending two colors in the 16 bit R5G6B5 format. 
+ * Helper function for alpha blending two colors in the 16 bit R5G6B5 format.
  */
 __forceinline unsigned short AlphaBlend16(
-	unsigned short color1, 
-	unsigned short color2, 
+	unsigned short color1,
+	unsigned short color2,
 	unsigned char alpha
-	)	
+	)
 	{
 	// These checks are needed to avoid the 16-bit related artefacts we get otherwise
 	if (alpha<3)
@@ -36,7 +38,7 @@ __forceinline unsigned short AlphaBlend16(
 
 
 	unsigned char invAlpha=255-alpha;
-	return 
+	return
 		((unsigned short)(
 			((((((unsigned int)color1 & 0xf800)>>11)*invAlpha)+(((unsigned int)color2 & 0xf800)>>11)*alpha)>>8) <<11 |
 			((((((unsigned int)color1 & 0x07e0)>>5 )*invAlpha)+(((unsigned int)color2 & 0x07e0)>>5 )*alpha)>>8) <<5  |
@@ -44,10 +46,10 @@ __forceinline unsigned short AlphaBlend16(
 		));
 	}
 
-/// Helper function for alpha blending two colors in the 32 bit X8R8G8B8 format. 
+/// Helper function for alpha blending two colors in the 32 bit X8R8G8B8 format.
 __forceinline unsigned int AlphaBlend32(
-	unsigned int color1, 
-	unsigned int color2, 
+	unsigned int color1,
+	unsigned int color2,
 	unsigned char alpha
 	)
 	{
@@ -61,7 +63,7 @@ __forceinline unsigned int AlphaBlend32(
 
 /// Helper function for multiplying two colors in the 16 bit R5G6B5 format
 __forceinline unsigned short RGBModulate16(
-	unsigned short color1, 
+	unsigned short color1,
 	unsigned short color2
 	)
 	{
@@ -74,7 +76,7 @@ __forceinline unsigned short RGBModulate16(
 	}
 
 __forceinline unsigned short RGBAdd16(
-	unsigned short color1, 
+	unsigned short color1,
 	unsigned short color2
 	)
 	{
@@ -88,7 +90,7 @@ __forceinline unsigned short RGBAdd16(
 	}
 
 __forceinline unsigned short RGBSubtract16(
-	unsigned short color1, 
+	unsigned short color1,
 	unsigned short color2
 	)
 	{
@@ -106,7 +108,7 @@ __forceinline unsigned short RGBSubtract16(
 
 
 __forceinline unsigned int RGBModulate32(
-	unsigned int color1, 
+	unsigned int color1,
 	unsigned int color2
 	)
 	{
@@ -120,7 +122,7 @@ __forceinline unsigned int RGBModulate32(
 	}
 
 __forceinline unsigned int RGBAdd32(
-	unsigned int color1, 
+	unsigned int color1,
 	unsigned int color2
 	)
 	{
@@ -135,7 +137,7 @@ __forceinline unsigned int RGBAdd32(
 	}
 
 __forceinline unsigned int RGBSubtract32(
-	unsigned int color1, 
+	unsigned int color1,
 	unsigned int color2
 	)
 	{
@@ -153,12 +155,12 @@ __forceinline unsigned int RGBSubtract32(
 
 
 __forceinline unsigned short RGB16(
-	unsigned char r, 
-	unsigned char g, 
+	unsigned char r,
+	unsigned char g,
 	unsigned char b
 	)
 	{
-	return 
+	return
 		((unsigned short) (
 			((((unsigned short)r) & 0xf8)<<8) |
 			((((unsigned short)g) & 0xfc)<<3) |
@@ -168,8 +170,8 @@ __forceinline unsigned short RGB16(
 
 
 __forceinline unsigned int RGB32(
-	unsigned char r, 
-	unsigned char g, 
+	unsigned char r,
+	unsigned char g,
 	unsigned char b
 	)
 	{
@@ -184,9 +186,9 @@ __forceinline unsigned int RGB32(
 
 
 __forceinline unsigned int RGBA32(
-	unsigned char r, 
-	unsigned char g, 
-	unsigned char b, 
+	unsigned char r,
+	unsigned char g,
+	unsigned char b,
 	unsigned char a
 	)
 	{
@@ -218,7 +220,7 @@ __forceinline unsigned int RGB16TO32(
 	unsigned short color
 	)
 	{
-	return 
+	return
 		(((unsigned int)color & 0xf800)<<8) |
 		(((unsigned int)color & 0x07e0)<<5) |
 		(((unsigned int)color & 0x001f)<<3) |
@@ -226,11 +228,11 @@ __forceinline unsigned int RGB16TO32(
 	}
 
 __forceinline unsigned int RGB16TO32(
-	unsigned short color, 
+	unsigned short color,
 	unsigned char alpha
 	)
 	{
-	return 
+	return
 		(((unsigned int)color & 0xf800)<<8) |
 		(((unsigned int)color & 0x07e0)<<5) |
 		(((unsigned int)color & 0x001f)<<3) |
@@ -238,14 +240,14 @@ __forceinline unsigned int RGB16TO32(
 	}
 
 // Clamp function used by colorhelper functions to clamp input values
-__forceinline float CH_CLAMP(float i) 
-	{ 
+__forceinline float CH_CLAMP(float i)
+	{
 	if (i<0.0f)
 		{
 		i=0.0f;
 		}
 
-	if (i>1.0f) 
+	if (i>1.0f)
 		{
 		i=1.0f;
 		}
@@ -264,11 +266,11 @@ __forceinline unsigned char FLOATTO8(
 
 // Helper function for converting from r, g and b float values in the range 0 to 1 to 16 bit R5G6B5
 __forceinline unsigned short FLOATTORGB16(
-	float r, 
-	float g, 
+	float r,
+	float g,
 	float b
 	)
-	{	
+	{
 	return
 		(((unsigned short)Round(31.0f*CH_CLAMP(r)))<<11) |
 		(((unsigned short)Round(63.0f*CH_CLAMP(g)))<<5) |
@@ -277,8 +279,8 @@ __forceinline unsigned short FLOATTORGB16(
 
 // Helper function for converting from r, g and b float values in the range 0 to 1 to 32 bit X8R8G8B8
 __forceinline unsigned int FLOATTORGB32(
-	float r, 
-	float g, 
+	float r,
+	float g,
 	float b
 	)
 	{
@@ -291,13 +293,13 @@ __forceinline unsigned int FLOATTORGB32(
 
 // Helper function for converting from r, g, b and a float values in the range 0 to 1 to 32 bit A8R8G8B8
 __forceinline unsigned int FLOATTORGBA32(
-	float r, 
-	float g, 
-	float b, 
+	float r,
+	float g,
+	float b,
 	float a
 	)
 	{
-	return 
+	return
 		(((unsigned int)(255.0f*CH_CLAMP(a)))<<24) |
 		(((unsigned int)(255.0f*CH_CLAMP(r)))<<16) |
 		(((unsigned int)(255.0f*CH_CLAMP(g)))<<8) |
@@ -306,28 +308,28 @@ __forceinline unsigned int FLOATTORGBA32(
 
 __forceinline float RGB16TOFLOATR(
 	unsigned short color
-	)								
+	)
 	{
-	return (((float)((color & 0xf800)>>11))/((float)0x1f));	
+	return (((float)((color & 0xf800)>>11))/((float)0x1f));
 	}
 
 __forceinline float RGB16TOFLOATG(
 	unsigned short color
-	)								
+	)
 	{
 	return (((float)((color & 0x07e0)>>5))/((float)0x3f));
 	}
 
 __forceinline float RGB16TOFLOATB(
 	unsigned short color
-	)								
+	)
 	{
 	return (((float)((color & 0x001f)))/((float)0x1f));
 	}
 
 __forceinline float RGB32TOFLOATA(
 	unsigned int color
-	)								
+	)
 	{
 	return (((float)((color & 0xff000000)>>24))/((float)0xff));
 	}
@@ -335,14 +337,14 @@ __forceinline float RGB32TOFLOATA(
 
 __forceinline float RGB32TOFLOATR(
 	unsigned int color
-	)								
+	)
 	{
 	return (((float)((color & 0x00ff0000)>>16))/((float)0xff));
 	}
 
 __forceinline float RGB32TOFLOATG(
 	unsigned int color
-	)								
+	)
 	{
 	return (((float)((color & 0x0000ff00)>>8))/((float)0xff));
 	}
@@ -356,9 +358,9 @@ __forceinline float RGB32TOFLOATB(
 
 
 __forceinline unsigned short RGBMin16(
-	unsigned short color1, 
+	unsigned short color1,
 	unsigned short color2
-	)	
+	)
 	{
 	#define MIN(x,y) (x<y?x:y)
 	unsigned int r1 = (((unsigned int)color1 & 0xf800)>>11);
@@ -371,5 +373,7 @@ __forceinline unsigned short RGBMin16(
 		( ( MIN(r1,r2) << 11 ) | ( MIN(g1,g2) << 5 ) | ( MIN(b1,b2) ) );
 
 	}
+
+}; // namespace pixie
 
 #endif /* __ColorHelper_H__ */

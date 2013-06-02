@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Network
- * 
+ *
  * \ingroup	platform
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "Platform.h"
 
+namespace pixie {
 // Forward declares
 class Platform_Network_Server;
 class Platform_Network_Client;
@@ -26,20 +27,22 @@ class Platform_Network
 
 		enum ConnectionMode
 			{
-			ConnectionMode_TCP,	
+			ConnectionMode_TCP,
 			ConnectionMode_UDP,
 			};
 
 		virtual Platform_Network_Server* CreateServer(
-			ConnectionMode mode, 
+			ConnectionMode mode,
 			int port
 			) = 0;
 
 		virtual Platform_Network_Client* CreateClient(
-			ConnectionMode mode, 
-			const char* address, 
+			ConnectionMode mode,
+			const char* address,
 			int port
 			) = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Network_H__ */

@@ -1,10 +1,10 @@
 /**
  * \class	Audio
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Add WAV format
  * \todo	Convert sound type (freq,chan,bps) in realtime (all sounds (not music) play as a single, specifiable format. default is 44khz 2ch 16bps)
  * \todo	Shared temp buffers for streaming music and sound data
@@ -18,6 +18,8 @@
 // Includes
 #include "Singleton.h"
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 class Music;
@@ -36,7 +38,7 @@ class Audio:public Singleton<Audio>
 	{
 	public:
 		Audio();
-		virtual ~Audio();	
+		virtual ~Audio();
 
 		void Update();
 		void Register(Music* stream);
@@ -74,6 +76,8 @@ class Audio:public Singleton<Audio>
 	};
 
 #define siAudio Audio::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __Audio_H__ */
 

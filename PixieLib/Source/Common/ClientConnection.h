@@ -1,16 +1,18 @@
 /**
  * \class ClientConnection
- * 
+ *
  * \ingroup	network
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ClientConnection_H__
 #define __ClientConnection_H__
 
 // Includes
+
+namespace pixie {
 
 // Forward declares
 class StaticBuffer;
@@ -32,9 +34,9 @@ class ClientConnection
 		 */
 		virtual ~ClientConnection();
 
-		
+
 		/**
-		 * Creates a client connection to the server on the specified 
+		 * Creates a client connection to the server on the specified
 		 * address on the specified port, using TCP or UDP or both.
 		 */
 		void Connect(
@@ -63,36 +65,36 @@ class ClientConnection
 		void ConnectHTTP(
 			const char* address,	///< IP or URL of server to connect to
 			int port,	///< Port to connect on
-			const char* resource = "/"  ///< The server resource to connect to. This is typically 
+			const char* resource = "/"  ///< The server resource to connect to. This is typically
 										///< the absolute path to a php file. Defaults to server root.
 			);
 
-		/** 
+		/**
 		 * Terminates the connection
 		 */
 		void Disconnect();
 
 
-		/** 
+		/**
 		 * Should be called every frame to process the connection
-		 */ 
+		 */
 		void Update(float deltaTime);
 
 
 		/**
-		 * Sends a data packet to the server using TCP protocol, 
+		 * Sends a data packet to the server using TCP protocol,
 		 * ensuring that the data will arrive, and that data is
-		 * received by the server in the same order as it was 
+		 * received by the server in the same order as it was
 		 * transmitted. TCP is slower than UDP, but reliable.
 		 */
 		void TransmitTCP(
 			const StaticBuffer& data ///< Data to send
 			);
-	
+
 
 		/**
 		 * Sends a data packet through UDP. It is not guaranteed
-		 * to arrive at all, and if it does, data will not be 
+		 * to arrive at all, and if it does, data will not be
 		 * received by the server in the same order as it was
 		 * transmitted. UDP is faster than TCP, but unreliable.
 		 */
@@ -109,8 +111,8 @@ class ClientConnection
 
 
 		/**
-		 * When a connection has been terminated, this methods 
-		 * called. Implement it in your derived class to do what 
+		 * When a connection has been terminated, this methods
+		 * called. Implement it in your derived class to do what
 		 * you want done when the client has been disconnected.
 		 */
 		virtual void OnDisconnected() = 0;
@@ -139,6 +141,7 @@ class ClientConnection
 		static int localClientCommunicationsBuffer_referenceCount_;
 	};
 
+}; // namespace pixie
 
 #endif /* __ClientConnection_H__ */
 

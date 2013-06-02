@@ -1,19 +1,20 @@
 /**
  * \class	ImageFormat
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __ImageFormat_H__
 #define __ImageFormat_H__
 
 // Includes
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 class Asset;
 class Filename;
@@ -25,7 +26,7 @@ class ImageFormat
 		/**
 		 * Destructor
 		 */
-		virtual ~ImageFormat() { } 
+		virtual ~ImageFormat() { }
 
 		virtual int GetWidth() = 0;
 
@@ -51,5 +52,7 @@ class ImageFormat
 		static Array<ImageFormatEntry> imageFormats_;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __ImageFormat_H__ */

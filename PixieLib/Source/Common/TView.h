@@ -1,10 +1,10 @@
 /**
  * \class	TView
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TView_H__
@@ -14,6 +14,7 @@
 #include "TRect.h"
 #include "TColor.h"
 
+namespace pixie {
 // External classes
 class TCanvas;
 
@@ -61,5 +62,6 @@ class TView
 		bool hasFocus_;
 	};
 
+}; // namespace pixie
 
 #endif /* __TView_H__ */

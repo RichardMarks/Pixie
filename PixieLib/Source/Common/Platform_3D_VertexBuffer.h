@@ -2,9 +2,9 @@
  * \class	Platform_3D_VertexBuffer
  *
  * \ingroup	platform
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -12,6 +12,7 @@
 #define __Platform_3D_VertexBuffer_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 
@@ -43,7 +44,7 @@ class Platform_3D_VertexBuffer
 		virtual void Bind() = 0;
 
 		virtual void Lock(
-			int startVertex = 0, 
+			int startVertex = 0,
 			int vertexCount = 0
 			) = 0;
 
@@ -80,5 +81,7 @@ class Platform_3D_VertexBuffer
 
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_3D_VertexBuffer_H__ */

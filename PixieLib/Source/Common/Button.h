@@ -1,13 +1,13 @@
 /**
  * \class	Button
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __Button_H__
 #define __Button_H__
 
@@ -16,6 +16,8 @@
 #include "Sprite.h"
 #include "Array.h"
 #include "Resource_BitmapStrip.h"
+
+namespace pixie {
 
 // Forward declares
 class SpriteManager;
@@ -34,7 +36,7 @@ class Button:public Sprite
 			State_Highlighted,
 			State_Pressed,
 			State_Disabled,
-			
+
 			States_Count,
 			};
 
@@ -46,7 +48,7 @@ class Button:public Sprite
 		virtual void SetState(State state);
 
 		virtual bool IsEnabled() const;
-		virtual void SetEnabled(bool enabled);	
+		virtual void SetEnabled(bool enabled);
 
 		virtual StringId GetEventId() const;
 		virtual void SetEventId(StringId eventId);
@@ -67,7 +69,7 @@ class Button:public Sprite
 
 		virtual void Render(Bitmap& bitmap);
 		virtual bool OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit);
-		
+
 
 	private:
 		State state_;
@@ -83,6 +85,7 @@ class Button:public Sprite
 		bool usingBoundingBox_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Button_H__ */
 

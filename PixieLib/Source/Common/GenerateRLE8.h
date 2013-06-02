@@ -1,10 +1,10 @@
 /**
  * \class	GenerateRLE8
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 
@@ -12,7 +12,7 @@
 #define __GenerateRLE8_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 class Image;
 class Bitmap_RLE8;
@@ -40,17 +40,17 @@ class GenerateRLE8
 		unsigned char usesMask_;
 		unsigned short xOffset_;
 		unsigned short yOffset_;
-		unsigned short activeWidth_;	// Width of sprite    
+		unsigned short activeWidth_;	// Width of sprite
 		unsigned short activeHeight_;	// Height of sprite
-		unsigned short width_;	// Width of sprite    
+		unsigned short width_;	// Width of sprite
 		unsigned short height_;	// Height of sprite
 		unsigned int opaqueSize_;
-		unsigned char* opaqueData_;	
+		unsigned char* opaqueData_;
 		unsigned int alphaSize_;
-		unsigned char* alphaData_;	
+		unsigned char* alphaData_;
 		unsigned char colorCount_;	// Number of colors in palette
 		unsigned short* palette_; // Maximum of 256 colors
 	};
-	
-	 
+	}; // namespace pixie
+
 #endif /* __GenerateRLE8_H__ */

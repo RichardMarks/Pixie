@@ -1,10 +1,10 @@
 /**
  * \class	ArchiveManager
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ArchiveManager_H__
@@ -16,6 +16,8 @@
 #include "StringId.h"
 #include "HashTable.h"
 #include "HashTableKey_StringId.h"
+
+namespace pixie {
 
 // Forward declares
 class ArchiveFile;
@@ -35,7 +37,7 @@ class ArchiveManager:public Singleton<ArchiveManager>
 		void LoadArchive(
 			const Filename& filename	///< Full path to archive file
 			);
-		
+
 		void LoadArchive(
 			const void* memoryBuffer,	///< Pointer to archive data
 			int size	///< Size of archive data
@@ -83,5 +85,7 @@ class ArchiveManager:public Singleton<ArchiveManager>
 	};
 
 #define siArchiveManager ArchiveManager::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __ArchiveManager_H__ */

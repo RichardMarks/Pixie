@@ -1,10 +1,10 @@
 /**
  * \class	TButton
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TButton_H__
@@ -14,7 +14,7 @@
 #include "TStaticText.h"
 
 // External classes
-
+namespace pixie {
 
 // TButton
 class TButton:public TStaticText
@@ -23,8 +23,8 @@ class TButton:public TStaticText
 		virtual void Draw(TCanvas& canvas) const;
 
 		virtual bool EvaluateFocus(int x, int y) const;
-	
+
 	private:
 	};
-
+}; // namespace pixie
 #endif /* __TButton_H__ */

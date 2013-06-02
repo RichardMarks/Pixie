@@ -1,10 +1,10 @@
 /**
  * \class HTTP_Resource
- * 
+ *
  * \ingroup	network
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __HTTP_Resource_H__
@@ -14,6 +14,7 @@
 #include "StaticBuffer.h"
 #include "StringId.h"
 
+namespace pixie {
 // Forward declares
 class StaticBuffer;
 
@@ -37,6 +38,7 @@ class HTTP_Resource
 		StaticBuffer data_;
 	};
 
+}; // namespace pixie
 
 #endif /* __HTTP_Resource_H__ */
 

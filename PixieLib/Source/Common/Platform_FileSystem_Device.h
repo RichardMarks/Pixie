@@ -3,8 +3,8 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a file system device
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Provides access to the name of a file system device. This will be
  * platform specific.
  */
@@ -15,7 +15,7 @@
 // Includes
 
 // Forward declares
-
+namespace pixie {
 
 // Platform_Files_Directory
 class Platform_FileSystem_Device
@@ -26,15 +26,17 @@ class Platform_FileSystem_Device
 		 * Destructor
 		 */
 		virtual ~Platform_FileSystem_Device() { };
-	
 
-		/** 
+
+		/**
 		 * Retrieves the name of this device
 		 *
 		 * \returns	The name of the device
 		 */
 		virtual const char* GetName() const = 0;
-		
+
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_FileSYSTEM_Device_H__ */

@@ -1,9 +1,9 @@
 /**
  * \file	FloydSteinbergDither
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  * \todo	Refactor implementation
  */
@@ -14,6 +14,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 
 // FloydSteinbergDither
@@ -21,23 +22,25 @@ class FloydSteinbergDither
 	{
 	public:
 		/**
-		 * 
+		 *
 		 */
 		static void DitherImage(
-			unsigned int* imageData, 
+			unsigned int* imageData,
 			int imageWidth,
 			int imageHeight,
-			unsigned int* palette, 
+			unsigned int* palette,
 			int paletteCount,
 			unsigned char* outputData
 			);
 
 		static void DitherImage(
-			unsigned int* imageData, 
+			unsigned int* imageData,
 			int imageWidth,
 			int imageHeight,
 			unsigned short* outputData
 			);
 	};
-	 
+
+}; // namespace pixie
+
 #endif /* __FloydSteinbergDither_H__ */

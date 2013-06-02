@@ -1,15 +1,15 @@
 /**
  * \class	HTTP
- * 
+ *
  * \ingroup	network
  * \brief	Functionality to request HTTP resources
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * The HTTP system provides high-level functionality for executing HTTP GET and HTTP POST
  * requests, and to receive the response from the server.
- * 
+ *
  * All network requests are done asynchronously, so when you issue a request, you're given
- * a handle, and using this handle, 
+ * a handle, and using this handle,
  */
 
 #ifndef __HTTP_H__
@@ -20,6 +20,8 @@
 #include "StringId.h"
 #include "Bag.h"
 #include "DynamicBuffer.h"
+
+namespace pixie {
 
 // Forward declares
 class HTTP_Resource;
@@ -49,14 +51,14 @@ class HTTP : public Singleton<HTTP>
 
 
 		int Request_Get(
-			const char* url, 
+			const char* url,
 			float timeOut = 0.0f
 			);
 
 		int Request_Post(
-			const char* url, 
-			const void* data, 
-			int size, 
+			const char* url,
+			const void* data,
+			int size,
 			float timeOut = 0.0f
 			);
 
@@ -78,22 +80,22 @@ class HTTP : public Singleton<HTTP>
 
 	private:
 		struct Request;
-		
+
 		void SplitURL(
-			const char* url, 
-			char*& address, 
-			char*& port, 
+			const char* url,
+			char*& address,
+			char*& port,
 			char*& resource
 			);
-		
+
 		Request* GetRequest(
 			int requestHandle
 			);
 
 	private:
 		int currentRequestHandle_;
-		
-		struct Request 
+
+		struct Request
 			{
 			int handle;
 			bool usingGetMethod;
@@ -115,5 +117,7 @@ class HTTP : public Singleton<HTTP>
 
 
 #define siHTTP HTTP::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __HTTP_H__ */

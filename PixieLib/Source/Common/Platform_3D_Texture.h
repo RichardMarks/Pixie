@@ -2,9 +2,9 @@
  * \class	Platform_3D_Texture
  *
  * \ingroup	platform
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -12,7 +12,7 @@
 #define __Platform_3D_Texture_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 
@@ -36,5 +36,7 @@ class Platform_3D_Texture
 		virtual unsigned char* GetTexelData() = 0;
 		virtual int GetPitch() = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_3D_Texture_H__ */

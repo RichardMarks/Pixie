@@ -1,10 +1,10 @@
 /**
  * \class	Platform_FileSystem
- * 
+ *
  * \ingroup	platform
  * \brief	Platform independent abstraction of the file system
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Handles access to files, folders and device names. This system
  * gives to advantages over the standard c-runtime functions: you
  * can enable logging of file access (to find out where in the
@@ -12,7 +12,7 @@
  * with several layers of abstraction and automated systems), but
  * more importantlu, it handles endian-ness automatically, making
  * sure all data is converted to little-endian when written, and
- * converted from little-endian to whatever is used by the current 
+ * converted from little-endian to whatever is used by the current
  * platform when read.
  */
 
@@ -22,6 +22,7 @@
 // Includes
 #include "Platform.h"
 
+namespace pixie {
 // Forward declares
 class Platform_FileSystem_Directory;
 class Platform_FileSystem_File;
@@ -40,8 +41,8 @@ class Platform_FileSystem
 		/**
 		 * Sometimes, for debug purposes, it might be useful to find out where and when
 		 * things are loaded. If logging is enabled (it is disabled by default) a debug
-		 * text string will be written every time a file or directory object is requested 
-		 * through the Platform_FileSystem, including the full path of the file/directory. 
+		 * text string will be written every time a file or directory object is requested
+		 * through the Platform_FileSystem, including the full path of the file/directory.
 		 */
 		virtual void SetLogging(
 			bool enabled	///< True if you want file access to be logged, false if you don't
@@ -50,11 +51,11 @@ class Platform_FileSystem
 
 		/**
 		 * Creates a platform independent directory object corresponding to the specified
-		 * path. The directory may or may not exist - the directory object is merely 
+		 * path. The directory may or may not exist - the directory object is merely
 		 * representational, and can be queried for whether the directory exists or not,
 		 * and used to create/delete it as necessary.
 		 *
-		 * The returned object needs to be destroyed by the caller (using the delete keyword) 
+		 * The returned object needs to be destroyed by the caller (using the delete keyword)
 		 * when it is no longer needed.
 		 *
 		 * The path can be a full or relative path, with directories separated by a
@@ -66,15 +67,15 @@ class Platform_FileSystem
 		virtual Platform_FileSystem_Directory* CreateDirectoryObject(
 			const char* path	///< Path to create a directory object for
 			) = 0;
-		
+
 
 		/**
 		 * Creates a platform independent file object corresponding to the specified
-		 * path. The file may or may not exist - the file object is merely  representational, 
-		 * and can be queried for whether the file exists or not,  and used to create,  open 
+		 * path. The file may or may not exist - the file object is merely  representational,
+		 * and can be queried for whether the file exists or not,  and used to create,  open
 		 * or delete the file as necessary.
 		 *
-		 * The returned object needs to be destroyed by the caller (using the delete keyword) 
+		 * The returned object needs to be destroyed by the caller (using the delete keyword)
 		 * when it is no longer needed.
 		 *
 		 * The path can be a full or relative path, with directories separated by a
@@ -117,5 +118,6 @@ class Platform_FileSystem
 
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_FileSystem_H__ */

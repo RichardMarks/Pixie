@@ -1,22 +1,22 @@
 /**
  * \class	StringId
- * 
+ *
  * \ingroup	core
  * \brief	Lightweight type for storing strings for use as ID's
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * The StringId type is perfect for when you need to identify something by name. When
  * you create a StringId type from a c-style zero-terminated string (const char*), it
  * will calculate a hash-number from all the characters, and use the resulting value
  * as an index into a global array of string id data. This array entry typically holds
- * just the string we're looking for (or is empty in case this is the first time a 
+ * just the string we're looking for (or is empty in case this is the first time a
  * StringId is requested for that particular string), but sometimes it can hold a list
  * of just a few strings that happen to have the same hash-number. Once the corresonding
  * string have been found (or inserted, if this is its first use) in the table, it is
  * stored in the StringId type.
  *
  * This initial string matching process involves looping through each character of the
- * string, and (worst case) a handful of string compares), which isn't exactly crazy 
+ * string, and (worst case) a handful of string compares), which isn't exactly crazy
  * expensive, but certainly not free, either. All other operations you perform on a
  * StringId is extremely cheap though. Since the string pointer (const char*) stored
  * inside the StringId type is from the shared string id table, we can compare two
@@ -40,6 +40,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 
 // StringId
@@ -47,17 +48,17 @@ class StringId
 	{
 	public:
 		/**
-		 * Default constructor. Will initialize the internal string to 0, without 
+		 * Default constructor. Will initialize the internal string to 0, without
 		 * doing any lookups. This is a fast operation.
 		 */
 		StringId();
 
 		/**
 		 * Constructor. Looks up the specified string in the shared string table, and
-		 * calculates the hash value for the string. If it is the empty string (""), 
+		 * calculates the hash value for the string. If it is the empty string (""),
 		 * the StringId will use a string pointer of 0 instead. This is so that both
 		 * empty strings and null-strings is treated like the same ID, which is more
-		 * useful. 
+		 * useful.
 		 */
 		StringId(
 			const char* idString	///< The string to use for identifier
@@ -69,10 +70,10 @@ class StringId
 		 * \returns The zero-terminated string for this id
 		 */
 		const char* GetString() const;
-			
+
 
 		/**
-		 * Retrieve the hash-number calculated for the string. This number is primarily 
+		 * Retrieve the hash-number calculated for the string. This number is primarily
 		 * for internal use, but can also be useful if you want to store StringId's in
 		 * your own hash-table, as you could reuse this stored hash-number instead of
 		 * having to recalculate it yourself. The number is calculated in such a way as
@@ -92,7 +93,7 @@ class StringId
 			);
 
 		/**
-		 * Assignment operator. Just duplicates the internally stored hash value and 
+		 * Assignment operator. Just duplicates the internally stored hash value and
 		 * string pointer, without doing any lookups.
 		 */
 		const StringId& operator=(
@@ -108,7 +109,7 @@ class StringId
 			) const;
 
 		/**
-		 * Comparison operation (inequality). Internally, this just compares two 
+		 * Comparison operation (inequality). Internally, this just compares two
 		 * pointers, with no lookups taking place, so is really fast.
 		 */
 		bool operator!=(
@@ -178,5 +179,6 @@ class StringId
 	static StringId _duplicate_strCase_statement_##stringId(#stringId);										\
 	if (_duplicate_strCase_statement_##stringId==_multiple_strSwitch_not_allowed_within_one_code_block_)	\
 
+}; // namespace pixie
 
 #endif /* __StringId_H__ */

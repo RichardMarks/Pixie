@@ -1,13 +1,13 @@
 /**
  * \class	YAMLObject
- * 
+ *
  * \ingroup	yaml
  * \brief	Base class for all objects that needs access to yaml data.
  * \author	Mattias Gustavsson
  *
  *
  */
-  
+
 #ifndef __YAMLObject_H__
 #define __YAMLObject_H__
 
@@ -15,6 +15,7 @@
 #include "XMLAttributeList.h"
 #include "XMLVariant.h"
 
+namespace pixie {
 // Forward declares
 class Asset;
 
@@ -33,5 +34,7 @@ class YAMLObject
 		virtual void YAML_Attribute(StringId _name, const XMLVariant& _value);
 
 	};
+
+}; // namespace pixie
 
 #endif /* __YAMLObject__ */

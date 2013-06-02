@@ -3,9 +3,9 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a file system directory
- * \author	Mattias Gustavsson	
- * 
- * Gives access to a directory and allows for creation and deletion, as 
+ * \author	Mattias Gustavsson
+ *
+ * Gives access to a directory and allows for creation and deletion, as
  * well as enumerating sub-directories and files.
  */
 
@@ -15,7 +15,7 @@
 // Includes
 
 // Forward declares
-
+namespace pixie {
 
 // Platform_FileSystem_Directory
 class Platform_FileSystem_Directory
@@ -28,7 +28,7 @@ class Platform_FileSystem_Directory
 		virtual ~Platform_FileSystem_Directory() { };
 
 
-		/** 
+		/**
 		 * Retrieves the path specified when this directory object was created
 		 *
 		 * \returns	The path for the directory object
@@ -45,18 +45,18 @@ class Platform_FileSystem_Directory
 
 
 		/**
-		 * Creates the directory which this directory object represent, if it 
+		 * Creates the directory which this directory object represent, if it
 		 * doesn't already exist.
 		 */
 		virtual void Create() = 0;
 
 
 		/**
-		 * Deletes the directory which this directory object represent, 
+		 * Deletes the directory which this directory object represent,
 		 * if it exists.
 		 */
 		virtual void Delete() = 0;
-		
+
 
 		/**
 		 * When the directory object is first created, it will scan the directory
@@ -68,7 +68,7 @@ class Platform_FileSystem_Directory
 
 
 		/**
-		 * Retrieves the number of sub-directories in the directory which this 
+		 * Retrieves the number of sub-directories in the directory which this
 		 * directory object represents.
 		 *
 		 * \returns The number of sub-directories to this directory
@@ -82,12 +82,12 @@ class Platform_FileSystem_Directory
 		 * \returns The sub-directory at the specified index
 		 */
 		virtual const char* GetSubdirectory(
-			int index	///< Index of the sub-directory to get 
+			int index	///< Index of the sub-directory to get
 			) = 0;
 
 
 		/**
-		 * Retrieves the number of files in the directory which this 
+		 * Retrieves the number of files in the directory which this
 		 * directory object represents.
 		 *
 		 * \returns The number of files in this directory
@@ -105,5 +105,7 @@ class Platform_FileSystem_Directory
 			) = 0;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_FileSystem_Directory_H__ */

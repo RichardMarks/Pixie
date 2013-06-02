@@ -3,8 +3,8 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of the file system file
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Handles file manipulation and allows for checking if files exist,
  * read, write and delete. Endian-ness is handled automatically, and
  * the data is always written as little-endian, and converted at read
@@ -15,7 +15,7 @@
 #define __Platform_FileSystem_File_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 
@@ -29,7 +29,7 @@ class Platform_FileSystem_File
 		virtual ~Platform_FileSystem_File() { };
 
 
-		/** 
+		/**
 		 * Retrieves the path specified when this file object was created
 		 *
 		 * \returns	The path for the file object
@@ -47,7 +47,7 @@ class Platform_FileSystem_File
 
 		/**
 		 * Creates the file which this file object represent. If it already
-		 * exists, it will be replaced. The file is then left open for 
+		 * exists, it will be replaced. The file is then left open for
 		 * writing, and should be closed by a call to Close.
 		 *
 		 * \returns	True if the file was successfully created, false if there was an error
@@ -56,7 +56,7 @@ class Platform_FileSystem_File
 
 
 		/**
-		 * Opens the file which this file object represent, leaving it ready for 
+		 * Opens the file which this file object represent, leaving it ready for
 		 * reading from. When done, it should be closed by a call to Close.
 		 *
 		 * \returns	True if the file was successfully opened, false if there was an error
@@ -78,7 +78,7 @@ class Platform_FileSystem_File
 		virtual void Delete() = 0;
 
 
-		/** 
+		/**
 		 * Enumeration of possible values to use for the SetPosition method, when specifying
 		 * what origin the specified position value is relative to.
 		 */
@@ -110,12 +110,12 @@ class Platform_FileSystem_File
 		 */
 		virtual int GetPosition() = 0;
 
-		
-		/** 
+
+		/**
 		 * Writes the specified values to the file. Endianness is handled
-		 * automatically by the platform-specific implementation, such 
+		 * automatically by the platform-specific implementation, such
 		 * that everything is written to file as little endian. This is
-		 * to ensure binary file compatibility across platforms. 
+		 * to ensure binary file compatibility across platforms.
 		 *
 		 * \param value Pointer to the value(s) which is to be written
 		 * \param count Number of values to write
@@ -134,12 +134,12 @@ class Platform_FileSystem_File
 		virtual int Write(const double* value, int count = 1) = 0;
 		virtual int Write(const bool* value, int count = 1) = 0;
 
-		/** 
+		/**
 		 * Reads the specified number of values from the file, into the
-		 * specified memory area. Endianness is handled automatically by 
-		 * the platform-specific implementation, assuming that values 
-		 * stored in the file are all little endian. This is to ensure 
-		 * binary file compatibility across platforms. 
+		 * specified memory area. Endianness is handled automatically by
+		 * the platform-specific implementation, assuming that values
+		 * stored in the file are all little endian. This is to ensure
+		 * binary file compatibility across platforms.
 		 *
 		 * \param value Pointer to the memory where the values are to be read
 		 * \param count Number of values to read
@@ -158,5 +158,7 @@ class Platform_FileSystem_File
 		virtual int Read(double* value, int count = 1) = 0;
 		virtual int Read(bool* value, int count = 1) = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_FileSystem_File_H__ */

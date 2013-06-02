@@ -1,15 +1,15 @@
 /**
  * \class	PlatformEventListener
- * 
+ *
  * \ingroup	platform
  * \brief	Event receiver interface for Platform system
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * When information needs to be sent between different Platform systems,
  * it is done by a basic event system. Systems that listen for platform
  * events, derive from this class to received them.
  */
- 
+
 
 #ifndef __PlatformEventListener_H__
 #define __PlatformEventListener_H__
@@ -17,7 +17,7 @@
 // Includes
 
 // Forward declares
-
+namespace pixie {
 
 // PlatformEventListener
 class PlatformEventListener
@@ -33,8 +33,10 @@ class PlatformEventListener
 		 */
 		virtual void OnCustomEvent(
 			const char* eventId,	///< Id-string specifying the type of event
-			void* userData	///< Event specific user data 
+			void* userData	///< Event specific user data
 			) { };
 	};
+
+}; // namespace pixie
 
 #endif /* __PlatformEventListener_H__ */

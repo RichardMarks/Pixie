@@ -1,13 +1,13 @@
 /**
  * \class	Bag
- * 
+ *
  * \ingroup	containers
  * \brief	A bag provides a fast way to store a collection of items when order doesn't matter
  * \author	Mattias Gustavsson
- * 
- * This class store items in a dynamic array, which can grow in size as needed. The order of the items is unspecified, 
- * and, might change when items are removed from it. Every time the bag is full, it is resized to twice the size. 
- * There is also an iterator available, which supports a generic iterator interface of MoveFirst, MoveNext etc.  
+ *
+ * This class store items in a dynamic array, which can grow in size as needed. The order of the items is unspecified,
+ * and, might change when items are removed from it. Every time the bag is full, it is resized to twice the size.
+ * There is also an iterator available, which supports a generic iterator interface of MoveFirst, MoveNext etc.
  * When an item is removed from the bag, the last item of the array will be moved to the location of the removed item,
  * and when an item is added, it is added to the end of the array. This means that both adding and removing items are
  * fast operations working at constant speed.
@@ -20,26 +20,28 @@
 
 // Includes
 
+namespace pixie {
+
 // Forward declares
 template <class TYPE> class BagIterator;
 
 // Bag
-template<class TYPE> 
+template<class TYPE>
 class Bag
 	{
 	public:
 		/**
 		 * Constructor
 		 */
-		Bag(	
-			int initialCapacity = 64	///< Maximum number of items the bag can initially store. Will be doubled 
+		Bag(
+			int initialCapacity = 64	///< Maximum number of items the bag can initially store. Will be doubled
 										///< every time the available space is used up.
 			);
-		
+
 		/**
 		 * Copy Constructor
 		 */
-		Bag(	
+		Bag(
 			const Bag<TYPE>& bagToCopy	///< Bag to copy all items from
 			);
 
@@ -48,7 +50,7 @@ class Bag
 		 *
 		 *\returns	The new bag
 		 */
-		const Bag<TYPE>& operator = (	
+		const Bag<TYPE>& operator = (
 			const Bag<TYPE>& bagToCopy	///< Bag to copy all items from
 			);
 
@@ -56,9 +58,9 @@ class Bag
 		 * Destructor
 		 */
 		~Bag();
-		
+
 		/**
- 		 * Adds an item to the bag, and resizes the bag if necessary. This is a very fast operation if the capacity of 
+ 		 * Adds an item to the bag, and resizes the bag if necessary. This is a very fast operation if the capacity of
 		 * the bag is large enough to hold the additional item.
 		 */
 		TYPE& Add(
@@ -66,14 +68,14 @@ class Bag
 			);
 
 		/**
-		 * Removes the last item from the bag. If there are no items in the bag, this method doesn't do anything (though 
+		 * Removes the last item from the bag. If there are no items in the bag, this method doesn't do anything (though
 		 * in debug builds and assertion is triggered).
 		 */
-		void RemoveLast();	
-		
+		void RemoveLast();
+
 		/**
-		 * Removes an item from the bag, specified by index. Moves the last item in the bag into the slot of the removed 
-		 * item. If the specified index is not within valid range, no item will be removed, and in debug builds an 
+		 * Removes an item from the bag, specified by index. Moves the last item in the bag into the slot of the removed
+		 * item. If the specified index is not within valid range, no item will be removed, and in debug builds an
 		 * assertion is triggered.
 		 */
 		void Remove(
@@ -81,14 +83,14 @@ class Bag
 			);
 
 		/**
-		 * Removes an item from the bag, as indicated by the specified iterator. Moves the last item in the bag into the 
-		 * slot of the removed item. If the specified index is not within valid range, no item will be removed, and in 
+		 * Removes an item from the bag, as indicated by the specified iterator. Moves the last item in the bag into the
+		 * slot of the removed item. If the specified index is not within valid range, no item will be removed, and in
 		 * debug builds an assertion is triggered.
 		 */
 		void Remove(
 			const BagIterator<TYPE>& iterator	///< Iterator indicating the item to remove
 			);
-		
+
 		/**
 		 * Gets the number of items in the bag
 		 *
@@ -107,7 +109,7 @@ class Bag
 			) const;
 
 		/**
-		 * Gets the item at the location indicated by the specified iterator. If the iterator is not within valid range, 
+		 * Gets the item at the location indicated by the specified iterator. If the iterator is not within valid range,
 		 * a default value is returned, and in debug builds an assertion is triggered.
 		 *
 		 * \returns Item at location indicated by iterator
@@ -124,17 +126,17 @@ class Bag
 		int GetCapacity() const;
 
 		/**
-		 * Sets the maximum number of items that can be stored in the bag. If the new capacity is <= 0, the 
-		 * capacity will remain unchanged, and in debug builds an assertion will be triggered. If the new capacity is 
+		 * Sets the maximum number of items that can be stored in the bag. If the new capacity is <= 0, the
+		 * capacity will remain unchanged, and in debug builds an assertion will be triggered. If the new capacity is
 		 * less than the current number of items, the bag will be truncated to the new capacity.
 		 */
 		void SetCapacity(int capacity);
-			
+
 		/**
 		 * Removes all items from the bag
 		 */
 		void Clear(
-			bool releaseMemory = false	///< If set to true, all memory used by the bag will be released, and the 
+			bool releaseMemory = false	///< If set to true, all memory used by the bag will be released, and the
 										///< capacity is reset to the initial value
 			);
 
@@ -154,8 +156,8 @@ class Bag
 		 * \returns A pointer to the bag data
 		 */
 		TYPE* GetPointer() const;
-		
-		
+
+
 	private:
 		int initialCapacity_;	///< Maximum number of items the bag can initially store
 		int capacity_;		///< Maximum number of items that can currently be stored in the bag
@@ -165,5 +167,7 @@ class Bag
 
 // Implementation
 #include "Bag.inl"
+
+}; // namespace pixie
 
 #endif /* __Bag_h__ */

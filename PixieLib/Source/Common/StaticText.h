@@ -1,13 +1,13 @@
 /**
  * \class	StaticText
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __StaticText_H__
 #define __StaticText_H__
 
@@ -17,6 +17,7 @@
 #include "Array.h"
 #include "Resource_Font.h"
 
+namespace pixie {
 // Forward declares
 class SpriteManager;
 
@@ -44,7 +45,7 @@ class StaticText:public Sprite
 	protected:
 		virtual void Render(Bitmap& bitmap);
 
-	private: 
+	private:
 		Resource_Font font_;
 		char* text_;
 		int spacing_;
@@ -52,6 +53,7 @@ class StaticText:public Sprite
 		int vspacing_;
 	};
 
+}; // namespace pixie
 
 #endif /* __StaticText_H__ */
 

@@ -3,8 +3,8 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a Platform_Network
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Network.h"
-
+namespace pixie {
 // Forward declares
 
 
@@ -22,22 +22,24 @@ class Platform_Network_Server
 	{
 	public:
 		virtual ~Platform_Network_Server() { };
-		
+
 		virtual Platform_Network::ConnectionMode GetConnectionMode() = 0;
 		virtual int GetPort() = 0;
 
 		virtual bool IsConnected() = 0;
 
 		virtual int SendData(
-			void* data, 
+			void* data,
 			int size
 			) = 0;
 
 		virtual int GetReceivedSize() = 0;
 		virtual int GetReceivedData(
-			void* buffer, 
+			void* buffer,
 			int size
 			) = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Network_H__ */

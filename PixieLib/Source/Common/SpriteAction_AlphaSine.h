@@ -1,19 +1,20 @@
 /**
  * \class	SpriteAction_AlphaSine
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteAction_AlphaSine_H__
 #define __SpriteAction_AlphaSine_H__
 
 // Includes
 #include "SpriteAction.h"
 
+namespace pixie {
 // Forward declares
 class Sprite;
 
@@ -39,6 +40,6 @@ class SpriteAction_AlphaSine:public SpriteAction
 		float elapsedTime_;
 
 	};
-
+}; // namespace pixie
 #endif /* __SpriteAction_AlphaSine_H__ */
 

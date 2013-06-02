@@ -1,13 +1,13 @@
 /**
  * \class	DragAndDropTarget
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __DragAndDropTarget_H__
 #define __DragAndDropTarget_H__
 
@@ -15,7 +15,7 @@
 #include "Sprite.h"
 
 // Forward declares
-
+namespace pixie {
 
 // DragAndDropTarget
 class DragAndDropTarget:public Sprite
@@ -24,7 +24,7 @@ class DragAndDropTarget:public Sprite
 		DragAndDropTarget();
 
 		DragAndDropTarget(SpriteManager* spriteManager);
-		
+
 		virtual ~DragAndDropTarget();
 
 		enum State
@@ -32,13 +32,14 @@ class DragAndDropTarget:public Sprite
 			State_Normal,
 			State_Highlighted,
 			State_Disabled,
-			
+
 			State_Max_Count,
 			};
 
 	private:
-		
+
 	};
 
-#endif /* __DragAndDropTarget_H__ */
+}; // namespace pixie
 
+#endif /* __DragAndDropTarget_H__ */

@@ -1,10 +1,10 @@
 /**
  * \class	CommandLine
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __CommandLine_H__
@@ -13,6 +13,8 @@
 // Includes
 #include "StringId.h"
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 
@@ -64,5 +66,7 @@ class CommandLine
 		Array<StringId> commandLineStrings_;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __CommandLine_H__ */

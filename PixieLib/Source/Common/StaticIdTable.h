@@ -1,10 +1,10 @@
 /**
  * \class	IdTable
- * 
+ *
  * \ingroup	containers
- * \brief	
+ * \brief
  * \author	Mattias Gustavsson
- * 
+ *
  */
 
 #ifndef __StaticIdTable_H__
@@ -14,6 +14,7 @@
 #include "PodCheck.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 // Forward declares
 typedef unsigned int Id;
 
@@ -23,7 +24,7 @@ class StaticIdTable
     {
     public:
         //*** Constructor ***
-        
+
         StaticIdTable():
             count_( 0 ),
             usedIndicesCount_( 0 ),
@@ -32,10 +33,10 @@ class StaticIdTable
             {
             COMPILE_CHECK_IS_POD( T, POD );
             }
-            
-            
+
+
         //*** Destructor ***
-        
+
         ~StaticIdTable()
             {
             if( POD == NOT_POD )
@@ -46,7 +47,7 @@ class StaticIdTable
                     op->~T();
                     op++;
                     }
-                } 
+                }
             }
 
 
@@ -79,7 +80,7 @@ class StaticIdTable
                 }
 
             indices_[ newIndex ].objectIndex = count_;
-            
+
             if( POD == NOT_POD )
                 {
                 new (&(((T*)objects_)[ count_ ]))  T( object );
@@ -89,14 +90,14 @@ class StaticIdTable
                 ((T*)objects_)[ count_ ] = object;
                 }
             objectSlotToIndex_[ count_ ] = newIndex;
-            
+
             Id id = ToId( indices_[ newIndex ].counter, newIndex );
-            
+
             count_++;
             return id;
             }
 
-            
+
         //*** Remove ***
 
         void Remove( Id id )
@@ -109,18 +110,18 @@ class StaticIdTable
                 {
                 return;
                 }
-                
+
             Index index = indices_[ idIndex ];
-            
+
             if( index.counter != idCounter || index.objectIndex >= count_ )
                 {
                 return;
                 }
-            
+
             ((T*)objects_)[ index.objectIndex ].~T();
             if( count_ > 0 && index.objectIndex < count_ - 1 )
                 {
-                if( POD == NOT_POD )                
+                if( POD == NOT_POD )
                     {
                     new ( &((T*)objects_)[ index.objectIndex ]) T( ((T*)objects_)[ count_ -1 ] );
                     ((T*)objects_)[ count_ - 1 ].~T();
@@ -129,13 +130,13 @@ class StaticIdTable
                     {
                     ((T*)objects_)[ index.objectIndex ] = ((T*)objects_)[ count_ - 1 ];
                     }
-                
-                indices_[ objectSlotToIndex_[ count_ - 1 ] ].objectIndex = indices_[ objectSlotToIndex_[ index.objectIndex ] ].objectIndex;  
+
+                indices_[ objectSlotToIndex_[ count_ - 1 ] ].objectIndex = indices_[ objectSlotToIndex_[ index.objectIndex ] ].objectIndex;
                 objectSlotToIndex_[ index.objectIndex ] =  objectSlotToIndex_[ count_ -1 ];
                 }
-                
-            count_--;                
-            
+
+            count_--;
+
             indices_[ idIndex ].counter++;
             freeList_[ freeListTail_ ] = idIndex;
             freeListTail_ ++;
@@ -145,7 +146,7 @@ class StaticIdTable
                 }
             }
 
-        
+
         //*** Get ***
 
         const T& Get( Id id ) const
@@ -157,16 +158,16 @@ class StaticIdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return ((T*)objects_)[ index.objectIndex ];
                     }
                 }
-                    
-            Assert( false, "Invalid id");                    
+
+            Assert( false, "Invalid id");
             static T defaultValue;
-            return defaultValue; 
+            return defaultValue;
             }
 
 
@@ -181,16 +182,16 @@ class StaticIdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return ((T*)objects_)[ index.objectIndex ];
                     }
                 }
-                    
-            Assert( false, "Invalid id");                    
+
+            Assert( false, "Invalid id");
             static T defaultValue;
-            return defaultValue; 
+            return defaultValue;
             }
 
 
@@ -205,13 +206,13 @@ class StaticIdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     ((T*)objects_)[ index.objectIndex ] = object;
                     }
                 }
-                
+
             }
 
 
@@ -226,23 +227,23 @@ class StaticIdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return true;
                     }
                 }
-            
+
             return false;
             }
-            
+
 
         //*** GetItemCount ***
 
         int GetItemCount() const
             {
             return count_;
-            }           
+            }
 
 
         //*** Get ***
@@ -251,12 +252,12 @@ class StaticIdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 static T defaultValue;
-                return defaultValue; 
+                return defaultValue;
                 }
-            return ((T*)objects_)[ index ];            
-            }           
+            return ((T*)objects_)[ index ];
+            }
 
 
         //*** Get ***
@@ -265,12 +266,12 @@ class StaticIdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 static T defaultValue;
-                return defaultValue; 
+                return defaultValue;
                 }
-            return ((T*)objects_)[ index ];            
-            }           
+            return ((T*)objects_)[ index ];
+            }
 
 
         //*** GetId ***
@@ -279,15 +280,15 @@ class StaticIdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 Id id = ToId( (unsigned int)-1, (unsigned int)-1 );
                 return id;
                 }
-                
-            unsigned int actualIndex = objectSlotToIndex_[ index ];                
+
+            unsigned int actualIndex = objectSlotToIndex_[ index ];
             Id id = ToId( indices_[ actualIndex ].counter, actualIndex );
-            return id;            
-            }           
+            return id;
+            }
 
     private:
 
@@ -303,7 +304,7 @@ class StaticIdTable
             return id;
             }
 
-        
+
         //*** FromId ***
 
         void FromId( Id id, unsigned int& counter, unsigned int& index ) const
@@ -314,14 +315,14 @@ class StaticIdTable
             counter = ( id  >> INDEX_BIT_COUNT ) & COUNTER_BIT_MASK;
             index = id & INDEX_BIT_MASK;
             }
-            
-    private:      
+
+    private:
         struct Index
             {
             unsigned int counter : COUNTER_BIT_COUNT;
             unsigned int objectIndex : INDEX_BIT_COUNT;
             };
-            
+
         unsigned int count_;
 	    unsigned char* objects_[ sizeof( T ) * capacity_ ];
 	    Index indices_[ capacity_ ];
@@ -334,5 +335,7 @@ class StaticIdTable
 
 // Implementation
 #include "StaticIdTable.inl"
+
+}; // namespace pixie
 
 #endif /* __StaticIdTable_h__ */

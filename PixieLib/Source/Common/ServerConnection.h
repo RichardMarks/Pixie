@@ -1,16 +1,17 @@
 /**
  * \class ServerConnection
- * 
+ *
  * \ingroup	network
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ServerConnection_H__
 #define __ServerConnection_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 class StaticBuffer;
@@ -32,14 +33,14 @@ class ServerConnection
 		 */
 		virtual ~ServerConnection();
 
-		
+
 		/**
 		 * Creates a server connection listening for incoming client
 		 * connections on the specified port, using TCP or UDP or both.
 		 */
 		void Connect(
 			int port,
-			bool useTCP, 
+			bool useTCP,
 			bool useUDP
 			);
 
@@ -52,33 +53,33 @@ class ServerConnection
 		void ConnectSP();
 
 
-		/** 
+		/**
 		 * Terminates the connection
 		 */
 		void Disconnect();
 
 
-		/** 
+		/**
 		 * Should be called every frame to process the connection
-		 */ 
+		 */
 		void Update(float deltaTime);
 
 
 		/**
-		 * Sends a data packet to the specified client using TCP 
-		 * protocol, ensuring that the data will arrive, and that 
-		 * data is received by the client in the same order as it 
+		 * Sends a data packet to the specified client using TCP
+		 * protocol, ensuring that the data will arrive, and that
+		 * data is received by the client in the same order as it
 		 * was transmitted. TCP is slower than UDP, but reliable.
 		 */
 		void TransmitTCP(
 			int clientId,	///< Client to send data to
 			const StaticBuffer& data ///< Data to send
 			);
-		
+
 		/**
-		 * Sends a data packet to all the clients using TCP 
-		 * protocol, ensuring that the data will arrive, and that 
-		 * data is received by the clients in the same order as it 
+		 * Sends a data packet to all the clients using TCP
+		 * protocol, ensuring that the data will arrive, and that
+		 * data is received by the clients in the same order as it
 		 * was transmitted. TCP is slower than UDP, but reliable.
 		 */
 		void TransmitTCP(
@@ -87,9 +88,9 @@ class ServerConnection
 
 
 		/**
-		 * Sends a data packet to the specified client using UDP. 
-		 * It is not guaranteed to arrive at all, and if it does, 
-		 * data will not be received by the client in the same order 
+		 * Sends a data packet to the specified client using UDP.
+		 * It is not guaranteed to arrive at all, and if it does,
+		 * data will not be received by the client in the same order
 		 * as it was transmitted. UDP is faster than TCP, but is not
 		 * reliable.
 		 */
@@ -100,10 +101,10 @@ class ServerConnection
 
 
 		/**
-		 * Sends a data packet to all clients through UDP. It is 
-		 * not guaranteed to arrive at all, and if it does, data 
-		 * will not be received by the clients in the same order 
-		 * as it was transmitted. UDP is faster than TCP, but not 
+		 * Sends a data packet to all clients through UDP. It is
+		 * not guaranteed to arrive at all, and if it does, data
+		 * will not be received by the clients in the same order
+		 * as it was transmitted. UDP is faster than TCP, but not
 		 * reliable.
 		 */
 		void TransmitUDP(
@@ -136,7 +137,7 @@ class ServerConnection
 		 * network messages.
 		 */
 		virtual void OnReceiveData(
-			int clientId,	///< Id of the client sending the data 
+			int clientId,	///< Id of the client sending the data
 			const StaticBuffer& data	///< Data being received
 			) = 0;
 
@@ -151,6 +152,7 @@ class ServerConnection
 		static int localServerCommunicationsBuffer_referenceCount_;
 	};
 
+}; // namespace pixie
 
 #endif /* __ServerConnection_H__ */
 

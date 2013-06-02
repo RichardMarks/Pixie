@@ -1,13 +1,13 @@
 /**
  * \class	ImageFormat_JPG
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __ImageFormat_JPG_H__
 #define __ImageFormat_JPG_H__
 
@@ -15,7 +15,7 @@
 #include "ImageFormat.h"
 
 // Forward declares
-
+namespace pixie {
 
 // ImageFormat_JPG
 class ImageFormat_JPG:public ImageFormat
@@ -31,7 +31,7 @@ class ImageFormat_JPG:public ImageFormat
 		ImageFormat_JPG(
 			const Asset& asset
 			);
-		
+
 		ImageFormat_JPG(
 			int width,
 			int height,
@@ -60,4 +60,5 @@ class ImageFormat_JPG:public ImageFormat
 		int height_;
 	};
 
+}; // namespace pixie
 #endif /* __ImageFormat_JPG_H__ */

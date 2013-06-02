@@ -1,12 +1,12 @@
 /**
  * \class	XMLAttributeList
- * 
+ *
  * \ingroup	xml
  * \brief	Contains a list of xml attributes.
  * \author	Mattias Gustavsson
- * 
+ *
  */
- 
+
 #ifndef __XMLAttributeList_H__
 #define __XMLAttributeList_H__
 
@@ -15,6 +15,7 @@
 #include "StringId.h"
 #include "XMLVariant.h"
 
+namespace pixie {
 // Forward declares
 
 // XMLAttributeList
@@ -24,7 +25,7 @@ class XMLAttributeList
 		void Add(StringId name, const XMLVariant& value);
 
 		int GetCount() const;
-		
+
 		StringId GetName(int index) const;
 
 		const XMLVariant& GetValue(int index) const;
@@ -43,5 +44,7 @@ class XMLAttributeList
 
 		Array<Attribute> attributes_;
 	};
+
+}; // namespace pixie
 
 #endif /* __XMLAttributeList_H__ */

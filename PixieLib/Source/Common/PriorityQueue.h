@@ -1,10 +1,10 @@
 /**
  * \class	PriorityQueue
- * 
+ *
  * \ingroup	containers
- * \brief	
+ * \brief
  * \author	Mattias Gustavsson
- * 
+ *
  * \todo	Change allocation scheme to use malloc/free and placement new, to ensure only objects in use are created
  */
 
@@ -14,6 +14,7 @@
 // Includes
 
 // Forward declares
+namespace pixie {
 
 //	class ExampleCompare
 //		{
@@ -28,28 +29,28 @@
 //		};
 
 // PriorityQueue
-template<typename TYPE, class COMPARE> 
+template<typename TYPE, class COMPARE>
 class PriorityQueue
 	{
 	public:
 		/**
 		 * Constructor
 		 */
-		PriorityQueue(	
-			int initialCapacity = 64	///< Maximum number of items the PriorityQueue can initially store. 
+		PriorityQueue(
+			int initialCapacity = 64	///< Maximum number of items the PriorityQueue can initially store.
 			);
-		
+
 		/**
 		 * Copy Constructor
 		 */
-		PriorityQueue(	
+		PriorityQueue(
 			const PriorityQueue<TYPE,COMPARE>& priorityQueueToCopy
 			);
 
 		/**
 		 * Assignment operator
 		 */
-		const PriorityQueue<TYPE,COMPARE>& operator = (	
+		const PriorityQueue<TYPE,COMPARE>& operator = (
 			const PriorityQueue<TYPE,COMPARE>& priorityQueueToCopy
 			);
 
@@ -59,20 +60,20 @@ class PriorityQueue
 		~PriorityQueue();
 
 		/**
- 		 * Adds an item to the PriorityQueue. 
+ 		 * Adds an item to the PriorityQueue.
  		 */
 		TYPE& Add(
 			const TYPE& item
 			);
-			
+
 		/**
-		 * Removes an item from the PriorityQueue. 
+		 * Removes an item from the PriorityQueue.
 		 */
 		TYPE Remove();
-		
-		
+
+
 		/**
-		 * 
+		 *
 		 */
 		void Update(int index);
 
@@ -111,7 +112,7 @@ class PriorityQueue
 			);
 
 	private:
-		int initialCapacity_;	///< Maximum number of items the array can initially store. 
+		int initialCapacity_;	///< Maximum number of items the array can initially store.
 		int capacity_;		///< Maximum number of items that can currently be stored in the array
 		int itemCount_;		///< Number of items currently stored in the array
 		TYPE* items_;		///< Pointer to the actual array data
@@ -119,5 +120,7 @@ class PriorityQueue
 
 // Implementation
 #include "PriorityQueue.inl"
+
+}; // namespace pixie
 
 #endif /* __PriorityQueue_h__ */

@@ -1,18 +1,20 @@
 /**
  * \class	AudioFormat
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __AudioFormat_H__
 #define __AudioFormat_H__
 
 // Includes
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 class Asset;
@@ -25,7 +27,7 @@ class AudioFormat
 		/**
 		 * Destructor
 		 */
-		virtual ~AudioFormat() { } 
+		virtual ~AudioFormat() { }
 
 		/**
 		 * Returns the number of channels this audio data is using
@@ -34,7 +36,7 @@ class AudioFormat
 		virtual int GetChannels() = 0;
 
 		/**
-		 * Returns the frequency of the audio data in number of 
+		 * Returns the frequency of the audio data in number of
 		 * samples per second
 		 */
 		virtual int GetFrequency() = 0;
@@ -89,7 +91,9 @@ class AudioFormat
 			AudioFormat* (*CreateFunction)(const Asset&);
 			};
 		static Array<AudioFormatEntry> audioFormats_;
-	
+
 	};
+
+}; // namespace pixie
 
 #endif /* __AudioFormat_H__ */

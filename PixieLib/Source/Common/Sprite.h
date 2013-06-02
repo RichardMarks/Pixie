@@ -1,24 +1,26 @@
 /**
  * \class	Sprite
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
- *	
+ * \brief
+ * \author	Mattias Gustavsson
+ *
+ *
  * \todo	Documentation. Possibly the most important system to document, as it's used extensively all the time
  * \todo	Additive
  * \todo	Rotation
  * \todo	Scale
  * \todo	Mouseover bounding box
  */
- 
+
 #ifndef __Sprite_H__
 #define __Sprite_H__
 
 // Includes
 #include "StringId.h"
 #include "Resource_BitmapStrip.h"
+
+namespace pixie {
 
 // Forward declares
 class SpriteManager;
@@ -36,7 +38,7 @@ class Sprite
 		virtual ~Sprite();
 
 		const Sprite& operator = (const Sprite& spriteToCopy);
-		
+
 
 		virtual SpriteManager* GetSpriteManager() const;
 		virtual void SetSpriteManager(SpriteManager* spriteManager);
@@ -97,6 +99,8 @@ class Sprite
 		int selectionIndex_;
 		Resource_BitmapStrip bitmapStrip_;
 	};
+
+}; // namespace pixie
 
 #endif /* __Sprite_H__ */
 

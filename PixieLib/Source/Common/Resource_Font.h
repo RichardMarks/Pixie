@@ -1,19 +1,21 @@
 /**
  * \class	Resource_Font
- * 
+ *
  * \ingroup	resources
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __Resource_Font_H__
 #define __Resource_Font_H__
 
 // Includes
 #include "StringId.h"
 #include "Filename.h"
+
+namespace pixie {
 
 // Forward declares
 class Font;
@@ -43,23 +45,23 @@ class Resource_Font
 		operator const Font&() const;
 
 		void Blit(
-			Bitmap& bitmap, 
-			int x, 
-			int y, 
-			const char* text, 
-			int spacing = 0, 
+			Bitmap& bitmap,
+			int x,
+			int y,
+			const char* text,
+			int spacing = 0,
 			unsigned short modulate = 0xffff,
 			unsigned char alpha = 255
 			) const;
 
 		void BlitWrap(
-			Bitmap& bitmap, 
-			int x, 
-			int y, 
-			const char* text, 
+			Bitmap& bitmap,
+			int x,
+			int y,
+			const char* text,
 			int width,
-			int hspacing = 0, 
-			int vspacing = 0, 
+			int hspacing = 0,
+			int vspacing = 0,
 			unsigned short modulate = 0xffff,
 			unsigned char alpha = 255
 			) const;
@@ -67,6 +69,8 @@ class Resource_Font
 	private:
 		const Font* font_;
 	};
+
+}; // namespace pixie
 
 #endif /* __Resource_Font_H__ */
 

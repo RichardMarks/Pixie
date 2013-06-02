@@ -1,13 +1,13 @@
 /**
  * \class	SpriteController
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteController_H__
 #define __SpriteController_H__
 
@@ -15,6 +15,7 @@
 #include "Array.h"
 #include "StringId.h"
 
+namespace pixie {
 // Forward declares
 class Sprite;
 class SpriteAction;
@@ -42,13 +43,13 @@ class SpriteController
 		friend class SpriteControllerManager;
 
 		SpriteController(Sprite* sprite);
-		
+
 		~SpriteController();
-		
+
 		int GetReferenceCount() const;
 
 		void IncreaseReferenceCount();
-		
+
 		void DecreaseReferenceCount();
 
 	private:
@@ -77,5 +78,6 @@ class SpriteController
 		float previousOffsetY_;
 	};
 
+}; // namespace pixie
 #endif /* __SpriteController_H__ */
 

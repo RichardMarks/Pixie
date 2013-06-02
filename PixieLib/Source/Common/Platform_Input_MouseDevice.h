@@ -3,8 +3,8 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a mouse device
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Provides basic acces to the mouse - position and button states
  */
 
@@ -12,7 +12,7 @@
 #define __Platform_Input_MouseDevice_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 // Platform_Input_MouseDevice
@@ -23,7 +23,7 @@ class Platform_Input_MouseDevice
 		 * Destructor
 		 */
 		virtual ~Platform_Input_MouseDevice() { };
-		
+
 
 		/**
 		 * Retrieves the position of the mouse pointer. This position is in coordinates of
@@ -31,8 +31,8 @@ class Platform_Input_MouseDevice
 		 * current back buffer being presented using Platform_Screen.
 		 */
 		virtual void GetPosition(
-			float& x,	///< Reference to the variable to store the x-position in 
-			float& y	///< Reference to the variable to store the y-position in 
+			float& x,	///< Reference to the variable to store the x-position in
+			float& y	///< Reference to the variable to store the y-position in
 			) const = 0;
 
 
@@ -52,5 +52,7 @@ class Platform_Input_MouseDevice
 		virtual bool IsRightButtonDown() const = 0;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Input_MouseDevice_H__ */

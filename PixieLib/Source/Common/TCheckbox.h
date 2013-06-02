@@ -1,10 +1,10 @@
 /**
  * \class	TCheckbox
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TCheckbox_H__
@@ -13,6 +13,7 @@
 // Includes
 #include "TStaticText.h"
 
+namespace pixie {
 // External classes
 
 
@@ -33,4 +34,5 @@ class TCheckbox:public TStaticText
 		bool checked_;
 	};
 
+}; // namespace pixie
 #endif /* __TCheckbox_H__ */

@@ -1,14 +1,14 @@
 /**
  * \class	Archive
- * 
+ *
  * \ingroup	core
  * \brief	Simple system for accessing archive content
- * \author	Mattias Gustavsson	
- * 
- * An Archive is what you get when packing lots of files together into one big file. Check out ArchiveGenerator for a 
+ * \author	Mattias Gustavsson
+ *
+ * An Archive is what you get when packing lots of files together into one big file. Check out ArchiveGenerator for a
  * utility class for generating archives.
- * 
- * This archive class can be passed to the static method Asset::SetArchive, to direct all Asset requests to the 
+ *
+ * This archive class can be passed to the static method Asset::SetArchive, to direct all Asset requests to the
  * specified archive.
  */
 
@@ -20,6 +20,8 @@
 #include "Array.h"
 #include "HashTable.h"
 #include "HashTableKey_StringId.h"
+
+namespace pixie {
 
 // Forward declares
 class StaticBuffer;
@@ -33,8 +35,8 @@ class Filename;
 class Archive
 	{
 	public:
-		/** 
-		 * Creates a new archive from the specified memory area with the specified size. It doesn't make a copy of the 
+		/**
+		 * Creates a new archive from the specified memory area with the specified size. It doesn't make a copy of the
 		 * data passed in, so make sure to keep the data around until you destroy the archive.
 		 */
 		Archive(
@@ -42,8 +44,8 @@ class Archive
 			int size	///< Size of archive data
 			);
 
-		/** 
-		 * Creates a new archive from the specified file. It doesn't load the entire archive into memory, but it opens 
+		/**
+		 * Creates a new archive from the specified file. It doesn't load the entire archive into memory, but it opens
 		 * the file and keeps it open until the archive is destroyed. Data is only loaded as it is read trough Assets.
 		 */
 		Archive(
@@ -55,10 +57,10 @@ class Archive
 		 */
 		~Archive();
 
-		/** 
+		/**
          * This method is used to get the data of the file with the specified name  from the archive
 		 *
-		 * \returns	A pointer to a StaticBuffer containing the file data of the requested file. If the file doesn't 
+		 * \returns	A pointer to a StaticBuffer containing the file data of the requested file. If the file doesn't
 		 *			exist, GetFile will assert and return 0
 		 */
 		ArchiveFile* GetFile(
@@ -86,7 +88,7 @@ class Archive
 			int offset;
 			int size;
 			};
-		
+
 		struct DirectoryEntry
 			{
 			StringId name;
@@ -100,5 +102,6 @@ class Archive
 		HashTable<HashTableKey_StringId,ArchiveDirectory*> directories_; ///< Hash table holding a DirectoryEntry for each directory in the archive
 	};
 
+}; // namespace pixie
 
 #endif /* __Archive_H__ */

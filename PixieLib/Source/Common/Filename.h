@@ -1,10 +1,10 @@
 /**
  * \class	Filename
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Option to silently correct a filename (no assert for incorrect ones)
  */
 
@@ -15,6 +15,7 @@
 #include "StringId.h"
 #include "StringPool.h"
 
+namespace pixie {
 // Forward declares
 
 // Filename
@@ -22,52 +23,52 @@ class Filename
 	{
 	public:
 		/**
-		 * Default constructor. 
+		 * Default constructor.
 		 */
 		Filename();
 
 		/**
-		 * Constructor. 
+		 * Constructor.
 		 */
 		Filename(
 			const char* filename
 			);
 
 		/**
-		 * Constructor. 
+		 * Constructor.
 		 */
 		Filename(
 			const StringId& filename
 			);
 
 		/**
-		 * Copy Constructor. 
+		 * Copy Constructor.
 		 */
 		Filename(
 			const Filename& filename
 			);
 
 		/**
-		 * Destructor. 
+		 * Destructor.
 		 */
 		~Filename();
 
 		/**
-		 * Assignment operator. 
+		 * Assignment operator.
 		 */
 		const Filename& operator=(
 			const Filename& filename
 			);
 
 		/**
-		 * Comparison operation (equality). 
+		 * Comparison operation (equality).
 		 */
 		bool operator==(
 			const Filename& filename
 			) const;
 
 		/**
-		 * Comparison operation (inequality). 
+		 * Comparison operation (inequality).
 		 */
 		bool operator!=(
 			const Filename& filename
@@ -80,23 +81,24 @@ class Filename
 		 * \returns The zero-terminated string for this filename
 		 */
 		const char* GetString() const;
-	
+
 		StringId GetStringId() const;
 
 	private:
 		bool VerifyFilename(const char* filename);
-		
+
 		const char* CorrectFilename(const char* filename);
-		
+
 		StringId CorrectFilename(StringId filename);
 
 
 	private:
-		mutable const char* filenameString_;	
+		mutable const char* filenameString_;
 		mutable StringId filenameId_;
-		
+
 		static StringPool stringPool_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Filename_H__ */

@@ -1,11 +1,11 @@
 
 /**
  * \class	BlitterRLE16
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __BlitterRLE16_H__
@@ -15,6 +15,7 @@
 
 // Forward declares
 
+namespace pixie {
 
 // BlitterRLE16
 class BlitterRLE16
@@ -24,5 +25,6 @@ class BlitterRLE16
 
 	};
 
+}; // namespace pixie
+
 #endif /* __BlitterRLE16_H__ */
-	

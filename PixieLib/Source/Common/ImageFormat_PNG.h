@@ -1,13 +1,13 @@
 /**
  * \class	ImageFormat_PNG
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __ImageFormat_PNG_H__
 #define __ImageFormat_PNG_H__
 
@@ -15,7 +15,7 @@
 #include "ImageFormat.h"
 
 // Forward declares
-
+namespace pixie {
 
 // ImageFormat_PNG
 class ImageFormat_PNG:public ImageFormat
@@ -31,7 +31,7 @@ class ImageFormat_PNG:public ImageFormat
 		ImageFormat_PNG(
 			const Asset& asset
 			);
-		
+
 		ImageFormat_PNG(
 			int width,
 			int height,
@@ -59,4 +59,5 @@ class ImageFormat_PNG:public ImageFormat
 		void* info_ptr_;
 	};
 
+}; // namespace pixie
 #endif /* __ImageFormat_PNG_H__ */

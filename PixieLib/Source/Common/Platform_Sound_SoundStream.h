@@ -3,15 +3,15 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a soundstream
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Implements a sound channel for streaming sound. The idea is that you
- * create a soundstream, fill it with the first bit of data from your 
+ * create a soundstream, fill it with the first bit of data from your
  * sound, and then start playing it. You then monitor its current position,
  * and when it's gone past half the buffer size, you fill in the first half
  * of the buffer with more sound data, keep monitoring the buffer, and when
- * the position have wrapped around, you fill the second half with more 
- * data, and so on. This means you can use and reuse soundstreams, and 
+ * the position have wrapped around, you fill the second half with more
+ * data, and so on. This means you can use and reuse soundstreams, and
  * play both short and long sounds, or even music, with any soundstream.
  */
 
@@ -21,7 +21,7 @@
 // Includes
 
 // Forward declares
-
+namespace pixie {
 
 // Platform_Sound_SoundStream
 class Platform_Sound_SoundStream
@@ -31,7 +31,7 @@ class Platform_Sound_SoundStream
 		 * Destructor
 		 */
 		virtual ~Platform_Sound_SoundStream() { };
-		
+
 
 		/**
 		 * Retrieves the number of channels this sound stream was created with.
@@ -42,7 +42,7 @@ class Platform_Sound_SoundStream
 
 
 		/**
-		 * Retrieves the frequency (samples per second) this sound stream was 
+		 * Retrieves the frequency (samples per second) this sound stream was
 		 * created with. Typical values for this is 11025 (11 kHz), 22050 (22 kHz)
 		 * or 44100 (44 kHz, CD-quality).
 		 *
@@ -52,7 +52,7 @@ class Platform_Sound_SoundStream
 
 
 		/**
-		 * Retrieves the number of bits per sample which this sound stream was 
+		 * Retrieves the number of bits per sample which this sound stream was
 		 * created with. This is typically 8 or 16 bits.
 		 *
 		 * \returns	The number of bits per sample (typically 8 or 16)
@@ -119,23 +119,23 @@ class Platform_Sound_SoundStream
 			float level
 			) = 0;
 
-		
+
 		/**
 		 * Clears the specified part of the sound streams buffer. bufferOffset + bytesToClear
 		 * should be less than the value returned by GetSize
 		 */
 
 		virtual void ClearBuffer(
-			int bufferOffset,	///< Where in the sound stream buffer to clearing 
+			int bufferOffset,	///< Where in the sound stream buffer to clearing
 			int bytesToClear	///< Number of bytes to clear
 			) = 0;
 
 
 		/**
-		 * Copies raw sound data to the sound streams buffer, starting at bufferOffset. The 
+		 * Copies raw sound data to the sound streams buffer, starting at bufferOffset. The
 		 * data is copied from the soundData pointer, for a total of bytesToCopy number of
 		 * bytes. bufferOffset + bytesToClear should be less than the value returned by GetSize.
-		 * The format of the data is interleaved raw sound samples, as specified by the 
+		 * The format of the data is interleaved raw sound samples, as specified by the
 		 * combination of channels, frequency and bits per sample.
 		 */
 		virtual void CopySoundToBuffer(
@@ -145,5 +145,7 @@ class Platform_Sound_SoundStream
 			) = 0;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Sound_Soundstream_h__ */

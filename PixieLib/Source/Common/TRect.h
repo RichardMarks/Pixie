@@ -1,10 +1,10 @@
 /**
  * \class	TRect
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TRect_H__
@@ -12,7 +12,7 @@
 
 // Includes
 #include "TPoint.h"
-
+namespace pixie {
 // External classes
 
 // TRect
@@ -37,5 +37,7 @@ struct TRect
 	bool IsEmpty() const;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __TRect_H__ */

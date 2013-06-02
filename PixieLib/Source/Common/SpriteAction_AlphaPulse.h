@@ -1,19 +1,20 @@
 /**
  * \class	SpriteAction_AlphaPulse
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteAction_AlphaPulse_H__
 #define __SpriteAction_AlphaPulse_H__
 
 // Includes
 #include "SpriteAction.h"
 
+namespace pixie {
 // Forward declares
 class Sprite;
 
@@ -32,7 +33,9 @@ class SpriteAction_AlphaPulse:public SpriteAction
 		float speed_;
 		float currentSource_;
 		float currentTarget_;
-	};		
+	};
+
+}; // namespace pixie
 
 #endif /* __SpriteAction_AlphaPulse_H__ */
 

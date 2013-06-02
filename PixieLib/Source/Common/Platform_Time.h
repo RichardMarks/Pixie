@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Time
- * 
+ *
  * \ingroup	platform
  * \brief	Platform independent abstraction of time functions
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Provides functionality to get the current time, in various ways.
  */
 
@@ -15,7 +15,7 @@
 #include "Platform.h"
 
 // Forward declares
-
+namespace pixie {
 // Platform_Time
 class Platform_Time
 	{
@@ -28,7 +28,7 @@ class Platform_Time
 
 		/**
 		 * Retrieves the current time, as measured from the start of the application
-		 * 
+		 *
 		 * \returns	The number of seconds since the application was started
 		 */
 		virtual float GetTime() = 0;
@@ -47,12 +47,12 @@ class Platform_Time
 			char minute;
 			char second;
 			};
-		
+
 		/**
 		 * Retrieves the local current date and time. If the utcTime parameter
 		 * is set to true, the UTC (universal time) equivalent to the local time
 		 * is returned.
-		 * 
+		 *
 		 * \returns	The current date and time (local or UTC)
 		 */
 		virtual SystemTime GetSystemTime(
@@ -61,5 +61,6 @@ class Platform_Time
 	};
 
 
+}; // namespace pixie
 
 #endif /* __Platform_Time_H__ */

@@ -1,10 +1,10 @@
 /**
  * \class	Bitmap_RLE8
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Refactor and clean up
  * \todo	Add methods to conform to Bitmap interface (Copy, transformations etc)
  */
@@ -15,6 +15,8 @@
 
 // Includes
 #include "Bitmap.h"
+
+namespace pixie {
 
 // Forward declares
 class Image;
@@ -38,8 +40,8 @@ class Bitmap_RLE8:public Bitmap
 		virtual unsigned char* GetAlphaData();
 
 		virtual void Clear();
-		
-		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );							
+
+		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );
 		virtual void Fill(unsigned short color, unsigned char alpha = 255);
 
         virtual int GetHPitch() const;
@@ -47,7 +49,7 @@ class Bitmap_RLE8:public Bitmap
         virtual int GetHOffset() const;
         virtual int GetVOffset() const;
 
-		virtual int GetWidth(Transformation transformation = NoTransformation) const;		
+		virtual int GetWidth(Transformation transformation = NoTransformation) const;
 		virtual int GetHeight(Transformation transformation = NoTransformation) const;
 
 		virtual unsigned short  GetPixelColor(int x, int y, Transformation transformation = NoTransformation) const;
@@ -76,7 +78,7 @@ class Bitmap_RLE8:public Bitmap
 		int GetY2() const;
 
 		unsigned int GetOpaqueSize() const;
-		unsigned char* GetOpaqueData() const;	
+		unsigned char* GetOpaqueData() const;
 
 	private:
 		void BlitRLE(Bitmap_16bit* target,int x, int y, unsigned short modulate=0xffff, unsigned char alpha = 255) const;
@@ -97,19 +99,20 @@ class Bitmap_RLE8:public Bitmap
 		unsigned char usesMask_;
 		unsigned short xOffset_;
 		unsigned short yOffset_;
-		unsigned short activeWidth_;	// Width of sprite    
+		unsigned short activeWidth_;	// Width of sprite
 		unsigned short activeHeight_;	// Height of sprite
-		unsigned short width_;	// Width of sprite    
+		unsigned short width_;	// Width of sprite
 		unsigned short height_;	// Height of sprite
 		unsigned int opaqueSize_;
-		unsigned char* opaqueData_;	
+		unsigned char* opaqueData_;
 		unsigned int alphaSize_;
-		unsigned char* alphaData_;	
+		unsigned char* alphaData_;
 		unsigned char colorCount_;	// Number of colors in palette
 		unsigned short* palette_; // Maximum of 256 colors
 		mutable unsigned short* modulatedPalette_; // palette used when doing modulated rendering
 		mutable unsigned short* currentPalette_; // palette currently in use
 	};
-	
-	 
+
+}; // namespace pixie
+
 #endif /* __Bitmap_RLE8_H__ */

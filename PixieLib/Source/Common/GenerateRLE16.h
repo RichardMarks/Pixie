@@ -1,10 +1,10 @@
 /**
  * \class	GenerateRLE16
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 
@@ -13,6 +13,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 class Image;
 class Bitmap_RLE16;
@@ -39,14 +40,14 @@ class GenerateRLE16
 
 	private:
 		unsigned int opaqueSize_;
-		unsigned char* opaqueData_;	
+		unsigned char* opaqueData_;
 		unsigned int alphaSize_;
-		unsigned char* alphaData_;	
+		unsigned char* alphaData_;
 		int hPitch_;
 		int vPitch_;
 		int hOffset_;
 		int vOffset_;
 	};
-	
-	 
+
+}; // namespace pixie
 #endif /* __GenerateRLE16_H__ */

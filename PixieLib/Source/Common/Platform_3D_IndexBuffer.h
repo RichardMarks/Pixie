@@ -2,9 +2,9 @@
  * \class	Platform_3D_IndexBuffer
  *
  * \ingroup	platform
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -12,6 +12,7 @@
 #define __Platform_3D_IndexBuffer_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 
@@ -25,7 +26,7 @@ class Platform_3D_IndexBuffer
 		virtual void Bind() = 0;
 
 		virtual void Lock(
-			int startIndex = 0, 
+			int startIndex = 0,
 			int indexCount = 0
 			) = 0;
 
@@ -36,5 +37,7 @@ class Platform_3D_IndexBuffer
 		virtual int GetIndexStride() = 0;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_3D_IndexBuffer_H__ */

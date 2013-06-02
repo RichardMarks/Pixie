@@ -1,19 +1,21 @@
 /**
  * \class	Font
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Cleanup and prioritize new format
  */
- 
+
 #ifndef __Font_H__
 #define __Font_H__
 
 // Includes
 #include "XMLObject.h"
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 class Bitmap;
@@ -58,28 +60,28 @@ class Font:XMLObject
 		Font(
 			const Filename& filename
 			);
-		
+
 
 		~Font();
 
 		void Blit(
-			Bitmap& bitmap, 
-			int x, 
-			int y, 
-			const char* text, 
-			int spacing = 0, 
+			Bitmap& bitmap,
+			int x,
+			int y,
+			const char* text,
+			int spacing = 0,
 			unsigned short modulate = 0xffff,
 			unsigned char alpha = 255
 			) const;
 
 		void BlitWrap(
-			Bitmap& bitmap, 
-			int x, 
-			int y, 
-			const char* text, 
+			Bitmap& bitmap,
+			int x,
+			int y,
+			const char* text,
 			int width,
-			int hspacing = 0, 
-			int vspacing = 0, 
+			int hspacing = 0,
+			int vspacing = 0,
 			unsigned short modulate = 0xffff,
 			unsigned char alpha = 255
 			) const;
@@ -92,14 +94,14 @@ class Font:XMLObject
 			};
 
 		Bounds GetBounds(
-			const char* text, 
+			const char* text,
 			int spacing = 0
 			) const;
 
 		Bounds GetBoundsWrap(
-			const char* text, 
+			const char* text,
 			int width,
-			int hspacing = 0, 
+			int hspacing = 0,
 			int vspacing = 0
 			) const;
 
@@ -131,7 +133,7 @@ class Font:XMLObject
 		virtual void XML_Attribute(StringId _name, const XMLVariant& _value);
 
 	private:
-		
+
 		struct Kerning
 			{
 			char first;
@@ -157,6 +159,8 @@ class Font:XMLObject
 
 		Array<char*> layers_;	///< Used for temporary storage when reading a font from XML file
 	};
+
+}; // namespace pixie
 
 #endif /* __Font_H__ */
 

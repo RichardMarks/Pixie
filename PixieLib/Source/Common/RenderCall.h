@@ -1,13 +1,13 @@
 /**
  * \class	RenderCall
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __RenderCall_H__
 #define __RenderCall_H__
 
@@ -15,7 +15,7 @@
 #include "Sprite.h"
 
 // Forward declares
-
+namespace pixie {
 
 // RenderCall
 class RenderCall:public Sprite
@@ -24,7 +24,7 @@ class RenderCall:public Sprite
 		RenderCall();
 
 		RenderCall(SpriteManager* spriteManager);
-		
+
 		virtual ~RenderCall();
 
 		typedef void (*CallbackFunction)(Bitmap& bitmap, RenderCall* sprite, void* userData);
@@ -38,8 +38,10 @@ class RenderCall:public Sprite
 	private:
 		CallbackFunction callbackFunction_;
 		void* userData_;
-		
+
 	};
+
+}; // namespace pixie
 
 #endif /* __RenderCall_H__ */
 

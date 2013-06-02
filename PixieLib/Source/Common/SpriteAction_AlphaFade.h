@@ -1,13 +1,13 @@
 /**
  * \class	SpriteAction_AlphaFade
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteAction_AlphaFade_H__
 #define __SpriteAction_AlphaFade_H__
 
@@ -16,6 +16,8 @@
 
 // Forward declares
 class Sprite;
+
+namespace pixie {
 
 // SpriteAction_AlphaFade
 class SpriteAction_AlphaFade:public SpriteAction
@@ -35,6 +37,8 @@ class SpriteAction_AlphaFade:public SpriteAction
 		float deltaA_;
 		float elapsedTime_;
 	};
+
+}; // namespace pixie
 
 #endif /* __SpriteAction_AlphaFade_H__ */
 

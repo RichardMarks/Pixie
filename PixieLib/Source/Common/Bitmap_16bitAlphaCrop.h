@@ -1,10 +1,10 @@
 /**
  * \class	Bitmap_16bitAlphaCrop
- * 
+ *
  * \ingroup	graphics
  * \brief	Uncompressed 16-bit color buffer with alpha channel
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __Bitmap_16bitAlphaCrop_H__
@@ -13,6 +13,7 @@
 // Includes
 #include "Bitmap.h"
 
+namespace pixie {
 
 // Forward declares
 class Image;
@@ -41,5 +42,6 @@ class Bitmap_16bitAlphaCrop:public Bitmap
 		void ReadFromAsset_Old(const Asset* asset);
 	};
 
+}; // namespace pixie
+
 #endif /* __Bitmap_16bitAlphaCrop_H__ */
-	

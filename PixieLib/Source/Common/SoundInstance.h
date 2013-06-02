@@ -1,18 +1,20 @@
 /**
  * \class	SoundInstance
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SoundInstance_H__
 #define __SoundInstance_H__
 
 // Includes
 #include "DynamicBuffer.h"
+
+namespace pixie {
 
 // Forward declares
 class Sound;
@@ -41,7 +43,7 @@ class SoundInstance
 		 * Resumes (or starts) playback of the sound from the current position.
 		 * Will request a sound stream from the Audio system, and it will receive
 		 * one if there is one available. This might mean that a sound with lower
-		 * or equal priority to this one will be cut off to make a sound stream 
+		 * or equal priority to this one will be cut off to make a sound stream
 		 * available, but no sounds with higher priority will be cut off. If the
 		 * audio system can't find, or make, a sound stream available, the sound
 		 * will not be played. When the sound reaches the end, the assigned sound
@@ -128,6 +130,8 @@ class SoundInstance
 		bool lastCopyReachedEnd_;
 		int soundDefinitionCopyPosition_;
 	};
+
+}; // namespace pixie
 
 #endif /* __SoundInstance_H__ */
 

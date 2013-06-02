@@ -1,10 +1,10 @@
 /**
  * \class	Image
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	More transformations/manipulation (contrast, saturation, hue, blur, sharpen, resize...)
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 class Asset;
 class Filename;
@@ -22,7 +23,7 @@ class Bitmap;
 // Image
 class Image
 	{
-	public: 
+	public:
 		Image();
 		Image(const Asset& asset);
 		Image(const Asset& asset, int celCount);
@@ -30,11 +31,11 @@ class Image
 		Image(int width, int height, int celCount);
 		Image(const Image& image);
 		Image(const Bitmap& bitmap);
-		
+
 		~Image();
 
 		const Image& operator=(const Image& image);
-		
+
 
 		int GetWidth() const;
 
@@ -44,7 +45,7 @@ class Image
 		unsigned int GetPixel(int x, int y) const;
 
 		unsigned int GetPixel(int cel, int x, int y) const;
-		
+
 		void SetPixel(int x, int y, unsigned int color);
 
 		void SetPixel(int cel, int x, int y, unsigned int color);
@@ -77,6 +78,7 @@ class Image
 		Array<float> celDelay_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Image_H__ */
 

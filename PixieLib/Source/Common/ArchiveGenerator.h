@@ -1,11 +1,11 @@
 /**
  * \class	ArchiveGenerator
- * 
+ *
  * \ingroup	core
  * \brief	Utility class used to pack files together into an Archive file
- * \author	Mattias Gustavsson	
- * 
- * With this utility class, you can very easily pack your game data together in one big Archive file, which can be used 
+ * \author	Mattias Gustavsson
+ *
+ * With this utility class, you can very easily pack your game data together in one big Archive file, which can be used
  * to speed up loading times.
  */
 
@@ -15,6 +15,8 @@
 // Includes
 #include "Array.h"
 #include "DynamicBuffer.h"
+
+namespace pixie {
 
 // Forward declares
 class DynamicBuffer;
@@ -50,7 +52,7 @@ class ArchiveGenerator
 
 		/**
 		 * Creates an archive containting all the files in the specified directory and
-		 * all its subdirectories. Generates a cpp file which defines an array initialized 
+		 * all its subdirectories. Generates a cpp file which defines an array initialized
 		 * with the archive data, so it can be included in the project and used as a
 		 * static buffer for the Asset::SetArchive method.
 		 */
@@ -62,7 +64,7 @@ class ArchiveGenerator
 
 		/**
 		 * Creates an archive containting all the files in the specified directory and
-		 * all its subdirectories. Generates a binary file with the archive data, so it 
+		 * all its subdirectories. Generates a binary file with the archive data, so it
 		 * can be loaded on startup, and used with the Asset::SetArchive method.
 		 */
 		void GenerateFile(
@@ -73,7 +75,7 @@ class ArchiveGenerator
 	private:
 		struct DirectoryEntry;
 
-		/** 
+		/**
 		 * Create a new DynamicBuffer containing an archive with all the files in the specified
 		 * directory and all its subdirectories
 		 */
@@ -89,7 +91,7 @@ class ArchiveGenerator
 			);
 
 		void WriteDirectoryList(
-			DynamicBuffer* buffer, 
+			DynamicBuffer* buffer,
 			DirectoryEntry* directoryEntry,
 			int offset
 			);
@@ -116,5 +118,6 @@ class ArchiveGenerator
 		DynamicBuffer filedata_;
 	};
 
+}; // namespace pixie
 
 #endif /* __ArchiveGenerator_H__ */

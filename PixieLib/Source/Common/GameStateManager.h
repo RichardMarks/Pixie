@@ -1,10 +1,10 @@
 /**
  * \class	GameStateManager
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __GameStateManager_H__
@@ -16,6 +16,7 @@
 #include "HashTable.h"
 #include "HashTableKey_StringId.h"
 
+namespace pixie {
 // Forward declares
 class GameState;
 class GameStateDefinition;
@@ -26,7 +27,7 @@ class GameStateManager:public Singleton<GameStateManager>
 	public:
 		GameStateManager();
 		virtual ~GameStateManager();
-		
+
 		void Update(float deltaTime);
 
 		void SetState(StringId state);
@@ -34,7 +35,7 @@ class GameStateManager:public Singleton<GameStateManager>
 
 		typedef GameState* (*CreateFunction)();
 		void RegisterGameState(StringId id, CreateFunction createFunction);
-		
+
 		void ExitCurrentState();
 
 		void SwitchState(StringId state, float transitionOutTime = 0, float transitionInTime = 0);
@@ -58,7 +59,7 @@ class GameStateManager:public Singleton<GameStateManager>
 		StringId state_;
 		GameState* stateInstance_;
 		StringId stateToSwitchTo_;
-		
+
 		bool transitioningOut_;
 		bool transitioningIn_;
 		float transitionInTime_;
@@ -71,5 +72,7 @@ class GameStateManager:public Singleton<GameStateManager>
 	};
 
 #define siGameStateManager GameStateManager::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __GameStateManager_H__ */

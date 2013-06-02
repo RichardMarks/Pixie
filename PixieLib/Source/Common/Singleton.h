@@ -1,10 +1,10 @@
 /**
  * \class	Singleton
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -12,10 +12,10 @@
 #define __Singleton_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
-template<class TYPE> 
+template<class TYPE>
 class Singleton
 	{
 	public:
@@ -32,5 +32,7 @@ class Singleton
 	};
 
 #include "Singleton.inl"
+
+}; // namespace pixie
 
 #endif /* __Singleton_H__ */

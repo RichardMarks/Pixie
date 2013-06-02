@@ -1,12 +1,12 @@
 /**
  * \class	SpriteEventListener
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
- 
+
 #ifndef __SpriteEventListener_H__
 #define __SpriteEventListener_H__
 
@@ -14,12 +14,13 @@
 #include "StringId.h"
 #include "SpriteSystem.h"
 
+namespace pixie {
 // Forward declares
 
 // SpriteEventListener
 class SpriteEventListener
 	{
-	public:	
+	public:
 		SpriteEventListener();
 
 		virtual ~SpriteEventListener();
@@ -28,6 +29,6 @@ class SpriteEventListener
 
 	};
 
-
+}; // namespace pixie
 
 #endif /* __SpriteEventListener_H__ */

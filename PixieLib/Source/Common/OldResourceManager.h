@@ -1,10 +1,10 @@
 /**
  * \class	OldResourceManager
- * 
+ *
  * \ingroup	resources
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __OldResourceManager_H__
@@ -16,6 +16,7 @@
 #include "HashTable.h"
 #include "HashTableKey_Pointer.h"
 
+namespace pixie {
 // Forward declares
 class BitmapStrip;
 class Font;
@@ -40,7 +41,7 @@ class OldResourceManager:public Singleton<OldResourceManager>
 		void UnloadBitmapStrip(
 			const Filename& filename
 			);
-	
+
 		void LoadFont(
 			const Filename& filename
 			);
@@ -69,7 +70,7 @@ class OldResourceManager:public Singleton<OldResourceManager>
 		const BitmapStrip* GetBitmapStrip(
 			const Image& image
 			);
-	
+
 		const BitmapStrip* GetBitmapStrip(
 			const Bitmap* bitmap
 			);
@@ -85,7 +86,7 @@ class OldResourceManager:public Singleton<OldResourceManager>
 		void IncreaseReferenceCount(
 			const BitmapStrip* bitmapStrip
 			);
-		
+
 		void DecreaseReferenceCount(
 			const BitmapStrip* bitmapStrip
 			);
@@ -93,7 +94,7 @@ class OldResourceManager:public Singleton<OldResourceManager>
 		void IncreaseReferenceCount(
 			const Font* font
 			);
-		
+
 		void DecreaseReferenceCount(
 			const Font* font
 			);
@@ -101,7 +102,7 @@ class OldResourceManager:public Singleton<OldResourceManager>
 		void IncreaseReferenceCount(
 			const Sound* sound
 			);
-		
+
 		void DecreaseReferenceCount(
 			const Sound* sound
 			);
@@ -148,6 +149,6 @@ class OldResourceManager:public Singleton<OldResourceManager>
 
 #define siOldResourceManager OldResourceManager::GetInstance()
 
+}; // namespace pixie
 #endif /* __OldResourceManager_H__ */
 
-	

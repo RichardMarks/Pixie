@@ -1,10 +1,10 @@
 /**
  * \file	PlatformHelper.h
- * 
+ *
  * \ingroup	helpers
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __PlatformHelper_H__
@@ -26,11 +26,11 @@
 #include "../Win32/Platform_Win32_FileSystem.h"
 #include "../Win32/Platform_Win32_Network.h"
 #include "../Win32/Platform_Win32_3D.h"
-
+namespace pixie {
 void DefaultWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 
 void DefaultWinMain3D(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
-
+}; // namespace pixie
 #endif /* #ifdef WIN32 */
 
 //**************************

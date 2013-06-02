@@ -1,10 +1,10 @@
 /**
  * \file	TDraw.h
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TDraw_H__
@@ -13,6 +13,7 @@
 // Includes
 #include "TColor.h"
 
+namespace pixie {
 // External classes
 class TCanvas;
 
@@ -32,6 +33,6 @@ namespace TDraw
 	void RadioButton(TCanvas& canvas, const char* text, bool enabled, TColor foreground = TUndefined, TColor background = TUndefined, TColor highlight = TUndefined);
 	};
 
-
+}; // namespace pixie
 
 #endif /* __TDraw_H__ */

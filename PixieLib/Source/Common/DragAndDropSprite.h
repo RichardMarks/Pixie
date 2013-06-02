@@ -1,13 +1,13 @@
 /**
  * \class	DragAndDropSprite
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Make a proper implementation of this
  */
- 
+
 #ifndef __DragAndDropSprite_H__
 #define __DragAndDropSprite_H__
 
@@ -16,6 +16,8 @@
 #include "Button.h"
 #include "Array.h"
 #include "Resource_BitmapStrip.h"
+
+namespace pixie {
 
 // Forward declares
 class SpriteManager;
@@ -36,6 +38,7 @@ class DragAndDropSprite:public Button
 		float dragOffsetY_;
 	};
 
+}; // namespace pixie
 
 #endif /* __DragAndDropSprite_H__ */
 

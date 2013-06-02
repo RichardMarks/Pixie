@@ -1,16 +1,17 @@
 /**
  * \class	Screen
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
- 
+
 #ifndef __Screen_H__
 #define __Screen_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 class Bitmap;
@@ -56,7 +57,7 @@ class Screen
 
 
 		void SetWindowSize(
-			int width, 
+			int width,
 			int height
 			);
 
@@ -68,6 +69,8 @@ class Screen
 		Bitmap* backBuffer_;
 		unsigned short backgroundColor_;
 	};
+
+}; // namespace pixie
 
 #endif /* __Screen_H__ */
 

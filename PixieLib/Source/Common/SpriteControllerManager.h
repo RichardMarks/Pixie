@@ -1,10 +1,10 @@
 /**
  * \class	SpriteControllerManager
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __SpriteControllerManager_H__
@@ -14,6 +14,7 @@
 #include "Singleton.h"
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 class SpriteController;
 class Sprite;
@@ -38,6 +39,8 @@ class SpriteControllerManager:public Singleton<SpriteControllerManager>
 	};
 
 #define siSpriteControllerManager SpriteControllerManager::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __SpriteControllerManager_H__ */
 

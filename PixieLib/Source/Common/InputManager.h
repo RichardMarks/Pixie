@@ -1,18 +1,18 @@
 /**
  * \class	InputManager
- * 
+ *
  * \ingroup	input
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  * \todo	Gamepad support
  * \todo	Mapping system (from QtickyEngine?)
- * \todo	Event system, where gamestates can register for the Input events it's interested in, and be called when they 
- *			are triggered only. This is so we can have a fully event-driven gamestates (no need to poll input manager in 
+ * \todo	Event system, where gamestates can register for the Input events it's interested in, and be called when they
+ *			are triggered only. This is so we can have a fully event-driven gamestates (no need to poll input manager in
  *			the Update function, which should make things cleaner, and make most GameStates not need an Update function)
  */
- 
+
 #ifndef __InputManager_H__
 #define __InputManager_H__
 
@@ -23,6 +23,7 @@
 #include "KeyCodes.h"
 #include "Filename.h"
 
+namespace pixie {
 // Forward declares
 class Platform_Input_MouseDevice;
 class Platform_Input_KeyboardDevice;
@@ -31,10 +32,10 @@ class Platform_Input_KeyboardDevice;
 // InputManager
 class InputManager:public Singleton<InputManager>
 	{
-	public:	
+	public:
 		InputManager();
 		virtual ~InputManager();
-	
+
 		void Update();
 
 		float GetCursorX();
@@ -90,7 +91,7 @@ class InputManager:public Singleton<InputManager>
 		void HideCursor();
 
 		void RestoreCursor();
-		
+
 	private:
 		const Platform_Input_MouseDevice* mouseDevice_;
 		const Platform_Input_KeyboardDevice* keyboardDevice_;
@@ -100,7 +101,7 @@ class InputManager:public Singleton<InputManager>
 		bool previousKeyStates_[KEYCODE_COUNT];
 		bool charStates_[256];
 		bool previousCharStates_[256];
-		
+
 		Array<char> characterBuffer_;
 
 		struct Cursor
@@ -114,6 +115,6 @@ class InputManager:public Singleton<InputManager>
 	};
 
 #define siInputManager InputManager::GetInstance()
-
+}; // namespace pixie
 
 #endif /* __INPUTHANDLER_H__ */

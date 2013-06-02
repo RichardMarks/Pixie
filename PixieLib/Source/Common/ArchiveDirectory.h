@@ -1,10 +1,10 @@
 /**
  * \class	ArchiveDirectory
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ArchiveDirectory_H__
@@ -14,6 +14,7 @@
 #include "StringId.h"
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 
 // ArchiveDirectory
@@ -42,5 +43,6 @@ class ArchiveDirectory
 		Array<StringId> files_;
 	};
 
+}; // namespace pixie
 
 #endif /* __ArchiveDirectory_H__ */

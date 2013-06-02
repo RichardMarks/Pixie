@@ -1,10 +1,10 @@
 /**
  * \class	ArchiveFile
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ArchiveFile_H__
@@ -12,6 +12,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 class StaticBuffer;
 class Platform_FileSystem_File;
@@ -60,5 +61,6 @@ class ArchiveFile
 		int size_;
 	};
 
+}; // namespace pixie
 
 #endif /* __ArchiveFile_H__ */

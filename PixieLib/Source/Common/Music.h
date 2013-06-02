@@ -1,17 +1,17 @@
 /**
  * \class	Music
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
- 
+
 #ifndef __Music_H__
 #define __Music_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 class Asset;
 class Platform_Sound_SoundStream;
@@ -28,7 +28,7 @@ class Music
 		Music(
 			const Asset& asset
 			);
-		
+
 		/**
 		 * Destructor
 		 */
@@ -47,7 +47,7 @@ class Music
 		void Play();
 
 		/**
-		 * Stops the playback of the music, and resets position to 0 
+		 * Stops the playback of the music, and resets position to 0
 		 */
 		void Stop();
 
@@ -112,4 +112,5 @@ class Music
 		bool lastCopyReachedEnd_;
 	};
 
+}; // namespace pixie
 #endif /* __Music_H__ */

@@ -1,10 +1,10 @@
 /**
  * \class	GameState
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __GameState_H__
@@ -13,6 +13,7 @@
 // Includes
 #include "GameStateManager.h"
 
+namespace pixie {
 // Forward declares
 
 
@@ -42,5 +43,7 @@ class GameState
 							StringId(#className),					\
 							Create##className##Instance);	\
 			}														\
+
+}; // namespace pixie
 
 #endif /* __GameState_H__ */

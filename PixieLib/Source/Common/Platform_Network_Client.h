@@ -3,8 +3,8 @@
  *
  * \ingroup	platform
  * \brief	Platform independent abstraction of a Platform_Network_Client
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "Platform_Network.h"
 
+namespace pixie {
 // Forward declares
 class DynamicBuffer;
 
@@ -22,7 +23,7 @@ class Platform_Network_Client
 	{
 	public:
 		virtual ~Platform_Network_Client() { };
-		
+
 		virtual Platform_Network::ConnectionMode GetConnectionMode() = 0;
 		virtual const char* GetAddress() = 0;
 		virtual int GetPort() = 0;
@@ -32,7 +33,7 @@ class Platform_Network_Client
 		virtual bool Disconnect() = 0;
 
 		virtual void SendData(
-			const void* data, 
+			const void* data,
 			int size
 			) = 0;
 
@@ -42,5 +43,7 @@ class Platform_Network_Client
 			DynamicBuffer* buffer
 			) = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Network_Client_H__ */

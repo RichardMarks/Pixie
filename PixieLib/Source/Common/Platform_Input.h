@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Input
- * 
+ *
  * \ingroup	platform
  * \brief	Platform independent abstraction of input devices
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * Provides platform independent access to input keyboard and mouse.
  */
 
@@ -13,6 +13,8 @@
 
 // Includes
 #include "Platform.h"
+
+namespace pixie {
 
 // Forward declares
 class Platform_Input_KeyboardDevice;
@@ -35,7 +37,7 @@ class Platform_Input
 		 * \returns	The keyboard device for the platform
 		 */
 		virtual const Platform_Input_KeyboardDevice* GetKeyboardDevice() = 0;
-		
+
 
 		/**
 		 * Retrieves the mouse device instance. This pointer is owned and managed
@@ -49,7 +51,7 @@ class Platform_Input
 		 * Creates a system mouse cursor from the specified bitmap data. Different systems
 		 * might support different number of colors and transparency, so it is not guaranteed
 		 * that the cursor will look identical to to the specified bitmap data.
-		 * 
+		 *
 		 * \returns	A handle to the new cursor, to be used with SetMouseCursor or 0 if it couldn't be created
 		 */
 		virtual int CreateMouseCursor(
@@ -62,9 +64,9 @@ class Platform_Input
 			) = 0;
 
 
-		/** 
-		 * Tells the system to use the specified mouse cursor, created through a call 
-		 * to CreateMouseCursor. Can also be used to hide the mouse cursor, by passing 
+		/**
+		 * Tells the system to use the specified mouse cursor, created through a call
+		 * to CreateMouseCursor. Can also be used to hide the mouse cursor, by passing
 		 * a value of 0 for handle.
 		 */
 		virtual void SetMouseCursor(
@@ -72,11 +74,13 @@ class Platform_Input
 			) = 0;
 
 
-		/** 
+		/**
 		 * Tells the system to use the default mouse cursor for the system (the
 		 * standard arrow for windows)
 		 */
 		virtual void SetDefaultMouseCursor() = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Input_H__ */

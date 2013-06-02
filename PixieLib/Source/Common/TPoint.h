@@ -1,17 +1,17 @@
 /**
  * \class	TPoint
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TPoint_H__
 #define __TPoint_H__
 
 // Includes
-
+namespace pixie {
 // External classes
 
 // TPoint
@@ -42,5 +42,7 @@ inline TPoint operator + (TPoint a, TPoint b)
 	result.y_ = a.y_ + b.y_;
 	return result;
 	}
+
+}; // namespace pixie
 
 #endif /* __TPoint_H__ */

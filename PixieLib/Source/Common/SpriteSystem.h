@@ -1,10 +1,10 @@
 /**
  * \class	SpriteSystem
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Add new sprite types for basic shapes: Rectangle and maybe line, circle etc...
  */
 
@@ -15,6 +15,8 @@
 #include "Singleton.h"
 #include "StringId.h"
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 class SpriteManager;
@@ -58,6 +60,8 @@ class SpriteSystem:public Singleton<SpriteSystem>
 	};
 
 #define siSpriteSystem SpriteSystem::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __SpriteSystem_H__ */
 

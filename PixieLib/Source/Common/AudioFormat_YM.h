@@ -1,13 +1,13 @@
 /**
  * \class	AudioFormat_YM
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __AudioFormat_YM_H__
 #define __AudioFormat_YM_H__
 
@@ -16,6 +16,8 @@
 
 // Forward declares
 class CYmMusic;
+
+namespace pixie {
 
 // AudioFormat_YM
 class AudioFormat_YM:public AudioFormat
@@ -31,7 +33,7 @@ class AudioFormat_YM:public AudioFormat
 		AudioFormat_YM(
 			const Asset& asset
 			);
-		
+
 		/**
 		 * Destructor
 		 */
@@ -44,7 +46,7 @@ class AudioFormat_YM:public AudioFormat
 		virtual int GetChannels();
 
 		/**
-		 * Returns the frequency of the audio data in number of 
+		 * Returns the frequency of the audio data in number of
 		 * samples per second
 		 */
 		virtual int GetFrequency();
@@ -118,5 +120,7 @@ class AudioFormat_YM:public AudioFormat
 		int chunkStart_;
 		int chunkEnd_;
 	};
+
+}; // namespace pixie
 
 #endif /* __AudioFormat_YM_H__ */

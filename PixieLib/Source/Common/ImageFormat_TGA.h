@@ -1,13 +1,13 @@
 /**
  * \class	ImageFormat_TGA
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __ImageFormat_TGA_H__
 #define __ImageFormat_TGA_H__
 
@@ -15,7 +15,7 @@
 #include "ImageFormat.h"
 
 // Forward declares
-
+namespace pixie {
 
 // ImageFormat_TGA
 class ImageFormat_TGA:public ImageFormat
@@ -31,7 +31,7 @@ class ImageFormat_TGA:public ImageFormat
 		ImageFormat_TGA(
 			const Asset& asset
 			);
-		
+
 		ImageFormat_TGA(
 			int width,
 			int height,
@@ -58,4 +58,5 @@ class ImageFormat_TGA:public ImageFormat
 		void* image_;
 	};
 
+}; // namespace pixie
 #endif /* __ImageFormat_TGA_H__ */

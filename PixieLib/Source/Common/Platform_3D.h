@@ -1,10 +1,10 @@
 /**
  * \class	Platform_3D
- * 
+ *
  * \ingroup	platform
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Documentation
  */
 
@@ -14,7 +14,7 @@
 // Includes
 #include "Platform.h"
 #include "Platform_3D_VertexBuffer.h"
-
+namespace pixie {
 // Forward declares
 class Platform_3D_IndexBuffer;
 class Platform_3D_Texture;
@@ -33,28 +33,28 @@ class Platform_3D
 		virtual bool GetFullscreen() = 0;
 
 		virtual void SetSize(int width, int height) = 0;
-		
+
 		virtual int GetWidth() = 0;
 
 		virtual int GetHeight() = 0;
 
 		virtual void BeginScene(
-			unsigned int color, 
-			float z, 
+			unsigned int color,
+			float z,
 			unsigned int stencil
 			) = 0;
 
 		virtual void EndScene() = 0;
 
 		virtual Platform_3D_VertexBuffer* CreateVertexBuffer(
-			int vertexFormat, 
-			int vertexCount, 
-			bool dynamic			
+			int vertexFormat,
+			int vertexCount,
+			bool dynamic
 			) = 0;
 
 		virtual Platform_3D_IndexBuffer* CreateIndexBuffer(
-			int indexCount, 
-			bool dynamic			
+			int indexCount,
+			bool dynamic
 			) = 0;
 
 		virtual Platform_3D_Texture* CreateTexture(
@@ -127,5 +127,6 @@ class Platform_3D
 	private:
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_3D_H__ */

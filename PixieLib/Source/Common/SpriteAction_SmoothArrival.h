@@ -1,19 +1,20 @@
 /**
  * \class	SpriteAction_SmoothArrival
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteAction_SmoothArrival_H__
 #define __SpriteAction_SmoothArrival_H__
 
 // Includes
 #include "SpriteAction.h"
 
+namespace pixie {
 // Forward declares
 class Sprite;
 
@@ -35,6 +36,8 @@ class SpriteAction_SmoothArrival:public SpriteAction
 		float velocityX_;
 		float velocityY_;
 	};
+
+}; // namespace pixie
 
 #endif /* __SpriteAction_SmoothArrival_H__ */
 

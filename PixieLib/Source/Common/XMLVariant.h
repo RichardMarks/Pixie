@@ -1,10 +1,10 @@
 /**
  * \class	XMLVariant
- * 
+ *
  * \ingroup	xml
  * \brief	Variant data type_ for xml data
  * \author	Mattias Gustavsson
- * 
+ *
  * This data type_ is used to encapsulate data that is parsed by the
  * xml system, and enables the class interested in the data to
  * retrieve the data as any type it wants. The XMLVariant will perform
@@ -22,6 +22,7 @@
 #include "StandardLibrary.h"
 #include "Debug.h"
 
+namespace pixie {
 
 // Forward declares
 
@@ -54,7 +55,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			};
 
 		 // Constructors
@@ -63,7 +64,7 @@ class XMLVariant
 			{
 			type_=TYPE_NOTHING;
 			};
-		
+
 
 		 inline XMLVariant(const XMLVariant& value)
 			{
@@ -77,7 +78,7 @@ class XMLVariant
 				value_=value.value_;
 				}
 			};
-		
+
 		 inline XMLVariant(char value)
 			{
 			value_.charVal=value;
@@ -125,7 +126,7 @@ class XMLVariant
 			value_.ulongVal=value;
 			type_=TYPE_UNSIGNEDLONG;
 			};
-		
+
 		 inline XMLVariant(float value)
 			{
 			value_.floatVal=value;
@@ -162,7 +163,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			type_=value.type_;
 			if (value.type_==TYPE_STRING)
 				{
@@ -175,16 +176,16 @@ class XMLVariant
 
 			return *this;
 			};
-		
+
 
 		 inline char operator=(char value)
 			{
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.charVal=value;
-			type_=TYPE_CHAR;		
+			type_=TYPE_CHAR;
 			return value;
 			};
 
@@ -193,7 +194,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.shortVal=value;
 			type_=TYPE_SHORT;
 			return value;
@@ -204,7 +205,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.intVal=value;
 			type_=TYPE_INT;
 			return value;
@@ -215,7 +216,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.longVal=value;
 			type_=TYPE_LONG;
 			return value;
@@ -226,7 +227,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.ucharVal=value;
 			type_=TYPE_UNSIGNEDCHAR;
 			return value;
@@ -237,7 +238,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.ushortVal=value;
 			type_=TYPE_UNSIGNEDSHORT;
 			return value;
@@ -248,7 +249,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.uintVal=value;
 			type_=TYPE_UNSIGNEDINT;
 			return value;
@@ -259,18 +260,18 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.ulongVal=value;
 			type_=TYPE_UNSIGNEDLONG;
 			return value;
 			};
-		
+
 		 inline float operator=(float value)
 			{
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.floatVal=value;
 			type_=TYPE_FLOAT;
 			return value;
@@ -281,7 +282,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.doubleVal=value;
 			type_=TYPE_DOUBLE;
 			return value;
@@ -292,7 +293,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.boolVal=value;
 			type_=TYPE_BOOL;
 			return value;
@@ -303,7 +304,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.stringVal=StrDup(value);
 			type_=TYPE_STRING;
 			return value;
@@ -314,7 +315,7 @@ class XMLVariant
 			if (type_==TYPE_STRING)
 				{
 				Free(value_.stringVal);
-				}	
+				}
 			value_.stringVal=StrDup(value);
 			type_=TYPE_STRING;
 			return value;
@@ -346,9 +347,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (char)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (char)value_.doubleVal;			
+					return (char)value_.doubleVal;
 				case TYPE_BOOL:
-					return (char)value_.boolVal;			
+					return (char)value_.boolVal;
 				case TYPE_STRING:
 					return (char)(StringToInt(value_.stringVal));
 				default:
@@ -381,9 +382,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (short)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (short)value_.doubleVal;			
+					return (short)value_.doubleVal;
 				case TYPE_BOOL:
-					return (short)value_.boolVal;			
+					return (short)value_.boolVal;
 				case TYPE_STRING:
 					return (short)(StringToInt(value_.stringVal));
 				default:
@@ -416,9 +417,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (int)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (int)value_.doubleVal;			
+					return (int)value_.doubleVal;
 				case TYPE_BOOL:
-					return (int)value_.boolVal;			
+					return (int)value_.boolVal;
 				case TYPE_STRING:
 					return (int)(StringToInt(value_.stringVal));
 				default:
@@ -427,7 +428,7 @@ class XMLVariant
 					}
 				}
 			};
-	
+
 		inline operator long() const
 			{
 			switch (this->type_)
@@ -451,9 +452,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (long)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (long)value_.doubleVal;			
+					return (long)value_.doubleVal;
 				case TYPE_BOOL:
-					return (long)value_.boolVal;			
+					return (long)value_.boolVal;
 				case TYPE_STRING:
 					return (long)(StringToLong(value_.stringVal));
 				default:
@@ -486,9 +487,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (unsigned char)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (unsigned char)value_.doubleVal;			
+					return (unsigned char)value_.doubleVal;
 				case TYPE_BOOL:
-					return (unsigned char)value_.boolVal;			
+					return (unsigned char)value_.boolVal;
 				case TYPE_STRING:
 					return (unsigned char)(StringToInt(value_.stringVal));
 				default:
@@ -521,9 +522,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (unsigned short)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (unsigned short)value_.doubleVal;			
+					return (unsigned short)value_.doubleVal;
 				case TYPE_BOOL:
-					return (unsigned short)value_.boolVal;			
+					return (unsigned short)value_.boolVal;
 				case TYPE_STRING:
 					return (unsigned short)(StringToInt(value_.stringVal));
 				default:
@@ -556,9 +557,9 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (unsigned int)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (unsigned int)value_.doubleVal;			
+					return (unsigned int)value_.doubleVal;
 				case TYPE_BOOL:
-					return (unsigned int)value_.boolVal;			
+					return (unsigned int)value_.boolVal;
 				case TYPE_STRING:
 					return (unsigned int)(StringToInt(value_.stringVal));
 				default:
@@ -567,7 +568,7 @@ class XMLVariant
 					}
 				}
 			};
-	
+
 		inline operator unsigned long() const
 			{
 			switch (this->type_)
@@ -591,11 +592,11 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (unsigned long)value_.floatVal;
 				case TYPE_DOUBLE:
-					return (unsigned long)value_.doubleVal;			
+					return (unsigned long)value_.doubleVal;
 				case TYPE_STRING:
 					return (unsigned long)(StringToInt(value_.stringVal));
 				case TYPE_BOOL:
-					return (unsigned long)value_.boolVal;			
+					return (unsigned long)value_.boolVal;
 				default:
 					{
 					return (unsigned long)0;
@@ -626,9 +627,9 @@ class XMLVariant
 				case TYPE_UNSIGNEDLONG:
 					return (float)(long)value_.ulongVal;
 				case TYPE_DOUBLE:
-					return (float)value_.doubleVal;			
+					return (float)value_.doubleVal;
 				case TYPE_BOOL:
-					return (float)value_.boolVal;			
+					return (float)value_.boolVal;
 				case TYPE_STRING:
 					return (float)(StringToDouble(value_.stringVal));
 				default:
@@ -643,7 +644,7 @@ class XMLVariant
 			switch (this->type_)
 				{
 				case TYPE_DOUBLE:
-					return value_.doubleVal;			
+					return value_.doubleVal;
 				case TYPE_CHAR:
 					return (double)value_.charVal;
 				case TYPE_SHORT:
@@ -663,7 +664,7 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (double)value_.floatVal;
 				case TYPE_BOOL:
-					return (double)value_.boolVal;			
+					return (double)value_.boolVal;
 				case TYPE_STRING:
 					return (double)(StringToDouble(value_.stringVal));
 
@@ -679,7 +680,7 @@ class XMLVariant
 			switch (this->type_)
 				{
 				case TYPE_BOOL:
-					return value_.boolVal;			
+					return value_.boolVal;
 				case TYPE_CHAR:
 					return (value_.charVal!=0);
 				case TYPE_SHORT:
@@ -699,7 +700,7 @@ class XMLVariant
 				case TYPE_FLOAT:
 					return (value_.floatVal!=0);
 				case TYPE_DOUBLE:
-					return (value_.doubleVal!=0);		
+					return (value_.doubleVal!=0);
 				case TYPE_STRING:
 					if (StrICmp(value_.stringVal,"TRUE")==0)
 						return true;
@@ -820,8 +821,8 @@ class XMLVariant
 			};
 	private:
 		TYPES type_;
-		
-		union 
+
+		union
 			{
 			char charVal;
 			short shortVal;
@@ -836,8 +837,10 @@ class XMLVariant
 			bool boolVal;
 			char* stringVal;
 			} value_;
-		
+
 
 	};
+
+}; // namespace pixie
 
 #endif /* __XMLVariant_H__ */

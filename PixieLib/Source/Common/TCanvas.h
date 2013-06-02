@@ -1,10 +1,10 @@
 /**
  * \class	TCanvas
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TCanvas_H__
@@ -14,6 +14,7 @@
 #include "TColor.h"
 #include "TRect.h"
 
+namespace pixie {
 // External classes
 
 // TFont
@@ -65,7 +66,7 @@ class TCanvas
 		void SetBackgroundAlpha(unsigned char alpha);
 
 		TRect GetExtents() const;
-	
+
 		TCell ToCell(unsigned short value) const;
 		unsigned short ToUShort(TCell value) const;
 	private:
@@ -81,5 +82,5 @@ class TCanvas
 	};
 
 
-
+}; // namespace pixie
 #endif /* __TCanvas_H__ */

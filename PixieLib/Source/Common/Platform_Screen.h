@@ -1,14 +1,14 @@
 /**
  * \class	Platform_Screen
- * 
+ *
  * \ingroup	platform
  * \brief	Platform independent abstraction of the display device
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * This is a platform abstraction of the physical screen, the display
- * device. This is what you use to display things, and it is really 
+ * device. This is what you use to display things, and it is really
  * quite simple: you simply call Present, passing it the pixel data you
- * want to display. The idea is that you keep drawing your sprites 
+ * want to display. The idea is that you keep drawing your sprites
  * and background to a pixel buffer you have created, and every frame you
  * call the Present method of Platform_Screen to display the results.
  *
@@ -17,7 +17,7 @@
  * makes use of this information, so consider it more of a hint than
  * an actual directive. What you DO have control over is the size of
  * your own bitmap, as that is what you will be drawing to.
- * 
+ *
  * For platform specific behavior, please refer to the header file
  * of the platform specific implementation of Platform_Screen.
  */
@@ -29,6 +29,7 @@
 #include "Platform.h"
 
 // Forward declares
+namespace pixie {
 
 // Platform_Screen
 class Platform_Screen
@@ -74,10 +75,10 @@ class Platform_Screen
 		 * to run in windowed mode).
 		 *
 		 * When the game is running in windowed mode, the values set by the SetSize method are used
-		 * for the size of the window (when running in fullscreen mode, those values will be ignored, 
+		 * for the size of the window (when running in fullscreen mode, those values will be ignored,
 		 * and the bitmap passed to Present will be scaled to fill the actual screen).
 		 *
-		 * On some platforms, it is possible for the user to change the window size when  running 
+		 * On some platforms, it is possible for the user to change the window size when  running
 		 * in windowed mode. This will be handled automatically, and the GetWidth and GetHeight
 		 * methods can be used to retrieve the current window size. If you need to override the
 		 * users change, you can call SetSize to adjust the window dimensions.
@@ -91,7 +92,7 @@ class Platform_Screen
 
 
 		/**
-		 * This method is used to determine if the game is running in windowed or fullscreen mode. 
+		 * This method is used to determine if the game is running in windowed or fullscreen mode.
 		 * See the SetFullscreen method for an explanation of windowed and fullscreen mode.
 		 *
 		 * \returns	True if running in fullscreen mode, False if running in windowed mode
@@ -101,14 +102,14 @@ class Platform_Screen
 
 		/**
 		 * Sets the size of the window, if running in windowed mode. This method might not do anything
-		 * on some platforms. 
+		 * on some platforms.
 		 * See the SetFullscreen method for an explanation of windowed and fullscreen mode.
 		 */
 		virtual void SetSize(
-			int width,	///< The desired window width in pixels 
+			int width,	///< The desired window width in pixels
 			int height	///< The desired window height in pixels
 			) = 0;
-		
+
 
 		/**
 		 * Retrieves the current window width, if running in windowed mode.
@@ -129,17 +130,17 @@ class Platform_Screen
 
 
 		/**
-		 * Enables or disables interpolation mode. If interpolation mode is on, it means that bitmaps 
+		 * Enables or disables interpolation mode. If interpolation mode is on, it means that bitmaps
 		 * of a size that doesn't match the screen size, and therefor needs to be scaled, will be interpolated
 		 * using some interpolation scheme available on the platform (for example, it might use bilinear
 		 * interpolation) which makes the image smoother, but a bit more blurry. If interpolation mode is off,
 		 * there will be no interpolation applied to the bitmap, and it will also not be scaled by fractional
-		 * amounts (meaning it might be scaled x2, x3, x4 etc, but not, for example, x2.5). You're likely to 
+		 * amounts (meaning it might be scaled x2, x3, x4 etc, but not, for example, x2.5). You're likely to
 		 * get larger border areas with interpolation turned off, but your pixels will stay sharp and crisp,
-		 * with no distortion. 
+		 * with no distortion.
 		 *
 		 * In general, you want to turn off interpolation if the graphics for your game falls into the "pixel art"
-		 * category, and leave it on (which is the default) for highres or rendered art. 
+		 * category, and leave it on (which is the default) for highres or rendered art.
 		 *
 		 * Note that interpolation might not be available on all platforms, and in that case, toggling this
 		 * setting will have no effect.
@@ -150,10 +151,10 @@ class Platform_Screen
 
 
 		/**
-		 * This method is used to determine if interpolation mode is currently on or off. See SetInterpolationMode 
+		 * This method is used to determine if interpolation mode is currently on or off. See SetInterpolationMode
 		 * method for an explanation of the interpolation mode
 		 *
-		 * \returns	True if interpolation mode is on, False if interpolation mode is off	
+		 * \returns	True if interpolation mode is on, False if interpolation mode is off
 		 */
 		virtual bool GetInterpolationMode() = 0;
 
@@ -173,5 +174,7 @@ class Platform_Screen
 			float& y	///< Y-coordinate to transform
 			) = 0;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Screen_H__ */

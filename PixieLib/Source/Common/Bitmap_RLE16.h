@@ -1,11 +1,11 @@
 /**
  * \class	Bitmap_RLE16
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
- * \todo	Clipping 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
+ * \todo	Clipping
  * \todo	Optimize for masked/unmasked/clipped/unclipped
  * \todo	Add methods to conform to Bitmap interface (Copy, transformations etc)
  * \todo	Move blit implementations to BlitterRLE16/CopperRLE16
@@ -17,6 +17,8 @@
 
 // Includes
 #include "Bitmap.h"
+
+namespace pixie {
 
 // Forward declares
 class Image;
@@ -44,11 +46,11 @@ class Bitmap_RLE16:public Bitmap
 		virtual unsigned char* GetAlphaData();
 
 		virtual void Clear();
-		
-		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );							
+
+		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );
 		virtual void Fill(unsigned short color, unsigned char alpha = 255);
 
-		virtual int GetWidth(Transformation transformation = NoTransformation) const;		
+		virtual int GetWidth(Transformation transformation = NoTransformation) const;
 		virtual int GetHeight(Transformation transformation = NoTransformation) const;
 
 		virtual unsigned short  GetPixelColor(int x, int y, Transformation transformation = NoTransformation) const;
@@ -79,13 +81,11 @@ class Bitmap_RLE16:public Bitmap
 	private:
 		friend class GenerateRLE16;
 		unsigned int opaqueSize_;
-		unsigned char* opaqueData_;	
+		unsigned char* opaqueData_;
 		unsigned int alphaSize_;
-		unsigned char* alphaData_;	
+		unsigned char* alphaData_;
 };
 
-
-
+}; // namespace pixie
 
 #endif /* __Bitmap_RLE16_H__ */
-	

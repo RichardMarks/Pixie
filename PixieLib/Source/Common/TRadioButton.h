@@ -1,10 +1,10 @@
 /**
  * \class	TRadioButton
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __TRadioButton_H__
@@ -14,7 +14,7 @@
 #include "TStaticText.h"
 
 // External classes
-
+namespace pixie {
 
 // TRadioButton
 class TRadioButton:public TStaticText
@@ -24,12 +24,14 @@ class TRadioButton:public TStaticText
 		virtual void Draw(TCanvas& canvas) const;
 
 		virtual bool EvaluateFocus(int x, int y) const;
-	
+
 		bool IsSelected() const;
 		void SetSelected(bool selected);
 
 	private:
 		bool selected_;
 	};
+
+}; // namespace pixie
 
 #endif /* __TRadioButton_H__ */

@@ -1,18 +1,20 @@
 /**
  * \class	Resource_Sound
- * 
+ *
  * \ingroup	resources
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
- 
+
 #ifndef __Resource_Sound_H__
 #define __Resource_Sound_H__
 
 // Includes
 #include "StringId.h"
 #include "Filename.h"
+
+namespace pixie {
 
 // Forward declares
 class Sound;
@@ -43,6 +45,8 @@ class Resource_Sound
 	private:
 		const Sound* sound_;
 	};
+
+}; // namespace pixie
 
 #endif /* __Resource_Sound_H__ */
 

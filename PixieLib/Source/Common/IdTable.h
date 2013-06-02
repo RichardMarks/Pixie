@@ -1,10 +1,10 @@
 /**
  * \class	IdTable
- * 
+ *
  * \ingroup	containers
- * \brief	
+ * \brief
  * \author	Mattias Gustavsson
- * 
+ *
  */
 
 #ifndef __IdTable_H__
@@ -15,6 +15,7 @@
 #include "StandardLibrary.h"
 #include "Debug.h"
 
+namespace pixie {
 // Forward declares
 typedef unsigned int Id;
 
@@ -24,7 +25,7 @@ class IdTable
     {
     public:
         //*** Constructor ***
-        
+
         IdTable( unsigned int initialCapacity = 64 ):
             count_( 0 ),
             capacity_( initialCapacity ),
@@ -34,14 +35,14 @@ class IdTable
             objects_( 0 ),
             indices_( 0 ),
             objectSlotToIndex_( 0 ),
-            freeList_( 0 )           
+            freeList_( 0 )
             {
             COMPILE_CHECK_IS_POD( T, POD );
             }
-            
-            
+
+
         //*** Destructor ***
-        
+
         ~IdTable()
             {
             if( freeList_ )
@@ -53,7 +54,7 @@ class IdTable
                 {
                 Free( objectSlotToIndex_ );
                 }
-            
+
             if( indices_ )
                 {
                 Free( indices_ );
@@ -69,7 +70,7 @@ class IdTable
                         op->~T();
                         op++;
                         }
-                    } 
+                    }
                 Free( objects_ );
                 }
             }
@@ -79,26 +80,26 @@ class IdTable
 
         Id Add( const T& object = T() )
             {
-            if( !objects_ )            
+            if( !objects_ )
                 {
                 objects_ = (T*) Malloc( sizeof( T ) * capacity_ );
                 }
-                
-            if( !indices_ )            
+
+            if( !indices_ )
                 {
                 indices_ = (Index*) Malloc( sizeof( Index ) * capacity_ );
                 }
-                
-            if( !objectSlotToIndex_ )            
+
+            if( !objectSlotToIndex_ )
                 {
                 objectSlotToIndex_ = (unsigned int*) Malloc( sizeof( unsigned int* ) * capacity_ );
                 }
-                
-            if( !freeList_ )            
+
+            if( !freeList_ )
                 {
                 freeList_ = (unsigned int*) Malloc( sizeof( unsigned int* ) * capacity_ );
                 }
-                
+
             if( count_ >= ( capacity_ - ( capacity_  / 4 ) ) )
                 {
                 capacity_ *= 2;
@@ -114,11 +115,11 @@ class IdTable
                         op++;
                         }
                     Free( objects_ );
-                    objects_ = newObjects;                    
+                    objects_ = newObjects;
                     }
                 else
                     {
-                    objects_ = (T*) Realloc( objects_, sizeof( T ) * capacity_ );                        
+                    objects_ = (T*) Realloc( objects_, sizeof( T ) * capacity_ );
                     }
                 indices_ = (Index*) Realloc( indices_, sizeof( Index ) * capacity_ );
                 objectSlotToIndex_ = (unsigned int*) Realloc( objectSlotToIndex_, sizeof( Index ) * capacity_ );
@@ -144,7 +145,7 @@ class IdTable
                 }
 
             indices_[ newIndex ].objectIndex = count_;
-            
+
             if( POD == NOT_POD )
                 {
                 new (&objects_[ count_ ]) T( object );
@@ -154,14 +155,14 @@ class IdTable
                 objects_[ count_ ] = object;
                 }
             objectSlotToIndex_[ count_ ] = newIndex;
-            
+
             Id id = ToId( indices_[ newIndex ].counter, newIndex );
-            
+
             count_++;
             return id;
             }
 
-            
+
         //*** Remove ***
 
         void Remove( Id id )
@@ -174,18 +175,18 @@ class IdTable
                 {
                 return;
                 }
-                
+
             Index index = indices_[ idIndex ];
-            
+
             if( index.counter != idCounter || index.objectIndex >= count_ )
                 {
                 return;
                 }
-            
+
             objects_[ index.objectIndex ].~T();
             if( count_ > 0 && index.objectIndex < count_ - 1 )
                 {
-                if( POD == NOT_POD )                
+                if( POD == NOT_POD )
                     {
                     new ( &objects_[ index.objectIndex ]) T( objects_[ count_ -1 ] );
                     objects_[ count_ - 1 ].~T();
@@ -194,13 +195,13 @@ class IdTable
                     {
                     objects_[ index.objectIndex ] = objects_[ count_ - 1 ];
                     }
-                
-                indices_[ objectSlotToIndex_[ count_ - 1 ] ].objectIndex = indices_[ objectSlotToIndex_[ index.objectIndex ] ].objectIndex;  
+
+                indices_[ objectSlotToIndex_[ count_ - 1 ] ].objectIndex = indices_[ objectSlotToIndex_[ index.objectIndex ] ].objectIndex;
                 objectSlotToIndex_[ index.objectIndex ] =  objectSlotToIndex_[ count_ -1 ];
                 }
-                
-            count_--;                
-            
+
+            count_--;
+
             indices_[ idIndex ].counter++;
             freeList_[ freeListTail_ ] = idIndex;
             freeListTail_ ++;
@@ -210,7 +211,7 @@ class IdTable
                 }
             }
 
-        
+
         //*** Get ***
 
         const T& Get( Id id ) const
@@ -222,16 +223,16 @@ class IdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return objects_[ index.objectIndex ];
                     }
                 }
-                    
-            Assert( false, "Invalid id");                    
+
+            Assert( false, "Invalid id");
             static T defaultValue;
-            return defaultValue; 
+            return defaultValue;
             }
 
 
@@ -246,16 +247,16 @@ class IdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return objects_[ index.objectIndex ];
                     }
                 }
-                    
-            Assert( false, "Invalid id");                    
+
+            Assert( false, "Invalid id");
             static T defaultValue;
-            return defaultValue; 
+            return defaultValue;
             }
 
 
@@ -270,13 +271,13 @@ class IdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     objects_[ index.objectIndex ] = object;
                     }
                 }
-                
+
             }
 
 
@@ -291,23 +292,23 @@ class IdTable
             if( idIndex < capacity_ )
                 {
                 Index index = indices_[ idIndex ];
-                
+
                 if( index.counter == idCounter && index.objectIndex < count_ )
                     {
                     return true;
                     }
                 }
-            
+
             return false;
             }
-            
+
 
         //*** GetItemCount ***
 
         int GetItemCount() const
             {
             return count_;
-            }           
+            }
 
 
         //*** Get ***
@@ -316,12 +317,12 @@ class IdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 static T defaultValue;
-                return defaultValue; 
+                return defaultValue;
                 }
-            return objects_[ index ];            
-            }           
+            return objects_[ index ];
+            }
 
 
         //*** Get ***
@@ -330,12 +331,12 @@ class IdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 static T defaultValue;
-                return defaultValue; 
+                return defaultValue;
                 }
-            return objects_[ index ];            
-            }           
+            return objects_[ index ];
+            }
 
 
         //*** GetId ***
@@ -344,15 +345,15 @@ class IdTable
             {
             if ( index < 0 || (unsigned int) index >= count_ )
                 {
-                Assert( false, "Index out of range");                    
+                Assert( false, "Index out of range");
                 Id id = ToId( (unsigned int) -1, (unsigned int)-1 );
                 return id;
                 }
-                
-            unsigned int actualIndex = objectSlotToIndex_[ index ];                
+
+            unsigned int actualIndex = objectSlotToIndex_[ index ];
             Id id = ToId( indices_[ actualIndex ].counter, actualIndex );
-            return id;            
-            }           
+            return id;
+            }
 
     private:
 
@@ -368,7 +369,7 @@ class IdTable
             return id;
             }
 
-        
+
         //*** FromId ***
 
         void FromId( Id id, unsigned int& counter, unsigned int& index ) const
@@ -379,14 +380,14 @@ class IdTable
             counter = ( id  >> INDEX_BIT_COUNT ) & COUNTER_BIT_MASK;
             index = id & INDEX_BIT_MASK;
             }
-            
-    private:      
+
+    private:
         struct Index
             {
             unsigned int counter : COUNTER_BIT_COUNT;
             unsigned int objectIndex : INDEX_BIT_COUNT;
             };
-            
+
         unsigned int capacity_;
         unsigned int count_;
 	    T* objects_;
@@ -400,5 +401,7 @@ class IdTable
 
 // Implementation
 #include "IdTable.inl"
+
+}; // namespace pixie
 
 #endif /* __IdTable_h__ */

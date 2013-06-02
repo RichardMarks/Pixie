@@ -1,12 +1,12 @@
 /**
  * \class	HashTable
- * 
+ *
  * \ingroup	containers
  * \brief	Stores data in a hash table, indexed by any type of key
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * A hash table store items associated with a key, in such a way that you can quickly retrieve a value from the key.
- * Internally, the hash table stores the items in an array, and from the key it calculates a number (called a hash 
+ * Internally, the hash table stores the items in an array, and from the key it calculates a number (called a hash
  * value), which is used to find which array entry to place the item in. This means there's no looping through the array
  * when finding an item, as the hash value is used to go straight into the right array entry.
  *
@@ -18,53 +18,54 @@
 #define __HashTable_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 template<class HASHTABLEKEY, class TYPE> class HashTableIterator;
 
 // HashTable
-template<class HASHTABLEKEY, class TYPE> 
+template<class HASHTABLEKEY, class TYPE>
 class HashTable
 	{
 	public:
-		/**		
+		/**
 		 * Constructor
 		 */
 		HashTable(
 			int initialSlots = 64	///< Number of slots initially in the table. Will grow when table is full.
 			);
 
-		
-		/**		
+
+		/**
 		 * Destructor
 		 */
 		~HashTable();
 
 
-		/**		
-		 * Insert an item into the table, associating it with the specified key.		 
+		/**
+		 * Insert an item into the table, associating it with the specified key.
 		 */
 		TYPE& Insert(
 			const HASHTABLEKEY& key,	///< Key to be used when searching the table for this item
 			const TYPE& data			///< Item to be added.
 			);
-		
+
 		/**
-		 * Removes the item with the specified key from the table. 
+		 * Removes the item with the specified key from the table.
 		 */
 		void Remove(
 			const HASHTABLEKEY& key 		///< Key of the item to be removed
-			); 
+			);
 
 		/**
 		 * Removes an in
 		 */
 		void Remove(
 			const HashTableIterator<HASHTABLEKEY,TYPE>& iterator	///< item to remove
-			); 
+			);
 
 
-		/**	
+		/**
 		 * Retrieves the total number of items currently in the table
 		 *
 		 * \returns	Number of items in the table.
@@ -73,7 +74,7 @@ class HashTable
 
 
 		/**
-		 * Removes all entries from the table. It is up to the application to destroy 
+		 * Removes all entries from the table. It is up to the application to destroy
 		 * the objects that are contained in the table.
 		 */
 		void Clear(
@@ -94,7 +95,7 @@ class HashTable
 			HashTableItem():inUse(false),itemCount(0) {}
 			};
 	private:
-		int initialSlots_; 		
+		int initialSlots_;
 		int slotCount_;	///< Total number of slots in the table
 		int itemCount_;	///< Total number of items currently in the table
 		HashTableItem* items_;	///< The actual table data
@@ -104,4 +105,5 @@ class HashTable
 // Implementation
 #include "HashTable.inl"
 
+}; // namespace pixie
 #endif /* __HASHTABLE_H__ */

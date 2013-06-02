@@ -1,11 +1,11 @@
 
 /**
  * \class	Blitter
- * 
+ *
  * \ingroup	graphics
  * \brief	Helper class for bitmap blitting
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * \todo	Additive blitting + more blend modes
  */
 
@@ -14,6 +14,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 
 // Blitter
@@ -51,9 +52,9 @@ class Blitter
 
 		template<Operation operation, Step stepX, Step stepY> static void Rot180(BlitArgs& blitArgs);
 
-		template<Operation operation, Step stepX, Step stepY> static void Rot270(BlitArgs& blitArgs);		
+		template<Operation operation, Step stepX, Step stepY> static void Rot270(BlitArgs& blitArgs);
 
-		template<Operation operation, Step stepX, Step stepY> static void Flip_X(BlitArgs& blitArgs);		
+		template<Operation operation, Step stepX, Step stepY> static void Flip_X(BlitArgs& blitArgs);
 
 		template<Operation operation, Step stepX, Step stepY> static void Flip_Y(BlitArgs& blitArgs);
 
@@ -62,7 +63,7 @@ class Blitter
 
 		// sourceColor is copied to targetColor
 		inline static void Normal_Copy_SC_TC(BlitArgs& blitArgs);
-	
+
 		// sourceColor is copied to targetColor
 		inline static void Flip_Y_Copy_SC_TC(BlitArgs& blitArgs);
 
@@ -144,88 +145,88 @@ class Blitter
 		#define DefArgs OpArgs& opArgs, StepArgs& stepArgs
 		#define PassArgs opArgs, stepArgs
 
-		INLINE void StepX_Normal_TC			(DefArgs) { StepFunc<X_Normal_TC>							(PassArgs); }; 
-		INLINE void StepY_Normal_TC			(DefArgs) { StepFunc<Y_Normal_TC>							(PassArgs); }; 
-		INLINE void StepX_Normal_TA			(DefArgs) { StepFunc<X_Normal_TA>							(PassArgs); }; 
-		INLINE void StepY_Normal_TA			(DefArgs) { StepFunc<Y_Normal_TA>							(PassArgs); }; 
-		INLINE void StepX_Normal_SC_TC		(DefArgs) { StepFunc<X_Normal_SC, X_Normal_TC>				(PassArgs); }; 
-		INLINE void StepY_Normal_SC_TC		(DefArgs) { StepFunc<Y_Normal_SC, Y_Normal_TC>				(PassArgs); }; 
-		INLINE void StepX_Normal_SA_TA		(DefArgs) { StepFunc<X_Normal_SA, X_Normal_TA>				(PassArgs); }; 
-		INLINE void StepY_Normal_SA_TA		(DefArgs) { StepFunc<Y_Normal_SA, Y_Normal_TA>				(PassArgs); }; 
-		INLINE void StepX_Normal_SA_TC		(DefArgs) { StepFunc<X_Normal_SA, X_Normal_TC>				(PassArgs); }; 
-		INLINE void StepY_Normal_SA_TC		(DefArgs) { StepFunc<Y_Normal_SA, Y_Normal_TC>				(PassArgs); }; 
-		INLINE void StepX_Normal_SC_SA_TC	(DefArgs) { StepFunc<X_Normal_SC, X_Normal_SA, X_Normal_TC>	(PassArgs); }; 
-		INLINE void StepY_Normal_SC_SA_TC	(DefArgs) { StepFunc<Y_Normal_SC, Y_Normal_SA, Y_Normal_TC>	(PassArgs); }; 
+		INLINE void StepX_Normal_TC			(DefArgs) { StepFunc<X_Normal_TC>							(PassArgs); };
+		INLINE void StepY_Normal_TC			(DefArgs) { StepFunc<Y_Normal_TC>							(PassArgs); };
+		INLINE void StepX_Normal_TA			(DefArgs) { StepFunc<X_Normal_TA>							(PassArgs); };
+		INLINE void StepY_Normal_TA			(DefArgs) { StepFunc<Y_Normal_TA>							(PassArgs); };
+		INLINE void StepX_Normal_SC_TC		(DefArgs) { StepFunc<X_Normal_SC, X_Normal_TC>				(PassArgs); };
+		INLINE void StepY_Normal_SC_TC		(DefArgs) { StepFunc<Y_Normal_SC, Y_Normal_TC>				(PassArgs); };
+		INLINE void StepX_Normal_SA_TA		(DefArgs) { StepFunc<X_Normal_SA, X_Normal_TA>				(PassArgs); };
+		INLINE void StepY_Normal_SA_TA		(DefArgs) { StepFunc<Y_Normal_SA, Y_Normal_TA>				(PassArgs); };
+		INLINE void StepX_Normal_SA_TC		(DefArgs) { StepFunc<X_Normal_SA, X_Normal_TC>				(PassArgs); };
+		INLINE void StepY_Normal_SA_TC		(DefArgs) { StepFunc<Y_Normal_SA, Y_Normal_TC>				(PassArgs); };
+		INLINE void StepX_Normal_SC_SA_TC	(DefArgs) { StepFunc<X_Normal_SC, X_Normal_SA, X_Normal_TC>	(PassArgs); };
+		INLINE void StepY_Normal_SC_SA_TC	(DefArgs) { StepFunc<Y_Normal_SC, Y_Normal_SA, Y_Normal_TC>	(PassArgs); };
 
-		INLINE void StepX_Rot090_TC			(DefArgs) { StepFunc<X_Rot090_TC>							(PassArgs); }; 
-		INLINE void StepY_Rot090_TC			(DefArgs) { StepFunc<Y_Rot090_TC>							(PassArgs); }; 
-		INLINE void StepX_Rot090_TA			(DefArgs) { StepFunc<X_Rot090_TA>							(PassArgs); }; 
-		INLINE void StepY_Rot090_TA			(DefArgs) { StepFunc<Y_Rot090_TA>							(PassArgs); }; 
-		INLINE void StepX_Rot090_SC_TC		(DefArgs) { StepFunc<X_Rot090_SC, X_Rot090_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot090_SC_TC		(DefArgs) { StepFunc<Y_Rot090_SC, Y_Rot090_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot090_SA_TA		(DefArgs) { StepFunc<X_Rot090_SA, X_Rot090_TA>				(PassArgs); }; 
-		INLINE void StepY_Rot090_SA_TA		(DefArgs) { StepFunc<Y_Rot090_SA, Y_Rot090_TA>				(PassArgs); }; 
-		INLINE void StepX_Rot090_SA_TC		(DefArgs) { StepFunc<X_Rot090_SA, X_Rot090_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot090_SA_TC		(DefArgs) { StepFunc<Y_Rot090_SA, Y_Rot090_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot090_SC_SA_TC	(DefArgs) { StepFunc<X_Rot090_SC, X_Rot090_SA, X_Rot090_TC>	(PassArgs); }; 
-		INLINE void StepY_Rot090_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot090_SC, Y_Rot090_SA, Y_Rot090_TC>	(PassArgs); }; 
-		
+		INLINE void StepX_Rot090_TC			(DefArgs) { StepFunc<X_Rot090_TC>							(PassArgs); };
+		INLINE void StepY_Rot090_TC			(DefArgs) { StepFunc<Y_Rot090_TC>							(PassArgs); };
+		INLINE void StepX_Rot090_TA			(DefArgs) { StepFunc<X_Rot090_TA>							(PassArgs); };
+		INLINE void StepY_Rot090_TA			(DefArgs) { StepFunc<Y_Rot090_TA>							(PassArgs); };
+		INLINE void StepX_Rot090_SC_TC		(DefArgs) { StepFunc<X_Rot090_SC, X_Rot090_TC>				(PassArgs); };
+		INLINE void StepY_Rot090_SC_TC		(DefArgs) { StepFunc<Y_Rot090_SC, Y_Rot090_TC>				(PassArgs); };
+		INLINE void StepX_Rot090_SA_TA		(DefArgs) { StepFunc<X_Rot090_SA, X_Rot090_TA>				(PassArgs); };
+		INLINE void StepY_Rot090_SA_TA		(DefArgs) { StepFunc<Y_Rot090_SA, Y_Rot090_TA>				(PassArgs); };
+		INLINE void StepX_Rot090_SA_TC		(DefArgs) { StepFunc<X_Rot090_SA, X_Rot090_TC>				(PassArgs); };
+		INLINE void StepY_Rot090_SA_TC		(DefArgs) { StepFunc<Y_Rot090_SA, Y_Rot090_TC>				(PassArgs); };
+		INLINE void StepX_Rot090_SC_SA_TC	(DefArgs) { StepFunc<X_Rot090_SC, X_Rot090_SA, X_Rot090_TC>	(PassArgs); };
+		INLINE void StepY_Rot090_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot090_SC, Y_Rot090_SA, Y_Rot090_TC>	(PassArgs); };
 
-		INLINE void StepX_Rot180_TC			(DefArgs) { StepFunc<X_Rot180_TC>							(PassArgs); }; 
-		INLINE void StepY_Rot180_TC			(DefArgs) { StepFunc<Y_Rot180_TC>							(PassArgs); }; 
-		INLINE void StepX_Rot180_TA			(DefArgs) { StepFunc<X_Rot180_TA>							(PassArgs); }; 
-		INLINE void StepY_Rot180_TA			(DefArgs) { StepFunc<Y_Rot180_TA>							(PassArgs); }; 
-		INLINE void StepX_Rot180_SC_TC		(DefArgs) { StepFunc<X_Rot180_SC, X_Rot180_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot180_SC_TC		(DefArgs) { StepFunc<Y_Rot180_SC, Y_Rot180_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot180_SA_TA		(DefArgs) { StepFunc<X_Rot180_SA, X_Rot180_TA>				(PassArgs); }; 
-		INLINE void StepY_Rot180_SA_TA		(DefArgs) { StepFunc<Y_Rot180_SA, Y_Rot180_TA>				(PassArgs); }; 
-		INLINE void StepX_Rot180_SA_TC		(DefArgs) { StepFunc<X_Rot180_SA, X_Rot180_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot180_SA_TC		(DefArgs) { StepFunc<Y_Rot180_SA, Y_Rot180_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot180_SC_SA_TC	(DefArgs) { StepFunc<X_Rot180_SC, X_Rot180_SA, X_Rot180_TC>	(PassArgs); }; 
-		INLINE void StepY_Rot180_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot180_SC, Y_Rot180_SA, Y_Rot180_TC>	(PassArgs); }; 
-		
-		INLINE void StepX_Rot270_TC			(DefArgs) { StepFunc<X_Rot270_TC>							(PassArgs); }; 
-		INLINE void StepY_Rot270_TC			(DefArgs) { StepFunc<Y_Rot270_TC>							(PassArgs); }; 
-		INLINE void StepX_Rot270_TA			(DefArgs) { StepFunc<X_Rot270_TA>							(PassArgs); }; 
-		INLINE void StepY_Rot270_TA			(DefArgs) { StepFunc<Y_Rot270_TA>							(PassArgs); }; 
-		INLINE void StepX_Rot270_SC_TC		(DefArgs) { StepFunc<X_Rot270_SC, X_Rot270_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot270_SC_TC		(DefArgs) { StepFunc<Y_Rot270_SC, Y_Rot270_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot270_SA_TA		(DefArgs) { StepFunc<X_Rot270_SA, X_Rot270_TA>				(PassArgs); }; 
-		INLINE void StepY_Rot270_SA_TA		(DefArgs) { StepFunc<Y_Rot270_SA, Y_Rot270_TA>				(PassArgs); }; 
-		INLINE void StepX_Rot270_SA_TC		(DefArgs) { StepFunc<X_Rot270_SA, X_Rot270_TC>				(PassArgs); }; 
-		INLINE void StepY_Rot270_SA_TC		(DefArgs) { StepFunc<Y_Rot270_SA, Y_Rot270_TC>				(PassArgs); }; 
-		INLINE void StepX_Rot270_SC_SA_TC	(DefArgs) { StepFunc<X_Rot270_SC, X_Rot270_SA, X_Rot270_TC>	(PassArgs); }; 
-		INLINE void StepY_Rot270_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot270_SC, Y_Rot270_SA, Y_Rot270_TC>	(PassArgs); }; 
-		
-		INLINE void StepX_Flip_X_TC			(DefArgs) { StepFunc<X_Flip_X_TC>							(PassArgs); }; 
-		INLINE void StepY_Flip_X_TC			(DefArgs) { StepFunc<Y_Flip_X_TC>							(PassArgs); }; 
-		INLINE void StepX_Flip_X_TA			(DefArgs) { StepFunc<X_Flip_X_TA>							(PassArgs); }; 
-		INLINE void StepY_Flip_X_TA			(DefArgs) { StepFunc<Y_Flip_X_TA>							(PassArgs); }; 
-		INLINE void StepX_Flip_X_SC_TC		(DefArgs) { StepFunc<X_Flip_X_SC, X_Flip_X_TC>				(PassArgs); }; 
-		INLINE void StepY_Flip_X_SC_TC		(DefArgs) { StepFunc<Y_Flip_X_SC, Y_Flip_X_TC>				(PassArgs); }; 
-		INLINE void StepX_Flip_X_SA_TA		(DefArgs) { StepFunc<X_Flip_X_SA, X_Flip_X_TA>				(PassArgs); }; 
-		INLINE void StepY_Flip_X_SA_TA		(DefArgs) { StepFunc<Y_Flip_X_SA, Y_Flip_X_TA>				(PassArgs); }; 
-		INLINE void StepX_Flip_X_SA_TC		(DefArgs) { StepFunc<X_Flip_X_SA, X_Flip_X_TC>				(PassArgs); }; 
-		INLINE void StepY_Flip_X_SA_TC		(DefArgs) { StepFunc<Y_Flip_X_SA, Y_Flip_X_TC>				(PassArgs); }; 
-		INLINE void StepX_Flip_X_SC_SA_TC	(DefArgs) { StepFunc<X_Flip_X_SC, X_Flip_X_SA, X_Flip_X_TC>	(PassArgs); }; 
-		INLINE void StepY_Flip_X_SC_SA_TC	(DefArgs) { StepFunc<Y_Flip_X_SC, Y_Flip_X_SA, Y_Flip_X_TC>	(PassArgs); }; 
-		
-		INLINE void StepX_Flip_Y_TC			(DefArgs) { StepFunc<X_Flip_Y_TC>							(PassArgs); }; 
-		INLINE void StepY_Flip_Y_TC			(DefArgs) { StepFunc<Y_Flip_Y_TC>							(PassArgs); }; 
-		INLINE void StepX_Flip_Y_TA			(DefArgs) { StepFunc<X_Flip_Y_TA>							(PassArgs); }; 
-		INLINE void StepY_Flip_Y_TA			(DefArgs) { StepFunc<Y_Flip_Y_TA>							(PassArgs); }; 
-		INLINE void StepX_Flip_Y_SC_TC		(DefArgs) { StepFunc<X_Flip_Y_SC, X_Flip_Y_TC>				(PassArgs); }; 
-		INLINE void StepY_Flip_Y_SC_TC		(DefArgs) { StepFunc<Y_Flip_Y_SC, Y_Flip_Y_TC>				(PassArgs); }; 
-		INLINE void StepX_Flip_Y_SA_TA		(DefArgs) { StepFunc<X_Flip_Y_SA, X_Flip_Y_TA>				(PassArgs); }; 
-		INLINE void StepY_Flip_Y_SA_TA		(DefArgs) { StepFunc<Y_Flip_Y_SA, Y_Flip_Y_TA>				(PassArgs); }; 
-		INLINE void StepX_Flip_Y_SA_TC		(DefArgs) { StepFunc<X_Flip_Y_SA, X_Flip_Y_TC>				(PassArgs); }; 
-		INLINE void StepY_Flip_Y_SA_TC		(DefArgs) { StepFunc<Y_Flip_Y_SA, Y_Flip_Y_TC>				(PassArgs); }; 
-		INLINE void StepX_Flip_Y_SC_SA_TC	(DefArgs) { StepFunc<X_Flip_Y_SC, X_Flip_Y_SA, X_Flip_Y_TC>	(PassArgs); }; 
-		INLINE void StepY_Flip_Y_SC_SA_TC	(DefArgs) { StepFunc<Y_Flip_Y_SC, Y_Flip_Y_SA, Y_Flip_Y_TC>	(PassArgs); }; 
+
+		INLINE void StepX_Rot180_TC			(DefArgs) { StepFunc<X_Rot180_TC>							(PassArgs); };
+		INLINE void StepY_Rot180_TC			(DefArgs) { StepFunc<Y_Rot180_TC>							(PassArgs); };
+		INLINE void StepX_Rot180_TA			(DefArgs) { StepFunc<X_Rot180_TA>							(PassArgs); };
+		INLINE void StepY_Rot180_TA			(DefArgs) { StepFunc<Y_Rot180_TA>							(PassArgs); };
+		INLINE void StepX_Rot180_SC_TC		(DefArgs) { StepFunc<X_Rot180_SC, X_Rot180_TC>				(PassArgs); };
+		INLINE void StepY_Rot180_SC_TC		(DefArgs) { StepFunc<Y_Rot180_SC, Y_Rot180_TC>				(PassArgs); };
+		INLINE void StepX_Rot180_SA_TA		(DefArgs) { StepFunc<X_Rot180_SA, X_Rot180_TA>				(PassArgs); };
+		INLINE void StepY_Rot180_SA_TA		(DefArgs) { StepFunc<Y_Rot180_SA, Y_Rot180_TA>				(PassArgs); };
+		INLINE void StepX_Rot180_SA_TC		(DefArgs) { StepFunc<X_Rot180_SA, X_Rot180_TC>				(PassArgs); };
+		INLINE void StepY_Rot180_SA_TC		(DefArgs) { StepFunc<Y_Rot180_SA, Y_Rot180_TC>				(PassArgs); };
+		INLINE void StepX_Rot180_SC_SA_TC	(DefArgs) { StepFunc<X_Rot180_SC, X_Rot180_SA, X_Rot180_TC>	(PassArgs); };
+		INLINE void StepY_Rot180_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot180_SC, Y_Rot180_SA, Y_Rot180_TC>	(PassArgs); };
+
+		INLINE void StepX_Rot270_TC			(DefArgs) { StepFunc<X_Rot270_TC>							(PassArgs); };
+		INLINE void StepY_Rot270_TC			(DefArgs) { StepFunc<Y_Rot270_TC>							(PassArgs); };
+		INLINE void StepX_Rot270_TA			(DefArgs) { StepFunc<X_Rot270_TA>							(PassArgs); };
+		INLINE void StepY_Rot270_TA			(DefArgs) { StepFunc<Y_Rot270_TA>							(PassArgs); };
+		INLINE void StepX_Rot270_SC_TC		(DefArgs) { StepFunc<X_Rot270_SC, X_Rot270_TC>				(PassArgs); };
+		INLINE void StepY_Rot270_SC_TC		(DefArgs) { StepFunc<Y_Rot270_SC, Y_Rot270_TC>				(PassArgs); };
+		INLINE void StepX_Rot270_SA_TA		(DefArgs) { StepFunc<X_Rot270_SA, X_Rot270_TA>				(PassArgs); };
+		INLINE void StepY_Rot270_SA_TA		(DefArgs) { StepFunc<Y_Rot270_SA, Y_Rot270_TA>				(PassArgs); };
+		INLINE void StepX_Rot270_SA_TC		(DefArgs) { StepFunc<X_Rot270_SA, X_Rot270_TC>				(PassArgs); };
+		INLINE void StepY_Rot270_SA_TC		(DefArgs) { StepFunc<Y_Rot270_SA, Y_Rot270_TC>				(PassArgs); };
+		INLINE void StepX_Rot270_SC_SA_TC	(DefArgs) { StepFunc<X_Rot270_SC, X_Rot270_SA, X_Rot270_TC>	(PassArgs); };
+		INLINE void StepY_Rot270_SC_SA_TC	(DefArgs) { StepFunc<Y_Rot270_SC, Y_Rot270_SA, Y_Rot270_TC>	(PassArgs); };
+
+		INLINE void StepX_Flip_X_TC			(DefArgs) { StepFunc<X_Flip_X_TC>							(PassArgs); };
+		INLINE void StepY_Flip_X_TC			(DefArgs) { StepFunc<Y_Flip_X_TC>							(PassArgs); };
+		INLINE void StepX_Flip_X_TA			(DefArgs) { StepFunc<X_Flip_X_TA>							(PassArgs); };
+		INLINE void StepY_Flip_X_TA			(DefArgs) { StepFunc<Y_Flip_X_TA>							(PassArgs); };
+		INLINE void StepX_Flip_X_SC_TC		(DefArgs) { StepFunc<X_Flip_X_SC, X_Flip_X_TC>				(PassArgs); };
+		INLINE void StepY_Flip_X_SC_TC		(DefArgs) { StepFunc<Y_Flip_X_SC, Y_Flip_X_TC>				(PassArgs); };
+		INLINE void StepX_Flip_X_SA_TA		(DefArgs) { StepFunc<X_Flip_X_SA, X_Flip_X_TA>				(PassArgs); };
+		INLINE void StepY_Flip_X_SA_TA		(DefArgs) { StepFunc<Y_Flip_X_SA, Y_Flip_X_TA>				(PassArgs); };
+		INLINE void StepX_Flip_X_SA_TC		(DefArgs) { StepFunc<X_Flip_X_SA, X_Flip_X_TC>				(PassArgs); };
+		INLINE void StepY_Flip_X_SA_TC		(DefArgs) { StepFunc<Y_Flip_X_SA, Y_Flip_X_TC>				(PassArgs); };
+		INLINE void StepX_Flip_X_SC_SA_TC	(DefArgs) { StepFunc<X_Flip_X_SC, X_Flip_X_SA, X_Flip_X_TC>	(PassArgs); };
+		INLINE void StepY_Flip_X_SC_SA_TC	(DefArgs) { StepFunc<Y_Flip_X_SC, Y_Flip_X_SA, Y_Flip_X_TC>	(PassArgs); };
+
+		INLINE void StepX_Flip_Y_TC			(DefArgs) { StepFunc<X_Flip_Y_TC>							(PassArgs); };
+		INLINE void StepY_Flip_Y_TC			(DefArgs) { StepFunc<Y_Flip_Y_TC>							(PassArgs); };
+		INLINE void StepX_Flip_Y_TA			(DefArgs) { StepFunc<X_Flip_Y_TA>							(PassArgs); };
+		INLINE void StepY_Flip_Y_TA			(DefArgs) { StepFunc<Y_Flip_Y_TA>							(PassArgs); };
+		INLINE void StepX_Flip_Y_SC_TC		(DefArgs) { StepFunc<X_Flip_Y_SC, X_Flip_Y_TC>				(PassArgs); };
+		INLINE void StepY_Flip_Y_SC_TC		(DefArgs) { StepFunc<Y_Flip_Y_SC, Y_Flip_Y_TC>				(PassArgs); };
+		INLINE void StepX_Flip_Y_SA_TA		(DefArgs) { StepFunc<X_Flip_Y_SA, X_Flip_Y_TA>				(PassArgs); };
+		INLINE void StepY_Flip_Y_SA_TA		(DefArgs) { StepFunc<Y_Flip_Y_SA, Y_Flip_Y_TA>				(PassArgs); };
+		INLINE void StepX_Flip_Y_SA_TC		(DefArgs) { StepFunc<X_Flip_Y_SA, X_Flip_Y_TC>				(PassArgs); };
+		INLINE void StepY_Flip_Y_SA_TC		(DefArgs) { StepFunc<Y_Flip_Y_SA, Y_Flip_Y_TC>				(PassArgs); };
+		INLINE void StepX_Flip_Y_SC_SA_TC	(DefArgs) { StepFunc<X_Flip_Y_SC, X_Flip_Y_SA, X_Flip_Y_TC>	(PassArgs); };
+		INLINE void StepY_Flip_Y_SC_SA_TC	(DefArgs) { StepFunc<Y_Flip_Y_SC, Y_Flip_Y_SA, Y_Flip_Y_TC>	(PassArgs); };
 
 		#undef DefArgs
 		#undef PassArgs
-		
+
 	private:
 		INLINE void X_Normal_TC(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.targetColor++; };
 		INLINE void Y_Normal_TC(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.targetColor+=stepArgs.targetRowStep; };
@@ -244,7 +245,7 @@ class Blitter
 		INLINE void Y_Rot090_SC(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.sourceColor+=stepArgs.sourceRowStep; };
 		INLINE void X_Rot090_SA(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.sourceAlpha-=stepArgs.sourceHPitch; };
 		INLINE void Y_Rot090_SA(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.sourceAlpha+=stepArgs.sourceRowStep;};
-		
+
 		INLINE void X_Rot180_TC(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.targetColor++; };
 		INLINE void Y_Rot180_TC(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.targetColor+=stepArgs.targetRowStep; };
 		INLINE void X_Rot180_TA(OpArgs& opArgs, StepArgs& stepArgs) { opArgs.targetAlpha++; };
@@ -290,5 +291,6 @@ class Blitter
 
 #include "Blitter.inl"
 
+}; // namespace pixie
+
 #endif /* __Blitter_H__ */
-	

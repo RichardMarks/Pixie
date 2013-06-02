@@ -29,6 +29,7 @@
 
 // Forward declares
 
+namespace pixie {
 
 // PathFinder
 template <class CELL>
@@ -103,5 +104,7 @@ class PathFinder
 
 // Implementation
 #include "PathFinder.inl"
+
+}; // namespace pixie
 
 #endif // __PathFinder_H__

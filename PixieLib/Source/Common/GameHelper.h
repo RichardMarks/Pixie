@@ -1,10 +1,10 @@
 /**
  * \class	GameHelper
- * 
+ *
  * \ingroup	helpers
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -21,6 +21,7 @@
 #include "OldResourceManager.h"
 #include "GameStateManager.h"
 
+namespace pixie {
 // Forward declares
 class Screen;
 
@@ -33,7 +34,7 @@ class GameHelper
 
 		bool UpdateGame(float deltaTime, Screen& screen);
 	private:
-		// Create all the global systems we need - we just create them on the stack like this, as this will keep them 
+		// Create all the global systems we need - we just create them on the stack like this, as this will keep them
 		// around until the game object is shut down, and since they are singletons, they are globally accessible anyway
 		ArchiveManager archiveManager_;
 		InputManager inputManager_;
@@ -45,5 +46,6 @@ class GameHelper
 		GameStateManager gameStateManager_;
 
 	};
+}; // namespace pixie
 
 #endif /* __GameHelper_H__ */

@@ -1,12 +1,12 @@
 /**
  * \class	MemoryPool
- * 
+ *
  * \ingroup	containers
  * \brief	MemoryPool for faster dynamic memory allocation
- * \author	Mattias Gustavsson	
- * 
- * Memory pools are very useful if you need to dynamically allocate and free many blocks of 
- * memory that are all the same size. A memory pool works by allocating larger chunks of 
+ * \author	Mattias Gustavsson
+ *
+ * Memory pools are very useful if you need to dynamically allocate and free many blocks of
+ * memory that are all the same size. A memory pool works by allocating larger chunks of
  * memory, and dishing it out in smaller chunks as requested. When memory is freed, it
  * is not released, but instead recycled to be used in future requests to allocate memory.
  * Another advantage of memory pools is that blocks are kept closer to each other in memory,
@@ -17,11 +17,11 @@
 #define __MemoryPool_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 // MemoryPool
-template<class TYPE> 
+template<class TYPE>
 class MemoryPool
 	{
 	public:
@@ -29,7 +29,7 @@ class MemoryPool
 		 * Constructor
 		 */
 		MemoryPool(
-			int entriesPerBlock = 64	///< The number of entries per block. By tweaking this value, better performance might be obtained. Things that rarely allocates from the memory pool can have a low value for this, but things doing many allocations are better off upping it. 
+			int entriesPerBlock = 64	///< The number of entries per block. By tweaking this value, better performance might be obtained. Things that rarely allocates from the memory pool can have a low value for this, but things doing many allocations are better off upping it.
 			);
 
 		/**
@@ -38,7 +38,7 @@ class MemoryPool
 		~MemoryPool();
 
 		/**
-		 * Retrieves an unused entry from the memory pool. If there are no more 
+		 * Retrieves an unused entry from the memory pool. If there are no more
 		 * unused entries left, a new block will be allocated.
 		 *
 		 * \returns	A pointer to an unused entry from the memory pool
@@ -82,5 +82,7 @@ class MemoryPool
 
 // Implementation
 #include "MemoryPool.inl"
+
+}; // namespace pixie
 
 #endif /* __MemoryPool_H__ */

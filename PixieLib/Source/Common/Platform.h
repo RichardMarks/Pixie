@@ -1,18 +1,18 @@
 /**
  * \class	Platform
- * 
+ *
  * \ingroup	platform
  * \brief	Singleton class for handling platform abstraction systems
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * The Platform system consists of several different systems, which defines
  * the interface to different parts of the OS or hardware. When the application
- * starts, you must define which implementation to use for each of the platform 
- * systems (interfaces) that you want to utilize in your application. This is 
- * done by creating an instance of the platform specific implementation, and 
+ * starts, you must define which implementation to use for each of the platform
+ * systems (interfaces) that you want to utilize in your application. This is
+ * done by creating an instance of the platform specific implementation, and
  * passing it to the Platform singleton, from which it can be retrieved whevenever
  * needed.
- * 
+ *
  * A typical way of setting up the platform system could look like this:
  * int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
  * 	{
@@ -35,10 +35,10 @@
  *
  * There's a NULL platform implementation provided, wich implements empty functions for all the
  * systems, which can be useful when porting or debugging. The NULL implementations will return
- * valid objects and have all functions callable, but they will not perform any functionality 
+ * valid objects and have all functions callable, but they will not perform any functionality
  * and will mostly return 0 values.
  */
- 
+
 
 #ifndef __Platform_H__
 #define __Platform_H__
@@ -46,6 +46,7 @@
 // Includes
 #include "PlatformEventListener.h"
 
+namespace pixie {
 // Forward declares
 class Platform_OS;
 class Platform_Time;
@@ -261,7 +262,7 @@ class Platform
 
 
 		/**
-		 * To make it easier for the platform specific implementations to communicate 
+		 * To make it easier for the platform specific implementations to communicate
 		 * without specific knowledge of each other, a simple event system is provided.
 		 * By deriving a platform system from PlatformEventListener, and register it for
 		 * events using this methods, the system will be notified every time another
@@ -270,9 +271,9 @@ class Platform
 		static void RegisterEventListener(
 			PlatformEventListener* listener	///< Object that is to receive platform events
 			);
-		
+
 		/**
-		 * Unregisters an event listener that was registered through a call to 
+		 * Unregisters an event listener that was registered through a call to
 		 * RegisterEventListener. You can call this method to stop receiving events, but
 		 * you MUST call it when before the registered object is destroyed (typically from
 		 * its destructor).
@@ -305,7 +306,7 @@ class Platform
 		~Platform();
 
 		static Platform platform_;	///< Singleton instance of the Platform class
-		
+
 		static Platform_OS* platform_OS_;	///< Current instance of Platform_OS. Defaults to 0
 		static Platform_Time* platform_Time_;	///< Current instance of Platform_Time. Defaults to 0
 		static Platform_Sound* platform_Sound_;	///< Current instance of Platform_Sound. Defaults to 0
@@ -322,9 +323,10 @@ class Platform
 	private:
 		// The following will generate a compiler error if there is an attempt
 		// to create a second instance of the class
-		Platform(const Platform&);	///< Copy constructor, not implemented, only accessible from within the class 
-		const Platform& operator=(const Platform&);	///< Copy assignment, not implemented, only accessible from within the class 
+		Platform(const Platform&);	///< Copy constructor, not implemented, only accessible from within the class
+		const Platform& operator=(const Platform&);	///< Copy assignment, not implemented, only accessible from within the class
 
 	};
 
+}; // namespace pixie
 #endif /* __Platform_H__ */

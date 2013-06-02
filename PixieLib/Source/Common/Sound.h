@@ -1,17 +1,18 @@
 /**
  * \class	Sound
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __Sound_H__
 #define __Sound_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 class Asset;
@@ -45,7 +46,7 @@ class Sound
 		int GetChannels() const;
 
 		/**
-		 * Returns the frequency of the sound data in number of 
+		 * Returns the frequency of the sound data in number of
 		 * samples per second
 		 */
 		int GetFrequency() const;
@@ -70,6 +71,8 @@ class Sound
 		int size_;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Sound_H__ */
 

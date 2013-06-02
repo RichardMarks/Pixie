@@ -1,10 +1,10 @@
 /**
  * \class	StringIdTable
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * Efficient way of storing string id's
  */
 
@@ -12,7 +12,7 @@
 #define __StringIdTable_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 // StringIdTable
@@ -34,7 +34,7 @@ class StringIdTable
 		static StringIdTable& GetInstance();
 
 		/**
-		 * Constructor. This is meant to be private, as it is only the 
+		 * Constructor. This is meant to be private, as it is only the
 		 * GetInstance method which will create an instance of this class.
 		 */
 		StringIdTable();
@@ -46,7 +46,7 @@ class StringIdTable
 
 		/**
 		 * Looks up the specified string in the shared string table, using the
-		 * pre-calculated hash-value for faster lookup. If the string is not 
+		 * pre-calculated hash-value for faster lookup. If the string is not
 		 * found in the table, it is inserted, and the shared string pointer
 		 * corresponding to the specified idString is returned.
 		 *
@@ -85,16 +85,16 @@ class StringIdTable
 			);
 
 		// The following will generate a compiler error if there is an attempt to create a second instance of the class
-		StringIdTable(const StringIdTable&);	///< Copy constructor, not implemented, only accessible from within the class 
-		const StringIdTable& operator=(const StringIdTable&);	///< Copy assignment, not implemented, only accessible from within the class 
+		StringIdTable(const StringIdTable&);	///< Copy constructor, not implemented, only accessible from within the class
+		const StringIdTable& operator=(const StringIdTable&);	///< Copy assignment, not implemented, only accessible from within the class
 
 
 	private:
 		int idStringTableSlots_; ///< The total number of slots in the table
 		int idStringTableItemCount_; ///< The number of strings stored in the table
 		char** idStringTable_;	///< Table for storing all the idStrings
-		
-		
+
+
 		static const int stringStorageBlockSize_=4*1024; ///< Strings are stored in pre-allocated blocks, and this specifies the size, in bytes, of each block. Whenever a block is full, a new block is allocated off the heap
 
 		/// Each pre-allocated string block keeps track of two pointers
@@ -108,5 +108,7 @@ class StringIdTable
 		int stringStorageBlockMaxCount_;	///< The maximum number of entries that can be stored in stringStorageBlocks_
 		int stringStorageBlockCount_; ///< The current number of entries  stored in stringStorageBlocks_
 		};
+
+}; // namespace pixie
 
 #endif /* __StringIdTable_H__ */

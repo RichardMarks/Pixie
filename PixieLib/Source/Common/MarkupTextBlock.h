@@ -7,6 +7,7 @@
 #include "Array.h"
 #include "StringId.h"
 
+namespace pixie {
 // Forward declares
 class Bitmap;
 
@@ -41,10 +42,10 @@ class MarkupTextBlock
 		const char* GetString() const;
 
 		void Render(
-			Bitmap& target, 
-			int x1, 
-			int y1, 
-			int x2, 
+			Bitmap& target,
+			int x1,
+			int y1,
+			int x2,
 			int y2,
 			StringId hoverOption,
 			StringId hoverLink
@@ -56,7 +57,7 @@ class MarkupTextBlock
 	private:
 		void ResetTokenStream();
 		const char* GetNextToken();
-		
+
 
 	private:
 		char* pmlString_;
@@ -77,5 +78,6 @@ class MarkupTextBlock
 		Array<InteractiveRegion> options_;
 	};
 
+}; // namespace pixie
 
 #endif /* __MarkupTextBlock_H__ */

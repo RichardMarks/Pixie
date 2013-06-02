@@ -1,10 +1,10 @@
 /**
  * \class	MusicManager
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __MusicManager_H__
@@ -14,6 +14,7 @@
 #include "Singleton.h"
 #include "Filename.h"
 
+namespace pixie {
 // Forward declares
 class Music;
 
@@ -22,7 +23,7 @@ class MusicManager:public Singleton<MusicManager>
 	{
 	public:
 		MusicManager();
-		virtual ~MusicManager();	
+		virtual ~MusicManager();
 
 		void PlayMusic(const Filename& filename, bool loop = true, float volume = 1, float fadeInTime_ = 0);
 		void StopMusic(float fadeOutTime = 0.5f);
@@ -65,6 +66,6 @@ class MusicManager:public Singleton<MusicManager>
 	};
 
 #define siMusicManager MusicManager::GetInstance()
-
+}; // namespace pixie
 #endif /* __MusicManager_H__ */
 

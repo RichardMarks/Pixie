@@ -1,15 +1,15 @@
 
 /**
  * \class	QuadBlitter
- * 
+ *
  * \ingroup	graphics
  * \brief	Helper class for bitmap blitting
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * \todo	Add support for clipping
  * \todo	Add support for modulate blitting
  * \todo	Add support for additive blitting
- * \todo	Add copper functionality (for copying alpha channels and filling alpha) 
+ * \todo	Add copper functionality (for copying alpha channels and filling alpha)
  */
 
 #ifndef __QuadBlitter_H__
@@ -19,7 +19,7 @@
 #include "StandardLibrary.h"
 
 // Forward declares
-
+namespace pixie {
 
 // QuadBlitter
 class QuadBlitter
@@ -78,7 +78,7 @@ class QuadBlitter
                 }
 
             void Step()
-                {   
+                {
 			    pdata++;
 			    u+=stepU;
 			    v+=stepV;
@@ -104,7 +104,7 @@ class QuadBlitter
 
 		// SrcColor kopieras till DstColor
 		static void Blit(unsigned short* sourceColor, int sourceHPitch, int sourceVPitch, unsigned short* targetColor, int targetHPitch, int targetVPitch, int sourceX1, int sourceY1, int sourceX2, int sourceY2, int sourceX3, int sourceY3, int sourceX4, int sourceY4, int targetX1, int targetY1, int targetX2, int targetY2, int targetX3, int targetY3, int targetX4, int targetY4);
-		
+
 		// SrcColor blendas (SrcAlpha) med DstColor
 		static void Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, int sourceHPitch, int sourceVPitch, unsigned short* targetColor, int targetHPitch, int targetVPitch, int sourceX1, int sourceY1, int sourceX2, int sourceY2, int sourceX3, int sourceY3, int sourceX4, int sourceY4, int targetX1, int targetY1, int targetX2, int targetY2, int targetX3, int targetY3, int targetX4, int targetY4);
 
@@ -139,17 +139,17 @@ class QuadBlitter
 
 					}
 
-				~EdgeBuffer() 
-					{ 
-					if (buffer_) 
+				~EdgeBuffer()
+					{
+					if (buffer_)
 						{
-						Free(buffer_); 
+						Free(buffer_);
 						buffer_=0;
 						size_=512;
 						}
 					}
 
-				void SetMinSize(int size) 
+				void SetMinSize(int size)
 					{
 					if (buffer_ && size_>size)
 						{
@@ -161,26 +161,26 @@ class QuadBlitter
 						size_*=2;
 						}
 
-					if (!buffer_) 
-						{ 
-						buffer_=Malloc(size_);  
+					if (!buffer_)
+						{
+						buffer_=Malloc(size_);
 						}
 					else
-						{ 
+						{
 						Free(buffer_);
-						buffer_=Malloc(size_);  
-						} 
+						buffer_=Malloc(size_);
+						}
 					}
-				
+
 				void* buffer_;
 				int size_;
 			};
 
 		static EdgeBuffer edgeBuffer_;
-		
+
 	};
 /*
-template<Blitter::Operation operation, typename Edge, typename RowArgs> 
+template<Blitter::Operation operation, typename Edge, typename RowArgs>
 static void QuadBlitter::Blit(BlitArgs& blitArgs)
 	{
     blitArgs.sourceX2++;
@@ -212,9 +212,9 @@ static void QuadBlitter::Blit(BlitArgs& blitArgs)
 
 	#define EDGE_TYPE Edge
 	#define USE_UV
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef USE_UV
 	#undef EDGE_TYPE
 
@@ -224,11 +224,11 @@ static void QuadBlitter::Blit(BlitArgs& blitArgs)
 	// Draw rows
 	unsigned short* data=blitArgs.targetColor+p0y*blitArgs.targetHPitch;
 	Edge* edgePtr=static_cast<Edge*>(edgeBuffer_.buffer_);
-    
+
     for (int y=p0y; y<p3y; y++)
 		{
         RowArgs row(data,&edgePtr);
-		
+
 		for (int x=0; x<row.width; x++)
 			{
 			int offset=(row.u>>16)+blitArgs.sourceHPitch*(row.v>>16);
@@ -244,5 +244,7 @@ static void QuadBlitter::Blit(BlitArgs& blitArgs)
 
 
 */
+
+}; // namespace pixie
+
 #endif /* __QuadBlitter_H__ */
-		

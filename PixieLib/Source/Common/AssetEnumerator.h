@@ -1,16 +1,18 @@
 /**
  * \class	AssetEnumerator
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __AssetEnumerator_H__
 #define __AssetEnumerator_H__
 
 // Includes
+
+namespace pixie {
 
 // Forward declares
 class Platform_FileSystem_Directory;
@@ -40,7 +42,7 @@ class AssetEnumerator
 		AssetEnumerator(
 			const AssetEnumerator& assetEnumerator
 			);
-		
+
 		/**
 		 * Copy Operator
 		 */
@@ -76,11 +78,12 @@ class AssetEnumerator
 	private:
 		void CreateFromFilename(const Filename& filename);
 	private:
-		Platform_FileSystem_Directory* directory_;		
+		Platform_FileSystem_Directory* directory_;
 		const ArchiveDirectory* archiveDirectory_;
 		char* nameBuffer_;
 		int nameBufferSize_;
 	};
 
+}; // namespace pixie
 
 #endif /* __AssetEnumerator_H__ */

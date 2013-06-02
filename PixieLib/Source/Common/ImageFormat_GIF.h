@@ -1,13 +1,13 @@
 /**
  * \class	ImageFormat_GIF
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __ImageFormat_GIF_H__
 #define __ImageFormat_GIF_H__
 
@@ -16,7 +16,7 @@
 
 // Forward declares
 class GifLoader;
-
+namespace pixie {
 
 // ImageFormat_GIF
 class ImageFormat_GIF:public ImageFormat
@@ -32,7 +32,7 @@ class ImageFormat_GIF:public ImageFormat
 		ImageFormat_GIF(
 			const Asset& asset
 			);
-		
+
 		/**
 		 * Destructor
 		 */
@@ -53,4 +53,5 @@ class ImageFormat_GIF:public ImageFormat
 		GifLoader* image_;
 	};
 
+}; // namespace pixie
 #endif /* __ImageFormat_GIF_H__ */

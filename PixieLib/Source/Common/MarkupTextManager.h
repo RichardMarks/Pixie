@@ -1,11 +1,11 @@
 /**
  * \class	MarkupTextManager
- * 
- * \ingroup	MarkupText
- * \brief	
- * \author	Mattias Gustavsson	
  *
- * 
+ * \ingroup	MarkupText
+ * \brief
+ * \author	Mattias Gustavsson
+ *
+ *
  * \todo	Centered text (irregular backgrounds)
  * \todo	Refactor and cleanup
  */
@@ -19,6 +19,7 @@
 #include "StringId.h"
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 class Asset;
 class Font;
@@ -47,29 +48,29 @@ class MarkupTextManager:public Singleton<MarkupTextManager>
 			};
 
 		void SetFontStyle(
-			FontStyle style, 
-			const Asset& font, 
+			FontStyle style,
+			const Asset& font,
 			unsigned short color
 			);
 
 		void SetFontStyle(
-			FontStyle style, 
-			const Asset& font, 
-			unsigned short color, 
+			FontStyle style,
+			const Asset& font,
+			unsigned short color,
 			unsigned short bgcolor,
 			unsigned char opacity = 255
 			);
 
 		void SetFontStyle(
-			StringId style, 
-			const Asset& font, 
+			StringId style,
+			const Asset& font,
 			unsigned short color
 			);
 
 		void SetFontStyle(
-			StringId style, 
-			const Asset& font, 
-			unsigned short color, 
+			StringId style,
+			const Asset& font,
+			unsigned short color,
 			unsigned short bgcolor,
 			unsigned char opacity = 255
 			);
@@ -105,24 +106,24 @@ class MarkupTextManager:public Singleton<MarkupTextManager>
 		unsigned short GetFontBgColor(
 			StringId style
 			);
-		
+
 		void RegisterVariable(
-			StringId name, 
+			StringId name,
 			int* value
 			);
-		
+
 		void RegisterVariable(
-			StringId name, 
+			StringId name,
 			StringId* value
 			);
-		
+
 		void RegisterVariable(
-			StringId name, 
+			StringId name,
 			Array<int>* values
 			);
 
 		void RegisterVariable(
-			StringId name, 
+			StringId name,
 			Array<StringId>* value
 			);
 
@@ -131,15 +132,15 @@ class MarkupTextManager:public Singleton<MarkupTextManager>
 			);
 
 		void GetVariableValue(
-			StringId name, 
-			char* buffer, 
+			StringId name,
+			char* buffer,
 			int bufferSize
 			);
 
 		void GetVariableValue(
-			StringId name, 
-			int index, 
-			char* buffer, 
+			StringId name,
+			int index,
+			char* buffer,
 			int bufferSize
 			);
 
@@ -163,10 +164,10 @@ class MarkupTextManager:public Singleton<MarkupTextManager>
 			);
 
 		void RemoveFontStyle(FontStyle style);
-		void AddFontStyle(FontStyle style, const Asset& font, unsigned short color, unsigned char opacity, unsigned short bgcolor);	
+		void AddFontStyle(FontStyle style, const Asset& font, unsigned short color, unsigned char opacity, unsigned short bgcolor);
 
 		void RemoveFontStyle(StringId style);
-		void AddFontStyle(StringId style, const Asset& font, unsigned short color, unsigned char opacity, unsigned short bgcolor);	
+		void AddFontStyle(StringId style, const Asset& font, unsigned short color, unsigned char opacity, unsigned short bgcolor);
 
 		struct RegisteredVariable
 			{
@@ -187,5 +188,7 @@ class MarkupTextManager:public Singleton<MarkupTextManager>
 	};
 
 #define siMarkupTextManager  MarkupTextManager::GetInstance()
+
+}; // namespace pixie
 
 #endif /* __MarkupTextManager_H__ */

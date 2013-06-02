@@ -1,9 +1,9 @@
 	/**
  * \class	Resource
- * 
+ *
  * \ingroup	core
  * \brief	Templated resource class to handle shared references to resources
- * \author	Mattias Gustavsson	
+ * \author	Mattias Gustavsson
  *
  * The resource class allows any type of object to be created through the resource manager, as long
  * as the class passed as a template parameter has a constructor which takes a const char* parameter
@@ -21,6 +21,7 @@
 // Includes
 #include "StringId.h"
 
+namespace pixie {
 // External classes
 
 // Resource
@@ -37,14 +38,14 @@ class Resource
 		 * Creates an object of the template parameter type from the file name, unless
 		 * it already exists, in which case this resource is set to reference it.
 		 */
-		Resource( 
+		Resource(
 			StringId filename	///< Filename of resource to create. A plain const char* can be passed for this
 			);
 
 		/**
 		 * Copy constructor. Increases the reference count of the resource.
 		 */
-		Resource( 
+		Resource(
 			const Resource& resource	///< Resource to copy
 			);
 
@@ -58,7 +59,7 @@ class Resource
 		 * Assignment operator. Will decrease the reference count of this resource, and increase it on
 		 * the resource passed in.
 		 */
-		const Resource& operator = ( 
+		const Resource& operator = (
 			const Resource& resource	///< Resource to assign to this resource
 			);
 
@@ -79,5 +80,7 @@ class Resource
 
 // Implementation
 #include "Resource.inl"
+
+}; // namespace pixie
 
 #endif /* __Resource_H__ */

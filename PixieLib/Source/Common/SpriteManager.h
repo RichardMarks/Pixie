@@ -1,12 +1,12 @@
 /**
  * \class	SpriteManager
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
- 
+
 #ifndef __SpriteManager_H__
 #define __SpriteManager_H__
 
@@ -14,6 +14,7 @@
 #include "Array.h"
 #include "StringId.h"
 
+namespace pixie {
 // Forward declares
 class Bitmap;
 class Sprite;
@@ -22,13 +23,13 @@ class SpriteEventListener;
 // SpriteManager
 class SpriteManager
 	{
-	public:	
+	public:
 		SpriteManager();
 		~SpriteManager();
 
 		virtual void AddSprite(Sprite* sprite);
 		virtual void RemoveSprite(Sprite* sprite);
-	
+
 		virtual void Update(float deltaTime);
 		virtual void Render(Bitmap& bitmap);
 
@@ -66,6 +67,6 @@ class SpriteManager
 		bool activatedHighlighted_;
 	};
 
-
+}; // namespace pixie
 
 #endif /* __SpriteManager_H__ */

@@ -1,18 +1,18 @@
 
 /**
  * \class	BlitterRLE8
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __BlitterRLE8_H__
 #define __BlitterRLE8_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 
 
@@ -24,7 +24,7 @@ class BlitterRLE8
 		__forceinline static void Opaque_Unclipped_Masked(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y);
 		__forceinline static void Opaque_Unclipped_Unmasked_Transparent(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y, unsigned char alpha);
 		__forceinline static void Opaque_Unclipped_Masked_Transparent(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y, unsigned char alpha);
-		
+
 		__forceinline static void Opaque_Clipped_Unmasked(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y, int xStart, int yStart, int xEnd, int yEnd);
 		__forceinline static void Opaque_Clipped_Masked(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y, int xStart, int yStart, int xEnd, int yEnd);
 		__forceinline static void Opaque_Clipped_Unmasked_Transparent(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y, int xStart, int yStart, int xEnd, int yEnd, unsigned char alpha);
@@ -58,5 +58,5 @@ class BlitterRLE8
 
 #include "BlitterRLE8.inl"
 
+}; // namespace pixie
 #endif /* __BlitterRLE8_H__ */
-	

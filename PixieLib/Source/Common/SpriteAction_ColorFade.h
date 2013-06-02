@@ -1,19 +1,20 @@
 /**
  * \class	SpriteAction_ColorFade
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __SpriteAction_ColorFade_H__
 #define __SpriteAction_ColorFade_H__
 
 // Includes
 #include "SpriteAction.h"
 
+namespace pixie {
 // Forward declares
 class Sprite;
 
@@ -41,6 +42,6 @@ class SpriteAction_ColorFade:public SpriteAction
 		float deltaB_;
 		float elapsedTime_;
 	};
-
+}; // namespace pixie
 #endif /* __SpriteAction_ColorFade_H__ */
 

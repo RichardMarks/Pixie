@@ -1,13 +1,13 @@
 /**
  * \class	TextWindow
- * 
+ *
  * \ingroup	graphics
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __TextWindow_H__
 #define __TextWindow_H__
 
@@ -16,6 +16,7 @@
 #include "Sprite.h"
 #include "MarkupTextBlock.h"
 
+namespace pixie {
 // Forward declares
 class SpriteManager;
 
@@ -54,7 +55,7 @@ class TextWindow:public Sprite
 	protected:
 		virtual void Render(Bitmap& bitmap);
 
-	private: 
+	private:
 		float width_;
 		float height_;
 		MarkupTextBlock content_;
@@ -68,6 +69,7 @@ class TextWindow:public Sprite
 		float padding_;
 	};
 
+}; // namespace pixie
 
 #endif /* __TextWindow_H__ */
 

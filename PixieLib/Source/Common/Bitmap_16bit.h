@@ -1,10 +1,10 @@
 /**
  * \class	Bitmap_16bit
- * 
+ *
  * \ingroup	graphics
  * \brief	Uncompressed 16-bit color buffer without alpha channel
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,6 +13,8 @@
 
 // Includes
 #include "Bitmap.h"
+
+namespace pixie {
 
 // Forward declares
 class Image;
@@ -27,7 +29,7 @@ class Bitmap_16bit:public Bitmap
 		Bitmap_16bit(const Asset& asset);
 
 		/**
-		 * Creates an empty bitmap with the specified dimensions. 
+		 * Creates an empty bitmap with the specified dimensions.
 		 */
 		Bitmap_16bit(
 			int width,	///< The width of the bitmap, in pixels
@@ -56,8 +58,6 @@ class Bitmap_16bit:public Bitmap
 
 	};
 
-
-
+}; // namespace pixie
 
 #endif /* __Bitmap_16bit_H__ */
-	

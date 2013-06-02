@@ -1,10 +1,10 @@
 /**
  * \class	DebugPage
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __DebugPage_H__
@@ -16,6 +16,8 @@
 #include "Array.h"
 #include "TCanvas.h"
 #include "TRect.h"
+
+namespace pixie {
 
 // External classes
 class TCanvas;
@@ -95,7 +97,7 @@ class DebugPage
 				TCheckbox* checkbox;
 				TRadioButton* radioButton;
 				TView* box;
-				};			
+				};
 			};
 
 		struct Widget* FindWidget(StringId id) const;
@@ -104,5 +106,7 @@ class DebugPage
 
 		Array<Widget> widgets_;
 	};
+
+}; // namespace pixie
 
 #endif /* __DebugPage_H__ */

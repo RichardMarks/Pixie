@@ -1,10 +1,10 @@
 /**
  * \class	DebugPageManager
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __DebugPageManager_H__
@@ -17,6 +17,8 @@
 #include "Array.h"
 #include "StringId.h"
 #include "TCanvas.h"
+
+namespace pixie {
 
 // External classes
 class Bitmap;
@@ -105,7 +107,7 @@ class DebugPageManager : public Singleton<DebugPageManager>
 		className##_DebugPageRegistrar className##_debugPageRegistrar_; \
 			static void className##_DebugPageHandler(DebugPageCommand command, void* instance, void** parameters) \
 			{ \
-			className* object = (className*)instance; 		
+			className* object = (className*)instance;
 
 	#define DEBUG_PAGE_CREATE(method) \
 			if (command==DebugPageCommand_Create) \
@@ -119,21 +121,21 @@ class DebugPageManager : public Singleton<DebugPageManager>
 				{ \
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				object->method(*page); \
-				} 
+				}
 
 	#define DEBUG_PAGE_ENTER(method)\
 			if (command==DebugPageCommand_Enter) \
 				{ \
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				object->method(*page); \
-				} 
+				}
 
 	#define DEBUG_PAGE_EXIT(method)\
 			if (command==DebugPageCommand_Exit) \
 				{ \
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				object->method(*page); \
-				} 
+				}
 
 	#define DEBUG_PAGE_RECORD(method) \
 			if (command==DebugPageCommand_Record) \
@@ -141,7 +143,7 @@ class DebugPageManager : public Singleton<DebugPageManager>
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				float* deltaTime = (float*)parameters[1]; \
 				object->method(*page,*deltaTime); \
-				} 
+				}
 
 	#define DEBUG_PAGE_UPDATE(method) \
 			if (command==DebugPageCommand_Update) \
@@ -149,7 +151,7 @@ class DebugPageManager : public Singleton<DebugPageManager>
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				float* deltaTime = (float*)parameters[1]; \
 				object->method(*page,*deltaTime); \
-				} 
+				}
 
 	#define DEBUG_PAGE_RENDER(method)\
 			if (command==DebugPageCommand_Render) \
@@ -157,7 +159,7 @@ class DebugPageManager : public Singleton<DebugPageManager>
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				TCanvas* canvas = (TCanvas*)parameters[1]; \
 				object->method(*page,*canvas); \
-				} 
+				}
 
 	#define DEBUG_PAGE_EVENT(method) \
 			if (command==DebugPageCommand_Event) \
@@ -165,10 +167,10 @@ class DebugPageManager : public Singleton<DebugPageManager>
 				DebugPage* page = (DebugPage*)parameters[0]; \
 				StringId* eventId = (StringId*)parameters[1]; \
 				object->method(*page,*eventId); \
-				} 
+				}
 
 	#define DEBUG_PAGE_END() \
-			} 
+			}
 
 #else
 
@@ -233,6 +235,6 @@ class TestManager:public Parent, Parent2
 		void DebugPageEvent(DebugPage& page, StringId eventId);
 	};
 
-
+}; // namespace pixie
 
 #endif /* __DebugPageManager_H__ */

@@ -1,13 +1,13 @@
 /**
  * \class	XMLTextParser
- * 
+ *
  * \ingroup	xml
  * \brief	Parses a text xml file.
  * \author	Mattias Gustavsson
- * 
- * This class parses a text xml file. 
+ *
+ * This class parses a text xml file.
  */
- 
+
 #ifndef __XMLTextParser_H__
 #define __XMLTextParser_H__
 
@@ -16,6 +16,7 @@
 #include "StringId.h"
 #include "DynamicBuffer.h"
 
+namespace pixie {
 // Forward declares
 class XMLObject;
 class Asset;
@@ -29,29 +30,29 @@ class XMLTextParser
 		 * Loads and parses the XML file, feeding data to the xmlObject
 		 */
 		void Parse(
-			const Asset& asset, 
-			XMLObject* xmlObject); 
+			const Asset& asset,
+			XMLObject* xmlObject);
 
 	private:
 		/**
 		 * Pushes an xml object onto the top of the stack
 		 */
-		void PushXMLObject(XMLObject* object, StringId name); 
+		void PushXMLObject(XMLObject* object, StringId name);
 
 		/**
 		 * Removes an xml object from the top of the stack, returns false if there isn't one
 		 */
-		bool PopXMLObject(); 
+		bool PopXMLObject();
 
 		/**
 		 * Returns the XML object on the top, 0 if there isn't one
 		 */
-		XMLObject* TopXMLObject(); 
+		XMLObject* TopXMLObject();
 
 		/**
 		 * Returns the tag name on the top, 0 if there isn't one
 		 */
-		StringId TopName(); 
+		StringId TopName();
 
 
 	private:
@@ -62,10 +63,12 @@ class XMLTextParser
 				XMLObject* object;
 				StringId name;
 				DynamicBuffer bufferedText;
-			
+
 			};
 		Array<XMLObjectStackEntry> xmlObjects_; ///< XML object stack, pushed to and popped from during parsing
 
 	};
+
+}; // namespace pixie
 
 #endif /* __XMLTextParser_H__ */

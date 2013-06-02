@@ -1,10 +1,10 @@
 /**
  * \class	ResourceManager
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __ResourceManager_H__
@@ -20,6 +20,7 @@
 #include "BagIterator.h"
 #include "Singleton.h"
 
+namespace pixie {
 // External classes
 
 // ResourceManager
@@ -27,7 +28,7 @@ class ResourceManager : public Singleton<ResourceManager>
 	{
 	public:
 		/**
-		 * Destructor. All resources must be released before we exit, so just assert that this has been done. 
+		 * Destructor. All resources must be released before we exit, so just assert that this has been done.
 		 */
 		~ResourceManager()
 			{
@@ -43,7 +44,7 @@ class ResourceManager : public Singleton<ResourceManager>
 		/**
 		 * Retrieves the filename of the specified resource
 		 */
-		template<typename T> StringId GetFilename( 
+		template<typename T> StringId GetFilename(
 			T* pointer ///< Pointer to the resource to receive the name of
 			) const;
 
@@ -55,7 +56,7 @@ class ResourceManager : public Singleton<ResourceManager>
 		 * with that filename has not been created before, the resource manager will create
 		 * it and return a pointer to it, but if it already exists, it will just return it.
 		 */
-		template<typename T> void GetPointer( 
+		template<typename T> void GetPointer(
 			StringId filename, ///< Filename of the resource
 			T* &pointer ///< Reference to the pointer variable to receive the result
 			);
@@ -63,7 +64,7 @@ class ResourceManager : public Singleton<ResourceManager>
 		/**
 		 * Increases the reference count of the specified resource
 		 */
-		template<typename T> void AddReference( 
+		template<typename T> void AddReference(
 			T* pointer ///< Resource to increase the reference count for
 			);
 
@@ -71,8 +72,8 @@ class ResourceManager : public Singleton<ResourceManager>
 		 * Decreases the reference count of the specified resource. If the reference count reaches
 		 * zero, the resource will be destroyed, and removed from the resource manager
 		 */
-		template<typename T> void RemoveReference( 
-			T* pointer ///< Resource to decrease the reference count for 
+		template<typename T> void RemoveReference(
+			T* pointer ///< Resource to decrease the reference count for
 			);
 
 
@@ -93,7 +94,9 @@ class ResourceManager : public Singleton<ResourceManager>
 	};
 
 
-// Implementation	
+// Implementation
 #include "ResourceManager.inl"
+
+}; // namespace pixie
 
 #endif /* __ResourceManager_H__ */

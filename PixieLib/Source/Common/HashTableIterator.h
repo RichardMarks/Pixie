@@ -1,36 +1,37 @@
 /**
  * \class	HashTableIterator
- * 
+ *
  * \ingroup	containers
  * \brief	Iterator for HashTable
  * \author	Mattias Gustavsson
- * 
- * The iterator provides a convenient way to loop trough 
+ *
+ * The iterator provides a convenient way to loop trough
  * all the items of a hash table in the same way as
- * you would a linked list. When created, the iterator 
- * points at the first item in the table, and you can 
+ * you would a linked list. When created, the iterator
+ * points at the first item in the table, and you can
  * then move it around using GetFirst, GetNext, GetLast
  * and GetPrevious, and even search for a specific item
  * using Find. Note that hash tables are optimized to be
  * extremely fast when searching (using Find), but this also
- * results in stepping through the table using GetFirst, 
+ * results in stepping through the table using GetFirst,
  * GetNext etc. might be very slow, and it is not recommended
  * that you do this in performance critical code. If you need
  * fast looping through, consider using a linked list or a
- * dynamic array instead (which are much less efficient when 
- * using Find). 
+ * dynamic array instead (which are much less efficient when
+ * using Find).
  */
 
 #ifndef __HashTableIterator_H__
 #define __HashTableIterator_H__
 
 // Includes
+namespace pixie {
 
 // Forward declares
 template<class HASHTABLEKEY, class TYPE> class HashTable;
 
 // HashTableIterator
-template<class HASHTABLEKEY, class TYPE> 
+template<class HASHTABLEKEY, class TYPE>
 class HashTableIterator
 	{
 	public:
@@ -38,7 +39,7 @@ class HashTableIterator
 		 * Constructor
 		 */
 		HashTableIterator(const HashTable<HASHTABLEKEY,TYPE>& table);
-	
+
 		/**
 		 * Returns the first item in the table, and resets the iterator
 		 * to return the second item the next time GetNext is called
@@ -68,11 +69,11 @@ class HashTableIterator
 		 * \returns The last item in the table
 		 */
 		void MoveLast();
-		
+
 		/**
 		 * Returns the item the iterator is currently pointing at
 		 *
-		 * \returns The current item 
+		 * \returns The current item
 		 */
 		TYPE& GetCurrent() const;
 
@@ -86,7 +87,7 @@ class HashTableIterator
 
 		/**
 		 * Finds an item in the table
-		 *	
+		 *
 		 * \returns A pointer to the item, or 0 if it was not found
 		 */
 		bool Find(
@@ -95,7 +96,7 @@ class HashTableIterator
 
 		/**
 		 * Gets the key of the item that the iterator is currently pointing at
-		 *	
+		 *
 		 * \returns Key of the item the iterator is currently pointing at
 		 */
 		const HASHTABLEKEY& GetCurrentKey() const;
@@ -105,9 +106,9 @@ class HashTableIterator
 		int	currentGetIndex_;	///< Index of the current item of the GetFirst()/GetNext() operations
 		const HashTable<HASHTABLEKEY, TYPE>* table_;	///< The table that this iterator is used to iterate through
 	};
-	
-// Implementation	
+
+// Implementation
 #include "HashTableIterator.inl"
 
+}; // namespace pixie
 #endif /* __HashTableIterator_H__ */
-	

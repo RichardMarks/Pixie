@@ -1,10 +1,10 @@
 /**
  * \class	Asset
- * 
+ *
  * \ingroup	core
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  */
 
 #ifndef __Asset_H__
@@ -12,6 +12,8 @@
 
 // Includes
 #include "Filename.h"
+
+namespace pixie {
 
 // Forward declares
 class Platform_FileSystem_File;
@@ -96,5 +98,6 @@ class Asset
 		Filename filename_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Asset_H__ */

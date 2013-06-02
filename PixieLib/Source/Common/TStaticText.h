@@ -1,10 +1,10 @@
 /**
  * \class	TStaticText
- * 
- * \ingroup	
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ *
+ * \ingroup
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  * \todo	Use string pool to manage text
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "TView.h"
 
+namespace pixie {
 // External classes
 
 
@@ -26,12 +27,14 @@ class TStaticText:public TView
 		virtual ~TStaticText();
 
 		virtual void Draw(TCanvas& canvas) const;
-	
+
 		void SetText(const char* text);
 		const char* GetText() const;
-	
+
 	private:
 		const char* text_;
 	};
+
+}; // namespace pixie
 
 #endif /* __TStaticText_H__ */

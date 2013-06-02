@@ -1,13 +1,13 @@
 /**
  * \class	DebugFont
- * 
+ *
  * \ingroup	core
  * \brief	Debug font rendering
- * \author	Mattias Gustavsson	
- * 
+ * \author	Mattias Gustavsson
+ *
  * It is sometimes useful to be able to display text on the screen for debugging purposes. This class provides very
  * basic functionality for writing text, and is completely self-contained - it even includes the font data. It can be
- * used to draw onto any type of bitmap, and handles clipping of any part of the text that would end up outside of the 
+ * used to draw onto any type of bitmap, and handles clipping of any part of the text that would end up outside of the
  * bitmap.
  */
 
@@ -16,6 +16,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 class Bitmap;
 
@@ -38,7 +39,7 @@ class DebugFont
 		 * Render text onto a 8-bit bitmap buffer
 		 */
 		void Blit(
-			unsigned char* colorData,	///< Pointer to the pixel data of the target bitmap 
+			unsigned char* colorData,	///< Pointer to the pixel data of the target bitmap
 			int hPitch,	///< Width of the bitmap, in pixels
 			int vPitch,	///< Height of the bitmap, in pixels
 			int x,	///< X-position of text
@@ -51,7 +52,7 @@ class DebugFont
 		 * Render text onto a 16-bit bitmap buffer
 		 */
 		void Blit(
-			unsigned short* colorData,	///< Pointer to the pixel data of the target bitmap 
+			unsigned short* colorData,	///< Pointer to the pixel data of the target bitmap
 			int hPitch,	///< Width of the bitmap, in pixels
 			int vPitch,	///< Height of the bitmap, in pixels
 			int x,	///< X-position of text
@@ -64,7 +65,7 @@ class DebugFont
 		 * Render text onto a 32-bit bitmap buffer
 		 */
 		void Blit(
-			unsigned int* colorData,	///< Pointer to the pixel data of the target bitmap 
+			unsigned int* colorData,	///< Pointer to the pixel data of the target bitmap
 			int hPitch,	///< Width of the bitmap, in pixels
 			int vPitch,	///< Height of the bitmap, in pixels
 			int x,	///< X-position of text
@@ -75,12 +76,12 @@ class DebugFont
 
 	private:
 		/**
-		 * All the different blit methods have the same implementation, with only the type differing, so it makes sense 
-		 * to use a template method to avoid duplicating the code. This method will draw the specified text by writing 
+		 * All the different blit methods have the same implementation, with only the type differing, so it makes sense
+		 * to use a template method to avoid duplicating the code. This method will draw the specified text by writing
 		 * the color value to each non-blank pixel as specified by the font-data.
 		 */
 		template <typename TYPE> void Blit(
-			TYPE* colorData,	///< Pointer to the pixel data of the target bitmap 
+			TYPE* colorData,	///< Pointer to the pixel data of the target bitmap
 			int hPitch,	///< Width of the bitmap, in pixels
 			int vPitch,	///< Height of the bitmap, in pixels
 			int x,	///< X-position of text
@@ -90,5 +91,6 @@ class DebugFont
 			);
 	};
 
+}; // namespace pixie
 
 #endif /* __DebugFont_H__ */

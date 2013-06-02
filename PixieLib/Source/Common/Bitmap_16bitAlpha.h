@@ -1,13 +1,13 @@
 /**
  * \class	Bitmap_16bitAlpha
- * 
+ *
  * \ingroup	graphics
  * \brief	Uncompressed 16-bit color buffer with alpha channel
- * \author	Mattias Gustavsson	
- * 
- * An Bitmap_16bitAlpha is simply a collection of 16-bit color values with a width and a 
+ * \author	Mattias Gustavsson
+ *
+ * An Bitmap_16bitAlpha is simply a collection of 16-bit color values with a width and a
  * height, plus a collection of 8-bit alpha values with the same dimesnsions.
- * 
+ *
  */
 
 #ifndef __Bitmap_16bitAlpha_H__
@@ -15,6 +15,8 @@
 
 // Includes
 #include "Bitmap.h"
+
+namespace pixie {
 
 // Forward declares
 class Image;
@@ -61,8 +63,6 @@ class Bitmap_16bitAlpha:public Bitmap
 
 	};
 
-
-
+}; // namespace pixie
 
 #endif /* __Bitmap_16bitAlpha_H__ */
-	

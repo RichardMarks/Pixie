@@ -1,13 +1,13 @@
 /**
  * \class	AudioFormat_OGG
- * 
+ *
  * \ingroup	audio
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
- 
+
 #ifndef __AudioFormat_OGG_H__
 #define __AudioFormat_OGG_H__
 
@@ -16,6 +16,8 @@
 
 // Forward declares
 struct OggVorbis_File;
+
+namespace pixie {
 
 // AudioFormat_OGG
 class AudioFormat_OGG:public AudioFormat
@@ -31,7 +33,7 @@ class AudioFormat_OGG:public AudioFormat
 		AudioFormat_OGG(
 			const Asset& asset
 			);
-		
+
 		/**
 		 * Destructor
 		 */
@@ -44,7 +46,7 @@ class AudioFormat_OGG:public AudioFormat
 		virtual int GetChannels();
 
 		/**
-		 * Returns the frequency of the audio data in number of 
+		 * Returns the frequency of the audio data in number of
 		 * samples per second
 		 */
 		virtual int GetFrequency();
@@ -90,5 +92,7 @@ class AudioFormat_OGG:public AudioFormat
 		OggVorbis_File* oggFile_;
 		Asset* asset_;
 	};
+
+}; // namespace pixie
 
 #endif /* __AudioFormat_OGG_H__ */
