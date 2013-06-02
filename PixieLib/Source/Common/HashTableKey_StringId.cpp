@@ -2,7 +2,7 @@
 
 #include "HashTableKey_StringId.h"
 
-
+namespace pixie {
 
 HashTableKey_StringId::HashTableKey_StringId()
 	{
@@ -19,11 +19,11 @@ HashTableKey_StringId::HashTableKey_StringId(StringId stringId):
 
 //*** GetHash ***
 
-unsigned int HashTableKey_StringId::GetHash() const 
-	{ 
-	return stringId_.GetHash(); 
+unsigned int HashTableKey_StringId::GetHash() const
+	{
+	return stringId_.GetHash();
 	}
-	
+
 
 //*** GetStringId ***
 
@@ -56,3 +56,4 @@ StringId HashTableKey_StringId::GetType() const
 	return type;
 	}
 
+}; // namespace pixie

@@ -4,6 +4,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -15,7 +16,7 @@ DynamicBuffer::DynamicBuffer(unsigned int initialCapacity):
 	position_(0)
 	{
 
-	}	
+	}
 
 
 //*** Destructor ***
@@ -53,7 +54,7 @@ DynamicBuffer::DynamicBuffer(const DynamicBuffer& dynamicBuffer):
 		// Copy contents
 		MemCpy(buffer_,dynamicBuffer.buffer_,size_);
 		}
-	}	
+	}
 
 
 //*** Assignment operator ***
@@ -88,17 +89,17 @@ const DynamicBuffer& DynamicBuffer::operator =(const DynamicBuffer& dynamicBuffe
 		}
 
 	return *this;
-	}	
+	}
 
 
 //*** Clear ***
 
 void DynamicBuffer::Clear(bool releaseMemory)
-	{	
+	{
 	// Reset the position and size variables
 	position_=0;
 	size_=0;
-	
+
 	// Free allocated memory and reset to initial size if requested
 	if (releaseMemory)
 		{
@@ -108,7 +109,7 @@ void DynamicBuffer::Clear(bool releaseMemory)
 			Free(buffer_);
 			buffer_=0;
 			}
-		
+
 		// Reset to initial size
 		capacity_=initialCapacity_;
 		}
@@ -132,7 +133,7 @@ void DynamicBuffer::SetSize(unsigned int size)
 		{
 		position_=size_;
 		}
-	Resize(size-position_);										
+	Resize(size-position_);
 	}
 
 
@@ -153,7 +154,7 @@ void DynamicBuffer::SetCapacity(unsigned int capacity)
 		capacity_=capacity;
 
 		if (buffer_)
-			{	
+			{
 			// Reallocate the actual buffer
 			buffer_=static_cast<unsigned char*>(Realloc(buffer_,capacity_));
 			Assert(buffer_,"Couldn't reallocate memory for dynamic buffer");
@@ -184,58 +185,58 @@ void DynamicBuffer::SetPosition(unsigned int position)
 
 //** Write methods */
 
-unsigned int DynamicBuffer::Write(const char* value, unsigned int count) 
-	{ 
+unsigned int DynamicBuffer::Write(const char* value, unsigned int count)
+	{
 	return Write<char>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const short* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const short* value, unsigned int count)
+	{
 	return Write<short>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const int* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const int* value, unsigned int count)
+	{
 	return Write<int>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const long* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const long* value, unsigned int count)
+	{
 	return Write<long>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const unsigned char* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const unsigned char* value, unsigned int count)
+	{
 	return Write<unsigned char>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const unsigned short* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const unsigned short* value, unsigned int count)
+	{
 	return Write<unsigned short>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const unsigned int* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const unsigned int* value, unsigned int count)
+	{
 	return Write<unsigned int>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const unsigned long* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const unsigned long* value, unsigned int count)
+	{
 	return Write<unsigned long>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const float* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const float* value, unsigned int count)
+	{
 	return Write<float>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const double* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const double* value, unsigned int count)
+	{
 	return Write<double>(value,count);
 	}
-	
-unsigned int DynamicBuffer::Write(const bool* value, unsigned int count) 
-	{ 
+
+unsigned int DynamicBuffer::Write(const bool* value, unsigned int count)
+	{
 	return Write<bool>(value,count);
 	}
 
@@ -243,7 +244,7 @@ unsigned int DynamicBuffer::Write(const bool* value, unsigned int count)
 
 
 //** Read methods */
-	
+
 unsigned int DynamicBuffer::Read(char* value, unsigned int count)
 	{
 	return Read<char>(value,count);
@@ -310,58 +311,58 @@ void* DynamicBuffer::GetPointer() const
 
 //*** Write ***
 
-template <typename TYPE> 
+template <typename TYPE>
 unsigned int DynamicBuffer::Write(const TYPE* value, unsigned int count)
 	{
-	// Calculate the total number of bytes to be written 	
-	unsigned int totalSize=sizeof(TYPE)*count;			
+	// Calculate the total number of bytes to be written
+	unsigned int totalSize=sizeof(TYPE)*count;
 
-	// Make sure there's room to write all those bytes 	
-	Resize(totalSize);										
+	// Make sure there's room to write all those bytes
+	Resize(totalSize);
 
-	// Copy the actual bytes into the buffer 				
-	MemCpy(buffer_+position_,value,totalSize);				
+	// Copy the actual bytes into the buffer
+	MemCpy(buffer_+position_,value,totalSize);
 
-	// Update the current position 						
-	position_+=totalSize;									
+	// Update the current position
+	position_+=totalSize;
 
-	// Update the current size, if we wrote enough bytes  
-	if (size_<position_)									
+	// Update the current size, if we wrote enough bytes
+	if (size_<position_)
 		{
-		size_=position_;									
+		size_=position_;
 		}
 
-	// Return the number of values written 				
-	return count;											
+	// Return the number of values written
+	return count;
 	}
 
 
 //*** Read ***
 
-template <typename TYPE> 
+template <typename TYPE>
 unsigned int DynamicBuffer::Read(TYPE* value, unsigned int count)
 	{
-	// Calculate the total number of bytes to be read 					
-	unsigned int totalSize=sizeof(*value)*count;							
+	// Calculate the total number of bytes to be read
+	unsigned int totalSize=sizeof(*value)*count;
 
-	// Make sure we're not trying to read more bytes than there is 		
-	if (position_+totalSize>size_)											
-		{																	
-		count=(size_-position_)/sizeof(*value);								
-		totalSize=sizeof(*value)*count;										
-		}																	
+	// Make sure we're not trying to read more bytes than there is
+	if (position_+totalSize>size_)
+		{
+		count=(size_-position_)/sizeof(*value);
+		totalSize=sizeof(*value)*count;
+		}
 
-	// Copy the actual bytes from the buffer 								
-	if (buffer_ && totalSize>0)												
-		{																	
-		MemCpy(value,buffer_+position_,totalSize);							
-		}																	
+	// Copy the actual bytes from the buffer
+	if (buffer_ && totalSize>0)
+		{
+		MemCpy(value,buffer_+position_,totalSize);
+		}
 
-	// Update the current position 										
-	position_+=totalSize;													
+	// Update the current position
+	position_+=totalSize;
 
-	// Return the number of elements written 				 				
-	return count;															
+	// Return the number of elements written
+	return count;
 	}
 
 
@@ -393,7 +394,7 @@ void DynamicBuffer::Resize(unsigned int size)
 
 	// Check if the buffer needs resizing
 	if (newCapacity>capacity_)
-		{	
+		{
 		capacity_=newCapacity;
 
 		// Reallocate the actual buffer
@@ -407,4 +408,4 @@ void DynamicBuffer::Resize(unsigned int size)
 	}
 
 
-
+}; // namespace pixie

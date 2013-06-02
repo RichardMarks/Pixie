@@ -12,6 +12,7 @@
 #include "HashTableIterator.h"
 #include "HashTableKey_Int.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -78,11 +79,11 @@ int CalculateDiff(unsigned short a, unsigned short b)
 	unsigned char bg=(unsigned char)((b & 0x7e0)>>5);
 	unsigned char bb=(unsigned char)((b & 0x1f));
 
-	// Diff	
+	// Diff
 	int dr=Abs(ar-br);
 	int dg=Abs(ab-bb);
 	int db=Abs(ag-bg);
-	
+
 	return dr+dg+db;
 	}
 
@@ -99,7 +100,7 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 	int minY=0;
 	int maxX=0;
 	int maxY=0;
-	
+
 	// Crop image
 	Crop(image,&minX,&minY,&maxX,&maxY);
 	if (maxX<minX || maxY<minY)
@@ -109,7 +110,7 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 
 	activeWidth_=(unsigned short)(maxX-minX+1);
 	activeHeight_=(unsigned short)(maxY-minY+1);
-	
+
 	xOffset_=(unsigned short)minX;
 	yOffset_=(unsigned short)minY;
 
@@ -118,7 +119,7 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 	unsigned char* mask=0;
 	int alphaCount = 0;
 	Palettize(image,&data,&mask,&palette_,&colorCount_,&alphaCount,dither);
-	
+
 	if (mask)
 		usesMask_=1;
 	else
@@ -142,7 +143,7 @@ void GenerateRLE8::CreateFromImage(const Image* image, bool dither)
 			CreateRLE_Alpha(data,mask,alphaData_);
 			}
 		}
-		
+
 
 	// Release temp stuff
 	if (data)
@@ -223,7 +224,7 @@ int GenerateRLE8::GetRLESize(unsigned char* data,unsigned char* mask)
 int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned char* destination)
 	{
 	int size=activeWidth_*activeHeight_;
-	int result=0;	
+	int result=0;
 	int xleft=activeWidth_;
 	while (size>0)
 		{
@@ -238,7 +239,7 @@ int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned
 				*destination=(len | 0x80); // Top bit set to indicate run of unique colors
 				destination++;
 				}
-			
+
 			result+=len; // Unique colors
 			if (destination)
 				{
@@ -256,7 +257,7 @@ int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned
 						maskvalue++;
 					}
 				}
-		
+
 			if (mask)
 				mask+=len;
 			source+=len;
@@ -274,7 +275,7 @@ int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned
 				*destination=len; // Top bit not set to indicate run of same color
 				destination++;
 				}
-		
+
 			result++; // Repeated color
 			if (destination)
 				{
@@ -284,7 +285,7 @@ int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned
 					*destination=*source;
 				destination++;
 				}
-				
+
 			source+=len;
 			xleft-=len;
 			Assert(xleft>=0,"Inavlid run length");
@@ -295,10 +296,10 @@ int GenerateRLE8::CreateRLE(unsigned char* source, unsigned char* mask, unsigned
 			size-=len;
 			}
 		}
-		
+
 	return result;
-	}	
-	
+	}
+
 
 
 //*** GetRunLength_Alpha ***
@@ -365,7 +366,7 @@ int GenerateRLE8::GetRLESize_Alpha(unsigned char* data,unsigned char* mask)
 int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, unsigned char* destination)
 	{
 	int size=activeWidth_*activeHeight_;
-	int result=0;	
+	int result=0;
 	int xleft=activeWidth_;
 	while (size>0)
 		{
@@ -380,7 +381,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 				*destination=(len | 0x80); // Top bit set to indicate run of unique colors
 				destination++;
 				}
-			
+
 			// Unique colors
 			unsigned char* colorsource=source;
 			unsigned char* maskvalue=mask;
@@ -392,7 +393,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 						{
 						*destination=0;	// Fully transparent pixel
 						destination++;
-						*destination=0;	
+						*destination=0;
 						destination++;
 						}
 					result+=2;
@@ -411,7 +412,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 				colorsource++;
 				maskvalue++;
 				}
-				
+
 			mask+=len;
 			source+=len;
 			xleft-=len;
@@ -428,7 +429,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 				*destination=len; // Top bit not set to indicate run of same color
 				destination++;
 				}
-		
+
 			// Repeated color
 
 			if (*mask==0 || *mask==255)
@@ -453,7 +454,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 					}
 				result+=2;
 				}
-							
+
 			source+=len;
 			xleft-=len;
 			Assert(xleft>=0,"Invalid run length");
@@ -463,9 +464,9 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 			size-=len;
 			}
 		}
-		
+
 	return result;
-	}	
+	}
 
 
 
@@ -473,7 +474,7 @@ int GenerateRLE8::CreateRLE_Alpha(unsigned char* source, unsigned char* mask, un
 
 //*** Palettize ***
 
-void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, int* alphaCount, bool dither)	
+void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned char** mask, unsigned short** palette, unsigned char* colorCount, int* alphaCount, bool dither)
 	{
 	int usedPaletteEntries=0;
 	*data=static_cast<unsigned char*>(Malloc(sizeof(unsigned char)*activeWidth_*activeHeight_));
@@ -547,7 +548,7 @@ void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned c
 		Free(*mask);
 		*mask=0;
 		}
-	
+
 	*palette=static_cast<unsigned short*>(Malloc(sizeof(unsigned short)*usedPaletteEntries));
 //	MemCpy(*palette,pal,sizeof(unsigned short)*usedPaletteEntries);
 	for (int i=0; i<usedPaletteEntries; i++)
@@ -557,9 +558,9 @@ void GenerateRLE8::Palettize(const Image* image,unsigned char** data, unsigned c
 		(*palette)[i]=c;
 		}
 	*colorCount=(unsigned char)usedPaletteEntries;
-	}	
-	
-	
+	}
+
+
 //*** Crop ***
 
 void GenerateRLE8::Crop(const Image* image, int* minX, int* minY, int* maxX, int* maxY)
@@ -588,3 +589,5 @@ void GenerateRLE8::Crop(const Image* image, int* minX, int* minY, int* maxX, int
 		}
 	}
 
+
+}; // namespace pixie

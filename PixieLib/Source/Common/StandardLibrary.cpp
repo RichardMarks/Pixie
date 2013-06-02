@@ -12,6 +12,7 @@
 #include <math.h>
 #include <ctype.h>
 
+namespace pixie {
 //*** Round ***
 
 int Round(float x)
@@ -40,12 +41,12 @@ void SRand(unsigned int seed)
 	{
 	// srand(seed);
 
-	if (seed==1) 
+	if (seed==1)
 		{
 		seed=0x5ee39c34;   // Default seed
 		}
 	standardLibrary_random.Seed(seed); // Use the WELL algorithm instead of the stdlib one
-	}		
+	}
 
 
 //*** Rand ***
@@ -55,7 +56,7 @@ unsigned int Rand()
 	// return rand();
 
 	return standardLibrary_random.RandomInteger(); // Use the WELL algorithm instead of the stdlib one
-	}		
+	}
 
 
 //*** Randomize ***
@@ -66,10 +67,10 @@ void Randomize()
 
 	unsigned int seed=(unsigned int)time(NULL); // Use current time as seed
 	standardLibrary_random.Seed(seed); // Use the mersienne twister algorithm instead of the stdlib one
-	}		
+	}
 
 
-//*** ToUpper *** 
+//*** ToUpper ***
 
 int ToUpper(int c)
 	{
@@ -77,7 +78,7 @@ int ToUpper(int c)
 	}
 
 
-//*** ToLower *** 
+//*** ToLower ***
 
 int ToLower(int c)
 	{
@@ -85,7 +86,7 @@ int ToLower(int c)
 	}
 
 
-//*** StringToInt *** 
+//*** StringToInt ***
 
 int StringToInt(const char* string)
 	{
@@ -93,7 +94,7 @@ int StringToInt(const char* string)
 	}
 
 
-//*** StringToLong *** 
+//*** StringToLong ***
 
 long StringToLong(const char* string)
 	{
@@ -101,7 +102,7 @@ long StringToLong(const char* string)
 	}
 
 
-//*** StringToDouble *** 
+//*** StringToDouble ***
 
 double StringToDouble(const char* string)
 	{
@@ -109,7 +110,7 @@ double StringToDouble(const char* string)
 	}
 
 
-//*** StrDup *** 
+//*** StrDup ***
 
 char* StrDup(const char* string)
 	{
@@ -117,7 +118,7 @@ char* StrDup(const char* string)
 	}
 
 
-//*** IntToString *** 
+//*** IntToString ***
 
 char* IntToString(int value, char* string, int maxLength)
 	{
@@ -129,7 +130,7 @@ char* IntToString(int value, char* string, int maxLength)
 	}
 
 
-//*** SPrintF *** 
+//*** SPrintF ***
 
 /* We want a link error when SPrintF is used, as it is much safer to use SNPrintF
 int SPrintF(char* buffer, const char* string, ...)
@@ -143,7 +144,7 @@ int SPrintF(char* buffer, const char* string, ...)
 */
 
 
-//*** SNPrintF *** 
+//*** SNPrintF ***
 
 int SNPrintF(char* buffer, int maxLength, const char* string, ...)
 	{
@@ -155,7 +156,7 @@ int SNPrintF(char* buffer, int maxLength, const char* string, ...)
 	}
 
 
-//*** StrNICmp *** 
+//*** StrNICmp ***
 
 int StrNICmp(const char* string1, const char* string2, int count)
 	{
@@ -163,7 +164,7 @@ int StrNICmp(const char* string1, const char* string2, int count)
 	}
 
 
-//*** StrNCmp *** 
+//*** StrNCmp ***
 
 int StrNCmp(const char* string1, const char* string2, int count)
 	{
@@ -171,7 +172,7 @@ int StrNCmp(const char* string1, const char* string2, int count)
 	}
 
 
-//*** StrICmp *** 
+//*** StrICmp ***
 
 int StrICmp(const char* string1, const char* string2)
 	{
@@ -179,7 +180,7 @@ int StrICmp(const char* string1, const char* string2)
 	}
 
 
-//*** StrCmp *** 
+//*** StrCmp ***
 
 int StrCmp(const char* string1, const char* string2)
 	{
@@ -187,7 +188,7 @@ int StrCmp(const char* string1, const char* string2)
 	}
 
 
-//*** StrLen *** 
+//*** StrLen ***
 
 unsigned int StrLen(const char* string)
 	{
@@ -195,7 +196,7 @@ unsigned int StrLen(const char* string)
 	}
 
 
-//*** StrCpy *** 
+//*** StrCpy ***
 
 char* StrCpy(char* strDestination, const char* strSource)
 	{
@@ -203,7 +204,7 @@ char* StrCpy(char* strDestination, const char* strSource)
 	}
 
 
-//*** StrNCpy *** 
+//*** StrNCpy ***
 
 char* StrNCpy(char* strDestination, const char* strSource,int count)
 	{
@@ -211,7 +212,7 @@ char* StrNCpy(char* strDestination, const char* strSource,int count)
 	}
 
 
-//*** StrCat *** 
+//*** StrCat ***
 
 char* StrCat(char* strDestination,  const char* strSource)
 	{
@@ -219,7 +220,7 @@ char* StrCat(char* strDestination,  const char* strSource)
 	}
 
 
-//*** StrNCat *** 
+//*** StrNCat ***
 
 char* StrNCat(char* strDestination,  const char* strSource, int count)
 	{
@@ -227,7 +228,7 @@ char* StrNCat(char* strDestination,  const char* strSource, int count)
 	}
 
 
-//*** StrUpr *** 
+//*** StrUpr ***
 
 char* StrUpr(char* string)
 	{
@@ -235,7 +236,7 @@ char* StrUpr(char* string)
 	}
 
 
-//*** StrLwr *** 
+//*** StrLwr ***
 
 char* StrLwr(char* string)
 	{
@@ -243,7 +244,7 @@ char* StrLwr(char* string)
 	}
 
 
-//*** StrChr *** 
+//*** StrChr ***
 
 const char* StrChr(const char* string, int c)
 	{
@@ -251,7 +252,7 @@ const char* StrChr(const char* string, int c)
 	}
 
 
-//*** StrRChr *** 
+//*** StrRChr ***
 
 const char* StrRChr(const char* string, int c)
 	{
@@ -259,7 +260,7 @@ const char* StrRChr(const char* string, int c)
 	}
 
 
-//*** StrTok *** 
+//*** StrTok ***
 
 char* StrTok(char* strToken, const char* strDelimit)
 	{
@@ -267,7 +268,7 @@ char* StrTok(char* strToken, const char* strDelimit)
 	}
 
 
-//*** StrStr *** 
+//*** StrStr ***
 
 const char* StrStr(const char* str1, const char* str2)
 	{
@@ -275,7 +276,7 @@ const char* StrStr(const char* str1, const char* str2)
 	}
 
 
-//*** Malloc *** 
+//*** Malloc ***
 
 void* Malloc(unsigned int size)
 	{
@@ -285,15 +286,15 @@ void* Malloc(unsigned int size)
 	}
 
 
-//*** Free *** 
+//*** Free ***
 
 void Free(void* memblock)
 	{
 	free(memblock);
-	}	
+	}
 
 
-//*** Realloc *** 
+//*** Realloc ***
 
 void* Realloc(void* memblock,unsigned int size)
 	{
@@ -301,33 +302,33 @@ void* Realloc(void* memblock,unsigned int size)
 	Assert(newmemblock,"Couldn't allocate memory");
 	return newmemblock;
 	}
-	
 
-//*** MemCpy *** 
+
+//*** MemCpy ***
 
 void* MemCpy(void* dest, const void* src, unsigned int count)
 	{
 	return memcpy(dest,src,count);
 	}
-	
 
-//*** MemSet *** 
+
+//*** MemSet ***
 
 void* MemSet(void* dest, int c, unsigned int count )
 	{
 	return memset(dest,c,count);
-	}	
+	}
 
-	
-//*** MemCmp *** 
+
+//*** MemCmp ***
 
 unsigned int MemCmp(const void* a, const void* b, unsigned int count )
 	{
 	return memcmp(a,b,count);
-	}	
+	}
 
 
-//*** QSort *** 
+//*** QSort ***
 
 void QSort(void* base, size_t num, size_t width, int (__cdecl* compare )(const void*, const void*) )
 	{
@@ -338,7 +339,7 @@ void QSort(void* base, size_t num, size_t width, int (__cdecl* compare )(const v
 //*** ToRadians ***
 
 float ToRadians(float degrees)
-	{	
+	{
 	return (degrees * PI)/180.0f;
 	};
 
@@ -349,7 +350,7 @@ float ToDegrees(float radians)
 	{
 	return (radians * 180.0f)/PI;
 	}
-	
+
 
 //*** AngleDiff ***
 
@@ -359,7 +360,7 @@ float AngleDiff(float angleA, float angleB)
 
 	//Calculate
 	angleDiff=angleB-angleA;
-		
+
 	// Make sure diff is in the range 0 to TWO_PI
 	angleDiff=fmodf(angleDiff,TWO_PI);
 	if (angleDiff<0)
@@ -376,7 +377,7 @@ float AngleDiff(float angleA, float angleB)
 	// Return the diff
 	return angleDiff;
 	}
-	
+
 
 //*** Abs ***
 
@@ -384,7 +385,7 @@ float Abs(float x)
 	{
 	return fabsf(x);
 	}
-	
+
 
 //*** Abs ***
 
@@ -392,7 +393,7 @@ int Abs(int x)
 	{
 	return abs(x);
 	}
-	
+
 
 //*** Sqrt ***
 
@@ -400,7 +401,7 @@ float Sqrt(float x)
 	{
 	return sqrtf(x);
 	}
-	
+
 
 //*** Mod ***
 
@@ -416,7 +417,7 @@ float Sin(float x)
 	{
 	return sinf(x);
 	}
-	
+
 
 //*** ASin ***
 
@@ -424,7 +425,7 @@ float ASin(float x)
 	{
 	return asinf(x);
 	}
-	
+
 
 //*** Cos ***
 
@@ -463,7 +464,7 @@ float ATan(float x)
 float Atan2(float x, float y)
 	{
 	return atan2f(x,y);
-	}	
+	}
 
 
 //*** Pow ***
@@ -593,7 +594,7 @@ float Clamp(float value, float min, float max)
 //*** Floor ***
 
 float Floor(
-	float x 
+	float x
 	)
 	{
 	return floor( x );
@@ -641,7 +642,7 @@ inline unsigned int GetNearestPowerOfTwo(unsigned int v)
 	v |= v >> 4;
 	v |= v >> 8;
 	v |= v >> 16;
-	v++;	
+	v++;
 
 	return v;
 	}
@@ -662,7 +663,7 @@ float saturate( float v )
 float smoothstep( float min, float max, float x )
 	{
     // Scale, bias and saturate x to 0..1 range
-    x = saturate( ( x - min ) / ( max - min ) ); 
+    x = saturate( ( x - min ) / ( max - min ) );
     // Evaluate polynomial
     return x * x * ( 3 - 2 * x );
 	}
@@ -677,3 +678,5 @@ float smootherstep( float min, float max, float x )
     // Evaluate polynomial
     return x * x * x * ( x * ( x * 6 - 15 ) + 10 );
 	}
+
+	}; // namespace pixie

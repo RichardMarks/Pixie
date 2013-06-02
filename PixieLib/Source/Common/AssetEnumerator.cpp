@@ -11,6 +11,7 @@
 #include "ArchiveManager.h"
 #include "Filename.h"
 
+namespace pixie {
 //*** Constructor ***
 
 AssetEnumerator::AssetEnumerator(const Filename& filename):
@@ -51,7 +52,7 @@ void AssetEnumerator::CreateFromFilename(const Filename& filename)
 		{
 		directory_=Platform::GetPlatform_FileSystem()->CreateDirectoryObject(filename.GetString());
 		}
-	
+
 	// If we couldn't get the directory from neither the archive manager nor the filesystem, we trigger an assert for
 	// debug builds, and just reports the directory as being empty for release builds.
 	Assert(archiveDirectory_ || directory_,
@@ -203,5 +204,7 @@ const char* AssetEnumerator::GetSubdirectoryName(int index)
 		return archiveDirectory_->GetSubdirectory(index).GetString();
 		}
 
-	return 0;	
+	return 0;
 	}
+
+}; // namespace pixie

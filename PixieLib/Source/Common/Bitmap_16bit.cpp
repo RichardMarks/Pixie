@@ -6,6 +6,7 @@
 #include "Asset.h"
 #include "FloydSteinbergDither.h"
 
+namespace pixie {
 
 //*** GetType ***
 
@@ -65,7 +66,7 @@ Bitmap_16bit::Bitmap_16bit(const Image& image, bool dither)
 			{
 			unsigned int c=image.GetPixel(x,y);
 			color_[x+y*width_]=RGB32TO16(c);
-			}	
+			}
 		}
 
 	}
@@ -131,7 +132,7 @@ void Bitmap_16bit::Load(const Asset& asset)
 				}
 			}
 
-		else			
+		else
 			{
 			Assert(false,"Invalid header");
 			}
@@ -191,3 +192,5 @@ void Bitmap_16bit::WriteToAsset(Asset* asset) const
 		asset->Write(color_,hPitch_*vPitch_);
 		}
 	}
+
+}; // namespace pixie

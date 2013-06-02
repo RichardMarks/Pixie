@@ -5,6 +5,7 @@
 #include "Font.h"
 #include "DebugFont.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -137,7 +138,7 @@ void StaticText::Render(Bitmap& bitmap)
 		{
 		return;
 		}
-	
+
 	if (!text_)
 		{
 		return;
@@ -149,7 +150,7 @@ void StaticText::Render(Bitmap& bitmap)
 		font.Blit(bitmap,(int)(GetX()-GetOriginX()),(int)(GetY()-GetOriginY()),GetText(),GetColor());
 		return;
 		}
-		
+
 	if (width_==0)
 		{
 		font_.Blit(bitmap,(int)(GetX()-GetOriginX()),(int)(GetY()-GetOriginY()),GetText(),GetSpacing(),GetColor(),GetAlpha());
@@ -162,3 +163,4 @@ void StaticText::Render(Bitmap& bitmap)
 
 
 
+}; // namespace pixie

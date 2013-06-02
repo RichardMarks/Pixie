@@ -7,6 +7,7 @@
 #include "TDraw.h"
 #include "SystemFont.h"
 
+namespace pixie {
 //*** Constructor ***
 
 DebugPageManager::DebugPageManager():
@@ -88,7 +89,7 @@ void DebugPageManager::Update(float deltaTime)
 		close &= yp==closeY_;
 		if (close)
 			{
-			isShowingDebugPage_=false;				
+			isShowingDebugPage_=false;
 			currentDebugPage_=StringId();
 			}
 		}
@@ -211,7 +212,7 @@ void DebugPageManager::Update(float deltaTime)
 			DebugPageEntry& entry = pages_.Get(i);
 
 			if (entry.id==currentDebugPage_)
-				{			
+				{
 				if (canvas_)
 					{
 					int xp = (int)siInputManager->GetCursorX();
@@ -243,7 +244,7 @@ void DebugPageManager::Update(float deltaTime)
 		}
 	}
 
-		
+
 //*** DrawCanvas ***
 
 void DebugPageManager::DrawCanvas(Bitmap& bitmap, TCanvas& canvas) const
@@ -310,7 +311,7 @@ void DebugPageManager::Render(Bitmap& bitmap)
 		}
 
 	canvas_->Clear();
-	
+
 	int currentDebugPageNumber = 0;
 	for (int i=0; i<pages_.GetItemCount(); i++)
 		{
@@ -318,7 +319,7 @@ void DebugPageManager::Render(Bitmap& bitmap)
 		if (entry.id==currentDebugPage_)
 			{
 			currentDebugPageNumber = i;
-			
+
 			TRect bounds = entry.page->GetBounds();
 			bounds.Grow(2,2);
 
@@ -362,7 +363,7 @@ void DebugPageManager::Render(Bitmap& bitmap)
 	//TDraw::HLine(*canvas_,canvas_->GetWidth(),' ',TBlack, TLightGrey);
 
 	char buffer[80];
-	
+
 	//SNPrintF(buffer,80,"    Debug Page");
 	//canvas_->SetCursor(0,0);
 	//TDraw::Text(*canvas_,buffer);
@@ -371,7 +372,7 @@ void DebugPageManager::Render(Bitmap& bitmap)
 	//canvas_->SetCursor((canvas_->GetWidth()-StrLen(buffer))/2,0);
 	//TDraw::Text(*canvas_,buffer);
 
-	
+
 	canvas_->SetCursor(0,-1);
 	TDraw::HLine(*canvas_,canvas_->GetWidth(),' ',TBlack, TLightGrey);
 
@@ -397,7 +398,7 @@ void DebugPageManager::Register(StringId id, DebugPageHandlerFunction handler, v
 	entry.handler = handler;
 	entry.instance = instance;
 	entry.page = new DebugPage();
-	
+
 	void* parameters[1] = { entry.page };
 	entry.handler(DebugPageCommand_Create,entry.instance,parameters);
 	}
@@ -475,3 +476,5 @@ void TestManager::DebugPageEvent(DebugPage& page, StringId eventId)
 	{
 
 	}
+
+}; // namespace pixie

@@ -3,7 +3,7 @@
 #include "HashTableKey_String.h"
 #include "StandardLibrary.h"
 
-
+namespace pixie {
 
 HashTableKey_String::HashTableKey_String():
 	string_(0),
@@ -45,13 +45,13 @@ HashTableKey_String::HashTableKey_String(const char* string):
 	string_(0),
 	hash_(0)
 	{
-	
+
 	// Keep a copy of the string
 	if (string)
 		{
 		string_=StrDup(string);
 		}
-	
+
 	// Calculate the hash value for the string
 	hash_=CalculateHash(string);
 	}
@@ -72,11 +72,11 @@ HashTableKey_String::~HashTableKey_String()
 
 //*** GetHash ***
 
-unsigned int HashTableKey_String::GetHash() const 
-	{ 
-	return hash_; 
+unsigned int HashTableKey_String::GetHash() const
+	{
+	return hash_;
 	}
-	
+
 
 //*** GetString ***
 
@@ -128,7 +128,7 @@ unsigned int HashTableKey_String::CalculateHash(const char* key) const
 	return hash;
 
 	}
-	
+
 
 //*** GetType ***
 
@@ -138,3 +138,4 @@ StringId HashTableKey_String::GetType() const
 	return type;
 	}
 
+}; // namespace pixie

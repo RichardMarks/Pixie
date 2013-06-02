@@ -1,10 +1,11 @@
 //*** TButton.cpp **
- 
+
 #include "TButton.h"
 #include "TDraw.h"
 #include "TCanvas.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Draw ***
 
@@ -33,3 +34,5 @@ bool TButton::EvaluateFocus(int x, int y) const
 
 	return false;
 	}
+
+}; // namespace pixie

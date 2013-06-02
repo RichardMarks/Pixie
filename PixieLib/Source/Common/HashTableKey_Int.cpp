@@ -2,6 +2,7 @@
 
 #include "HashTableKey_Int.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -22,12 +23,12 @@ HashTableKey_Int::HashTableKey_Int(unsigned int number)
 
 //*** GetHash ***
 
-unsigned int HashTableKey_Int::GetHash() const 
-	{ 
-	return hash_; 
+unsigned int HashTableKey_Int::GetHash() const
+	{
+	return hash_;
 	}
-	
-	
+
+
 //*** GetInt ***
 
 unsigned int HashTableKey_Int::GetInt() const
@@ -35,7 +36,7 @@ unsigned int HashTableKey_Int::GetInt() const
 	return hash_;
 	}
 
-	
+
 //*** Compare ***
 
 bool HashTableKey_Int::Compare(const HashTableKey* key) const
@@ -60,3 +61,4 @@ StringId HashTableKey_Int::GetType() const
 	return type;
 	}
 
+}; // namespace pixie

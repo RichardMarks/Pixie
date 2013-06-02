@@ -1,11 +1,11 @@
 //*** TRadioButton.cpp **
- 
+
 #include "TRadioButton.h"
 #include "TDraw.h"
 #include "TCanvas.h"
 #include "StandardLibrary.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 TRadioButton::TRadioButton():
@@ -58,3 +58,5 @@ void TRadioButton::SetSelected(bool selected)
 	{
 	selected_ = selected;
 	}
+
+}; // namespace pixie

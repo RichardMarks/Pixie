@@ -4,6 +4,7 @@
 #include "TCanvas.h"
 #include "TDraw.h"
 
+namespace pixie {
 
 //** Constructor ***
 
@@ -71,67 +72,67 @@ void TView::SetSize(int w, int h)
 	}
 
 
-//*** SetBackground *** 
+//*** SetBackground ***
 
-void TView::SetBackground(TColor color) 
-	{ 
-	background_ = color; 
+void TView::SetBackground(TColor color)
+	{
+	background_ = color;
 	}
 
 
-//*** GetBackground *** 
+//*** GetBackground ***
 
-TColor TView::GetBackground() const 
-	{ 
-	return background_; 
+TColor TView::GetBackground() const
+	{
+	return background_;
 	}
 
 
 //*** SetForeground ***
 
-void TView::SetForeground(TColor color) 
-	{ 
-	foreground_ = color; 
+void TView::SetForeground(TColor color)
+	{
+	foreground_ = color;
 	}
 
 
 //*** GetForeground ***
 
-TColor TView::GetForeground() const 
-	{ 
-	return foreground_; 
+TColor TView::GetForeground() const
+	{
+	return foreground_;
 	}
 
 
 //*** SetHighlight ***
 
-void TView::SetHighlight(TColor color) 
-	{ 
-	highlight_ = color; 
+void TView::SetHighlight(TColor color)
+	{
+	highlight_ = color;
 	}
 
 
 //*** GetHighlight ***
 
-TColor TView::GetHighlight() const 
-	{ 
-	return highlight_; 
+TColor TView::GetHighlight() const
+	{
+	return highlight_;
 	}
 
 
 //*** SetFocusColor ***
 
-void TView::SetFocusColor(TColor color) 
-	{ 
-	focusColor_ = color; 
+void TView::SetFocusColor(TColor color)
+	{
+	focusColor_ = color;
 	}
 
 
 //*** GetFocusColor ***
 
-TColor TView::GetFocusColor() const 
-	{ 
-	return focusColor_; 
+TColor TView::GetFocusColor() const
+	{
+	return focusColor_;
 	}
 
 
@@ -162,3 +163,4 @@ bool TView::HasFocus() const
 
 	return hasFocus_;
 	}
+}; // namespace pixie

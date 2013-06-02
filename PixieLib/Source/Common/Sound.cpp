@@ -6,6 +6,7 @@
 #include "AudioFormat.h"
 #include "Audio.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -22,10 +23,10 @@ Sound::Sound(const Asset& asset):
 	bitsPerSample_=format->GetBitsPerSample();
 	size_=format->GetSize();
 	data_=Malloc(size_);
-	
+
 	// Decode entire file to memory
 	format->CopySoundChunk(data_,size_);
-	
+
 	delete format;
 	}
 
@@ -84,3 +85,5 @@ int Sound::GetSize() const
 	{
 	return size_;
 	}
+
+}; // namespace pixie

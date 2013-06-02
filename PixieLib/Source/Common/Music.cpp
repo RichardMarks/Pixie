@@ -9,7 +9,7 @@
 #include "AudioFormat.h"
 #include "StandardLibrary.h"
 
-
+namespace pixie {
 
 //*** Constructor ***
 
@@ -34,7 +34,7 @@ Music::Music(const Asset& asset):
 		return;
 		}
 
-	// Create sound buffer 
+	// Create sound buffer
 	if (Platform::GetPlatform_Sound())
 		{
 		soundStream_=Platform::GetPlatform_Sound()->CreateSoundStream(format_->GetChannels(),format_->GetFrequency(),format_->GetBitsPerSample(),Music_BufferSize);
@@ -366,3 +366,4 @@ void Music::SetVolume(float level)
 	soundStream_->SetVolume(level);
 	}
 
+}; // namespace pixie

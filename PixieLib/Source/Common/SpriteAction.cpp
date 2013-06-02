@@ -1,7 +1,8 @@
 //*** SpriteAction.cpp ***
- 
+
 #include "SpriteAction.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -25,3 +26,5 @@ bool SpriteAction::IsActionCompleted() const
 	{
 	return actionCompleted_;
 	}
+
+	}; // namespace pixie

@@ -10,10 +10,12 @@
 #include "TCheckbox.h"
 #include "TRadioButton.h"
 
+namespace pixie {
+
 //** Constructor ***
 
 DebugPage::DebugPage()
-	{	
+	{
 	}
 
 
@@ -85,7 +87,7 @@ StringId DebugPage::Select()
 					DeselectRadioButtons(widget.group);
 					widget.radioButton->SetSelected(true);
 					return widget.event;
-					}				
+					}
 				}
 
 			break;
@@ -424,7 +426,7 @@ void DebugPage::DeselectRadioButtons(StringId radioButtonGroup)
 TRect DebugPage::GetBounds()
 	{
 	TRect pageBounds;
-	
+
 	for (int i=0; i<widgets_.GetItemCount(); i++)
 		{
 		Widget& widget = widgets_.Get(i);
@@ -434,3 +436,5 @@ TRect DebugPage::GetBounds()
 
 	return pageBounds;
 	}
+
+	}; // namespace pixie

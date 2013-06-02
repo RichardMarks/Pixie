@@ -6,6 +6,7 @@
 #include "ArrayIterator.h"
 #include "SpriteEventListener.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -161,7 +162,7 @@ void SpriteSystem::RemoveSpriteManager(SpriteManager* spriteManager)
 
 		// Remove the sprite manager
 		spriteManagers_.Remove(it);
-		
+
 		return;
 		}
 
@@ -242,3 +243,5 @@ void SpriteSystem::SendEvent(SpriteManager* spriteManager, StringId event, void*
 			}
 		}
 	}
+
+}; // namespace pixie

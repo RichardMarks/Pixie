@@ -1,10 +1,10 @@
 /**
  * \file	PlatformHelper.cpp
- * 
+ *
  * \ingroup	helpers
- * \brief	
- * \author	Mattias Gustavsson	
- *  
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -21,7 +21,7 @@
 #include <crtdbg.h>
 
 //*** DefaultWinMain ***
-
+namespace pixie {
 void DefaultWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 	{
 	// Enable windows memory leak detection (will report leaks in the Output window)
@@ -32,7 +32,7 @@ void DefaultWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 //		_CrtSetBreakAlloc(1624); // Can be manually commented back in to break at a certain allocation
 	#endif
-	
+
 	// Platform abstraction systems - This is where we choose which platform components we want to use
 	Platform_Win32_OS* os=new Platform_Win32_OS(hInstance,lpCmdLine);
 	Platform::SetPlatform_OS(os);
@@ -58,19 +58,19 @@ void DefaultWinMain3D(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdL
 
 //		_CrtSetBreakAlloc(1624); // Can be manually commented back in to break at a certain allocation
 	#endif
-	
+
 	// Platform abstraction systems - This is where we choose which platform components we want to use
 	Platform_Win32_OS* os=new Platform_Win32_OS(hInstance,lpCmdLine);
 	Platform::SetPlatform_OS(os);
 	Platform::SetPlatform_Time(new Platform_Win32_Time());
 	Platform::SetPlatform_Sound(new Platform_Win32_Sound(os));
 	Platform::SetPlatform_Input(new Platform_Win32_Input(os));
-	Platform::SetPlatform_3D(new Platform_Win32_3D(os)); 
+	Platform::SetPlatform_3D(new Platform_Win32_3D(os));
 	Platform::SetPlatform_FileSystem(new Platform_Win32_FileSystem());
 	Platform::SetPlatform_Network(new Platform_Win32_Network());
 //	Platform::SetPlatform_Screen(new Platform_Win32_Screen(os)); // Don't use both Screen and 3D - only one or the other at a time
 	}
-
+}; // namespace pixie
 #endif /* #ifdef WIN32 */
 
 //**************************

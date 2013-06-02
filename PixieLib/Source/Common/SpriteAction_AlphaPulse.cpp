@@ -1,10 +1,11 @@
 //*** SpriteAction_AlphaPulse.cpp ***
- 
+
 #include "SpriteAction_AlphaPulse.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -53,7 +54,8 @@ void SpriteAction_AlphaPulse::Update(SpriteController* controller, Sprite* sprit
 			}
 		}
 	int alpha=Clamp((int)(currentSource_*255.0f),1,255);
-	
+
 	sprite->SetAlpha((char)alpha);
 	}
 
+}; // namespace pixie

@@ -6,6 +6,7 @@
 #include "Asset.h"
 #include "GenerateRLE16.h"
 
+namespace pixie {
 
 
 //*** GetType ***
@@ -121,7 +122,7 @@ void Bitmap_RLE16::Load(const Asset& asset)
 				asset.Close();
 				return;
 				}
-			
+
 			int version=0;
 			asset.Read(&version);
 			if (version==0)
@@ -130,7 +131,7 @@ void Bitmap_RLE16::Load(const Asset& asset)
 				}
 			}
 
-		else			
+		else
 			{
 			Assert(false,"Invalid header");
 			}
@@ -225,8 +226,8 @@ int Bitmap_RLE16::GetWidth(Transformation transformation) const
 			return height_;
 			} break;
 		}
-	
-	return width_;		
+
+	return width_;
 	}
 
 
@@ -250,7 +251,7 @@ int Bitmap_RLE16::GetHeight(Transformation transformation) const
 			return width_;
 			} break;
 		}
-	
+
 	return height_;
 	}
 
@@ -545,3 +546,5 @@ unsigned char Bitmap_RLE16::RLEGetPixelAlpha(int xp, int yp) const
 		}
 	return 0;
 	}
+
+}; // namespace pixie

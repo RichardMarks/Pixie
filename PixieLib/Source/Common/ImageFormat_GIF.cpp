@@ -7,7 +7,7 @@
 #include "ColorHelper.h"
 #include "gif/gif.h"
 
-
+namespace pixie {
 
 //*** Register ***
 
@@ -161,3 +161,4 @@ void ImageFormat_GIF::Save(const Filename& filename, int width, int height, void
 	{
 
 	}
+}; // namespace pixie

@@ -1,10 +1,11 @@
 //*** SpriteAction_SmoothArrival.cpp ***
- 
+
 #include "SpriteAction_SmoothArrival.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "SpriteController.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -31,7 +32,7 @@ void SpriteAction_SmoothArrival::Update(SpriteController* controller, Sprite* sp
 	{
 	float diffX=targetX_-sprite->GetX();
 	float diffY=targetY_-sprite->GetY();
-	
+
 	if (Abs(diffX)<2.0f && Abs(diffY)<2.0f)
 		{
 		sprite->SetPosition(targetX_,targetY_);
@@ -41,3 +42,5 @@ void SpriteAction_SmoothArrival::Update(SpriteController* controller, Sprite* sp
 
 	controller->AddVelocity(diffX*speed_,diffY*speed_);
 	}
+
+}; // namespace pixie

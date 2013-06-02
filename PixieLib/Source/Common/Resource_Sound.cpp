@@ -5,6 +5,7 @@
 #include "Sound.h"
 #include "Filename.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -22,7 +23,7 @@ Resource_Sound::Resource_Sound(const Filename& filename)
 	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
-		
+
 //*** Constructor ***
 
 Resource_Sound::Resource_Sound(StringId filenameId)
@@ -32,7 +33,7 @@ Resource_Sound::Resource_Sound(StringId filenameId)
 	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
-		
+
 //*** Constructor ***
 
 Resource_Sound::Resource_Sound(const char* filenameStr)
@@ -42,11 +43,11 @@ Resource_Sound::Resource_Sound(const char* filenameStr)
 	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
-		
+
 //*** Destructor ***
 
-Resource_Sound::~Resource_Sound() 
-	{ 
+Resource_Sound::~Resource_Sound()
+	{
 	if (sound_)
 		{
 		siOldResourceManager->DecreaseReferenceCount(sound_);
@@ -57,8 +58,8 @@ Resource_Sound::~Resource_Sound()
 ///*** Copy Constructor ***
 
 Resource_Sound::Resource_Sound(const Resource_Sound& resource):
-	sound_(resource.sound_) 
-	{ 
+	sound_(resource.sound_)
+	{
 	siOldResourceManager->IncreaseReferenceCount(sound_);
 	}
 
@@ -66,7 +67,7 @@ Resource_Sound::Resource_Sound(const Resource_Sound& resource):
 //*** Assignment operator ***
 
 const Resource_Sound& Resource_Sound::operator =(const Resource_Sound& resource)
-	{ 
+	{
 	sound_=resource.sound_;
 	siOldResourceManager->IncreaseReferenceCount(sound_);
 	return *this;
@@ -90,3 +91,5 @@ void Resource_Sound::Play(float priority, bool looping)
 		sound_->Play(priority,looping);
 		}
 	}
+
+}; // namespace pixie

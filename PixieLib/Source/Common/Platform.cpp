@@ -10,6 +10,8 @@
 #include "Platform_Network.h"
 #include "Platform_3D.h"
 
+namespace pixie {
+
 // Singleton instance of the platform system
 Platform Platform::platform_;
 
@@ -142,7 +144,7 @@ void Platform::SendEvent_CustomEvent(const char* eventId,void* userData)
 	}
 
 
-		
+
 //*** GetPlatform_OS ***
 
 Platform_OS* Platform::GetPlatform_OS()
@@ -325,3 +327,5 @@ void Platform::SetPlatform_3D(Platform_3D* instance)
 		delete instance;
 		}
 	}
+
+}; // namespace pixie

@@ -6,6 +6,7 @@
 #include "BitmapStrip.h"
 #include "Bitmap_16bit.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -88,11 +89,11 @@ Resource_BitmapStrip::Resource_BitmapStrip(const Image& image):
 		}
 	}
 
-		
+
 //*** Destructor ***
 
-Resource_BitmapStrip::~Resource_BitmapStrip() 
-	{ 
+Resource_BitmapStrip::~Resource_BitmapStrip()
+	{
 	if (bitmapStrip_)
 		{
 		siOldResourceManager->DecreaseReferenceCount(bitmapStrip_);
@@ -103,8 +104,8 @@ Resource_BitmapStrip::~Resource_BitmapStrip()
 ///*** Copy Constructor ***
 
 Resource_BitmapStrip::Resource_BitmapStrip(const Resource_BitmapStrip& resource):
-	bitmapStrip_(resource.bitmapStrip_) 
-	{ 
+	bitmapStrip_(resource.bitmapStrip_)
+	{
 	if (bitmapStrip_)
 		{
 		siOldResourceManager->IncreaseReferenceCount(bitmapStrip_);
@@ -115,7 +116,7 @@ Resource_BitmapStrip::Resource_BitmapStrip(const Resource_BitmapStrip& resource)
 //*** Assignment operator ***
 
 const Resource_BitmapStrip& Resource_BitmapStrip::operator =(const Resource_BitmapStrip& resource)
-	{ 
+	{
 	if (bitmapStrip_)
 		{
 		siOldResourceManager->DecreaseReferenceCount(bitmapStrip_);
@@ -267,3 +268,5 @@ void Resource_BitmapStrip::Copy(int cel, int x1, int y1, int x2, int y2, Bitmap&
 		}
 	strip.GetCel(cel).Copy(x1,y1,x2,y2,target,x,y,modulate,transformation);
 	}
+
+}; // namespace pixie

@@ -12,7 +12,7 @@
 #include "StandardLibrary.h"
 #include "Filename.h"
 
-
+namespace pixie {
 //*** Constructor Memory Buffer***
 
 Asset::Asset(const StaticBuffer* staticBuffer):
@@ -119,7 +119,7 @@ Asset::~Asset()
 			}
 		delete file_;
 		}
-	
+
 	if (archiveFile_)
 		{
 		if (fileIsOpen_)
@@ -167,7 +167,7 @@ Asset::Asset(const Asset& asset):
 			archiveFile_->Seek(asset.archiveFile_->Tell());
 			}
 		}
-	
+
 	}
 
 
@@ -183,7 +183,7 @@ const Asset& Asset::operator=(const Asset& asset)
 			}
 		delete file_;
 		}
-	
+
 	if (archiveFile_)
 		{
 		if (fileIsOpen_)
@@ -220,7 +220,7 @@ const Asset& Asset::operator=(const Asset& asset)
 			archiveFile_->Open();
 			archiveFile_->Seek(asset.archiveFile_->Tell());
 			}
-		}	
+		}
 	return *this;
 	}
 
@@ -332,7 +332,7 @@ bool Asset::Close() const
 		fileIsOpen_=false;
 		return file_->Close();
 		}
-	
+
 	return false;
 	}
 
@@ -377,7 +377,7 @@ int Asset::GetSize() const
 		}
 		return size;
 		}
-	
+
 	return  0;
 	}
 
@@ -504,7 +504,7 @@ int Asset::Tell() const
 
 	return 0;
 	}
-	
+
 
 //*** WRITEMACRO ***
 
@@ -584,7 +584,7 @@ int Asset::Write(const bool* value, int count)
 	}
 
 // No need for the write macro anymore, so undefine it
-#undef WRITEMACRO 
+#undef WRITEMACRO
 
 
 //*** READMACRO ***
@@ -668,3 +668,4 @@ int Asset::Read(bool* value, int count) const
 #undef READMACRO
 
 
+}; // namespace pixie

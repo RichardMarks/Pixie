@@ -12,6 +12,7 @@
 #include "ColorHelper.h"
 #include "Asset.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -57,13 +58,13 @@ BitmapStrip::BitmapStrip(const Image& image)
 	int height=image.GetHeight();
 	Image celImage(width,height);
 	for (int i=0;  i<image.GetCelCount(); i++)
-		{		
+		{
 
 		for (int y=0; y<height; y++)
 			{
 			for (int x=0; x<width; x++)
 				{
-				celImage.SetPixel(x,y,image.GetPixel(i,x,y));	
+				celImage.SetPixel(x,y,image.GetPixel(i,x,y));
 				}
 			}
 
@@ -121,7 +122,7 @@ int BitmapStrip::GetCelCount() const
 	}
 
 
-//*** operator Bitmap *** 
+//*** operator Bitmap ***
 
 BitmapStrip::operator const Bitmap&() const
 	{
@@ -348,3 +349,5 @@ void BitmapStrip::ReadFromAsset(const Asset* asset)
 		}
 
 	}
+
+	}; // namespace pixie

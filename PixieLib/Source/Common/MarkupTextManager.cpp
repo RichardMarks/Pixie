@@ -4,6 +4,7 @@
 #include "Font.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -12,7 +13,7 @@ MarkupTextManager::MarkupTextManager()
 	}
 
 
-//*** Destructor ***	
+//*** Destructor ***
 
 MarkupTextManager::~MarkupTextManager()
 	{
@@ -38,7 +39,7 @@ MarkupTextManager::FontStyleDefinition* MarkupTextManager::FindFontStyle(FontSty
 			return &definition;
 			}
 		}
-	
+
 	return 0;
 	}
 
@@ -55,7 +56,7 @@ MarkupTextManager::FontStyleDefinition* MarkupTextManager::FindFontStyle(StringI
 			return &definition;
 			}
 		}
-	
+
 	return 0;
 	}
 
@@ -92,7 +93,7 @@ void MarkupTextManager::AddFontStyle(FontStyle style, const Asset& font, unsigne
 	fontStyleDefinitions_.Add(definition);
 	}
 
-		
+
 //*** RemoveFontStyle ***
 
 void MarkupTextManager::RemoveFontStyle(StringId style)
@@ -130,7 +131,7 @@ void MarkupTextManager::AddFontStyle(StringId style, const Asset& font, unsigned
 void MarkupTextManager::SetFontStyle(FontStyle style, const Asset& font, unsigned short color)
 	{
 	RemoveFontStyle(style);
-	AddFontStyle(style,font,color,0,0xffff);	
+	AddFontStyle(style,font,color,0,0xffff);
 	}
 
 
@@ -139,7 +140,7 @@ void MarkupTextManager::SetFontStyle(FontStyle style, const Asset& font, unsigne
 void MarkupTextManager::SetFontStyle(FontStyle style, const Asset& font, unsigned short color, unsigned short bgcolor, unsigned char opacity)
 	{
 	RemoveFontStyle(style);
-	AddFontStyle(style,font,color,opacity,bgcolor);	
+	AddFontStyle(style,font,color,opacity,bgcolor);
 	}
 
 
@@ -148,7 +149,7 @@ void MarkupTextManager::SetFontStyle(FontStyle style, const Asset& font, unsigne
 void MarkupTextManager::SetFontStyle(StringId style, const Asset& font, unsigned short color)
 	{
 	RemoveFontStyle(style);
-	AddFontStyle(style,font,color,0,0xffff);	
+	AddFontStyle(style,font,color,0,0xffff);
 	}
 
 
@@ -157,7 +158,7 @@ void MarkupTextManager::SetFontStyle(StringId style, const Asset& font, unsigned
 void MarkupTextManager::SetFontStyle(StringId style, const Asset& font, unsigned short color, unsigned short bgcolor, unsigned char opacity)
 	{
 	RemoveFontStyle(style);
-	AddFontStyle(style,font,color,opacity,bgcolor);	
+	AddFontStyle(style,font,color,opacity,bgcolor);
 	}
 
 
@@ -418,3 +419,4 @@ void MarkupTextManager::GetVariableValue(StringId name, int index, char* buffer,
 			}
 		}
 	}
+}; // namespace pixie

@@ -7,6 +7,7 @@
 #include "Platform_FileSystem_File.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 extern const char* Pixie_Archive_Header;
 
 
@@ -51,7 +52,7 @@ void ArchiveGenerator::GenerateCPP(const char* directoryPath, const char* archiv
 
 	// Create output buffer
 	DynamicBuffer buffer(filedata_.GetSize());
-	
+
 	// Write header
 	buffer.Write(Pixie_Archive_Header,StrLen(Pixie_Archive_Header));
 	buffer.Write(&version);
@@ -97,7 +98,7 @@ void ArchiveGenerator::GenerateCPP(const char* directoryPath, const char* archiv
 			lastPercentagePrinted=percentageDone;
 			}
 		}
-	
+
 	SetProgress(Phase_GeneratingArray,"100%");
 
 	// Write right curly brace at end of array declaration
@@ -161,7 +162,7 @@ void ArchiveGenerator::GenerateFile(const char* directoryPath, const char* archi
 	// Generate header and fixup offsets
 	header.Clear();
 	WriteDirectoryList(&header,&root_,headerSize);
-	
+
 	// Generate .DAT filename
 	Platform_FileSystem_File* file=0;
 	if (Platform::GetPlatform_FileSystem())
@@ -205,21 +206,21 @@ void ArchiveGenerator::GenerateFile(const char* directoryPath, const char* archi
 
 
 //*** WriteDirectoryList ***
-	
+
 void ArchiveGenerator::WriteDirectoryList(DynamicBuffer* buffer, DirectoryEntry* directoryEntry, int offset)
 	{
 	// Write directory name
 	int nameLength=StrLen(directoryEntry->name);
 	buffer->Write(&nameLength);
 	buffer->Write(directoryEntry->name,nameLength);
-	
+
 	// Write files
 	int fileCount=directoryEntry->files.GetItemCount();
 	buffer->Write(&fileCount);
 	for (int i=0; i<fileCount; i++)
 		{
 		FileEntry& fileEntry=directoryEntry->files.Get(i);
-		
+
 		// Fixup offset to compensate for header
 		fileEntry.offset+=offset;
 
@@ -302,7 +303,7 @@ void ArchiveGenerator::ProcessDirectory(int rootPathLength, Platform_FileSystem_
 		}
 	if (name[0]=='/')
 		{
-		name++;	
+		name++;
 		}
 	MemSet(directoryEntry->name,0,260);
 	StrNCpy(directoryEntry->name,name,Max(259,StrLen(name)));
@@ -339,7 +340,7 @@ void ArchiveGenerator::ProcessDirectory(int rootPathLength, Platform_FileSystem_
 			data=new unsigned char[fileSize];
 
 			// Read the file data
-			file->Read(data,fileSize);		
+			file->Read(data,fileSize);
 
 			// Close the file
 			file->Close();
@@ -409,3 +410,5 @@ void ArchiveGenerator::SetProgress(Phase phase, const char* text)
 		progressCallback_(progressData_);
 		}
 	}
+
+	}; // namespace pixie

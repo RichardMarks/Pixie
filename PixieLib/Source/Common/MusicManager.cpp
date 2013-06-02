@@ -5,6 +5,7 @@
 #include "Music.h"
 #include "Asset.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -107,7 +108,7 @@ void MusicManager::Update(float deltaTime)
 					}
 				return;
 				}
-			
+
 			currentMusic_->SetVolume(currentMusicVolume_*(currentTime_/crossFadeTime_));
 			switchMusic_->SetVolume(currentMusicVolume_*(1.0f-(currentTime_/crossFadeTime_)));
 			} break;
@@ -297,3 +298,5 @@ Music* MusicManager::GetCurrentMusic()
 	{
 	return currentMusic_;
 	}
+
+}; // namespace pixie

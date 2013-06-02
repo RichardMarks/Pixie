@@ -2,6 +2,7 @@
 
 #include "ArchiveDirectory.h"
 
+namespace pixie {
 //*** GetPath ***
 
 StringId ArchiveDirectory::GetPath() const
@@ -64,3 +65,5 @@ void ArchiveDirectory::AddFile(const char* fullpath)
 	{
 	files_.Add(StringId(fullpath));
 	}
+
+}; // namespace pixie

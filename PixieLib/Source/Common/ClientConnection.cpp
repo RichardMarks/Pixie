@@ -7,6 +7,7 @@
 #include "StaticBuffer.h"
 #include "Debug.h"
 
+namespace pixie {
 
 // Static memory buffer used when running in local communications (non networked) mode
 DynamicBuffer* ClientConnection::localClientCommunicationsBuffer_ = 0;
@@ -56,7 +57,7 @@ ClientConnection::~ClientConnection()
 			delete localClientCommunicationsBuffer_;
 			localClientCommunicationsBuffer_=0;
 			}
-		}	
+		}
 	}
 
 
@@ -83,9 +84,9 @@ void ClientConnection::ConnectSP()
 		{
 		return;
 		}
-	
+
 	localCommunications_=true;
-	
+
 	if (!localClientCommunicationsBuffer_)
 		{
 		localClientCommunicationsBuffer_=new DynamicBuffer(1024);
@@ -159,7 +160,7 @@ void ClientConnection::Disconnect()
 		OnDisconnected();
 		localCommunications_OnConnected_Done_=true;
 		}
-	
+
 	}
 
 
@@ -208,7 +209,7 @@ void ClientConnection::TransmitTCP(const StaticBuffer& data)
 			{
 			return;
 			}
-		
+
 		int size=data.GetSize();
 		ServerConnection::localServerCommunicationsBuffer_->Write(&size);
 		ServerConnection::localServerCommunicationsBuffer_->Write(static_cast<const unsigned char*>(data.GetPointer()), size);
@@ -236,3 +237,4 @@ void ClientConnection::TransmitUDP(const StaticBuffer& data)
 		}
 	}
 
+}; // namespace pixie

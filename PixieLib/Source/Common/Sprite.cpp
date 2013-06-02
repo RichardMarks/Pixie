@@ -9,6 +9,8 @@
 #include "SpriteSystem.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 //*** Constructor ***
 
 Sprite::Sprite():
@@ -113,7 +115,7 @@ Sprite::Sprite(SpriteManager* spriteManager):
 
 Sprite::~Sprite()
 	{
-	
+
 	if (spriteManager_)
 		{
 		spriteManager_->RemoveSprite(this);
@@ -156,7 +158,7 @@ void Sprite::SetSpriteManager(SpriteManager* spriteManager)
 		}
 	}
 
-		
+
 //*** GetX ***
 
 float Sprite::GetX() const
@@ -402,3 +404,5 @@ int Sprite::GetSelectionIndex() const
 	{
 	return selectionIndex_;
 	}
+
+}; // namespace pixie

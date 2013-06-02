@@ -12,6 +12,8 @@
 #include "Asset.h"
 #include "Filename.h"
 
+namespace pixie {
+
 const char* Pixie_Archive_Header="PIXIE_ARCHIVE";
 
 
@@ -113,7 +115,7 @@ Archive::Archive(const Filename& filename):
 
 Archive::~Archive()
 	{
-	// Delete the static buffer 
+	// Delete the static buffer
 	if (archiveBuffer_)
 		{
 		delete archiveBuffer_;
@@ -126,7 +128,7 @@ Archive::~Archive()
 		delete archiveFile_;
 		}
 
-	// Loop through the hash table of directories and delete all 
+	// Loop through the hash table of directories and delete all
 	HashTableIterator<HashTableKey_StringId,ArchiveDirectory*> it(directories_);
 	while (it.IsValid())
 		{
@@ -164,7 +166,7 @@ const ArchiveDirectory* Archive::GetDirectory(const Filename& path) const
 	return 0;
 	}
 
-		
+
 //*** GetFile ***
 
 ArchiveFile* Archive::GetFile(const Filename& filename) const
@@ -333,3 +335,5 @@ void Archive::ReadDirectory(DirectoryEntry* directoryEntry, char* parentPath)
 
 	delete[] fullpath;
 	}
+
+}; // namespace pixie

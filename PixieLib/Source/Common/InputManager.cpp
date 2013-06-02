@@ -1,5 +1,5 @@
 //*** InputManager.cpp ***
- 
+
 #include "InputManager.h"
 
 #include "Debug.h"
@@ -11,6 +11,7 @@
 #include "Asset.h"
 #include "Filename.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -83,7 +84,7 @@ void InputManager::Update()
 			{
 			charStates_[i]=keyboardDevice_->IsCharDown((unsigned char)i);
 			}
-	
+
 		// Get buffered input
 		for (int i=0; i<keyboardDevice_->GetBufferedCharacterCount(); i++)
 			{
@@ -92,7 +93,7 @@ void InputManager::Update()
 		keyboardDevice_->ClearBufferedCharacters();
 		}
 
-	
+
 
 	// Get cursor position
 	if (mouseDevice_)
@@ -276,7 +277,7 @@ void InputManager::CreateCursor(int id, const Filename& image, int hotspotX, int
 			return;
 			}
 		}
-	
+
 	Cursor cursor;
 	cursor.id=id;
 	cursor.handle=0;
@@ -330,7 +331,7 @@ void InputManager::ShowCursor()
 void InputManager::HideCursor()
 	{
 	cursorHidden_=true;
-	
+
 	if (Platform::GetPlatform_Screen())
 		{
 		if (!Platform::GetPlatform_Screen()->GetFullscreen())
@@ -384,3 +385,4 @@ void InputManager::RestoreCursor()
 			}
 		}
 	}
+}; // namespace pixie

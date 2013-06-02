@@ -9,6 +9,7 @@
 #include "Bitmap.h"
 #include "Filename.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -185,7 +186,7 @@ void Font::LoadFont(const Filename& filename)
 		{
 		StrCpy(path,"");
 		}
-    
+
 
 	// Create RLE bitmaps
 	for (int i=0; i<layers_.GetItemCount(); i++)
@@ -195,7 +196,7 @@ void Font::LoadFont(const Filename& filename)
 		SNPrintF(filenameFullPath,1024,"%s%s",path,filename);
 		Filename fn(filenameFullPath);
 		Image layer(fn);
-		
+
 		for (int i=0; i<256; i++)
 			{
 			Character& character=characters_[i];
@@ -256,7 +257,7 @@ const Font::Character& Font::GetCharacter(int ascii) const
 		static Character defaultValue;
 		return defaultValue;
 		}
-	
+
 	return characters_[ascii];
 	}
 
@@ -272,10 +273,10 @@ void Font::Blit(Bitmap& bitmap, int x, int y, const char* text, int spacing, uns
 	int textLength=StrLen(text);
 	int previousCharacter=0;
 	for (int i=0; i<layerCount_; i++)
-		{	
+		{
 		int xp=x;
 		for (int j=0; j<textLength; j++)
-			{	
+			{
 			const Character& character=GetCharacter(text[j]);
 			int kerning=0;
 			if (j>0)
@@ -349,11 +350,11 @@ void Font::BlitWrap(Bitmap& bitmap, int x, int y, const char* text, int width, i
 
 	int textLength=StrLen(text);
 	for (int i=0; i<layerCount_; i++)
-		{	
+		{
 		int xp=x;
 		int yp=y;
 		for (int j=0; j<textLength; j++)
-			{	
+			{
 			if (text[j]=='\n' || xp>=x+width)
 				{
 				xp=x;
@@ -422,7 +423,7 @@ Font::Bounds Font::GetBounds(const char* text, int spacing) const
 	int textLength=StrLen(text);
 	int xp=0;
 	for (int j=0; j<textLength; j++)
-		{	
+		{
 		const Character& character=GetCharacter(text[j]);
 		int kerning=0;
 		if (j>0)
@@ -432,7 +433,7 @@ Font::Bounds Font::GetBounds(const char* text, int spacing) const
 
 		xp+=character.spacing+spacing+kerning;
 		}
-	
+
 	Bounds bounds;
 	bounds.width=xp;
 	bounds.height=lineSpacing_+1;
@@ -458,7 +459,7 @@ Font::Bounds Font::GetBoundsWrap(const char* text, int width, int hspacing, int 
 	int xp=0;
 	int yp=0;
 	for (int j=0; j<textLength; j++)
-		{	
+		{
 		if (text[j]=='\n' || xp>=width)
 			{
 			xp=0;
@@ -477,7 +478,7 @@ Font::Bounds Font::GetBoundsWrap(const char* text, int width, int hspacing, int 
 			}
 
 		const Character& character=GetCharacter(text[j]);
-		
+
 		xp+=character.spacing+hspacing;
 		}
 
@@ -514,7 +515,7 @@ XMLObject* Font::XML_Element(StringId _name, const XMLAttributeList& _attributes
 	xmlCase(Layer)
 		{
 		char* filename=StrDup(xmlAttributeValue("filename"));
-		layers_.Add(filename);		
+		layers_.Add(filename);
 		}
 
 	return 0;
@@ -624,7 +625,7 @@ void Font::WriteToAsset(Asset* asset)
 				character.layers.Get(i)->WriteToAsset(asset);
 				}
 			}
-		
+
 		}
 
 	}
@@ -687,10 +688,12 @@ void Font::ReadFromAssetNew(const Asset* asset)
 		asset->Read(&kerning.first);
 		asset->Read(&kerning.second);
 		asset->Read(&kerning.amount);
-		
+
 		if (kerning.first>=0 && kerning.first<=255)
 			{
 			kerning_[kerning.first]=kerning;
 			}
 		}
 	}
+
+}; // namespace pixie

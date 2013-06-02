@@ -3,6 +3,7 @@
 #include "TRect.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 //*** Default Constructor ***
 
 TRect::TRect():
@@ -62,7 +63,7 @@ void TRect::Grow( int dx, int dy )
 
 TRect TRect::Intersect( TRect rect ) const
 	{
-	return TRect( 
+	return TRect(
 		TPoint( Max( x_, rect.x_ ), Max( y_, rect.y_ ) ),
 		TPoint( Min( x_+w_, rect.x_+rect.w_ ), Min( y_+h_, rect.y_+rect.h_ ) )
 		);
@@ -77,13 +78,13 @@ TRect TRect::Union( TRect rect ) const
 		{
 		return rect;
 		}
-	
+
 	if (rect.IsEmpty())
 		{
 		return *this;
 		}
 
-	return TRect( 
+	return TRect(
 		TPoint( Min( x_, rect.x_ ), Min( y_, rect.y_ ) ),
 		TPoint( Max( x_+w_, rect.x_+rect.w_ ), Max( y_+h_, rect.y_+rect.h_ ) )
 		);
@@ -120,3 +121,5 @@ bool TRect::IsEmpty() const
 	{
 	return w_<=0 || h_<=0;
 	}
+
+}; // namespace pixie

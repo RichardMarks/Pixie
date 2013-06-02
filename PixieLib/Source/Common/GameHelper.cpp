@@ -15,6 +15,7 @@
 #include "ImageFormat_JPG.h"
 #include "ImageFormat_PNG.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -26,13 +27,13 @@ GameHelper::GameHelper(const char* applicationName)
 		Platform::GetPlatform_OS()->SetApplicationName(applicationName);
 		}
 
-	// Register the sound formats we will be using - better register all of them, as we want this game to be easy to 
+	// Register the sound formats we will be using - better register all of them, as we want this game to be easy to
 	// mod, and we don't know which formats the modders will want to use
 	AudioFormat_OGG::Register();
 	AudioFormat_YM::Register();
 	AudioFormat_MOD::Register();
 
-	// Register the image formats we will be using - better register all of them, as we want this game to be easy to 
+	// Register the image formats we will be using - better register all of them, as we want this game to be easy to
 	// mod, and we don't know which formats the modders will want to use
 	ImageFormat_TGA::Register();
 	ImageFormat_GIF::Register();
@@ -112,3 +113,5 @@ bool GameHelper::UpdateGame(float deltaTime, Screen& screen)
 
 	return !gameStateManager_.IsExitFlagSet();
 	}
+
+}; // namespace pixie

@@ -7,6 +7,7 @@
 #include "ColorHelper.h"
 #include "HashTableIterator.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -146,7 +147,7 @@ void GameStateManager::Update(float deltaTime)
 
 	// Update state instance
 	if (stateInstance_)
-		{ 
+		{
 		stateInstance_->Update(deltaTime);
 		}
 
@@ -254,7 +255,7 @@ void GameStateManager::ExitApplication()
 	{
 	exitRequested_=true;
 	}
-	
+
 
 //*** IsExitFlagSet ***
 
@@ -262,3 +263,5 @@ bool GameStateManager::IsExitFlagSet()
 	{
 	return exitFlag_;
 	}
+
+}; // namespace pixie

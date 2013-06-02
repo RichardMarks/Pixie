@@ -5,6 +5,7 @@
 #include "StandardLibrary.h"
 #include "Debug.h"
 
+namespace pixie {
 
 QuadBlitter::EdgeBuffer QuadBlitter::edgeBuffer_;
 
@@ -32,9 +33,9 @@ void QuadBlitter::Blit(unsigned short fillColor, unsigned short* targetColor, in
 	// written to cope with multiple scenarios, with features determined by #defines
 
 	#define EDGE_TYPE EdgeX
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef EDGE_TYPE
 
 	// *** END EDGE SCANNING ***
@@ -69,9 +70,9 @@ void QuadBlitter::Blit(unsigned short fillColor, unsigned short* targetColor, in
 	// written to cope with multiple scenarios, with features determined by #defines
 
 	#define EDGE_TYPE EdgeX
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef EDGE_TYPE
 
 	// *** END EDGE SCANNING ***
@@ -125,10 +126,10 @@ void QuadBlitter::Blit(unsigned short fillColor, unsigned short* targetColor, in
 
 		for (int x=0; x<width; x++)
 			{
-			*pdata=fillColor;				
+			*pdata=fillColor;
 			pdata++;
 			}
-	
+
 		// Advance to next rows
 		data+=targetHPitch;
 		}
@@ -151,9 +152,9 @@ void QuadBlitter::Blit(unsigned short* sourceColor, int sourceHPitch, int source
 
 	#define EDGE_TYPE EdgeXUV
 	#define USE_UV
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef USE_UV
 	#undef EDGE_TYPE
 
@@ -175,7 +176,7 @@ void QuadBlitter::Blit(unsigned short* sourceColor, int sourceHPitch, int source
 		int v1=(*edgePtr).v;
 		edgePtr++;
 
-		
+
 		int width=xend-xstart+1;
 
 		int stepU=(u1-u0)/width;
@@ -211,9 +212,9 @@ void QuadBlitter::Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, 
 
 	#define EDGE_TYPE EdgeXUV
 	#define USE_UV
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef USE_UV
 	#undef EDGE_TYPE
 
@@ -235,7 +236,7 @@ void QuadBlitter::Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, 
 		int v1=(*edgePtr).v;
 		edgePtr++;
 
-		
+
 		int width=xend-xstart+1;
 
 		int stepU=(u1-u0)/width;
@@ -278,9 +279,9 @@ void QuadBlitter::Blit(unsigned char alpha, unsigned short* sourceColor, unsigne
 
 	#define EDGE_TYPE EdgeXUV
 	#define USE_UV
-	
+
 	#include "QuadBlitter_scanning.inl"
-	
+
 	#undef USE_UV
 	#undef EDGE_TYPE
 
@@ -302,7 +303,7 @@ void QuadBlitter::Blit(unsigned char alpha, unsigned short* sourceColor, unsigne
 		int v1=(*edgePtr).v;
 		edgePtr++;
 
-		
+
 		int width=xend-xstart+1;
 
 		int stepU=(u1-u0)/width;
@@ -432,9 +433,9 @@ void QuadBlitter::Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, 
 			int offset=(u0>>16)+sourceHPitch*(v0>>16);
 			unsigned char srcalpha=sourceAlpha[offset];
 			*pdata=AlphaBlend16(*pdata,sourceColor[offset],srcalpha);
-				
+
 				// INTERPOLATION
-/*				int offset=(u0>>16)+sourceHPitch*(v0>>16);				
+/*				int offset=(u0>>16)+sourceHPitch*(v0>>16);
 				unsigned short c1=sourceColor[offset];
 				unsigned short c2=sourceColor[offset+1];
 				unsigned short c3=sourceColor[offset+sourceHPitch];
@@ -452,7 +453,7 @@ void QuadBlitter::Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, 
 				unsigned char fa1=(unsigned char)((a3*(255-uf)+a4*uf)>>8);
 				unsigned char fax=(unsigned char)((fa0*(255-vf)+fa1*vf)>>8);
 				*pdata=AlphaBlend16(*pdata,fcx,fax);
-*/			
+*/
 
 
 			pdata++;
@@ -466,3 +467,4 @@ void QuadBlitter::Blit(unsigned short* sourceColor, unsigned char* sourceAlpha, 
 
 	}
 
+}; // namespace pixie

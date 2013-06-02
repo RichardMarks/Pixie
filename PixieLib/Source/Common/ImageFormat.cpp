@@ -5,6 +5,7 @@
 #include "Asset.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 Array<ImageFormat::ImageFormatEntry> ImageFormat::imageFormats_;
 
 //*** RegisterImageFormat ***
@@ -69,3 +70,4 @@ ImageFormat* ImageFormat::CreateImageFormat(const Asset& asset)
 
 	return 0;
 	}
+}; // namespace pixie

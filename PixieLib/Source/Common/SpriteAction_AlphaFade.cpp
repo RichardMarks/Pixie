@@ -1,10 +1,11 @@
 //*** SpriteAction_AlphaFade.cpp ***
- 
+
 #include "SpriteAction_AlphaFade.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -41,9 +42,9 @@ void SpriteAction_AlphaFade::Setup(SpriteController* controller, Sprite* sprite)
 void SpriteAction_AlphaFade::Update(SpriteController* controller, Sprite* sprite, float deltaTime)
 	{
 	elapsedTime_+=deltaTime;
-	
+
 	if (elapsedTime_>time_)
-		{	
+		{
 		sprite->SetAlpha(targetAlpha_);
 		ActionCompleted();
 		return;
@@ -63,3 +64,4 @@ void SpriteAction_AlphaFade::Update(SpriteController* controller, Sprite* sprite
 	sprite->SetAlpha(alpha);
 	}
 
+}; // namespace pixie

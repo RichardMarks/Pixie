@@ -7,6 +7,7 @@
 #include "SpriteController.h"
 #include "SpriteAction_ButtonStateCrossFade.h"
 
+namespace pixie {
 
 //** Constructor ***
 
@@ -83,3 +84,5 @@ bool DragAndDropSprite::OnMouseOver(int x, int y, bool button, StringId& eventId
 
 	return false;
 	}
+
+}; // namespace pixie

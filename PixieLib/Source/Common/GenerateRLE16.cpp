@@ -8,11 +8,13 @@
 #include "FloydSteinbergDither.h"
 #include "Debug.h"
 
+namespace pixie {
+
 //*** Constructor ***
 
 GenerateRLE16::GenerateRLE16(const Image& image, Bitmap_RLE16* bitmap, bool dither):
 	opaqueSize_(0),
-	opaqueData_(0),	
+	opaqueData_(0),
 	alphaSize_(0),
 	alphaData_(0),
 	hPitch_(0),
@@ -32,7 +34,7 @@ GenerateRLE16::GenerateRLE16(const Image& image, Bitmap_RLE16* bitmap, bool dith
 	bitmap->vOffset_=vOffset_;
 
 	opaqueSize_=0;
-	opaqueData_=0;	
+	opaqueData_=0;
 	alphaSize_=0;
 	alphaData_=0;
 	hPitch_=0;
@@ -81,7 +83,7 @@ void GenerateRLE16::CreateFromImage(const Image* image, bool dither)
 	int minY=0;
 	int maxX=0;
 	int maxY=0;
-	
+
 	// Crop image
 	Crop(image,&minX,&minY,&maxX,&maxY);
 	if (maxX<minX || maxY<minY)
@@ -91,7 +93,7 @@ void GenerateRLE16::CreateFromImage(const Image* image, bool dither)
 
 	hPitch_=(unsigned short)(maxX-minX+1);
 	vPitch_=(unsigned short)(maxY-minY+1);
-	
+
 	hOffset_=(unsigned short)minX;
 	vOffset_=(unsigned short)minY;
 
@@ -99,7 +101,7 @@ void GenerateRLE16::CreateFromImage(const Image* image, bool dither)
 	unsigned short* data=0;
 	unsigned char* mask=0;
 	Palettize(image,&data,&mask,dither);
-	
+
 	// Create RLE data
 	opaqueSize_=GetRLESize(data,mask);
 	if (opaqueSize_>0)
@@ -115,7 +117,7 @@ void GenerateRLE16::CreateFromImage(const Image* image, bool dither)
 		alphaData_=static_cast<unsigned char*>(Malloc(alphaSize_));
 		CreateRLE_Alpha(data,mask,alphaData_);
 		}
-		
+
 
 	// Release temp stuff
 	if (data)
@@ -132,7 +134,7 @@ void GenerateRLE16::CreateFromImage(const Image* image, bool dither)
 
 //*** Palettize ***
 
-void GenerateRLE16::Palettize(const Image* image,unsigned short** data, unsigned char** mask, bool dither)	
+void GenerateRLE16::Palettize(const Image* image,unsigned short** data, unsigned char** mask, bool dither)
 	{
 	*data=static_cast<unsigned short*>(Malloc(sizeof(unsigned short)*hPitch_*vPitch_));
 	*mask=static_cast<unsigned char*>(Malloc(sizeof(unsigned char)*hPitch_*vPitch_));
@@ -170,7 +172,7 @@ void GenerateRLE16::Palettize(const Image* image,unsigned short** data, unsigned
 		{
 		Free(dithered);
 		}
-	}	
+	}
 
 
 //*** GetRLESize ***
@@ -197,7 +199,7 @@ int GenerateRLE16::CreateRLE(unsigned short* source, unsigned char* mask, unsign
 			source++;
 			mask++;
 			}
-		
+
 		if (destination)
 			{
 			Assert(blank<=0xffff,"RLE run is too long - need code here to break it up");
@@ -227,16 +229,16 @@ int GenerateRLE16::CreateRLE(unsigned short* source, unsigned char* mask, unsign
 			source++;
 			mask++;
 			}
-		
+
 		if (destination)
 			{
 			Assert(nonblank<=0xffff,"RLE run is too long - need code here to break it up");
 			*nonblankptr=(unsigned short)nonblank;
 			}
 		}
-		
+
 	return result;
-	}	
+	}
 
 
 //*** GetRLESize_Alpha ***
@@ -263,7 +265,7 @@ int GenerateRLE16::CreateRLE_Alpha(unsigned short* source, unsigned char* mask, 
 			source++;
 			mask++;
 			}
-		
+
 		if (destination)
 			{
 			Assert(blank<=0xffff,"RLE run is too long - need code here to break it up");
@@ -294,15 +296,15 @@ int GenerateRLE16::CreateRLE_Alpha(unsigned short* source, unsigned char* mask, 
 			source++;
 			mask++;
 			}
-		
+
 		if (destination)
 			{
 			Assert(nonblank<=0xffff,"RLE run is too long - need code here to break it up");
 			*nonblankptr=(unsigned short)nonblank;
 			}
 		}
-		
+
 	return result;
-	}	
+	}
 
-
+}; // namespace pixie

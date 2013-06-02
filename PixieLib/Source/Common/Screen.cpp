@@ -4,7 +4,7 @@
 #include "Bitmap_16Bit.h"
 #include "Platform_Screen.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Screen::Screen(int width, int height):
@@ -153,3 +153,5 @@ void Screen::MatchWindowToScreenSize()
 		Platform::GetPlatform_Screen()->SetSize(backBuffer_->GetWidth(),backBuffer_->GetHeight());
 		}
 	}
+
+	}; // namespace pixie

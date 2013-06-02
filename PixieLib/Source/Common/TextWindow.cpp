@@ -5,6 +5,7 @@
 #include "Bitmap_16bit.h"
 #include "ColorHelper.h"
 
+namespace pixie {
 //*** Constructor ***
 
 TextWindow::TextWindow():
@@ -268,11 +269,12 @@ void TextWindow::Render(Bitmap& bitmap)
 		}
 	if (bs>0)
 		{
-		bitmap.Fill(x1,y1,x2,y1+bs-1,RGBModulate16(borderColor_,GetColor()),GetAlpha());	
-		bitmap.Fill(x1,y2-(bs-1),x2,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());	
-		bitmap.Fill(x1,y1,x1+bs-1,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());	
-		bitmap.Fill(x2-(bs-1),y1,x2,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());	
+		bitmap.Fill(x1,y1,x2,y1+bs-1,RGBModulate16(borderColor_,GetColor()),GetAlpha());
+		bitmap.Fill(x1,y2-(bs-1),x2,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());
+		bitmap.Fill(x1,y1,x1+bs-1,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());
+		bitmap.Fill(x2-(bs-1),y1,x2,y2,RGBModulate16(borderColor_,GetColor()),GetAlpha());
 		}
 	}
 
 
+}; // namespace pixie

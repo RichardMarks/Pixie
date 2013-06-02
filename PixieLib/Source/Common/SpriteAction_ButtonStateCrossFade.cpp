@@ -1,10 +1,11 @@
 //*** SpriteAction_ButtonStateCrossFade.cpp ***
- 
+
 #include "SpriteAction_ButtonStateCrossFade.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "Button.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -35,9 +36,9 @@ void SpriteAction_ButtonStateCrossFade::Update(SpriteController* controller, Spr
 	Button* button=static_cast<Button*>(sprite);
 
 	elapsedTime_+=deltaTime;
-	
+
 	if (elapsedTime_>time_)
-		{	
+		{
 		button->SetStateCrossFadeAlpha(0,255);
 		ActionCompleted();
 		return;
@@ -56,3 +57,4 @@ void SpriteAction_ButtonStateCrossFade::Update(SpriteController* controller, Spr
 		}
 	}
 
+}; // namespace pixie

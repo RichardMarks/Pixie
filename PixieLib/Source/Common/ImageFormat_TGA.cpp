@@ -6,11 +6,12 @@
 #include "StandardLibrary.h"
 #include "Filename.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <stdio.h>
 #include "targa/targa.h"
 
+namespace pixie {
 //*** Register ***
 
 void ImageFormat_TGA::Register()
@@ -139,7 +140,7 @@ void ImageFormat_TGA::CopyPixels(unsigned int* destination)
 	int width=image->width;
 	int height=image->height;
 	unsigned char* data=image->image_data;
-	
+
 	if (image->pixel_depth==24)
 		{
 		for (int y=0; y<height; y++)
@@ -247,3 +248,4 @@ void ImageFormat_TGA::Save(const Filename& filename, int width, int height, void
 
 	tga_write(filename.GetString(),&tga);
 	}
+}; // namespace pixie

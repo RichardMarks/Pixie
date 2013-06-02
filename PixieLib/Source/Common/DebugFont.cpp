@@ -3,6 +3,8 @@
 #include "DebugFont.h"
 #include "Bitmap.h"
 
+namespace pixie {
+
 // Forward declare
 extern unsigned int DebugFontData[];
 
@@ -41,7 +43,7 @@ void DebugFont::Blit(unsigned int* colorData, int hPitch, int vPitch, int x, int
 
 //*** Blit ***
 
-template <typename TYPE> 
+template <typename TYPE>
 void DebugFont::Blit(TYPE* colorData, int hPitch, int vPitch, int x, int y, const char* text, TYPE color)
 	{
 	// Don't draw anything if we don't have a valid string
@@ -80,7 +82,7 @@ void DebugFont::Blit(TYPE* colorData, int hPitch, int vPitch, int x, int y, cons
 
 					// Get the font-data bit-mask for the current pixel row
 					unsigned int h=DebugFontData[v+(sy+y)*4];
-					
+
 					// Check if the bit is set for the current pixel column
 					if (h & (1<<u))
 						{
@@ -96,7 +98,7 @@ void DebugFont::Blit(TYPE* colorData, int hPitch, int vPitch, int x, int y, cons
 							}
 						}
 					}
-				}	
+				}
 
 			// Increase draw position
 			xp=xp+8;
@@ -107,7 +109,7 @@ void DebugFont::Blit(TYPE* colorData, int hPitch, int vPitch, int x, int y, cons
 
 //*** DebugFontData ***
 
-unsigned int DebugFontData[] = 
+unsigned int DebugFontData[] =
 	{
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000180,0x00000000,0x00000000,0x00000000,0x0001c180,0x00000000,0x00000000,0x61983000,0x070363c3,0x0018300c,0x00000000,
 	0x61987800,0x0d8b6663,0x0030180c,0x00000000,0xf1987800,0x0d8dc067,0xb030180c,0x000000c1,0x60007800,0x070600c3,0xe0600c00,0x000000c0,0x60003000,0x01830183,0xf8600c00,0x0fc003f3,
@@ -142,3 +144,5 @@ unsigned int DebugFontData[] =
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000
 	};
+
+}; // namespace pixie

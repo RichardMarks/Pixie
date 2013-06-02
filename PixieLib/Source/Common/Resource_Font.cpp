@@ -5,6 +5,7 @@
 #include "Filename.h"
 #include "Font.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -31,7 +32,7 @@ Resource_Font::Resource_Font(const char* filenameStr)
 	font_=siOldResourceManager->GetFont(filename.GetStringId());
 	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
-		
+
 
 //*** Constructor ***
 
@@ -41,12 +42,12 @@ Resource_Font::Resource_Font(StringId filenameId)
 	font_=siOldResourceManager->GetFont(filename.GetStringId());
 	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
-		
+
 
 //*** Destructor ***
 
-Resource_Font::~Resource_Font() 
-	{ 
+Resource_Font::~Resource_Font()
+	{
 	if (font_)
 		{
 		siOldResourceManager->DecreaseReferenceCount(font_);
@@ -57,8 +58,8 @@ Resource_Font::~Resource_Font()
 ///*** Copy Constructor ***
 
 Resource_Font::Resource_Font(const Resource_Font& resource):
-	font_(resource.font_) 
-	{ 
+	font_(resource.font_)
+	{
 	siOldResourceManager->IncreaseReferenceCount(font_);
 	}
 
@@ -66,7 +67,7 @@ Resource_Font::Resource_Font(const Resource_Font& resource):
 //*** Assignment operator ***
 
 const Resource_Font& Resource_Font::operator =(const Resource_Font& resource)
-	{ 
+	{
 	font_=resource.font_;
 	siOldResourceManager->IncreaseReferenceCount(font_);
 	return *this;
@@ -114,3 +115,4 @@ void Resource_Font::BlitWrap(Bitmap& bitmap, int x, int y, const char* text, int
 
 	font_->BlitWrap(bitmap,x,y,text,width,hspacing,vspacing,modulate,alpha);
 	}
+	}; // namespace pixie

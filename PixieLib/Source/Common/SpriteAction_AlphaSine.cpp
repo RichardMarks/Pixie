@@ -1,10 +1,11 @@
 //*** SpriteAction_AlphaSine.cpp ***
- 
+
 #include "SpriteAction_AlphaSine.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "SpriteController.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -52,9 +53,9 @@ void SpriteAction_AlphaSine::Setup(SpriteController* controller, Sprite* sprite)
 void SpriteAction_AlphaSine::Update(SpriteController* controller, Sprite* sprite, float deltaTime)
 	{
 	elapsedTime_+=deltaTime;
-	
+
 	if (!perpetual_ && elapsedTime_>time_)
-		{	
+		{
 		ActionCompleted();
 		return;
 		}
@@ -71,8 +72,9 @@ void SpriteAction_AlphaSine::Update(SpriteController* controller, Sprite* sprite
 
 	float sine=Sin(elapsedTime_*frequency_+ToRadians(offset_))*amplitude_*scale;
 	sine=(sine+1.0f)*0.5f;
-	
-	int alpha=Clamp((int)(sine*255.0f),1,255);	
+
+	int alpha=Clamp((int)(sine*255.0f),1,255);
 	sprite->SetAlpha((char)alpha);
 	}
 
+}; // namespace pixie

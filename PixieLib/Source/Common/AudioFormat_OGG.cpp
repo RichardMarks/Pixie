@@ -9,6 +9,8 @@
 #include "ogg/codec.h"
 #include "ogg/vorbisfile.h"
 
+namespace pixie {
+
 //*** File wrappers ***
 size_t AudioFormat_OGG_read_func(void *ptr, size_t size, size_t nmemb, void *datasource);
 int AudioFormat_OGG_seek_func(void *datasource, ogg_int64_t offset, int whence);
@@ -59,7 +61,7 @@ AudioFormat_OGG::AudioFormat_OGG(const Asset& asset)
 
 	// Open file (will be closed by OGG when it is done with it)
 	bool res=asset_->Open();
-	
+
 	// Report missing file
 	#ifdef _DEBUG
 	if (!res)
@@ -84,7 +86,7 @@ AudioFormat_OGG::AudioFormat_OGG(const Asset& asset)
 		asset_=0;
 		return;
 		}
-	
+
 	// Set up OGG callbacks, to make it use our own file wrapper instead of fread etc.
 	ov_callbacks callbacks;
 	callbacks.read_func=AudioFormat_OGG_read_func;
@@ -192,7 +194,7 @@ int AudioFormat_OGG::CopySoundChunk(void* buffer, int bytes)
 			if (ret==0)
 				{
 				return bytes-(bytesToRead-read);
-				}			
+				}
 			}
 		bytesToRead-=readSize;
 		buffer=static_cast<unsigned char*>(buffer)+readSize;
@@ -245,3 +247,5 @@ long AudioFormat_OGG_tell_func(void* datasource)
 	Asset* asset=static_cast<Asset*>(datasource);
 	return asset->Tell();
 	}
+
+}; // namespace pixie

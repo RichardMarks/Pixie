@@ -4,6 +4,8 @@
 #include "TCanvas.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 namespace TDraw
 	{
 
@@ -121,14 +123,14 @@ void TDraw::Frame(TCanvas& canvas, int width, int height, const char* ascii, TCo
 	HLine(canvas,width-2,ascii[TDraw::Horizontal],foreground,background);
 	x+=width-2;
 	canvas.SetCursorX(x);
-	cell.ascii = ascii[TDraw::TopRight]; 
+	cell.ascii = ascii[TDraw::TopRight];
 	canvas.SetCell(x,y,cell);
 	x=originalX;
 	y++;
 	canvas.SetCursor(x,y);
 
 	// Left side
-	VLine(canvas,height-2,ascii[TDraw::Vertical],foreground,background);	
+	VLine(canvas,height-2,ascii[TDraw::Vertical],foreground,background);
 
 	// Internals
 	canvas.SetCursor(originalX+1,originalY+1);
@@ -138,7 +140,7 @@ void TDraw::Frame(TCanvas& canvas, int width, int height, const char* ascii, TCo
 	x=originalX;
 	y++;
 	canvas.SetCursor(originalX+width-1,originalY+1);
-	VLine(canvas,height-2,ascii[TDraw::Vertical],foreground,background);	
+	VLine(canvas,height-2,ascii[TDraw::Vertical],foreground,background);
 
 	// Bottom row
 	x=originalX;
@@ -151,7 +153,7 @@ void TDraw::Frame(TCanvas& canvas, int width, int height, const char* ascii, TCo
 	HLine(canvas,width-2,ascii[TDraw::Horizontal],foreground,background);
 	x+=width-2;
 	canvas.SetCursorX(x);
-	cell.ascii = ascii[TDraw::BottomRight]; 
+	cell.ascii = ascii[TDraw::BottomRight];
 	canvas.SetCell(x,y,cell);
 	}
 
@@ -244,3 +246,5 @@ void TDraw::RadioButton(TCanvas& canvas, const char* text, bool enabled, TColor 
 	canvas.SetCursor(x+4,y);
 	Text(canvas,text,foreground,background,highlight);
 	}
+
+}; // namespace pixie

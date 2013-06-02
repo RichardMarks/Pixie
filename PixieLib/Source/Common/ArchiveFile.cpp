@@ -7,6 +7,7 @@
 #include "Platform_FileSystem_File.h"
 #include "Debug.h"
 
+namespace pixie {
 //*** Constructor ***
 
 ArchiveFile::ArchiveFile(Platform_FileSystem_File* file, int offset, int size, bool sharedFile):
@@ -128,7 +129,7 @@ int ArchiveFile::Tell() const
 	{
 	return position_;
 	}
-	
+
 
 //*** READMACRO ***
 
@@ -164,7 +165,7 @@ int ArchiveFile::Tell() const
 
 
 //** Read methods */
-	
+
 int ArchiveFile::Read(char* value, int count) const
 	{
 	READMACRO();
@@ -222,3 +223,5 @@ int ArchiveFile::Read(bool* value, int count) const
 
 // No need for the read macro anymore, so undefine it
 #undef READMACRO
+
+}; // namespace pixie

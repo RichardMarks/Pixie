@@ -3,6 +3,7 @@
 #include "GameState.h"
 #include "GameStateManager.h"
 
+namespace pixie {
 
 
 //*** Destructor ***
@@ -28,3 +29,5 @@ void GameState::SwitchState(StringId state,  float transitionOutTime, float tran
 	siGameStateManager->SwitchState(state,transitionOutTime,transitionInTime);
 	}
 
+
+}; // namespace pixie

@@ -1,10 +1,11 @@
 //*** SpriteAction_SineWave.cpp ***
- 
+
 #include "SpriteAction_SineWave.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "SpriteController.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -58,9 +59,9 @@ void SpriteAction_SineWave::Setup(SpriteController* controller, Sprite* sprite)
 void SpriteAction_SineWave::Update(SpriteController* controller, Sprite* sprite, float deltaTime)
 	{
 	elapsedTime_+=deltaTime;
-	
+
 	if (!perpetual_ && elapsedTime_>time_)
-		{	
+		{
 		ActionCompleted();
 		return;
 		}
@@ -81,3 +82,4 @@ void SpriteAction_SineWave::Update(SpriteController* controller, Sprite* sprite,
 	controller->AddOffset(xOffset,yOffset);
 	}
 
+}; // namespace pixie

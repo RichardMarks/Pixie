@@ -6,6 +6,7 @@
 #include "StaticBuffer.h"
 #include "Debug.h"
 
+namespace pixie {
 
 // Static memory buffer used when running in local communications (non networked) mode
 DynamicBuffer* ServerConnection::localServerCommunicationsBuffer_ = 0;
@@ -55,9 +56,9 @@ void ServerConnection::ConnectSP()
 		{
 		return;
 		}
-	
+
 	localCommunications_=true;
-	
+
 	if (!localServerCommunicationsBuffer_)
 		{
 		localServerCommunicationsBuffer_=new DynamicBuffer(1024);
@@ -86,7 +87,7 @@ void ServerConnection::Disconnect()
 		OnClientDisconnected(0);
 		localCommunications_OnConnected_Done_=true;
 		}
-	
+
 	}
 
 
@@ -120,7 +121,7 @@ void ServerConnection::Update(float deltaTime)
 			localServerCommunicationsBuffer_->Clear(false);
 			}
 		}
-	}	
+	}
 
 
 //*** TransmitTCP ***
@@ -157,7 +158,7 @@ void ServerConnection::TransmitTCP(const StaticBuffer& data)
 			{
 			return;
 			}
-		
+
 		int size=data.GetSize();
 		ClientConnection::localClientCommunicationsBuffer_->Write(&size);
 		ClientConnection::localClientCommunicationsBuffer_->Write(static_cast<const unsigned char*>(data.GetPointer()), size);
@@ -178,7 +179,7 @@ void ServerConnection::TransmitUDP(int clientId, const StaticBuffer& data)
 			{
 			return;
 			}
-		
+
 		int size=data.GetSize();
 		ClientConnection::localClientCommunicationsBuffer_->Write(&size);
 		ClientConnection::localClientCommunicationsBuffer_->Write(static_cast<const unsigned char*>(data.GetPointer()), size);
@@ -199,9 +200,11 @@ void ServerConnection::TransmitUDP(const StaticBuffer& data)
 			{
 			return;
 			}
-		
+
 		int size=data.GetSize();
 		ClientConnection::localClientCommunicationsBuffer_->Write(&size);
 		ClientConnection::localClientCommunicationsBuffer_->Write(static_cast<const unsigned char*>(data.GetPointer()), size);
 		}
 	}
+
+}; // namespace pixie

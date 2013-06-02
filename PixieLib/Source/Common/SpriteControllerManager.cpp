@@ -5,6 +5,7 @@
 #include "SpriteController.h"
 #include "ArrayIterator.h"
 
+namespace pixie {
 //*** Constructor ***
 
 SpriteControllerManager::SpriteControllerManager()
@@ -48,7 +49,7 @@ void SpriteControllerManager::Update(float deltaTime)
 				spriteControllers_.Remove(it);
 				}
 			delete spriteController;
-			}		
+			}
 		}
 	}
 
@@ -124,3 +125,4 @@ void SpriteControllerManager::SpriteDeleted(Sprite* sprite)
 			}
 		}
 	}
+	}; // namespace pixie

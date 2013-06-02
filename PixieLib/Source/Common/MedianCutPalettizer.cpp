@@ -13,6 +13,7 @@
 #include <queue>
 #include <algorithm>
 
+namespace pixie {
 
 const int NUM_DIMENSIONS = 3;
 
@@ -192,11 +193,11 @@ std::list<Point> medianCut(Point* image, int numPoints, unsigned int desiredSize
 
 
 
-unsigned char FindNearestColor(unsigned int color, unsigned int* palette, int paletteCount) 
+unsigned char FindNearestColor(unsigned int color, unsigned int* palette, int paletteCount)
 	{
     int i, distanceSquared, minDistanceSquared, bestIndex = 0;
     minDistanceSquared = 255*255 + 255*255 + 255*255 + 1;
-    for (i=0; i<paletteCount; i++) 
+    for (i=0; i<paletteCount; i++)
 		{
 		unsigned char cR=((unsigned char)((color&0x00ff0000)>>16));
 		unsigned char cG=((unsigned char)((color&0x0000ff00)>>8 ));
@@ -208,7 +209,7 @@ unsigned char FindNearestColor(unsigned int color, unsigned int* palette, int pa
         int Gdiff = ((int)cG) - pG;
         int Bdiff = ((int)cB) - pB;
         distanceSquared = Rdiff*Rdiff + Gdiff*Gdiff + Bdiff*Bdiff;
-        if (distanceSquared < minDistanceSquared) 
+        if (distanceSquared < minDistanceSquared)
 			{
             minDistanceSquared = distanceSquared;
             bestIndex = i;
@@ -218,11 +219,11 @@ unsigned char FindNearestColor(unsigned int color, unsigned int* palette, int pa
 	}
 
 
-unsigned char FindNearestColor(unsigned short color, unsigned short* palette, int paletteCount) 
+unsigned char FindNearestColor(unsigned short color, unsigned short* palette, int paletteCount)
 	{
     int i, distanceSquared, minDistanceSquared, bestIndex = 0;
     minDistanceSquared = 255*255 + 255*255 + 255*255 + 1;
-    for (i=0; i<paletteCount; i++) 
+    for (i=0; i<paletteCount; i++)
 		{
 		unsigned char cR=((unsigned char)((RGB16TO32(color)&0x00ff0000)>>16));
 		unsigned char cG=((unsigned char)((RGB16TO32(color)&0x0000ff00)>>8 ));
@@ -234,7 +235,7 @@ unsigned char FindNearestColor(unsigned short color, unsigned short* palette, in
         int Gdiff = ((int)cG) - pG;
         int Bdiff = ((int)cB) - pB;
         distanceSquared = Rdiff*Rdiff + Gdiff*Gdiff + Bdiff*Bdiff;
-        if (distanceSquared < minDistanceSquared) 
+        if (distanceSquared < minDistanceSquared)
 			{
             minDistanceSquared = distanceSquared;
             bestIndex = i;
@@ -269,7 +270,7 @@ int MedianCutPalettizer::GeneratePalette(unsigned short* imageData, int imageWid
 		}
 	std::list<Point> result=medianCut(data,dataSize,paletteMaxCount);
 	delete[] data;
-	
+
 	std::list<Point>::iterator it=result.begin();
 	int i=0;
 	while (it!=result.end() && i<paletteMaxCount)
@@ -325,7 +326,7 @@ int MedianCutPalettizer::GeneratePalette(unsigned int* imageData, int imageWidth
 		}
 	std::list<Point> result=medianCut(data,dataSize,paletteMaxCount);
 	delete[] data;
-	
+
 	std::list<Point>::iterator it=result.begin();
 	int i=0;
 	while (it!=result.end() && i<paletteMaxCount)
@@ -382,7 +383,7 @@ int MedianCutPalettizer::GeneratePalette(unsigned int* imageData, int imageWidth
 		}
 	std::list<Point> result=medianCut(data,dataSize,paletteMaxCount);
 	delete[] data;
-	
+
 	std::list<Point>::iterator it=result.begin();
 	int i=0;
 	while (it!=result.end() && i<paletteMaxCount)
@@ -446,3 +447,5 @@ void MedianCutPalettizer::PalettizeImage(unsigned short* imageData, int imageWid
 			}
 		}
 	}
+
+}; // namespace pixie

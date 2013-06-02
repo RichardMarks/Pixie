@@ -2,6 +2,8 @@
 
 #include "HashTableKey_Pointer.h"
 
+namespace pixie {
+
 HashTableKey_Pointer::HashTableKey_Pointer():
 	hash_(0),
 	pointer_(0)
@@ -31,12 +33,12 @@ StringId HashTableKey_Pointer::GetType() const
 
 //*** GetHash ***
 
-unsigned int HashTableKey_Pointer::GetHash() const 
-	{ 
-	return hash_; 
+unsigned int HashTableKey_Pointer::GetHash() const
+	{
+	return hash_;
 	}
-	
-	
+
+
 //*** GetInt ***
 
 unsigned int HashTableKey_Pointer::GetInt() const
@@ -57,3 +59,4 @@ bool HashTableKey_Pointer::Compare(const HashTableKey* key) const
 
 	return pointer_==(static_cast<const HashTableKey_Pointer*>(key))->pointer_;
 	}
+}; // namespace pixie

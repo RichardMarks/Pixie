@@ -3,6 +3,7 @@
 #include "StringId.h"
 #include "StringIdTable.h"
 
+namespace pixie {
 //*** Constructor ***
 
 StringId::StringId():
@@ -37,12 +38,12 @@ const char* StringId::GetString() const
 //*** GetHash ***
 
 unsigned int StringId::GetHash() const
-	{ 
+	{
 	if (!idString_)
 		{
 		return 0;
 		}
-	
+
 	// Hash number is stored immediately before the string
 	const unsigned int* hash = reinterpret_cast<const unsigned int*>(idString_-sizeof(unsigned int));
 	return *hash;
@@ -53,7 +54,7 @@ unsigned int StringId::GetHash() const
 
 StringId::StringId(const StringId& stringId)
 	{
-	idString_=stringId.idString_;	
+	idString_=stringId.idString_;
 	}
 
 
@@ -81,4 +82,4 @@ bool StringId::operator!=(const StringId& stringId) const
 	return idString_!=stringId.idString_;
 	}
 
-
+}; // namespace pixie

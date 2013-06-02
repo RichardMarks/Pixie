@@ -5,6 +5,7 @@
 #include "ColorHelper.h"
 #include "Blitter.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -20,7 +21,7 @@ Bitmap::Bitmap():
 	{
 	}
 
-	
+
 //*** GetColorData ***
 
 unsigned short* Bitmap::GetColorData() const
@@ -42,7 +43,7 @@ unsigned char* Bitmap::GetAlphaData() const
 
 int Bitmap::GetHPitch() const
 	{
-	return hPitch_;		
+	return hPitch_;
 	}
 
 
@@ -58,7 +59,7 @@ int Bitmap::GetVPitch() const
 
 int Bitmap::GetHOffset() const
 	{
-	return hOffset_;		
+	return hOffset_;
 	}
 
 
@@ -66,7 +67,7 @@ int Bitmap::GetHOffset() const
 
 int Bitmap::GetVOffset() const
 	{
-	return vOffset_;		
+	return vOffset_;
 	}
 
 
@@ -90,7 +91,7 @@ void Bitmap::Clear()
 
 void Bitmap::Fill(int x1, int y1, int x2, int y2, unsigned short color, unsigned char alpha)
 	{
-	// Don't do anything if a fully transparent fill was requested 
+	// Don't do anything if a fully transparent fill was requested
 	if (alpha==0)
 		{
 		return;
@@ -171,7 +172,7 @@ void Bitmap::Fill(int x1, int y1, int x2, int y2, unsigned short color, unsigned
 			>(blitArgs);
 			}
 		}
-	
+
 	}
 
 
@@ -326,8 +327,8 @@ int Bitmap::GetWidth(Transformation transformation) const
 			return height_;
 			} break;
 		}
-	
-	return width_;		
+
+	return width_;
 	}
 
 
@@ -351,7 +352,7 @@ int Bitmap::GetHeight(Transformation transformation) const
 			return width_;
 			} break;
 		}
-	
+
 	return height_;
 	}
 
@@ -554,11 +555,11 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 			{
 			case NoTransformation:
 				{
-				if (modulate==0xffff && alpha==255) 
+				if (modulate==0xffff && alpha==255)
 					{
 					Blitter::Normal_Copy_SC_TC(blitArgs);
 					}
-				else if (modulate!=0xffff && alpha==255) 
+				else if (modulate!=0xffff && alpha==255)
 					{
 					Blitter::Normal<
 						Blitter::OpCopy_Color_SC_TC,
@@ -566,7 +567,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Normal_SC_TC
 					>(blitArgs);
 					}
-				else if (modulate==0xffff && alpha!=255) 
+				else if (modulate==0xffff && alpha!=255)
 					{
 					Blitter::Normal<
 						Blitter::OpBlend_Alpha_SC_TC,
@@ -574,7 +575,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Normal_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Normal<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -610,7 +611,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot090_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot090<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -646,7 +647,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot180_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot180<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -682,7 +683,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot270_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot270<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -718,7 +719,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_X_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_X<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -750,7 +751,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_Y_SC_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_Y<
 						Blitter::OpBlend_Color_Alpha_SC_TC,
@@ -796,7 +797,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Normal_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Normal<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -832,7 +833,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot090_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot090<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -868,7 +869,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot180_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot180<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -904,7 +905,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot270_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot270<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -940,7 +941,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_X_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_X<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -976,7 +977,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_Y_SC_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_Y<
 						Blitter::OpBlend_Color_Alpha_SC_SA_TC,
@@ -988,7 +989,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 			}
 		}
 
-	// If we don't have color, but target does, and we have alpha channel 
+	// If we don't have color, but target does, and we have alpha channel
 	if (!sourceColor && targetColor && sourceAlpha)
 		{
 		// Pick the right blitting for the specified transformation
@@ -1004,7 +1005,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Normal_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Normal<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1024,7 +1025,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot090_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot090<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1044,7 +1045,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot180_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot180<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1064,7 +1065,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Rot270_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Rot270<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1084,7 +1085,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_X_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_X<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1104,7 +1105,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 						Blitter::StepY_Flip_Y_SA_TC
 					>(blitArgs);
 					}
-				else 
+				else
 					{
 					Blitter::Flip_Y<
 						Blitter::OpBlend_Color_Alpha_SA_TC,
@@ -1116,7 +1117,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 			}
 		}
 
-	// If we don't have color, but target does 
+	// If we don't have color, but target does
 	if (!sourceColor && targetColor && !sourceAlpha)
 		{
 		if (alpha==255)
@@ -1145,7 +1146,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 			{
 			case NoTransformation:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Normal<
 						Blitter::OpMax_SA_TA,
@@ -1165,7 +1166,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 			case Rotate_90:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Rot090<
 						Blitter::OpMax_SA_TA,
@@ -1185,7 +1186,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 			case Rotate_180:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Rot180<
 						Blitter::OpMax_SA_TA,
@@ -1205,7 +1206,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 			case Rotate_270:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Rot270<
 						Blitter::OpMax_SA_TA,
@@ -1225,7 +1226,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 			case Mirror_X:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Flip_X<
 						Blitter::OpMax_SA_TA,
@@ -1245,7 +1246,7 @@ void Bitmap::Blit(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 			case Mirror_Y:
 				{
-				if (alpha==255) 
+				if (alpha==255)
 					{
 					Blitter::Flip_Y<
 						Blitter::OpMax_SA_TA,
@@ -1536,4 +1537,4 @@ void Bitmap::Copy(int x1, int y1, int x2, int y2, Bitmap& target, int x, int y, 
 
 	}
 
-
+}; // namespace pixie

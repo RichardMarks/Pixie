@@ -11,6 +11,7 @@
 #include "ArrayIterator.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -71,7 +72,7 @@ void Audio::Register(Music* music)
 	music_.Add(music);
 	}
 
-	
+
 //*** Unregister ***
 
 void Audio::Unregister(Music* music)
@@ -153,7 +154,7 @@ Platform_Sound_SoundStream* Audio::AcquireSoundStream(SoundInstance* instance)
 			delete stream;
 			stream=Platform::GetPlatform_Sound()->CreateSoundStream(channels,frequency,bitsPerSample,Sound_BufferSize);
 			}
-		
+
 		SoundStreamEntry entry;
 		entry.instanceAssignedTo=instance;
 		entry.stream=stream;
@@ -165,7 +166,7 @@ Platform_Sound_SoundStream* Audio::AcquireSoundStream(SoundInstance* instance)
 	if (assignedSoundStreams_.GetItemCount()<MaxSimultaneousSounds)
 		{
 		Platform_Sound_SoundStream* stream=Platform::GetPlatform_Sound()->CreateSoundStream(channels,frequency,bitsPerSample,Sound_BufferSize);
-		
+
 		SoundStreamEntry entry;
 		entry.instanceAssignedTo=instance;
 		entry.stream=stream;
@@ -180,11 +181,11 @@ Platform_Sound_SoundStream* Audio::AcquireSoundStream(SoundInstance* instance)
 			{
 			// Stop the sound, and release the sound stream it was using
 			instance->Stop();
-			
+
 			// And return that stream
 			Platform_Sound_SoundStream* stream=freeSoundStreams_.Get(freeSoundStreams_.GetItemCount()-1);
 			freeSoundStreams_.RemoveLast();
-			
+
 			if (stream->GetChannels()!=channels || stream->GetFrequency()!=frequency || stream->GetBitsPerSample()!=bitsPerSample)
 				{
 				delete stream;
@@ -220,3 +221,5 @@ void Audio::ReleaseSoundStream(SoundInstance* instance)
 			}
 		}
 	}
+
+}; // namespace pixie

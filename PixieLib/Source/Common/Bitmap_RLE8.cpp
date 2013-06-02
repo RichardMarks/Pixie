@@ -11,6 +11,7 @@
 #include "CopperRLE8.h"
 #include "MaxBlitterRLE8.h"
 
+namespace pixie {
 
 const char* Pixie_Rle_Header="PIXRLE8B";
 
@@ -42,8 +43,8 @@ Bitmap_RLE8::Bitmap_RLE8():
 	modulatedPalette_(0),
 	currentPalette_(0)
 	{
-	}	
-		
+	}
+
 
 //*** Constructor ***
 
@@ -164,8 +165,8 @@ int Bitmap_RLE8::GetWidth(Transformation transformation) const
 			return height_;
 			} break;
 		}
-	
-	return width_;		
+
+	return width_;
 	}
 
 
@@ -189,7 +190,7 @@ int Bitmap_RLE8::GetHeight(Transformation transformation) const
 			return width_;
 			} break;
 		}
-	
+
 	return height_;
 	}
 
@@ -381,7 +382,7 @@ void Bitmap_RLE8::BlitRLE(Bitmap_16bit* target,int x, int y,unsigned short modul
 	{
 	Blit(0,0,activeWidth_-1,activeHeight_-1,*target,x,y,modulate,alpha);
 	}
-	
+
 
 //*** Blit ***
 
@@ -415,7 +416,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 		clipX2=target->GetWidth()-1;
 	if (clipY2>=target->GetHeight())
 		clipY2=target->GetHeight()-1;
-	
+
 	// Set up palette
 	currentPalette_=palette_;
 	if (modulate!=0xffff)
@@ -449,7 +450,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 	int tx2=tx1+activeWidth_-1;
 	int ty2=ty1+activeHeight_-1;
 	unsigned short* data=&(target->GetColorData())[tx1+ty1*target->GetWidth()];
-	
+
 	// Do we need to clip?
 	if (tx1>=clipX1 && ty1>=clipY1 && tx2<=clipX2 && ty2<=clipY2)
 		{
@@ -462,7 +463,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 					{
 					BlitterRLE8::Opaque_Unclipped_Masked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1);
 					}
-				else 
+				else
 					{
 					BlitterRLE8::Opaque_Unclipped_Masked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,alpha);
 					}
@@ -479,9 +480,9 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 					}
 				}
 			}
-			
+
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			if (alpha==255)
 				{
@@ -498,7 +499,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 		// Trivial rejection test
 		if (tx2<clipX1 || ty2<clipY1 || tx1>clipX2 || ty1>clipY2)
 			return;
-		
+
 		// Calculate visible part
 		int xStart=0;
 		int yStart=0;
@@ -521,7 +522,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 			{
 			yEnd=ty2-clipY2+1;
 			}
-		
+
 		// Render opaque part
 		if (opaqueData_)
 			{
@@ -548,9 +549,9 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* target,i
 					}
 				}
 			}
-			
+
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			if (alpha==255)
 				{
@@ -597,7 +598,7 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 		clipX2=target->GetWidth()-1;
 	if (clipY2>=target->GetHeight())
 		clipY2=target->GetHeight()-1;
-	
+
 	// Set up palette
 	currentPalette_=palette_;
 	if (modulate!=0xffff)
@@ -631,7 +632,7 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 	int tx2=tx1+activeWidth_-1;
 	int ty2=ty1+activeHeight_-1;
 	unsigned short* data=&(target->GetColorData())[tx1+ty1*target->GetWidth()];
-	
+
 	// Do we need to clip?
 	if (tx1>=clipX1 && ty1>=clipY1 && tx2<=clipX2 && ty2<=clipY2)
 		{
@@ -644,7 +645,7 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 					{
 					MaxBlitterRLE8::Opaque_Unclipped_Masked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1);
 					}
-				else 
+				else
 					{
 					MaxBlitterRLE8::Opaque_Unclipped_Masked_Transparent(opaqueData_,activeWidth_,activeHeight_,currentPalette_,data,targetDelta,tx1,ty1,alpha);
 					}
@@ -661,9 +662,9 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 					}
 				}
 			}
-			
+
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			if (alpha==255)
 				{
@@ -680,7 +681,7 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 		// Trivial rejection test
 		if (tx2<clipX1 || ty2<clipY1 || tx1>clipX2 || ty1>clipY2)
 			return;
-		
+
 		// Calculate visible part
 		int xStart=0;
 		int yStart=0;
@@ -703,7 +704,7 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 			{
 			yEnd=ty2-clipY2+1;
 			}
-		
+
 		// Render opaque part
 		if (opaqueData_)
 			{
@@ -730,9 +731,9 @@ void Bitmap_RLE8::MaxBlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bit* targe
 					}
 				}
 			}
-			
+
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			if (alpha==255)
 				{
@@ -752,7 +753,7 @@ void Bitmap_RLE8::BlitRLE(Bitmap_16bitAlpha* target,int x, int y, unsigned short
 	{
 	Blit(0,0,activeWidth_-1,activeHeight_-1,*target,x,y,modulate);
 	}
-	
+
 
 //*** Blit ***
 
@@ -782,7 +783,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 		clipX2=target->GetWidth()-1;
 	if (clipY2>=target->GetHeight())
 		clipY2=target->GetHeight()-1;
-	
+
 	// Set up palette
 	currentPalette_=palette_;
 	if (modulate!=0xffff)
@@ -818,12 +819,12 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 	int ty2=ty1+activeHeight_-1;
 	unsigned short* colorData=&(target->GetColorData())[tx1+ty1*target->GetWidth()];
 	unsigned char* alphaData=&(target->GetAlphaData())[tx1+ty1*target->GetWidth()];
-	
+
 	// Do we need to clip?
 	if (tx1>=clipX1 && ty1>=clipY1 && tx2<=clipX2 && ty2<=clipY2)
 		{
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			CopperRLE8::Alpha_Unclipped(alphaData_,activeWidth_,activeHeight_,currentPalette_,colorData, alphaData, targetDelta, tx1, ty1);
 			}
@@ -840,14 +841,14 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 				CopperRLE8::Opaque_Unclipped_Unmasked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,colorData, alphaData, targetDelta, tx1, ty1);
 				}
 			}
-			
+
 		}
 	else	// Yes, clipping required
 		{
 		// Trivial rejection test
 		if (tx2<clipX1 || ty2<clipY1 || tx1>clipX2 || ty1>clipY2)
 			return;
-		
+
 		// Calculate visible part
 		int xStart=0;
 		int yStart=0;
@@ -870,7 +871,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 			{
 			yEnd=ty2-clipY2+1;
 			}
-		
+
 		// Render opaque part
 		if (opaqueData_)
 			{
@@ -883,9 +884,9 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 				CopperRLE8::Opaque_Clipped_Unmasked(opaqueData_,activeWidth_,activeHeight_,currentPalette_,colorData, alphaData, targetDelta, tx1, ty1, xStart, yStart, xEnd, yEnd);
 				}
 			}
-			
+
 		// Render alpha part
-		if (alphaData_)			
+		if (alphaData_)
 			{
 			CopperRLE8::Alpha_Clipped(alphaData_,activeWidth_,activeHeight_,currentPalette_,colorData, alphaData, targetDelta, tx1, ty1, xStart, yStart, xEnd, yEnd);
 			}
@@ -898,7 +899,7 @@ void Bitmap_RLE8::BlitRLE(int x1, int y1, int x2, int y2, Bitmap_16bitAlpha* tar
 void IgnoreOpaque(int len, unsigned char** source)
 	{
 	unsigned char* dataRLE=*source;
-	if (len&0x80)	
+	if (len&0x80)
 		{
 		len&=0x7f;
 		dataRLE+=len;
@@ -908,15 +909,15 @@ void IgnoreOpaque(int len, unsigned char** source)
 		++dataRLE;
 		}
 	*source=dataRLE;
-	}	
-	
+	}
+
 
 //*** IgnoreAlpha ***
 
 void IgnoreAlpha(int len, unsigned char** source)
 	{
 	unsigned char* dataRLE=*source;
-	if (len&0x80)	
+	if (len&0x80)
 		{
 		len&=0x7f;
 		dataRLE+=len*2;
@@ -926,8 +927,8 @@ void IgnoreAlpha(int len, unsigned char** source)
 		dataRLE+=2;
 		}
 	*source=dataRLE;
-	}	
-	
+	}
+
 
 //*** RLEGetPixelAlpha ***
 
@@ -940,7 +941,7 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 
 	// First, test opaque part
 	unsigned char* dataRLE=opaqueData_;
-	
+
 	// Skip clipped rows
 	for (int i=0; i<y-yOffset_; i++)
 		{
@@ -957,7 +958,7 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 			xi+=len;
 			}
 		}
-		
+
 	int xi=0;
 	while (xi<=x-xOffset_)
 		{
@@ -965,7 +966,7 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 		// Get run length
 		int len=*dataRLE;
 		++dataRLE;
-		if (len&0x80)	
+		if (len&0x80)
 			{
 			len&=0x7f;
 			// Unique values
@@ -998,7 +999,7 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 
 	// Test alpha part
 	dataRLE=alphaData_;
-	
+
 	// Skip clipped rows
 	for (int i=0; i<y-yOffset_; i++)
 		{
@@ -1023,7 +1024,7 @@ unsigned char Bitmap_RLE8::RLEGetPixelAlpha(int x, int y) const
 		// Get run length
 		int len=*dataRLE;
 		++dataRLE;
-		if (len&0x80)	
+		if (len&0x80)
 			{
 			len&=0x7f;
 			// Unique values
@@ -1189,3 +1190,5 @@ unsigned char* Bitmap_RLE8::GetOpaqueData() const
 	{
 	return opaqueData_;
 	}
+
+}; // namespace pixie

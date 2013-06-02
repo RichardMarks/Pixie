@@ -5,6 +5,8 @@
 #include "Asset.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 Array<AudioFormat::AudioFormatEntry> AudioFormat::audioFormats_;
 
 //*** RegisterAudioFormat ***
@@ -69,3 +71,5 @@ AudioFormat* AudioFormat::CreateAudioFormat(const Asset& asset)
 
 	return 0;
 	}
+
+}; // namespace pixie

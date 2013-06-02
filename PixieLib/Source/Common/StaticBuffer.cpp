@@ -4,6 +4,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -12,7 +13,7 @@ StaticBuffer::StaticBuffer(const DynamicBuffer& buffer):
 	size_(buffer.GetSize()),
 	position_(0)
 	{
-	}	
+	}
 
 
 //*** Constructor ***
@@ -22,7 +23,7 @@ StaticBuffer::StaticBuffer(const void* buffer, int size):
 	size_(size),
 	position_(0)
 	{
-	}	
+	}
 
 
 //*** Destructor ***
@@ -52,7 +53,7 @@ int StaticBuffer::GetPosition() const
 
 void StaticBuffer::SetPosition(int position) const
 	{
-	position_=position; 
+	position_=position;
 	}
 
 
@@ -89,7 +90,7 @@ const void* StaticBuffer::GetPointer() const
 
 
 //** Read methods */
-	
+
 int StaticBuffer::Read(char* value, int count) const
 	{
 	READMACRO();
@@ -147,3 +148,5 @@ int StaticBuffer::Read(bool* value, int count) const
 
 // No need for the read macro anymore, so undefine it
 #undef READMACRO
+
+}; // namespace pixie

@@ -4,6 +4,7 @@
 #include "Platform_OS.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 //**** Constructor ***
 
 CommandLine::CommandLine()
@@ -15,7 +16,7 @@ CommandLine::CommandLine()
 			{
 			ParseCommandLine(commandLineString);
 			}
-		}	
+		}
 	}
 
 
@@ -47,7 +48,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 			const char* end=StrChr(commandLine,' ');
 			if (!end)
 				{
-				commandLineFlags_.Add(StringId(commandLine));				
+				commandLineFlags_.Add(StringId(commandLine));
 				}
 			else
 				{
@@ -55,7 +56,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 				char* buffer=static_cast<char*>(Malloc(length+1));
 				StrNCpy(buffer,commandLine,length);
 				buffer[length]='\0';
-				commandLineFlags_.Add(StringId(buffer));				
+				commandLineFlags_.Add(StringId(buffer));
 				Free(buffer);
 				}
 			commandLine=end;
@@ -66,7 +67,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 			const char* end=StrChr(commandLine,'"');
 			if (!end)
 				{
-				commandLineStrings_.Add(StringId(commandLine));				
+				commandLineStrings_.Add(StringId(commandLine));
 				commandLine=0;
 				}
 			else
@@ -75,7 +76,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 				char* buffer=static_cast<char*>(Malloc(length+1));
 				StrNCpy(buffer,commandLine,length);
 				buffer[length]='\0';
-				commandLineStrings_.Add(StringId(buffer));				
+				commandLineStrings_.Add(StringId(buffer));
 				Free(buffer);
 				commandLine=end+1;
 				}
@@ -85,7 +86,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 			const char* end=StrChr(commandLine,' ');
 			if (!end)
 				{
-				commandLineStrings_.Add(StringId(commandLine));				
+				commandLineStrings_.Add(StringId(commandLine));
 				}
 			else
 				{
@@ -93,7 +94,7 @@ void CommandLine::ParseCommandLine(const char* commandLine)
 				char* buffer=static_cast<char*>(Malloc(length+1));
 				StrNCpy(buffer,commandLine,length);
 				buffer[length]='\0';
-				commandLineStrings_.Add(StringId(buffer));				
+				commandLineStrings_.Add(StringId(buffer));
 				Free(buffer);
 				}
 			commandLine=end;
@@ -114,7 +115,7 @@ bool CommandLine::IsCommandLineFlagSet(StringId flag)
 			}
 		}
 
-	return false;	
+	return false;
 	}
 
 
@@ -150,3 +151,4 @@ StringId CommandLine::GetCommandLineString(int index)
 	}
 
 
+}; // namespace pixie

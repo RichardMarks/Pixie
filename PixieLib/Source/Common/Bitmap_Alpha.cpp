@@ -5,6 +5,7 @@
 #include "Image.h"
 #include "Asset.h"
 
+namespace pixie {
 
 //*** GetType ***
 
@@ -51,7 +52,7 @@ Bitmap_Alpha::Bitmap_Alpha(const Image& image, bool useGrayscaleInsteadOfAlpha)
 	hPitch_=width_;
 	vPitch_=height_;
 	alpha_=static_cast<unsigned char*>(Malloc(sizeof(unsigned char)*width_*height_));
-	
+
 	if (!useGrayscaleInsteadOfAlpha)
 		{
 		for (int y=0; y<height_; y++)
@@ -61,7 +62,7 @@ Bitmap_Alpha::Bitmap_Alpha(const Image& image, bool useGrayscaleInsteadOfAlpha)
 				unsigned int c=image.GetPixel(x,y);
 				unsigned char a=(unsigned char)(c>>24);
 				alpha_[x+y*width_]=a;
-				}	
+				}
 			}
 		}
 	else
@@ -76,7 +77,7 @@ Bitmap_Alpha::Bitmap_Alpha(const Image& image, bool useGrayscaleInsteadOfAlpha)
 				acc+=(unsigned char)((c&0xff));
 				acc/=3;
 				alpha_[x+y*width_]=(unsigned char)acc;
-				}	
+				}
 			}
 		}
 	}
@@ -133,7 +134,7 @@ void Bitmap_Alpha::Load(const Asset& asset)
 
 		// Check for old format too
 		else if (StrNCmp(header,"PIXIE_AM",8)==0)
-			{			
+			{
 			int version=0;
 			asset.Read(&version);
 			if (version==0)
@@ -142,7 +143,7 @@ void Bitmap_Alpha::Load(const Asset& asset)
 				}
 			}
 
-		else			
+		else
 			{
 			Assert(false,"Invalid header");
 			}
@@ -202,3 +203,5 @@ void Bitmap_Alpha::WriteToAsset(Asset* asset) const
 		asset->Write(alpha_,hPitch_*vPitch_);
 		}
 	}
+
+}; // namespace pixie

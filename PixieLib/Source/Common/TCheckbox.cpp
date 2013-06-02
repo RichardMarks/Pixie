@@ -1,9 +1,11 @@
 //*** TCheckbox.cpp **
- 
+
 #include "TCheckbox.h"
 #include "TDraw.h"
 #include "TCanvas.h"
 #include "StandardLibrary.h"
+
+namespace pixie {
 
 //*** Constructor ***
 
@@ -57,3 +59,4 @@ void TCheckbox::SetChecked(bool checked)
 	{
 	checked_ = checked;
 	}
+}; // namespace pixie

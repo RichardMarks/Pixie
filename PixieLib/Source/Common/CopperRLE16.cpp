@@ -4,4 +4,8 @@
 #include "ColorHelper.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 void Copper16() {}
+
+}; // namespace pixie

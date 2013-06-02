@@ -1,10 +1,11 @@
 //*** SpriteAction_ColorFade.cpp ***
- 
+
 #include "SpriteAction_ColorFade.h"
 #include "ColorHelper.h"
 #include "Sprite.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -43,7 +44,7 @@ void SpriteAction_ColorFade::Setup(SpriteController* controller, Sprite* sprite)
 	targetB_=RGB16TOFLOATB(targetColor_);
 
 	deltaR_=(targetR_-sourceR_)/time_;
-	deltaG_=(targetG_-sourceG_)/time_;	
+	deltaG_=(targetG_-sourceG_)/time_;
 	deltaB_=(targetB_-sourceB_)/time_;
 	}
 
@@ -53,9 +54,9 @@ void SpriteAction_ColorFade::Setup(SpriteController* controller, Sprite* sprite)
 void SpriteAction_ColorFade::Update(SpriteController* controller, Sprite* sprite, float deltaTime)
 	{
 	elapsedTime_+=deltaTime;
-	
+
 	if (elapsedTime_>time_)
-		{	
+		{
 		sprite->SetColor(targetColor_);
 		ActionCompleted();
 		return;
@@ -69,3 +70,4 @@ void SpriteAction_ColorFade::Update(SpriteController* controller, Sprite* sprite
 	sprite->SetColor(color);
 	}
 
+}; // namespace pixie

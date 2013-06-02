@@ -4,6 +4,8 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 StringPool Filename::stringPool_(64,64);
 
 //*** Default Constructor ***
@@ -221,7 +223,7 @@ StringId Filename::CorrectFilename(StringId filename)
 		{
 		string[length-1]=0;
 		}
-	
+
 	StringId returnValue =StringId(string);
 	Free(string);
 	return returnValue;
@@ -262,9 +264,10 @@ const char* Filename::CorrectFilename(const char* filename)
 		{
 		string[length-1]=0;
 		}
-	
+
 	const char* poolString = stringPool_.GetPoolString(string);
 	Free(string);
 	return poolString;
 	}
 
+}; // namespace pixie

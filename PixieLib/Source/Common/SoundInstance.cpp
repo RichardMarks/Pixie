@@ -9,7 +9,7 @@
 #include "Sound.h"
 #include "StandardLibrary.h"
 
-
+namespace pixie {
 
 //*** Constructor ***
 
@@ -290,3 +290,4 @@ void SoundInstance::SetVolume(float level)
 	soundStream_->SetVolume(level);
 	}
 
+}; // namespace pixie

@@ -3,6 +3,7 @@
 #include "FrameTime.h"
 #include "Platform_Time.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -35,7 +36,7 @@ float FrameTime::Update()
 		{
 		currentFrameTime=Platform::GetPlatform_Time()->GetTime();
 		}
-	
+
 	deltaTime_=currentFrameTime-previousFrameTime_;
 	previousFrameTime_=currentFrameTime;
 
@@ -69,3 +70,5 @@ int FrameTime::GetFrameCounter()
 	{
 	return frameCounter_;
 	}
+
+}; // namespace pixie

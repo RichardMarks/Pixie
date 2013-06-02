@@ -6,6 +6,7 @@
 #include "Asset.h"
 #include "FloydSteinbergDither.h"
 
+namespace pixie {
 
 //*** GetType ***
 
@@ -55,7 +56,7 @@ Bitmap_16bitAlpha::Bitmap_16bitAlpha(const Image& image, bool dither):
 	vPitch_=height_;
 	color_=static_cast<unsigned short*>(Malloc(sizeof(unsigned short)*width_*height_));
 	alpha_=static_cast<unsigned char*>(Malloc(sizeof(unsigned char)*width_*height_));
-	
+
 	if (dither)
 		{
 		FloydSteinbergDither::DitherImage(image.GetPointer(),image.GetWidth(),image.GetHeight(),color_);
@@ -72,7 +73,7 @@ Bitmap_16bitAlpha::Bitmap_16bitAlpha(const Image& image, bool dither):
 				}
 			unsigned char a=(unsigned char)(c>>24);
 			alpha_[x+y*width_]=a;
-			}	
+			}
 		}
 	}
 
@@ -142,7 +143,7 @@ void Bitmap_16bitAlpha::Load(const Asset& asset)
 				asset.Close();
 				return;
 				}
-			
+
 			int version=0;
 			asset.Read(&version);
 			if (version==0)
@@ -151,7 +152,7 @@ void Bitmap_16bitAlpha::Load(const Asset& asset)
 				}
 			}
 
-		else			
+		else
 			{
 			Assert(false,"Invalid header");
 			}
@@ -219,3 +220,5 @@ void Bitmap_16bitAlpha::WriteToAsset(Asset* asset) const
 		asset->Write(alpha_,hPitch_*vPitch_);
 		}
 	}
+
+}; // namespace pixie

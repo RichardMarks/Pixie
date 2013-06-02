@@ -7,6 +7,7 @@
 
 #include "stsound/YmMusic.h"
 
+namespace pixie {
 //*** Register ***
 
 void AudioFormat_YM::Register()
@@ -171,7 +172,7 @@ int AudioFormat_YM::CopySoundChunk(void* buffer,int bytes)
 		{
 		return bytes;
 		}
-	
+
 	return bytes-1;
 	}
 
@@ -208,3 +209,4 @@ AudioFormat_YM::YmRegisters AudioFormat_YM::GetRegisters(float chunkPosition)
 	return ym;
 	}
 
+}; // namespace pixie

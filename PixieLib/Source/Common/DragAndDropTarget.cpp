@@ -6,7 +6,7 @@
 #include "SpriteControllerManager.h"
 #include "Resource_BitmapStrip.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 DragAndDropTarget::DragAndDropTarget()
@@ -27,6 +27,6 @@ DragAndDropTarget::DragAndDropTarget(SpriteManager* spriteManager):
 DragAndDropTarget::~DragAndDropTarget()
 	{
 	}
-
+}; // namespace pixie
 
 

@@ -7,6 +7,8 @@
 
 #include "libyaml/yaml.h"
 
+namespace pixie {
+
 static char YAMLindent[1024];
 
 void DebugPrintYAML(yaml_event_t event);
@@ -206,14 +208,14 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 			}
 
 		switch(event.type)
-			{ 
+			{
 			case YAML_NO_EVENT: break;
 			case YAML_STREAM_START_EVENT: break;
 			case YAML_STREAM_END_EVENT: done = true; break;
 			case YAML_DOCUMENT_START_EVENT: break;
 			case YAML_DOCUMENT_END_EVENT: break;
 
-			case YAML_SEQUENCE_START_EVENT: 
+			case YAML_SEQUENCE_START_EVENT:
 				{
 				nocontent = false;
 				YamlNode top = YamlState_Top(stack);
@@ -236,18 +238,18 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 						YamlState_Pop(stack);
 						}
 					}
-			
+
 				YAMLObject* object=top.object;
 				if (object)
 					{
 					object = object->YAML_Element(name,true);
 					}
 				YamlState_Push(stack, State_Sequence, object,top.value);
-				
-				
+
+
 				} break;
 
-			case YAML_SEQUENCE_END_EVENT:   
+			case YAML_SEQUENCE_END_EVENT:
 				{
 				YamlNode top = YamlState_Pop(stack);
 				if (top.state==State_Scalar)
@@ -269,7 +271,7 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 					}
 				} break;
 
-			case YAML_MAPPING_START_EVENT:  
+			case YAML_MAPPING_START_EVENT:
 				{
 				nocontent = false;
 				YamlNode top = YamlState_Top(stack);
@@ -301,7 +303,7 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 				} break;
 
 			case YAML_MAPPING_END_EVENT:
-				{			
+				{
 				YamlNode top = YamlState_Pop(stack);
 				Assert(top.state==State_Mapping,"Stack invalid");
 
@@ -313,7 +315,7 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 					}
 				} break;
 
-			case YAML_ALIAS_EVENT:  
+			case YAML_ALIAS_EVENT:
 				{
 				#ifdef _DEBUG
 				const char* filename=asset.GetFilename().GetString();
@@ -336,7 +338,7 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 					}
 				} break;
 
-			case YAML_SCALAR_EVENT: 
+			case YAML_SCALAR_EVENT:
 				{
 				XMLVariant value = (char*)event.data.scalar.value;
 				YamlNode top = YamlState_Top(stack);
@@ -368,7 +370,7 @@ bool YAMLObject::LoadYAML(const Asset& asset)
 					YamlState_Push(stack, State_Scalar, top.object, value);
 					}
 
-				//DebugPrint(("Got scalar (value %s)\n", event.data.scalar.value)); 
+				//DebugPrint(("Got scalar (value %s)\n", event.data.scalar.value));
 				} break;
 			}
 
@@ -409,16 +411,16 @@ void YAMLObject::YAML_Attribute(StringId _name, const XMLVariant& _value)
 void DebugPrintYAML(yaml_event_t event)
 	{
 	switch(event.type)
-		{ 
-		case YAML_NO_EVENT: 
+		{
+		case YAML_NO_EVENT:
 			{
 			} break;
-		
+
 		/* Stream start/end */
-		case YAML_STREAM_START_EVENT: 
+		case YAML_STREAM_START_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("STREAM START\n")); 
+			DebugPrint(("STREAM START\n"));
 			StrCat(YAMLindent,"    ");
 			} break;
 
@@ -426,42 +428,42 @@ void DebugPrintYAML(yaml_event_t event)
 			{
 			YAMLindent[StrLen(YAMLindent)-4] = 0;
 			DebugPrint((YAMLindent));
-			DebugPrint(("STREAM END\n"));   
+			DebugPrint(("STREAM END\n"));
 			} break;
-		
+
 			/* Block delimeters */
-		case YAML_DOCUMENT_START_EVENT: 
+		case YAML_DOCUMENT_START_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("Start Document\n")); 
+			DebugPrint(("Start Document\n"));
 			StrCat(YAMLindent,"    ");
 			} break;
 
-		case YAML_DOCUMENT_END_EVENT:   
+		case YAML_DOCUMENT_END_EVENT:
 			{
 			YAMLindent[StrLen(YAMLindent)-4] = 0;
 			DebugPrint((YAMLindent));
-			DebugPrint(("End Document\n"));   
+			DebugPrint(("End Document\n"));
 			} break;
 
-		case YAML_SEQUENCE_START_EVENT: 
+		case YAML_SEQUENCE_START_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("Start Sequence\n")); 
+			DebugPrint(("Start Sequence\n"));
 			StrCat(YAMLindent,"    ");
 			} break;
 
-		case YAML_SEQUENCE_END_EVENT:   
+		case YAML_SEQUENCE_END_EVENT:
 			{
 			YAMLindent[StrLen(YAMLindent)-4] = 0;
 			DebugPrint((YAMLindent));
-			DebugPrint(("End Sequence\n"));   
+			DebugPrint(("End Sequence\n"));
 			} break;
 
-		case YAML_MAPPING_START_EVENT:  
+		case YAML_MAPPING_START_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("Start Mapping\n"));  
+			DebugPrint(("Start Mapping\n"));
 			StrCat(YAMLindent,"    ");
 			} break;
 
@@ -469,20 +471,22 @@ void DebugPrintYAML(yaml_event_t event)
 			{
 			YAMLindent[StrLen(YAMLindent)-4] = 0;
 			DebugPrint((YAMLindent));
-			DebugPrint(("End Mapping\n"));    
+			DebugPrint(("End Mapping\n"));
 			} break;
 
 		/* Data */
-		case YAML_ALIAS_EVENT:  
+		case YAML_ALIAS_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("Got alias (anchor %s)\n", event.data.alias.anchor)); 
+			DebugPrint(("Got alias (anchor %s)\n", event.data.alias.anchor));
 			} break;
 
-		case YAML_SCALAR_EVENT: 
+		case YAML_SCALAR_EVENT:
 			{
 			DebugPrint((YAMLindent));
-			DebugPrint(("Got scalar (value %s)\n", event.data.scalar.value)); 
+			DebugPrint(("Got scalar (value %s)\n", event.data.scalar.value));
 			} break;
 		}
 	}
+
+	}; // namespace pixie

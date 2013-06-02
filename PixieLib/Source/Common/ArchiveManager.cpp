@@ -14,6 +14,8 @@
 #include "Asset.h"
 #include "Filename.h"
 
+namespace pixie {
+
 //*** Constructor ***
 
 ArchiveManager::ArchiveManager()
@@ -45,7 +47,7 @@ void ArchiveManager::LoadArchive(const Filename& filename)
 	const ArchiveDirectory* rootDirectory=entry.archive->GetRootDirectory();
 	if (rootDirectory)
 		{
-		entry.rootDirectory=GetRootDirectory(rootDirectory->GetPath().GetString());	
+		entry.rootDirectory=GetRootDirectory(rootDirectory->GetPath().GetString());
 		}
 
 	// Add entry to list of archives
@@ -65,7 +67,7 @@ void ArchiveManager::LoadArchive(const void* memoryBuffer, int size)
 	entry.archive=new Archive(memoryBuffer,size);
 	entry.filename=StringId();
 	entry.memoryBuffer=memoryBuffer;
-	entry.rootDirectory=GetRootDirectory(entry.archive->GetRootDirectory()->GetPath().GetString());	
+	entry.rootDirectory=GetRootDirectory(entry.archive->GetRootDirectory()->GetPath().GetString());
 
 	// Add entry to list of archives
 	archives_.Add(entry);
@@ -142,7 +144,7 @@ void ArchiveManager::RescanHardDrive()
 	ClearDirectoryCache();
 
 	// Reset list of root directories
-	rootDirectories_.Clear(false);	
+	rootDirectories_.Clear(false);
 
 	// We can only scan the harddrive if we have a valid file system
 	if (Platform::GetPlatform_FileSystem())
@@ -156,7 +158,7 @@ void ArchiveManager::RescanHardDrive()
 				{
 				rootDirectories_.Add(directory->GetSubdirectory(i));
 				}
-			} 
+			}
 		delete directory;
 		}
 	}
@@ -225,7 +227,7 @@ const ArchiveDirectory* ArchiveManager::GetDirectory(const Filename& path) const
 	ArchiveDirectory* archiveDirectory=new ArchiveDirectory();
 	archiveDirectory->path_=path.GetStringId();
 	directoryCache_.Insert(HashTableKey_StringId(path.GetStringId()),archiveDirectory);
-	
+
 	// The current path is handled differently (by just adding the root directories from HD and all archives)
 	static StringId currentPath(".");
 	if (path==currentPath)
@@ -246,7 +248,7 @@ const ArchiveDirectory* ArchiveManager::GetDirectory(const Filename& path) const
 					{
 					archiveDirectory->files_.Add(directory->GetFile(i));
 					}
-				} 
+				}
 			delete directory;
 			}
 
@@ -404,7 +406,7 @@ bool ArchiveManager::RootDirectoryExists(StringId directoryName) const
 	}
 
 
-//*** ClearDirectoryCache *** 
+//*** ClearDirectoryCache ***
 
 void ArchiveManager::ClearDirectoryCache()
 	{
@@ -414,6 +416,8 @@ void ArchiveManager::ClearDirectoryCache()
 		delete it.GetCurrent();
 		it.MoveNext();
 		}
-	
+
 	directoryCache_.Clear(false);
 	}
+
+	}; // namespace pixie

@@ -3,6 +3,7 @@
 #include "StringIdTable.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** GetInstance ***
 
@@ -37,7 +38,7 @@ StringIdTable::StringIdTable():
 	// Allocate the first string block
 	stringStorageBlocks_[0].head=static_cast<char*>(Malloc(stringStorageBlockSize_));
 	stringStorageBlocks_[0].tail=stringStorageBlocks_[0].head;
-	stringStorageBlockCount_++; 
+	stringStorageBlockCount_++;
 
 	// Allocate the hash table
 	idStringTable_=static_cast<char**>(Malloc(sizeof(char*)*idStringTableSlots_));
@@ -59,7 +60,7 @@ StringIdTable::~StringIdTable()
 		{
 		Free(stringStorageBlocks_[i].head);
 		}
-	
+
 	// Free the array holding the string storage block info
 	Free(stringStorageBlocks_);
 
@@ -78,7 +79,7 @@ unsigned int StringIdTable::CalculateHash(const char* idString, int* stringLengt
 	while ( char c = *stringData )
 		{
 		// Convert character to upper case
-		char u = (c <= 'z' && c >= 'a') ? c-('a'-'A') : c; 
+		char u = (c <= 'z' && c >= 'a') ? c-('a'-'A') : c;
 
 		// A little bit-manipulation magic to get a nice distribution of values
         hash = ((hash << 5) + hash) ^ u;
@@ -101,14 +102,14 @@ const char* StringIdTable::FindIdString(const char* idString)
 	int stringLength = 0;
 	unsigned int hash = CalculateHash(idString, &stringLength);
 
-	// Find slot for this string. This simply uses the passed in hash value, and modulates it by the number of slots. 
+	// Find slot for this string. This simply uses the passed in hash value, and modulates it by the number of slots.
 	// Note that as the number of slots is always a power-of-two-number, we can use a binary AND instead of modulo
 	unsigned int slot=hash&(idStringTableSlots_-1);
 
 	// Loop through all the entries until we find the one we are looking for or an empty slot
 	char* entry=idStringTable_[slot];
 	while(entry)
-		{  
+		{
 		// Is this the one we're looking for?
 		unsigned int strhash=(*(reinterpret_cast<unsigned int*>(entry)));	// Hash number is the first four bytes
 		if (strhash==hash && StrICmp(entry+4,idString)==0)
@@ -116,8 +117,8 @@ const char* StringIdTable::FindIdString(const char* idString)
 			// Yes, so we just return the shared idString
 			return entry+4; // Skip the first four bytes, as that's the hash number
 			}
-		
-		// Not found the one we're looking for, so continue with the next entry 
+
+		// Not found the one we're looking for, so continue with the next entry
 		slot=(slot+1)&(idStringTableSlots_-1);
 		entry=idStringTable_[slot];
 		}
@@ -132,7 +133,7 @@ const char* StringIdTable::FindIdString(const char* idString)
 
 		// Allocate memory for it
 		char** newIdStringTable=static_cast<char**>(Malloc(sizeof(char*)*newidStringTableSlots));
-		
+
 		// And initialize all slots to unused
 		for (int i=0; i<newidStringTableSlots; i++)
 			{
@@ -144,7 +145,7 @@ const char* StringIdTable::FindIdString(const char* idString)
 			{
 			// If slot is in use
 			if (idStringTable_[i])
-				{				
+				{
 				// Get hash for string (stored as first four bytes of the string)
 				unsigned int existinghash=(*(reinterpret_cast<unsigned int*>(idStringTable_[i])));
 
@@ -161,7 +162,7 @@ const char* StringIdTable::FindIdString(const char* idString)
 				newIdStringTable[newslot]=idStringTable_[i];
 				}
 			}
-		
+
 		// Free memory used by the old table
 		Free(idStringTable_);
 
@@ -180,8 +181,8 @@ const char* StringIdTable::FindIdString(const char* idString)
 		}
 
 	// Create a duplicate of the string
-	char* newEntry=StoreString(hash, idString, stringLength); 
-	
+	char* newEntry=StoreString(hash, idString, stringLength);
+
 	// And store it in the table
 	idStringTable_[slot]=newEntry;
 
@@ -194,7 +195,7 @@ const char* StringIdTable::FindIdString(const char* idString)
 
 
 //*** StoreString ***
- 
+
 char* StringIdTable::StoreString(unsigned int hash, const char* string, int length)
 	{
 	// Calculate space needed to store the string
@@ -209,7 +210,7 @@ char* StringIdTable::StoreString(unsigned int hash, const char* string, int leng
 			{
 			// Need a bigger array for string storage blocks
 			stringStorageBlockMaxCount_*=2; // Go with twice the current size
-			
+
 			// Use realloc to get a bigger array while preserving the values it already holds
 			stringStorageBlocks_=static_cast<StringStorageBlock*>(Realloc(stringStorageBlocks_,stringStorageBlockMaxCount_*sizeof(StringStorageBlock)));
 			}
@@ -233,10 +234,11 @@ char* StringIdTable::StoreString(unsigned int hash, const char* string, int leng
 	StrCpy(strdest+4,string); // Offset by four to account for hash number
 
 	// Mark space as used
-	block->tail+=spaceNeeded; 
+	block->tail+=spaceNeeded;
 
 	// Return pointer to the copy
 	return strdest;
 	}
 
 
+}; // namespace pixie

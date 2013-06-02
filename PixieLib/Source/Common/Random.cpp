@@ -3,7 +3,7 @@
 #include "Random.h"
 
 //*** Constructor ***
-
+namespace pixie {
 Random::Random():
     index_(0)
 	{
@@ -14,12 +14,12 @@ Random::Random():
 //*** Seed ***
 
 void Random::Seed(unsigned int s)
-	{	
+	{
 	// Some bit manipulation magic to propagate seed value to the internal state
     state_[0]=s^0xf68a9fc1;
-    for (int i=1; i<16; i++) 
+    for (int i=1; i<16; i++)
 		{
-        state_[i] = (0x6c078965U * (state_[i-1] ^ (state_[i-1] >> 30)) + i); 
+        state_[i] = (0x6c078965U * (state_[i-1] ^ (state_[i-1] >> 30)) + i);
 		}
 	index_ = 0;
 	}
@@ -75,7 +75,7 @@ unsigned int Random::RandomInteger()
 int Random::RandomRanged(int min, int max)
 	{
 	// Calculate the range. The +1 is because the RandomFloat method returns
-	// values up to, but not including, 1. So, a max/min difference of 0, will 
+	// values up to, but not including, 1. So, a max/min difference of 0, will
 	// result in a range value of 1, which will (correctly) return all zeros.
 	// If we didn't do this, probability that max would come up would be wrong.
 	int range=(max-min)+1;
@@ -85,12 +85,12 @@ int Random::RandomRanged(int min, int max)
 		{
 		return min;
 		}
-	
+
 	// Get a random float and scale it with the range. By generating a float and
 	// scaling it by range, we guarantee an equal distribution of values, which
 	// we are not sure to get if using modulo operator for the range.
 	int value=(int)(RandomFloat()*range);
-    return min+value; 
+    return min+value;
 	}
 
 
@@ -99,7 +99,8 @@ int Random::RandomRanged(int min, int max)
 float Random::RandomFloat()
 	{
     // Get a random integer, and divide by 2^32
-    return (RandomInteger()/4294967296.0f);     
+    return (RandomInteger()/4294967296.0f);
 	}
 
 
+}; // namespace pixie

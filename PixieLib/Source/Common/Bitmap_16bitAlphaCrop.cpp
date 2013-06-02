@@ -6,6 +6,7 @@
 #include "Asset.h"
 #include "FloydSteinbergDither.h"
 
+namespace pixie {
 
 //*** GetType ***
 
@@ -126,7 +127,7 @@ Bitmap_16bitAlphaCrop::Bitmap_16bitAlphaCrop(const Image& color, const Image& al
 			{
 			unsigned int color=alpha.GetPixel(x,y);
 			if (color&0xff)
-				{	
+				{
 				if (y<minY)
 					minY=y;
 				if (x<minX)
@@ -247,7 +248,7 @@ void Bitmap_16bitAlphaCrop::Load(const Asset& asset)
 				asset.Close();
 				return;
 				}
-			
+
 			int version=0;
 			asset.Read(&version);
 			if (version==0)
@@ -256,7 +257,7 @@ void Bitmap_16bitAlphaCrop::Load(const Asset& asset)
 				}
 			}
 
-		else			
+		else
 			{
 			Assert(false,"Invalid header");
 			}
@@ -373,3 +374,4 @@ void Bitmap_16bitAlphaCrop::WriteToAsset(Asset* asset) const
 		}
 	}
 
+}; // namespace pixie

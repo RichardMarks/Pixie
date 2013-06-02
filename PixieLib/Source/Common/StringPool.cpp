@@ -4,6 +4,7 @@
 #include "StandardLibrary.h"
 #include "BagIterator.h"
 
+namespace pixie {
 //*** Constructor ***
 
 StringPool::StringPool(int stringMinLength, int stringStorageBlockSize)
@@ -133,3 +134,4 @@ void StringPool::DecreaseReferenceCount(const char* poolString)
 		}
 	}
 
+}; // namespace pixie

@@ -7,6 +7,7 @@
 
 #include "modplug/modplug.h"
 
+namespace pixie {
 
 //*** Register ***
 
@@ -35,7 +36,7 @@ bool AudioFormat_MOD::TestAsset(const Asset& asset)
 		asset.Open();
 		asset.Read(buffer,size);
 		asset.Close();
-		
+
 		ModPlugFile* mod=ModPlug_Load(buffer,size);
 		Free(buffer);
 		if (mod)
@@ -169,3 +170,4 @@ int AudioFormat_MOD::CopySoundChunk(void* buffer,int bytes)
 	}
 
 
+}; // namespace pixie

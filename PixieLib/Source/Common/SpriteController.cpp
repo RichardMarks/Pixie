@@ -5,6 +5,7 @@
 #include "SpriteAction.h"
 #include "Sprite.h"
 
+namespace pixie {
 //*** Constructor ***
 
 SpriteController::SpriteController(Sprite* sprite):
@@ -166,7 +167,7 @@ void SpriteController::AddAction(SpriteAction* action, float delay, StringId sta
 
 	IncreaseReferenceCount();
 	}
-	
+
 
 //*** RemoveAction ***
 
@@ -259,3 +260,5 @@ int SpriteController::GetActionCount() const
 	return currentActions_.GetItemCount()+queuedActions_.GetItemCount();
 	}
 
+
+}; // namespace pixie

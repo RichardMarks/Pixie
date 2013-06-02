@@ -2,7 +2,8 @@
 
 #include "XMLAttributeList.h"
 
-//*** Add *** 
+namespace pixie {
+//*** Add ***
 
 void XMLAttributeList::Add(StringId name, const XMLVariant& value)
 	{
@@ -65,3 +66,4 @@ int XMLAttributeList::GetIndex(StringId name) const
 	return -1;
 	}
 
+}; // namespace pixie

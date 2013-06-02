@@ -16,6 +16,7 @@
 #include "Sound.h"
 #include "Filename.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -122,7 +123,7 @@ OldResourceManager::SoundEntry* OldResourceManager::GetSoundEntry(const Sound* s
 //*** IncreaseReferenceCount ***
 
 void OldResourceManager::IncreaseReferenceCount(const BitmapStrip* bitmapStrip)
-	{	
+	{
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
 	entry->referenceCount++;
 	}
@@ -140,7 +141,7 @@ void OldResourceManager::DecreaseReferenceCount(const BitmapStrip* bitmapStrip)
 		}
 
 	entry->referenceCount--;
-	
+
 	if (entry->referenceCount==0)
 		{
 		bitmapStrips_.Remove(HashTableKey_Pointer(bitmapStrip));
@@ -153,7 +154,7 @@ void OldResourceManager::DecreaseReferenceCount(const BitmapStrip* bitmapStrip)
 //*** IncreaseReferenceCount ***
 
 void OldResourceManager::IncreaseReferenceCount(const Font* font)
-	{	
+	{
 	FontEntry* entry=GetFontEntry(font);
 	entry->referenceCount++;
 	}
@@ -171,7 +172,7 @@ void OldResourceManager::DecreaseReferenceCount(const Font* font)
 		}
 
 	entry->referenceCount--;
-	
+
 	if (entry->referenceCount==0)
 		{
 		fonts_.Remove(HashTableKey_Pointer(font));
@@ -184,7 +185,7 @@ void OldResourceManager::DecreaseReferenceCount(const Font* font)
 //*** IncreaseReferenceCount ***
 
 void OldResourceManager::IncreaseReferenceCount(const Sound* sound)
-	{	
+	{
 	SoundEntry* entry=GetSoundEntry(sound);
 	entry->referenceCount++;
 	}
@@ -202,7 +203,7 @@ void OldResourceManager::DecreaseReferenceCount(const Sound* sound)
 		}
 
 	entry->referenceCount--;
-	
+
 	if (entry->referenceCount==0)
 		{
 		sounds_.Remove(HashTableKey_Pointer(sound));
@@ -231,7 +232,7 @@ const BitmapStrip* OldResourceManager::GetBitmapStrip(StringId filename, int cel
 			}
 		it.MoveNext();
 		}
-	
+
 	const BitmapStrip* bitmapStrip=0;
 	int l=StrLen(filename.GetString());
 
@@ -240,13 +241,13 @@ const BitmapStrip* OldResourceManager::GetBitmapStrip(StringId filename, int cel
 		{
 		bitmapStrip=new BitmapStrip(filename);
 		}
-	
+
 	// If old style .RLE file
 	else if (l>3 && ToLower(filename.GetString()[l-3])=='r' && ToLower(filename.GetString()[l-2])=='l' && ToLower(filename.GetString()[l-1])=='e')
 		{
 		bitmapStrip=new BitmapStrip(filename);
 		}
-	
+
 	// If old style .ABM file
 	else if (l>3 && ToLower(filename.GetString()[l-3])=='a' && ToLower(filename.GetString()[l-2])=='b' && ToLower(filename.GetString()[l-1])=='m')
 		{
@@ -270,11 +271,11 @@ const BitmapStrip* OldResourceManager::GetBitmapStrip(StringId filename, int cel
 		{
 		bitmapStrip=new BitmapStrip(Image(filename,celCount));
 		}
-	
+
 
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
 	entry->filename=filename;
-	
+
 	return entry->bitmapStrip;
 	}
 
@@ -286,7 +287,7 @@ const BitmapStrip* OldResourceManager::GetBitmapStrip(const Image& image)
 	const BitmapStrip* bitmapStrip=new BitmapStrip(image);
 
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
-	
+
 	return entry->bitmapStrip;
 	}
 
@@ -298,7 +299,7 @@ const BitmapStrip* OldResourceManager::GetBitmapStrip(const Bitmap* bitmap)
 	const BitmapStrip* bitmapStrip=new BitmapStrip(bitmap);
 
 	BitmapStripEntry* entry=GetBitmapStripEntry(bitmapStrip);
-	
+
 	return entry->bitmapStrip;
 	}
 
@@ -321,7 +322,7 @@ const Font* OldResourceManager::GetFont(StringId filename)
 			}
 		it.MoveNext();
 		}
-	
+
 	const Font* font=0;
 	int l=StrLen(filename.GetString());
 	if (ToLower(filename.GetString()[l-3])=='f' && ToLower(filename.GetString()[l-2])=='n' && ToLower(filename.GetString()[l-1])=='t')
@@ -332,11 +333,11 @@ const Font* OldResourceManager::GetFont(StringId filename)
 		{
 		font=new Font(Filename(filename));
 		}
-	
+
 
 	FontEntry* entry=GetFontEntry(font);
 	entry->filename=filename;
-	
+
 	return entry->font;
 	}
 
@@ -359,12 +360,12 @@ const Sound* OldResourceManager::GetSound(StringId filename)
 			}
 		it.MoveNext();
 		}
-	
+
 	const Sound* sound=new Sound(filename);
-	
+
 	SoundEntry* entry=GetSoundEntry(sound);
 	entry->filename=filename;
-	
+
 	return entry->sound;
 	}
 
@@ -421,3 +422,5 @@ void OldResourceManager::UnloadSound(const Filename& filename)
 	const Sound* sound=GetSound(filename.GetStringId());
 	DecreaseReferenceCount(sound);
 	}
+
+}; // namespace pixie

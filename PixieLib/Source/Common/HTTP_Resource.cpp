@@ -2,7 +2,7 @@
 
 #include "HTTP_Resource.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 HTTP_Resource::HTTP_Resource(int requestHandle, StringId type, const StaticBuffer& data):
@@ -11,7 +11,7 @@ HTTP_Resource::HTTP_Resource(int requestHandle, StringId type, const StaticBuffe
 	data_(data)
 	{
 
-	
+
 	}
 
 
@@ -44,3 +44,5 @@ const StaticBuffer& HTTP_Resource::GetData()
 	{
 	return data_;
 	}
+
+}; // namespace pixie

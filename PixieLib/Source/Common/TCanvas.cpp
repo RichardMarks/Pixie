@@ -4,6 +4,7 @@
 #include "TDraw.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -268,3 +269,5 @@ unsigned short TCanvas::ToUShort(TCell value) const
 	{
 	return (unsigned short)((value.ascii << 8) | ((value.foreground & 0xf)<<4) | (value.background & 0xf));
 	}
+
+}; // namespace pixie

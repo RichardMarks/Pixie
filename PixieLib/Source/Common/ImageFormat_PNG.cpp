@@ -5,9 +5,11 @@
 #include "Asset.h"
 #include "StandardLibrary.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include "libpng/png.h"
+
+namespace pixie {
 
 //*** Register ***
 
@@ -82,7 +84,7 @@ ImageFormat_PNG::ImageFormat_PNG(const Asset& asset):
 		png_set_read_fn(static_cast<png_structp>(png_ptr_), const_cast<Asset*>(&asset), png_user_read_fn);
 
 		png_read_png(static_cast<png_structp>(png_ptr_), static_cast<png_infop>(info_ptr_), /*PNG_TRANSFORM_STRIP_16|*/PNG_TRANSFORM_EXPAND|PNG_TRANSFORM_BGR, 0);
-		
+
 		asset.Close();
  		}
 
@@ -199,3 +201,5 @@ void ImageFormat_PNG::CopyPixels(unsigned int* destination)
 void ImageFormat_PNG::Save(const Filename& filename, int width, int height, void* data)
 	{
 	}
+
+}; // namespace pixie

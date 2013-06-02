@@ -1,10 +1,11 @@
 //*** TStaticText.cpp **
- 
+
 #include "TStaticText.h"
 #include "TDraw.h"
 #include "TCanvas.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -64,3 +65,4 @@ const char* TStaticText::GetText() const
 	return text_;
 	}
 
+}; // namespace pixie

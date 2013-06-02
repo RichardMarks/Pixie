@@ -7,6 +7,7 @@
 #include "SpriteController.h"
 #include "SpriteAction_ButtonStateCrossFade.h"
 
+namespace pixie {
 
 //*** Default Constructor ***
 
@@ -134,12 +135,12 @@ void Button::SetEnabled(bool enabled)
 		}
 
 	enabled_=enabled;
-	
+
 	if (enabled_)
 		{
 		SetState(State_Normal);
 		}
-	else 
+	else
 		{
 		SetState(State_Disabled);
 		}
@@ -200,7 +201,7 @@ void Button::SetStateCrossFadeAlpha(unsigned char fromAlpha, unsigned char toAlp
 	{
 	stateCrossFadeFromAlpha_=fromAlpha;
 	stateCrossFadeToAlpha_=toAlpha;
-	}	
+	}
 
 
 //*** Render ***
@@ -303,3 +304,5 @@ bool Button::IsUsingBoundingBox() const
 	{
 	return usingBoundingBox_;
 	}
+
+}; // namespace pixie

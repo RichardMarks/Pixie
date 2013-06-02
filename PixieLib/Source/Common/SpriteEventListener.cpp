@@ -1,7 +1,8 @@
 //*** SpriteEventListener.cpp ***
- 
+
 #include "SpriteEventListener.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -25,3 +26,4 @@ SpriteEventListener::~SpriteEventListener()
 	}
 
 
+}; // namespace pixie

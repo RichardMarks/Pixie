@@ -12,6 +12,7 @@
 using namespace irr; // irrXML is located in the namespace irr::io
 using namespace io;
 
+namespace pixie {
 
 class FileReadCallBack_Asset: public IFileReadCallBack
 {
@@ -38,7 +39,7 @@ public:
 			}
 		#endif
 		}
-	
+
 	~FileReadCallBack_Asset()
 		{
 		asset_->Close();
@@ -166,7 +167,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 					}
 				firstElement=false; // The remaining elements should be sent
 
-					
+
 				// Send XML_Attribute events to the topmost object if it is valid
 				if (TopXMLObject())
 					{
@@ -178,13 +179,13 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 						}
 					}
 
-				
+
 				if (xml->isEmptyElement())
 					{
 					// Cache the topmost object of the stack
 					XMLObject* object=TopXMLObject();
 
-						
+
 					// Send the XML_ElementEnd event to the topmost object, if it is valid
 					if (object)
 						{
@@ -203,7 +204,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 						object->XML_ElementEnd(elementName);
 						}
 					}
-					
+
 				} break;
 
 			case EXN_ELEMENT_END:
@@ -223,14 +224,14 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 
 				// Send Text event
 				if (bufferedText && object && bufferedText->GetSize()>0)
-					{	
+					{
 					char terminator='\0';
 					bufferedText->Write(&terminator);
 					object->XML_Text(elementName,static_cast<const char*>(bufferedText->GetPointer()));
 					bufferedText->Clear(false);
 					}
 
-					
+
 				// Send the XML_ElementEnd event to the topmost object, if it is valid
 				if (object)
 					{
@@ -239,7 +240,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 
 				// Remove it from the stack
 				PopXMLObject();
-				
+
 				// Get the parent object from the stack
 				object=TopXMLObject();
 
@@ -248,7 +249,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 					{
 					object->XML_ElementEnd(elementName);
 					}
-								
+
 				} break;
 
 
@@ -274,7 +275,7 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 					delete xml;
 					return;
 					}
-				
+
 				bufferedText->Write(text,length);
 				} break;
 
@@ -292,3 +293,4 @@ void XMLTextParser::Parse(const Asset& asset,XMLObject* xmlObject)
 	delete xml;
 	}
 
+}; // namespace pixie

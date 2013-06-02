@@ -7,7 +7,7 @@
 #include "HTTP_Resource.h"
 #include "BagIterator.h"
 
-
+namespace pixie {
 
 //*** Constructor***
 
@@ -36,7 +36,7 @@ void HTTP::Update(float deltaTime)
 	for (int i=0; i<requests_.GetItemCount(); i++)
 		{
 		Request* request=requests_.Get(i);
-		
+
 		// Process the request depending on its current status
 		switch (request->status)
 			{
@@ -116,7 +116,7 @@ void HTTP::Update(float deltaTime)
 						StrNCpy(httpVersion,statusLine,Min((int)(ptr-statusLine),255));
 						httpVersion[ptr-statusLine]=0;
 						ptr++;
-						
+
 						// Extract statusCode
 						char statusCode[256];
 						const char* ptr2=StrChr(ptr,' ');
@@ -169,7 +169,7 @@ void HTTP::Update(float deltaTime)
 							request->headerLength=headerSize;
 							request->contentType=contentType;
 							request->contentLength=contentLength;
-							}                  
+							}
 						}
 
 					// Check for dropped connection
@@ -202,7 +202,7 @@ void HTTP::Update(float deltaTime)
 				{
 				// Increase the elapsed time
 				request->elapsedTime_+=deltaTime;
-			
+
 				if (request->timeOut_>0.0f && request->elapsedTime_>request->timeOut_)
 					{
 					request->status=Status_TimedOut;
@@ -327,7 +327,7 @@ int HTTP::Request_Post(const char* url, const void* data, int size, float timeOu
 HTTP::RequestStatus HTTP::GetRequestStatus(int requestHandle)
 	{
 	Request* request=GetRequest(requestHandle);
-	
+
 	if (request)
 		{
 		return request->status;
@@ -342,7 +342,7 @@ HTTP::RequestStatus HTTP::GetRequestStatus(int requestHandle)
 float HTTP::GetPercentageReceived(int requestHandle)
 	{
 	Request* request=GetRequest(requestHandle);
-	
+
 	if (request && request->contentLength>0 && request->headerLength>0)
 		{
 		return (float)request->receivedData.GetSize()/(float)(request->contentLength+request->headerLength);
@@ -458,3 +458,4 @@ void HTTP::SplitURL(const char* url, char*& address, char*&port, char*& resource
 		}
 
 	}
+}; // namespace pixie

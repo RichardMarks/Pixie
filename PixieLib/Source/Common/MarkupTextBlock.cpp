@@ -6,7 +6,7 @@
 #include "Font.h"
 #include "MarkupTextManager.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 MarkupTextBlock::MarkupTextBlock():
@@ -71,7 +71,7 @@ void MarkupTextBlock::SetString(const char* pmlString)
 		Free(pmlString_);
 		pmlString_=0;
 		}
-	
+
 	if (tokenBuffer_)
 		{
 		Free(tokenBuffer_);
@@ -110,7 +110,7 @@ void MarkupTextBlock::AddString(const char* pmlString)
 		ResetTokenStream();
 		return;
 		}
-	
+
 	if (pmlString)
 		{
 		if (tokenBuffer_)
@@ -194,7 +194,7 @@ const char* MarkupTextBlock::GetNextToken()
 				return tokenBuffer_;
 				}
 			}
-		
+
 		// No closing bracket, so treat this as a normal word
 		currentTokenPosition_=codeStart;
 		}
@@ -280,7 +280,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				opacity=siMarkupTextManager->GetFontBgOpacity(MarkupTextManager::FontStyle_LinkHover);
 				}
 
-			Font::Bounds bounds=font->GetBounds(token,0);	
+			Font::Bounds bounds=font->GetBounds(token,0);
 			if (xp+bounds.width>x2)
 				{
 				xp=x1;
@@ -312,10 +312,10 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 
 			if (opacity>0)
 				{
-				target.Fill(xp,yp+yskip,xp+bounds.width-1,yp+bounds.height-1,bgcolor,opacity);	
+				target.Fill(xp,yp+yskip,xp+bounds.width-1,yp+bounds.height-1,bgcolor,opacity);
 				}
 
-			font->Blit(target,xp,yp,token,0,color);	
+			font->Blit(target,xp,yp,token,0,color);
 			xp+=bounds.width;
 
 			font=fontStore;
@@ -333,7 +333,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				xp=x1;
 				if (font)
 					{
-					Font::Bounds bounds=font->GetBounds(" ",0);	
+					Font::Bounds bounds=font->GetBounds(" ",0);
 					yp+=bounds.height+extraVSpace;
 					}
 				else
@@ -347,7 +347,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				{
 				int l=Min(StrLen(token)-6,1023);
 				StrNCpy(varbuffer,&token[5],l);
-				varbuffer[l]=0;		
+				varbuffer[l]=0;
 				varString=varbuffer;
 				siMarkupTextManager->GetVariableValue(varString,varbuffer,1024);
 				currentTokenIsMarkupCode_=false;
@@ -387,7 +387,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				isStyle=true;
 				int l=Min(StrLen(token)-8,255);
 				StrNCpy(idbuffer,&token[7],l);
-				idbuffer[l]=0;				
+				idbuffer[l]=0;
 				styleId=idbuffer;
 				fontChanged=true;
 				}
@@ -444,7 +444,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				xp=x1;
 				if (font)
 					{
-					Font::Bounds bounds=font->GetBounds(" ",0);	
+					Font::Bounds bounds=font->GetBounds(" ",0);
 					yp+=bounds.height+extraVSpace;
 					}
 				else
@@ -460,7 +460,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				fontChanged=true;
 				int l=Min(StrLen(token)-7,255);
 				StrNCpy(idbuffer,&token[6],l);
-				idbuffer[l]=0;		
+				idbuffer[l]=0;
 				idString=idbuffer;
 				}
 
@@ -478,7 +478,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 				fontChanged=true;
 				int l=Min(StrLen(token)-9,255);
 				StrNCpy(idbuffer,&token[8],l);
-				idbuffer[l]=0;				
+				idbuffer[l]=0;
 				idString=idbuffer;
 				}
 
@@ -534,7 +534,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 					bgcolor=siMarkupTextManager->GetFontBgColor(MarkupTextManager::FontStyle_Headline);
 					opacity=siMarkupTextManager->GetFontBgOpacity(MarkupTextManager::FontStyle_Headline);
 					}
-				else 
+				else
 					{
 					if (isBold && isItalic)
 						{
@@ -564,7 +564,7 @@ void MarkupTextBlock::Render(Bitmap& target, int x1, int y1, int x2, int y2, Str
 						bgcolor=siMarkupTextManager->GetFontBgColor(styleId);
 						opacity=siMarkupTextManager->GetFontBgOpacity(styleId);
 						}
-					else 
+					else
 						{
 						font=siMarkupTextManager->GetFont(MarkupTextManager::FontStyle_Normal);
 						color=siMarkupTextManager->GetFontColor(MarkupTextManager::FontStyle_Normal);
@@ -615,3 +615,4 @@ StringId MarkupTextBlock::IsOverLink(int cursorX, int cursorY) const
 	}
 
 
+}; // namespace pixie

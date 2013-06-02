@@ -1,5 +1,5 @@
 //*** SpriteManager.cpp ***
- 
+
 #include "SpriteManager.h"
 #include "Sprite.h"
 #include "ArrayIterator.h"
@@ -7,6 +7,7 @@
 #include "SpriteSystem.h"
 #include "SpriteEventListener.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -78,7 +79,7 @@ void SpriteManager::Update(float deltaTime)
 		StringId eventId;
 		void* userData=0;
 		bool mouseOver=sprite->OnMouseOver((int)(x-originX_),(int)(y-originY_),button,eventId,userData, false);
-		if( mouseOver ) 
+		if( mouseOver )
 			{
 			foundMouseOver = true;
 			}
@@ -92,7 +93,7 @@ void SpriteManager::Update(float deltaTime)
 				{
 				SendEvent(eventId,userData);
 				}
-			
+
 			break;
 			}
 		}
@@ -318,7 +319,7 @@ void SpriteManager::HighlightNext()
 		{
 		currentHighlighted_ = lowest;
 		}
-	else 
+	else
 		{
 		Sprite* bestMatch = 0;
 		for (int i=0; i<sprites_.GetItemCount(); i++)
@@ -356,7 +357,7 @@ void SpriteManager::HighlightPrevious()
 		{
 		currentHighlighted_ = highest;
 		}
-	else 
+	else
 		{
 		Sprite* bestMatch = 0;
 		for (int i=0; i<sprites_.GetItemCount(); i++)
@@ -398,6 +399,8 @@ int SpriteManager::GetHighlightedIndex()
 		{
 		return -1;
 		}
-	
+
 	return currentHighlighted_->GetSelectionIndex();
 	}
+
+	}; // namespace pixie

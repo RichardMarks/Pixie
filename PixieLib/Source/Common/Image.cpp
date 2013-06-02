@@ -7,6 +7,7 @@
 #include "Bitmap.h"
 #include "ColorHelper.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -62,11 +63,11 @@ Image::Image(const Asset& asset, int celCount):
 
 	if (format)
 		{
-		if (celCount_==1) 
+		if (celCount_==1)
 			{
 			celCount_=format->GetCelCount();
 			}
-		
+
 		width_=format->GetWidth();
 		height_=format->GetHeight()/celCount_;
 		data_=new unsigned int[width_*height_*celCount_];
@@ -192,7 +193,7 @@ const Image& Image::operator=(const Image& image)
 
 int Image::GetWidth() const
 	{
-	return width_;	
+	return width_;
 	}
 
 
@@ -437,7 +438,7 @@ void Image::BilinearSample( int c, float x, float y, float& r, float& g, float& 
 	float gx = ( gx1 * ( 1.0f - dx ) ) + ( gx2 * dx );
 	float bx = ( bx1 * ( 1.0f - dx ) ) + ( bx2 * dx );
 	float ax = ( ax1 * ( 1.0f - dx ) ) + ( ax2 * dx );
-	
+
 	float ry = ( ry1 * ( 1.0f - dx ) ) + ( ry2 * dx );
 	float gy = ( gy1 * ( 1.0f - dx ) ) + ( gy2 * dx );
 	float by = ( by1 * ( 1.0f - dx ) ) + ( by2 * dx );
@@ -472,7 +473,7 @@ void Image::Sharpen( float radius )
 	const int filterWidth = 3;
 	const int filterHeight = 3;
 
-	int filter[ filterWidth ] [ filterHeight ] = 
+	int filter[ filterWidth ] [ filterHeight ] =
 		{
 		{ -1, -1, -1, },
 		{ -1,  9, -1, },
@@ -480,7 +481,7 @@ void Image::Sharpen( float radius )
 		};
 
 	unsigned int* result = new unsigned int[width_*height_*celCount_];
-    
+
 	for( int c = 0; c < celCount_; c++ )
 		{
 		for( int x = 0; x < width_; x++ )
@@ -608,32 +609,32 @@ void HSVToRGB( float h, float s, float v, float& r, float& g, float& b )
 	switch (i)
 		{
 		case 6:
-		case 0: 
+		case 0:
 			r = bri;
 			g = n;
 			b = m;
 			break;
-		case 1: 
+		case 1:
 			r = n;
 			g = bri;
 			b = m;
 			break;
-		case 2: 
+		case 2:
 			r = m;
 			g = bri;
 			b = n;
 			break;
-		case 3: 
+		case 3:
 			r = m;
 			g = n;
 			b = bri;
 			break;
-		case 4: 
+		case 4:
 			r = n;
 			g = m;
 			b = bri;
 			break;
-		case 5: 
+		case 5:
 			r = bri;
 			g = m;
 			b = n;
@@ -748,3 +749,5 @@ void Image::Bleed( int iterations )
 			}
 		}
 	}
+
+}; // namespace pixie

@@ -2,6 +2,7 @@
 
 #include "RenderCall.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -48,3 +49,4 @@ void RenderCall::Render(Bitmap& bitmap)
 		}
 
 	}
+}; // namespace pixie
