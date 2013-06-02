@@ -80,9 +80,9 @@ class MemoryPool
 
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "MemoryPool.inl"
-
-}; // namespace pixie
 
 #endif /* __MemoryPool_H__ */

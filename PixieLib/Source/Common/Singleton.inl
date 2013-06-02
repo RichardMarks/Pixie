@@ -2,6 +2,7 @@
 
 #include "Debug.h"
 
+namespace pixie {
 // Static instance pointer
 template <class TYPE> TYPE* Singleton<TYPE>::staticInstancePointer_=0;
 
@@ -89,3 +90,5 @@ bool Singleton<TYPE>::IsInstanceCreated()
 	return true;
 	}
 
+
+}; // namespace pixie

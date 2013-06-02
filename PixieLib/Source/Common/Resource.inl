@@ -4,6 +4,7 @@
 
 #include "ResourceManager.h"
 
+namespace pixie {
 //*** Default Constructor ***
 
 template<typename T>
@@ -91,3 +92,5 @@ T* Resource<T>::GetInstance() const
 	{
 	return instance_;
 	}
+
+}; // namespace pixie

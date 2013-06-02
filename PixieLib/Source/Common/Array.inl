@@ -4,7 +4,7 @@
 #include "StandardLibrary.h"
 #include <new>
 
-
+namespace pixie {
 //*** Constructor ***
 
 template <class TYPE> 
@@ -622,3 +622,6 @@ TYPE* Array<TYPE>::GetPointer() const
 	// Return the raw pointer to array memory, which might be dangerous, but that's the callers responsibility
 	return items_;
 	}
+
+
+}; // namespace pixie

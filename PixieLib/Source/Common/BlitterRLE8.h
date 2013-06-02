@@ -56,7 +56,7 @@ class BlitterRLE8
 
 	};
 
+}; // namespace pixie
 #include "BlitterRLE8.inl"
 
-}; // namespace pixie
 #endif /* __BlitterRLE8_H__ */

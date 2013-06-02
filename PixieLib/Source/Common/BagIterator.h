@@ -93,9 +93,9 @@ class BagIterator
 		const Bag<TYPE>* bag_;	///< The bag that this iterator is used to iterate through
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "BagIterator.inl"
-
-}; // namespace pixie
 
 #endif /* __BagIterator_H__ */

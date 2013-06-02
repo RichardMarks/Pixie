@@ -5,6 +5,7 @@
 
 #include <new>
 
+namespace pixie {
 //*** Constructor ***
 
 template<class TYPE> 
@@ -180,3 +181,6 @@ bool MemoryPool<TYPE>::IsInUse() const
 	{
 	return (usedEntriesCount_>0);
 	}
+
+}; // namespace pixie
+

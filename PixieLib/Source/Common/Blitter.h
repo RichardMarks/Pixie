@@ -289,8 +289,8 @@ class Blitter
 
 	};
 
-#include "Blitter.inl"
-
 }; // namespace pixie
+
+#include "Blitter.inl"
 
 #endif /* __Blitter_H__ */

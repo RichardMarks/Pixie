@@ -4,6 +4,7 @@
 
 #include <typeinfo>
 
+namespace pixie {
 //*** GetPointer ***
 
 template<typename T> 
@@ -166,3 +167,5 @@ StringId ResourceManager::GetFilename( T* pointer ) const
 
 	return StringId();
 	}
+
+}; // namespace pixie

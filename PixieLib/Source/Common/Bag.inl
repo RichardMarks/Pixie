@@ -4,6 +4,7 @@
 #include "StandardLibrary.h"
 #include <new>
 
+namespace pixie {
 //*** Constructor ***
 
 template <class TYPE> 
@@ -411,3 +412,5 @@ TYPE* Bag<TYPE>::GetPointer() const
 	// Return the raw pointer to bag memory, which might be dangerous, but that's the callers responsibility
 	return items_;
 	}
+
+}; // namespace pixie

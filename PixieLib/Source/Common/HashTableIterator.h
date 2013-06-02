@@ -107,8 +107,9 @@ class HashTableIterator
 		const HashTable<HASHTABLEKEY, TYPE>* table_;	///< The table that this iterator is used to iterate through
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "HashTableIterator.inl"
 
-}; // namespace pixie
 #endif /* __HashTableIterator_H__ */

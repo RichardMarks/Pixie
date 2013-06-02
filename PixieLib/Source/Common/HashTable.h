@@ -101,9 +101,9 @@ class HashTable
 		HashTableItem* items_;	///< The actual table data
 	};
 
+}; // namespace pixie
 
 // Implementation
 #include "HashTable.inl"
 
-}; // namespace pixie
 #endif /* __HASHTABLE_H__ */

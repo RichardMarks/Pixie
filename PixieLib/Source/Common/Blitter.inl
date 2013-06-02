@@ -1,7 +1,7 @@
 //*** Blitter.inl ***
 
 #include "ColorHelper.h"
-
+namespace pixie {
 //*** OpFill_Color_TC ***
 
 void Blitter::OpFill_Color_TC(OpArgs& opArgs)
@@ -488,3 +488,5 @@ void Blitter::Flip_Y_Copy_SA_TA(BlitArgs& blitArgs)
 		destination+=destinationRowStep;
 		}
 	}
+
+}; // namespace pixie

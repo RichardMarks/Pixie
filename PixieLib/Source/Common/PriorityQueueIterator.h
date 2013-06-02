@@ -92,9 +92,10 @@ class PriorityQueueIterator
 		const PriorityQueue<TYPE,COMPARE>* queue_;	///< The queue that this iterator is used to iterate through
 	};
 
+}; // namespace pixie
+
+
 // Implementation
 #include "PriorityQueueIterator.inl"
-
-}; // namespace pixie
 
 #endif /* __PriorityQueueIterator_H__ */

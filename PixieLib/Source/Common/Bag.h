@@ -165,9 +165,9 @@ class Bag
 		TYPE* items_;		///< Pointer to the actual bag data
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "Bag.inl"
-
-}; // namespace pixie
 
 #endif /* __Bag_h__ */

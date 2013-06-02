@@ -399,9 +399,9 @@ class IdTable
         unsigned int usedIndicesCount_;
     };
 
+}; // namespace pixie
+
 // Implementation
 #include "IdTable.inl"
-
-}; // namespace pixie
 
 #endif /* __IdTable_h__ */

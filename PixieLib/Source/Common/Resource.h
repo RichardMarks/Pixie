@@ -78,9 +78,9 @@ class Resource
 		T* instance_;	///< The object referenced by this resource
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "Resource.inl"
-
-}; // namespace pixie
 
 #endif /* __Resource_H__ */

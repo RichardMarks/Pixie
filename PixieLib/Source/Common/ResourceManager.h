@@ -94,9 +94,9 @@ class ResourceManager : public Singleton<ResourceManager>
 	};
 
 
+}; // namespace pixie
+
 // Implementation
 #include "ResourceManager.inl"
-
-}; // namespace pixie
 
 #endif /* __ResourceManager_H__ */

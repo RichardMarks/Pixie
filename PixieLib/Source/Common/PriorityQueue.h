@@ -118,9 +118,10 @@ class PriorityQueue
 		TYPE* items_;		///< Pointer to the actual array data
 	};
 
-// Implementation
-#include "PriorityQueue.inl"
 
 }; // namespace pixie
+
+// Implementation
+#include "PriorityQueue.inl"
 
 #endif /* __PriorityQueue_h__ */

@@ -31,8 +31,8 @@ class Singleton
 		static TYPE* staticInstancePointer_;
 	};
 
-#include "Singleton.inl"
-
 }; // namespace pixie
+
+#include "Singleton.inl"
 
 #endif /* __Singleton_H__ */

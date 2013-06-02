@@ -3,6 +3,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 //*** Constructor ***
 
 template <typename TYPE, class COMPARE> 
@@ -340,3 +341,6 @@ void PriorityQueue<TYPE, COMPARE>::SetCapacity(int capacity)
 	// Store the new value for maximum number of items
 	capacity_=capacity;
 	}
+
+
+}; // namespace pixie

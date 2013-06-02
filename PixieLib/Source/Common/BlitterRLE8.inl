@@ -4,7 +4,7 @@
 #include "ColorHelper.h"
 #include "StandardLibrary.h"
 
-	
+namespace pixie {	
 //*** Opaque_Unclipped_Unmasked ***
 
 void BlitterRLE8::Opaque_Unclipped_Unmasked(unsigned char* opaqueData, int activeWidth, int activeHeight, unsigned short* palette, unsigned short* data, int backBufferDelta,int x, int y)
@@ -1039,3 +1039,5 @@ void BlitterRLE8::IgnoreAlpha(int len, unsigned char** source)
 	}	
 	
 
+
+}; // namespace pixie

@@ -56,8 +56,8 @@ class MaxBlitterRLE8
 
 	};
 
-#include "MaxBlitterRLE8.inl"
-
 }; // namespace pixie
+
+#include "MaxBlitterRLE8.inl"
 
 #endif /* __MaxBlitterRLE8_H__ */

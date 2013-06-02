@@ -229,10 +229,11 @@ class Array
 		int itemCount_;		///< Number of items currently stored in the array
 		TYPE* items_;		///< Pointer to the actual array data
 	};
+    
+}; // namespace pixie
+
 
 // Implementation
 #include "Array.inl"
-
-}; // namespace pixie
 
 #endif /* __Array_h__ */

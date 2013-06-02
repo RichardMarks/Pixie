@@ -333,9 +333,9 @@ class StaticIdTable
         unsigned int usedIndicesCount_;
     };
 
+}; // namespace pixie
 // Implementation
 #include "StaticIdTable.inl"
 
-}; // namespace pixie
 
 #endif /* __StaticIdTable_h__ */

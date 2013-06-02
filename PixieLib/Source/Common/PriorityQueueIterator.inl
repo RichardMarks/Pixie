@@ -2,7 +2,7 @@
 
 #include "Debug.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 template <typename TYPE, class COMPARE>
@@ -117,3 +117,5 @@ int PriorityQueueIterator<TYPE, COMPARE>::GetCurrentIndex() const
 	{
 	return get_;
 	}
+
+}; // namespace pixie

@@ -2,6 +2,7 @@
 
 #include "Debug.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -117,3 +118,5 @@ bool BagIterator<TYPE>::Find(const TYPE& data)
 	// The item was not found, so return false to indicate this
 	return false;
 	}
+
+}; // namespace pixie

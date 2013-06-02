@@ -2,6 +2,7 @@
 
 #include "Debug.h"
 
+namespace pixie {
 //*** Constructor ***
 
 template<class HASHTABLEKEY, class TYPE> 
@@ -216,3 +217,5 @@ const HASHTABLEKEY& HashTableIterator<HASHTABLEKEY, TYPE>::GetCurrentKey() const
 	return table_->items_[currentGetIndex_].key;
 	}
 
+
+}; // namespace pixie

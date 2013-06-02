@@ -93,9 +93,9 @@ class ArrayIterator
 		const Array<TYPE>* array_;	///< The array that this iterator is used to iterate through
 	};
 
+}; // namespace pixie
+
 // Implementation
 #include "ArrayIterator.inl"
-
-}; // namespace pixie
 
 #endif /* __ArrayIterator_H__ */

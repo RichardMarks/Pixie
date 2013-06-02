@@ -4,6 +4,7 @@
 #include "ColorHelper.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 	
 //*** Opaque_Unclipped_Unmasked ***
 
@@ -1006,3 +1007,5 @@ void MaxBlitterRLE8::IgnoreAlpha(int len, unsigned char** source)
 	}	
 	
 
+
+}; // namespace pixie

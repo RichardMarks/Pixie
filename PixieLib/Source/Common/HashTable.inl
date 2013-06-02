@@ -3,6 +3,7 @@
 #include "HashTable.h"
 #include "Debug.h"
 
+namespace pixie {
 //*** Constructor ***
 
 template<class HASHTABLEKEY, class TYPE> 
@@ -239,3 +240,5 @@ void HashTable<HASHTABLEKEY, TYPE>::Clear(bool releaseMemory)
 	itemCount_=0;
 	}
 
+
+}; // namespace pixie
