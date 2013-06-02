@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_IndexBuffer
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "Platform_3D_IndexBuffer.h"
 
+namespace pixie {
 // Forward declares
 class Platform_Win32_3D;
 class Platform_Win32_3D_Technology;
@@ -51,4 +52,5 @@ class Platform_Win32_3D_IndexBuffer: public Platform_3D_IndexBuffer
 		Platform_3D_IndexBuffer* technologyIndexBuffer_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_IndexBuffer_H__ */

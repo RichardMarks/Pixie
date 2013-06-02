@@ -1,6 +1,6 @@
 //*** Platform_Win32_3D_D3D9_Texture.cpp ***
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <d3d9.h>
 
@@ -10,6 +10,7 @@
 #include "StandardLibrary.h"
 #include "ColorHelper.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -45,7 +46,7 @@ Platform_Win32_3D_D3D9_Texture::Platform_Win32_3D_D3D9_Texture(IDirect3DDevice9*
 		D3DLOCKED_RECT rect;
 		d3dTexture_->LockRect(i,&rect,0,D3DLOCK_DISCARD);
 		unsigned char* dest=static_cast<unsigned char*>(rect.pBits);
-		
+
 		if (rect.Pitch==(int)sizeof(unsigned int)*w)
 			{
 			MemCpy(dest,temp,sizeof(unsigned int)*w*h);
@@ -61,7 +62,7 @@ Platform_Win32_3D_D3D9_Texture::Platform_Win32_3D_D3D9_Texture(IDirect3DDevice9*
 				}
 			}
 		d3dTexture_->UnlockRect(i);
-	
+
 		if (i+1<mipLevelCount)
 			{
 			w/=2;
@@ -135,7 +136,7 @@ Platform_Win32_3D_D3D9_Texture::~Platform_Win32_3D_D3D9_Texture()
 		}
 	}
 
-		
+
 //*** Bind ***
 
 void Platform_Win32_3D_D3D9_Texture::Bind(int stage)
@@ -250,3 +251,4 @@ int Platform_Win32_3D_D3D9_Texture::GetPitch()
 
 	return lockedPitch_;
 	}
+}; // namespace pixie

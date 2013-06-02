@@ -1,6 +1,6 @@
 //*** Platform_Win32_Network_Client.cpp ***
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <winsock2.h>
 
@@ -16,6 +16,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor (listening) ***
 
@@ -112,13 +113,13 @@ bool Platform_Win32_Network_Client::Connect()
 
 	if (mode_==Platform_Network::ConnectionMode_TCP)
 		{
-		hints.ai_socktype = SOCK_STREAM;	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism. 
+		hints.ai_socktype = SOCK_STREAM;	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism.
 		hints.ai_protocol = IPPROTO_TCP;	// Use Transmission Control Protocol (TCP).
 		}
 	else if (mode_==Platform_Network::ConnectionMode_UDP)
 		{
 		hints.ai_socktype = SOCK_DGRAM;		// Socket type that supports datagrams, which are connectionless, unreliable buffers of a fixed (typically small) maximum length.
-		hints.ai_protocol = IPPROTO_UDP;	// Use User Datagram Protocol (UDP). 
+		hints.ai_protocol = IPPROTO_UDP;	// Use User Datagram Protocol (UDP).
 		}
 
 	// Resolve the server address and port
@@ -139,7 +140,7 @@ bool Platform_Win32_Network_Client::Connect()
 		{
 		const char* errorMsg=network_->GetErrorMessage(WSAGetLastError());
 		DebugPrint(("socket FAILED: %d - %s\n",WSAGetLastError(),errorMsg));
-	
+
 		freeaddrinfo(result);
 
 		DebugPrint(("FAILED creating socket!\n"));
@@ -193,7 +194,7 @@ bool Platform_Win32_Network_Client::Connect()
 			DebugPrint(("connect FAILED: %d - %s\n",WSAGetLastError(),errorMsg));
 
 			freeaddrinfo(result);
-			
+
 			if (closesocket(socket_)!=0)
 				{
 				const char* errorMsg=network_->GetErrorMessage(WSAGetLastError());
@@ -293,7 +294,7 @@ void Platform_Win32_Network_Client::Update()
 			}
 
 		}
-	
+
 	// Send and receive data
 	if (connected_)
 		{
@@ -380,3 +381,5 @@ void Platform_Win32_Network_Client::Update()
 		}
 
 	}
+
+}; // namespace pixie

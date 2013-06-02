@@ -3,10 +3,11 @@
 #include "Platform_Win32_3D_D3D9_IndexBuffer.h"
 #include "Debug.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <d3d9.h>
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_3D_D3D9_IndexBuffer::Platform_Win32_3D_D3D9_IndexBuffer(IDirect3DDevice9* device, int indexCount, bool dynamic):
@@ -104,7 +105,7 @@ int Platform_Win32_3D_D3D9_IndexBuffer::GetIndexStride()
 	return sizeof(unsigned short);
 	}
 
-		
+
 //*** Bind ***
 
 void Platform_Win32_3D_D3D9_IndexBuffer::Bind()
@@ -118,3 +119,4 @@ void Platform_Win32_3D_D3D9_IndexBuffer::Bind()
 	device_->SetIndices(d3dIndexBuffer_);
 	}
 
+}; // namespace pixie

@@ -2,13 +2,14 @@
 
 #include "Platform_Win32_Screen_D3D9.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <d3d9.h>
 
 #include "Platform_OS.h"
 #define DebugPrint(x) Platform::GetPlatform_OS()->OutputDebugText x;
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Screen_D3D9::Platform_Win32_Screen_D3D9(struct HWND__* windowHandle, bool fullscreen, int screenWidth, int screenHeight, bool interpolationMode):
@@ -51,7 +52,7 @@ bool Platform_Win32_Screen_D3D9::Setup()
 
 	// Create DirectDraw object
 	typedef IDirect3D9 * (WINAPI *Direct3DCreate9Definition)( unsigned int SDKVersion );
-	Direct3DCreate9Definition Direct3DCreate9=(Direct3DCreate9Definition)GetProcAddress((HMODULE)d3dDLL_, "Direct3DCreate9"); 
+	Direct3DCreate9Definition Direct3DCreate9=(Direct3DCreate9Definition)GetProcAddress((HMODULE)d3dDLL_, "Direct3DCreate9");
 	if (Direct3DCreate9==0)
 		{
 		DebugPrint(("Failed to find function entry point in d3d9.dll\n"));
@@ -106,7 +107,7 @@ bool Platform_Win32_Screen_D3D9::Setup()
 	// Set device adapter to use
 	UINT AdapterToUse=D3DADAPTER_DEFAULT;
 	D3DDEVTYPE DeviceType=D3DDEVTYPE_HAL;
-	
+
 	// Create the D3DDevice
 	HRESULT ret=direct3D_->CreateDevice(AdapterToUse,DeviceType,windowHandle_, D3DCREATE_SOFTWARE_VERTEXPROCESSING,&d3dpp,&device_);
 	if (FAILED(ret) || !device_)
@@ -196,8 +197,8 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned short* bitmapData, int bitmapW
 	lastPresentWidth_=bitmapWidth;
 	lastPresentHeight_=bitmapHeight;
 	unsigned int color=RGB16TO32(backgroundColor);
-		
-	
+
+
 	HRESULT result=S_OK;
 
 	result=device_->Clear( 0, 0, D3DCLEAR_TARGET, color, 0, 0);
@@ -213,7 +214,7 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned short* bitmapData, int bitmapW
 		DebugPrint(("BeginScene failed\n"));
 		return false;
 		}
-	
+
 
 	if (!CopyBitmapToBackBuffer(bitmapData,bitmapWidth,bitmapHeight,backgroundColor))
 		{
@@ -224,19 +225,19 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned short* bitmapData, int bitmapW
 	if (buffer2Filled_)
 		{
 		if (!CopyBackBufferToFrontBuffer(bitmapWidth, bitmapHeight, modulate))
-			{		
+			{
 			DebugPrint(("CopyBackBufferToFrontBuffer failed\n"));
 			return false;
 			}
 		}
-	
+
 	result=device_->EndScene();
 	if (FAILED(result))
 		{
 		DebugPrint(("EndScene failed\n"));
 		return false;
-		}	
-	
+		}
+
 	result=device_->Present(0, 0, 0, 0 );
 	if (FAILED(result))
 		{
@@ -269,8 +270,8 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned int* bitmapData, int bitmapWid
 	lastPresentWidth_=bitmapWidth;
 	lastPresentHeight_=bitmapHeight;
 	unsigned int color=backgroundColor;
-		
-	
+
+
 	HRESULT result=S_OK;
 
 	result=device_->Clear( 0, 0, D3DCLEAR_TARGET, color, 0, 0);
@@ -286,7 +287,7 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned int* bitmapData, int bitmapWid
 		DebugPrint(("BeginScene failed\n"));
 		return false;
 		}
-	
+
 
 	if (!CopyBitmapToBackBuffer(bitmapData,bitmapWidth,bitmapHeight,backgroundColor))
 		{
@@ -297,19 +298,19 @@ bool Platform_Win32_Screen_D3D9::Present(unsigned int* bitmapData, int bitmapWid
 	if (buffer2Filled_)
 		{
 		if (!CopyBackBufferToFrontBuffer(bitmapWidth, bitmapHeight, modulate))
-			{		
+			{
 			DebugPrint(("CopyBackBufferToFrontBuffer failed\n"));
 			return false;
 			}
 		}
-	
+
 	result=device_->EndScene();
 	if (FAILED(result))
 		{
 		DebugPrint(("EndScene failed\n"));
 		return false;
-		}	
-	
+		}
+
 	result=device_->Present(0, 0, 0, 0 );
 	if (FAILED(result))
 		{
@@ -357,7 +358,7 @@ bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned short* bitmapDa
 	else
 		{
 		RECT rect;
-		rect.top=0; 
+		rect.top=0;
 		rect.left=0;
 		rect.right=bitmapWidth;
 		rect.bottom=bitmapHeight;
@@ -484,7 +485,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 		x2=x1+(float)(pixelScale*bitmapWidth);
 		y2=y1+(float)(pixelScale*bitmapHeight);
 		}
-	
+
 
 	quad[0].x=x2-0.5f;
 	quad[0].y=y2-0.5f;
@@ -492,7 +493,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[0].rhw=0.5f;
 	quad[0].color=color;
 	quad[0].u=bitmapWidth/(float)backbufferWidth_;
-	quad[0].v=bitmapHeight/(float)backbufferHeight_;	
+	quad[0].v=bitmapHeight/(float)backbufferHeight_;
 
 	quad[1].x=x1-0.5f;
 	quad[1].y=y2-0.5f;
@@ -500,7 +501,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[1].rhw=0.5f;
 	quad[1].color=color;
 	quad[1].u=0;
-	quad[1].v=bitmapHeight/(float)backbufferHeight_;	
+	quad[1].v=bitmapHeight/(float)backbufferHeight_;
 
 	quad[2].x=x2-0.5f;
 	quad[2].y=y1-0.5f;
@@ -508,7 +509,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[2].rhw=0.5f;
 	quad[2].color=color;
 	quad[2].u=bitmapWidth/(float)backbufferWidth_;
-	quad[2].v=0;	
+	quad[2].v=0;
 
 	quad[3].x=x1-0.5f;
 	quad[3].y=y1-0.5f;
@@ -516,24 +517,24 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[3].rhw=0.5f;
 	quad[3].color=color;
 	quad[3].u=0;
-	quad[3].v=0;	
+	quad[3].v=0;
 
 	HRESULT result=S_OK;
 
-	
+
 	result=device_->SetTexture(0,backbuffer16b_);
 	if (FAILED(result))
 		{
 		DebugPrint(("SetTexture failed\n"));
 		return false;
 		}
-	
+
 	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	if (FAILED(result))
 		{
 		DebugPrint(("SetFVF failed\n"));
 		return false;
-		}	
+		}
 
 
 	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
@@ -541,7 +542,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 		{
 		DebugPrint(("SetFVF failed\n"));
 		return false;
-		}	
+		}
 
 	result=device_->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,quad,sizeof(Vertex));
 	if (FAILED(result))
@@ -577,7 +578,7 @@ bool Platform_Win32_Screen_D3D9::CopyBitmapToBackBuffer(unsigned int* bitmapData
 	else
 		{
 		RECT rect;
-		rect.top=0; 
+		rect.top=0;
 		rect.left=0;
 		rect.right=bitmapWidth;
 		rect.bottom=bitmapHeight;
@@ -703,7 +704,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 		x2=x1+(float)(pixelScale*bitmapWidth);
 		y2=y1+(float)(pixelScale*bitmapHeight);
 		}
-	
+
 
 	quad[0].x=x2-0.5f;
 	quad[0].y=y2-0.5f;
@@ -711,7 +712,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[0].rhw=0.5f;
 	quad[0].color=color;
 	quad[0].u=bitmapWidth/(float)backbufferWidth_;
-	quad[0].v=bitmapHeight/(float)backbufferHeight_;	
+	quad[0].v=bitmapHeight/(float)backbufferHeight_;
 
 	quad[1].x=x1-0.5f;
 	quad[1].y=y2-0.5f;
@@ -719,7 +720,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[1].rhw=0.5f;
 	quad[1].color=color;
 	quad[1].u=0;
-	quad[1].v=bitmapHeight/(float)backbufferHeight_;	
+	quad[1].v=bitmapHeight/(float)backbufferHeight_;
 
 	quad[2].x=x2-0.5f;
 	quad[2].y=y1-0.5f;
@@ -727,7 +728,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[2].rhw=0.5f;
 	quad[2].color=color;
 	quad[2].u=bitmapWidth/(float)backbufferWidth_;
-	quad[2].v=0;	
+	quad[2].v=0;
 
 	quad[3].x=x1-0.5f;
 	quad[3].y=y1-0.5f;
@@ -735,24 +736,24 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	quad[3].rhw=0.5f;
 	quad[3].color=color;
 	quad[3].u=0;
-	quad[3].v=0;	
+	quad[3].v=0;
 
 	HRESULT result=S_OK;
 
-	
+
 	result=device_->SetTexture(0,backbuffer32b_);
 	if (FAILED(result))
 		{
 		DebugPrint(("SetTexture failed\n"));
 		return false;
 		}
-	
+
 	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 	if (FAILED(result))
 		{
 		DebugPrint(("SetFVF failed\n"));
 		return false;
-		}	
+		}
 
 
 	result=device_->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
@@ -760,7 +761,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 		{
 		DebugPrint(("SetFVF failed\n"));
 		return false;
-		}	
+		}
 
 	result=device_->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP,2,quad,sizeof(Vertex));
 	if (FAILED(result))
@@ -773,7 +774,7 @@ bool Platform_Win32_Screen_D3D9::CopyBackBufferToFrontBuffer(int bitmapWidth, in
 	return true;
 	}
 
-//*** SetInterpolationMode *** 
+//*** SetInterpolationMode ***
 
 void Platform_Win32_Screen_D3D9::SetInterpolationMode(bool enabled)
 	{
@@ -851,25 +852,25 @@ bool Platform_Win32_Screen_D3D9::CreateBackBuffers(int width, int height)
 				{
 				DebugPrint(("Couldn't create backbuffer1\n"));
 				return false;
-				}			
+				}
 			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_X8R8G8B8,D3DPOOL_MANAGED,&backbuffer32a_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer1\n"));
 				return false;
-				}			
+				}
 			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_R5G6B5,D3DPOOL_MANAGED,&backbuffer16b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
 				return false;
-				}			
+				}
 			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,0,D3DFMT_X8R8G8B8,D3DPOOL_MANAGED,&backbuffer32b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
 				return false;
-				}			
+				}
 			}
 		else
 			{
@@ -878,23 +879,23 @@ bool Platform_Win32_Screen_D3D9::CreateBackBuffers(int width, int height)
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
 				return false;
-				}			
+				}
 			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_R5G6B5,D3DPOOL_DEFAULT,&backbuffer16b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
 				return false;
-				}			
+				}
 			ret=device_->CreateTexture(backbufferWidth_,backbufferHeight_,1,D3DUSAGE_DYNAMIC,D3DFMT_X8R8G8B8,D3DPOOL_DEFAULT,&backbuffer32b_,0);
 			if (FAILED(ret))
 				{
 				DebugPrint(("Couldn't create backbuffer2\n"));
 				return false;
-				}			
+				}
 			usingDynamicTexture_=true;
 			}
 		}
-	
+
 	return true;
 	}
 
@@ -931,3 +932,5 @@ void Platform_Win32_Screen_D3D9::TransformCursorCoordinates(float& x, float& y)
 	x=(x-hborder)/pixelScale;
 	y=(y-vborder)/pixelScale;
 	}
+
+}; // namespace pixie

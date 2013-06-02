@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Input_MouseDevice
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -16,7 +16,7 @@
 
 // Forward declares
 struct IDirectInputDeviceA;
-
+namespace pixie {
 // Platform_Win32_Input_MouseDevice
 class Platform_Win32_Input_MouseDevice: public Platform_Input_MouseDevice
 	{
@@ -31,5 +31,5 @@ class Platform_Win32_Input_MouseDevice: public Platform_Input_MouseDevice
 	private:
 		struct HWND__* windowHandle_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_Input_MouseDevice_H__ */

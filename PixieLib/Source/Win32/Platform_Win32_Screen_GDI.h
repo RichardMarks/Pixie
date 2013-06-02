@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Screen_GDI
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -15,6 +15,8 @@
 
 // Forward declares
 struct HDC__;
+
+namespace pixie {
 
 // Platform_Win32_Screen_GDI
 class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
@@ -47,39 +49,39 @@ class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
 		virtual void TransformCursorCoordinates(float& x, float& y);
 	private:
 		bool CopyBitmapData(
-			unsigned short* source, int sourceWidth, int sourceHeight, int sourcePitch, 
+			unsigned short* source, int sourceWidth, int sourceHeight, int sourcePitch,
 			unsigned short* destination, int destinationWidth, int destinationHeight, int destinationPitch,
 			unsigned short modulate
 			);
 
-		void ModulateBitmap(			
+		void ModulateBitmap(
 			unsigned short* bitmapData,
 			int bitmapWidth,
 			int bitmapHeight,
 			unsigned short modulate
 			);
-		
-		void ScaleBitmap(			
+
+		void ScaleBitmap(
 			unsigned short* bitmapData,
 			int bitmapWidth,
 			int bitmapHeight,
 			int scale
 			);
-		
+
 		void ModulateAndScaleBitmap
 			(
 			unsigned short* bitmapData,
 			int bitmapWidth,
 			int bitmapHeight,
-			unsigned short modulate, 
+			unsigned short modulate,
 			int scale);
-		
+
 		void CropBitmap(
 			unsigned short* bitmapData,
 			int bitmapWidth,
 			int bitmapHeight
 			);
-		
+
 		void ModulateAndCropBitmap(
 			unsigned short* bitmapData,
 			int bitmapWidth,
@@ -88,10 +90,10 @@ class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
 			);
 
 		void SetDIBits(
-			unsigned short* data, 
-			int width, 
-			int height, 
-			int x = 0, 
+			unsigned short* data,
+			int width,
+			int height,
+			int x = 0,
 			int y = 0
 			);
 
@@ -105,5 +107,6 @@ class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
 		int lastPresentHeight_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Screen_GDI_H__ */

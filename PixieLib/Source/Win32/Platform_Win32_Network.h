@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Network
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -14,6 +14,7 @@
 #include "Platform_Network.h"
 #include "Array.h"
 
+namespace pixie {
 // Forward declares
 class Platform_Win32_Network_Server;
 class Platform_Win32_Network_Client;
@@ -29,13 +30,13 @@ class Platform_Win32_Network:public Platform_Network,PlatformEventListener
 		virtual void OnOsYield();
 
 		virtual Platform_Network_Server* CreateServer(
-			ConnectionMode mode, 
+			ConnectionMode mode,
 			int port
 			);
-		
+
 		virtual Platform_Network_Client* CreateClient(
-			ConnectionMode mode, 
-			const char* address, 
+			ConnectionMode mode,
+			const char* address,
 			int port
 			);
 
@@ -56,4 +57,5 @@ class Platform_Win32_Network:public Platform_Network,PlatformEventListener
 		Array<Platform_Win32_Network_Client*> clients_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_Network_H__ */

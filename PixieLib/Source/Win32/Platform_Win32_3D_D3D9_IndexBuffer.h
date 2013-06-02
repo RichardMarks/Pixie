@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_D3D9_IndexBuffer
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -18,12 +18,13 @@
 struct IDirect3DIndexBuffer9;
 struct IDirect3DDevice9;
 
+namespace pixie {
 // Platform_Win32_3D_D3D9_IndexBuffer
 class Platform_Win32_3D_D3D9_IndexBuffer: public Platform_3D_IndexBuffer
 	{
 	public:
 		Platform_Win32_3D_D3D9_IndexBuffer(
-			IDirect3DDevice9* device, 
+			IDirect3DDevice9* device,
 			int indexCount,
 			bool dynamic
 			);
@@ -48,4 +49,5 @@ class Platform_Win32_3D_D3D9_IndexBuffer: public Platform_3D_IndexBuffer
 		unsigned char* lockedData_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_D3D9_IndexBuffer_H__ */

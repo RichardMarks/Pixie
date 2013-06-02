@@ -3,10 +3,11 @@
 #include "Platform_Win32_Input_KeyboardDevice.h"
 #include "Platform_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Input_KeyboardDevice::Platform_Win32_Input_KeyboardDevice():
@@ -118,3 +119,5 @@ char Platform_Win32_Input_KeyboardDevice::GetBufferedCharacter(int index) const
 
 	return characterBuffer_[index];
 	}
+
+}; // namespace pixie

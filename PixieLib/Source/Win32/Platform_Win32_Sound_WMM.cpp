@@ -2,7 +2,7 @@
 
 
 #pragma warning( disable: 4201)
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <mmsystem.h>
@@ -14,6 +14,7 @@
 
 #pragma comment (lib, "winmm.lib")
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -46,7 +47,7 @@ Platform_Win32_Sound_WMM::~Platform_Win32_Sound_WMM()
 		free(soundStreams_);
 		}
 	}
-		
+
 
 //*** Update ***
 
@@ -78,7 +79,7 @@ Platform_Sound_SoundStream* Platform_Win32_Sound_WMM::CreateSoundStream(int chan
 
 	soundStreams_[soundStreamCount_]=soundStream;
 	soundStreamCount_++;
-	
+
 	return soundStream;
 	}
 
@@ -98,3 +99,4 @@ void Platform_Win32_Sound_WMM::SoundStreamDestroyed(Platform_Win32_Sound_SoundSt
 			}
 		}
 	}
+}; // namespace pixie

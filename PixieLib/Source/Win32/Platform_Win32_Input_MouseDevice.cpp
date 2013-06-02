@@ -2,13 +2,14 @@
 
 #include "Platform_Win32_Input_MouseDevice.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 
 #include "Platform_Win32_Input.h"
 #include "Platform_OS.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Input_MouseDevice::Platform_Win32_Input_MouseDevice(struct HWND__* windowHandle):
@@ -70,3 +71,4 @@ bool Platform_Win32_Input_MouseDevice::IsRightButtonDown() const
 	return false;
 	}
 
+}; // namespace pixie

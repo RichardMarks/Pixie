@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Input_KeyboardDevice
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Input_KeyboardDevice.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_Input_KeyboardDevice
@@ -37,9 +37,9 @@ class Platform_Win32_Input_KeyboardDevice: public Platform_Input_KeyboardDevice
 	private:
 		bool charStates_[256];
 		int charKeycodes_[256];
-		
+
 		char characterBuffer_[256];
 		mutable int characterBufferCount_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_Input_KeyboardDevice_H__ */

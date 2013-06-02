@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Network_Client
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -16,6 +16,7 @@
 #include "Platform_Network_Client.h"
 #include "DynamicBuffer.h"
 
+namespace pixie {
 // Forward declares
 class Platform_Win32_Network;
 
@@ -35,7 +36,7 @@ class Platform_Win32_Network_Client: public Platform_Network_Client
 		virtual bool IsConnected();
 
 		virtual void SendData(
-			const void* data, 
+			const void* data,
 			int size
 			);
 
@@ -59,4 +60,5 @@ class Platform_Win32_Network_Client: public Platform_Network_Client
 		int maxMessageSize_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_Network_Client_H__ */

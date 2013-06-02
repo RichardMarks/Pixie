@@ -1,6 +1,6 @@
 //*** Platform_Win32_Network.cpp ***
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <winsock2.h>
 
@@ -10,9 +10,9 @@
 #include "Debug.h"
 #include "ArrayIterator.h"
 
-#pragma comment (lib, "Ws2_32.lib") 
+#pragma comment (lib, "Ws2_32.lib")
 
-
+namespace pixie {
 
 //*** Constructor ***
 
@@ -26,7 +26,7 @@ Platform_Win32_Network::Platform_Win32_Network()
 
 	WSADATA wsaData;
 
-    // Initialize Winsock. Try the highest version first, then fall back 
+    // Initialize Winsock. Try the highest version first, then fall back
 	// to older and older versions until we get one which works
 	if (WSAStartup(MAKEWORD(2,2), &wsaData)==0)
 		{
@@ -219,11 +219,11 @@ Platform_Network_Client* Platform_Win32_Network::CreateClient(ConnectionMode mod
 const char* Platform_Win32_Network::GetErrorMessage(unsigned int errorCode)
 	{
 	// Define all error messages as an array of unnamed structs, mapping error code to error message
-	struct 
-		{ 
-		unsigned int errorCode; 
-		const char* errorMessage; 
-		} errorTexts[] = 	
+	struct
+		{
+		unsigned int errorCode;
+		const char* errorMessage;
+		} errorTexts[] =
 		{
 			{ WSAEINTR, "A blocking operation was interrupted by a call to WSACancelBlockingCall.." },
 			{ WSAEBADF, "The file handle supplied is not valid." },
@@ -329,3 +329,5 @@ const char* Platform_Win32_Network::GetErrorMessage(unsigned int errorCode)
 	// If an unknown error code was passed in, return a default message
 	return "Unknown error!";
 	};
+
+	}; // namespace pixie

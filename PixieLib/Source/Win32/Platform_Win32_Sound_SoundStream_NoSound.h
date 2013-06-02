@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Sound_SoundStream_NoSound
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Sound_SoundStream.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_Sound_SoundStream_NoSound
@@ -21,14 +21,14 @@ class Platform_Win32_Sound_SoundStream_NoSound : public Platform_Sound_SoundStre
 	{
 	public:
 		Platform_Win32_Sound_SoundStream_NoSound(
-			int channels, 
-			int frequency, 
-			int bitsPerSample, 
+			int channels,
+			int frequency,
+			int bitsPerSample,
 			int size
 			);
 		virtual ~Platform_Win32_Sound_SoundStream_NoSound();
 
-	
+
 		virtual void Play();
 		virtual void Stop();
 
@@ -53,4 +53,5 @@ class Platform_Win32_Sound_SoundStream_NoSound : public Platform_Sound_SoundStre
 		int size_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_Sound_SoundStream_NoSound_H__ */

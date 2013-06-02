@@ -7,12 +7,13 @@
 #include "Platform_Screen.h"
 #include "Platform_3D.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <crtdbg.h>
 #include <stdlib.h>
 #include <stdio.h>
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLine):
@@ -46,7 +47,7 @@ Platform_Win32_OS::Platform_Win32_OS(HINSTANCE hInstance, const char* commandLin
 		*end='\0';
 		}
 	executablePath_=strdup(path);
-	
+
 	// Setup the main application window
 	RegisterWindowClass(hInstance,"Pixie");
 	windowHandle_=CreateWindowInstance(hInstance,"Pixie","Pixie Game Engine");
@@ -102,7 +103,7 @@ void Platform_Win32_OS::OsYield()
 		{
 		Sleep(16); // Pause for a bit... we're not in a rush here
 		}
-	
+
 	ProcessMessages(); // Windows message handling
 	}
 
@@ -126,7 +127,7 @@ void Platform_Win32_OS::SetApplicationName(const char* applicationName)
 
 const char* Platform_Win32_OS::GetCommandLineString()
 	{
-	return commandLine_;	
+	return commandLine_;
 	}
 
 
@@ -134,7 +135,7 @@ const char* Platform_Win32_OS::GetCommandLineString()
 
 const char* Platform_Win32_OS::GetExecutablePath()
 	{
-	return executablePath_;	
+	return executablePath_;
 	}
 
 
@@ -142,7 +143,7 @@ const char* Platform_Win32_OS::GetExecutablePath()
 
 bool Platform_Win32_OS::HasFocus()
 	{
-	return applicationHasFocus_;	
+	return applicationHasFocus_;
 	}
 
 
@@ -169,7 +170,7 @@ bool Platform_Win32_OS::RegisterWindowClass(HINSTANCE instance, const char* clas
 	wc.hbrBackground=	(HBRUSH)GetStockObject(BLACK_BRUSH);
 	wc.lpszMenuName	=	0;
 	wc.lpszClassName=	className;
-	
+
 	if(!RegisterClass(&wc))
 		{
 		MessageBox(0, "Failed to register window class.", "Error", MB_OK|MB_ICONSTOP);
@@ -207,7 +208,7 @@ void Platform_Win32_OS::ProcessMessages()
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
 		}
-	
+
 	// We need to handle OnGainFocus and OnLoseFocus in Platform_Screen, but
 	// not inside the message pump, or D3D will throw a fit (don't know why)
 	if (previousFocus!=applicationHasFocus_)
@@ -216,7 +217,7 @@ void Platform_Win32_OS::ProcessMessages()
 			{
 			Platform::SendEvent_CustomEvent("OnGainFocus");
 			}
-		else			
+		else
 			{
 			Platform::SendEvent_CustomEvent("OnLoseFocus");
 			}
@@ -232,7 +233,7 @@ LRESULT CALLBACK Platform_Win32_OS::WindowProcedure_Static(HWND window, UINT mes
 	#pragma warning( disable: 4312)
 	Platform_Win32_OS* this_=reinterpret_cast<Platform_Win32_OS*>(GetWindowLongPtr(window, GWLP_USERDATA));
 	#pragma warning (pop)
-	
+
 	if (this_)
 		{
 		return this_->WindowProcedure(window,message,wParam,lParam);
@@ -294,11 +295,11 @@ LRESULT Platform_Win32_OS::WindowProcedure(HWND window, UINT message, WPARAM wPa
 			return WmSize(window,message,wParam,lParam);
 			} break;
 
-		case WM_SYSCOMMAND: 
+		case WM_SYSCOMMAND:
 			{
 			return WmSysCommand(window,message,wParam,lParam);
 			} break;
-		
+
 		case WM_ACTIVATEAPP:
 			{
 			return WmActivateApp(window,message,wParam,lParam);
@@ -309,7 +310,7 @@ LRESULT Platform_Win32_OS::WindowProcedure(HWND window, UINT message, WPARAM wPa
 			{
 			return WmClose(window,message,wParam,lParam);
 			} break;
-			
+
 		}
 
 	return DefWindowProc(window, message, wParam, lParam);
@@ -334,7 +335,7 @@ LRESULT Platform_Win32_OS::WmSize(HWND window, UINT message, WPARAM wParam, LPAR
 			Platform::SendEvent_CustomEvent("OnMinimize");
 			}
 		}
-	
+
 	return DefWindowProc(window, message, wParam, lParam);
 	}
 
@@ -343,7 +344,7 @@ LRESULT Platform_Win32_OS::WmSize(HWND window, UINT message, WPARAM wParam, LPAR
 
 LRESULT Platform_Win32_OS::WmSysCommand(HWND window, UINT message, WPARAM wParam, LPARAM lParam)
 	{
-	
+
 	if (wParam==SC_RESTORE)
 		{
 		Platform::SendEvent_CustomEvent("OnRestore");
@@ -373,7 +374,7 @@ LRESULT Platform_Win32_OS::WmActivateApp(HWND window, UINT message, WPARAM wPara
 		}
 
 	return 0;
-	} 
+	}
 
 
 //*** WmClose ***
@@ -406,7 +407,7 @@ void Platform_Win32_OS::DisplayAssertMessage(const char* expression, const char*
 		Platform::GetPlatform_3D()->SetFullscreen(false);
 		}
 	char buf[4096];
-	_snprintf(buf, 4095, 
+	_snprintf(buf, 4095,
 		"ASSERTION FAILED!\n\n%s\n\nExpression: %s\n\n%s(%d)\n",
 		message, expression, file, line);
 	OutputDebugString("\n******************************************\n");
@@ -429,7 +430,7 @@ void Platform_Win32_OS::DisplayAssertMessage(const char* expression, const char*
 			{
 			_asm{int 0x03};	// Break to editor
 			} break;
-		case IGNORE:		
+		case IGNORE:
 			{
 			return;			// Continue execution
 			} break;
@@ -509,3 +510,4 @@ void Platform_Win32_OS::OnCustomEvent(const char* eventId, void* userData)
 		}
 	}
 
+}; // namespace pixie

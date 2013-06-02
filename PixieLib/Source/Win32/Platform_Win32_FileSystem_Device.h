@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_FileSystem_Device
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_FileSystem_Device.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_FileSystem_Device
@@ -28,5 +28,5 @@ class Platform_Win32_FileSystem_Device: public Platform_FileSystem_Device
 	private:
 		char* name_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_FileSystem_Device_H__ */

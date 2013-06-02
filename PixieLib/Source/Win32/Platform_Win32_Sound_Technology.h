@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Sound_Technology
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -11,7 +11,7 @@
 #define __Platform_Win32_Sound_Technology_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 class Platform_Sound_SoundStream;
 
@@ -27,14 +27,15 @@ class Platform_Win32_Sound_Technology
 		virtual void Update() = 0;
 
 		virtual Platform_Sound_SoundStream* CreateSoundStream(
-			int channels, 
-			int frequency, 
-			int bitsPerSample, 
+			int channels,
+			int frequency,
+			int bitsPerSample,
 			int size
 			) = 0;
 
 	private:
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Sound_Technology_H__ */

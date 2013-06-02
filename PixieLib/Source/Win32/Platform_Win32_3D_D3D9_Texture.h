@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_D3D9_Texture
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -18,6 +18,7 @@
 struct IDirect3DTexture9;
 struct IDirect3DDevice9;
 struct IDirect3DSurface9;
+namespace pixie {
 class Asset;
 
 // Platform_Win32_3D_D3D9_Texture
@@ -25,14 +26,14 @@ class Platform_Win32_3D_D3D9_Texture: public Platform_3D_Texture
 	{
 	public:
 		Platform_Win32_3D_D3D9_Texture(
-			IDirect3DDevice9* device, 
+			IDirect3DDevice9* device,
 			int width,
 			int height,
 			void* data
 			);
 
 		Platform_Win32_3D_D3D9_Texture(
-			IDirect3DDevice9* device, 
+			IDirect3DDevice9* device,
 			void* data,
 			int size
 			);
@@ -62,5 +63,5 @@ class Platform_Win32_3D_D3D9_Texture: public Platform_3D_Texture
 		int mipLevels_;
 		D3DFORMAT format_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_D3D9_Texture_H__ */

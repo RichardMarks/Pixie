@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Time
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -14,7 +14,7 @@
 #include "Platform_Time.h"
 
 // Forward declares
-
+namespace pixie {
 // Platform_Win32_Time
 class Platform_Win32_Time:public Platform_Time
 	{
@@ -34,5 +34,6 @@ class Platform_Win32_Time:public Platform_Time
 		double initialValue_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Time_H__ */

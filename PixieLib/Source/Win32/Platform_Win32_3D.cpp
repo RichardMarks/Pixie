@@ -12,10 +12,12 @@
 #include "Platform_Time.h"
 #include "ArrayIterator.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <stdlib.h>
+
+namespace pixie {
 
 //*** Constructor ***
 
@@ -71,7 +73,7 @@ Platform_Win32_3D::Platform_Win32_3D(Platform_Win32_OS* os):
 		fullscreenHeight_=desktopRect.bottom-desktopRect.top;
 
 		windowedWidth_=fullscreenWidth_-fullscreenWidth_/6;
-		windowedHeight_=fullscreenHeight_-fullscreenHeight_/6; 
+		windowedHeight_=fullscreenHeight_-fullscreenHeight_/6;
 		windowedX_=fullscreenWidth_-windowedWidth_;
 		windowedY_=fullscreenHeight_-windowedHeight_;
 		windowedX_/=2;
@@ -97,8 +99,8 @@ Platform_Win32_3D::Platform_Win32_3D(Platform_Win32_OS* os):
 		}
 	else
 */		{
-		SetTechnology(Technology_D3D9); 
-		}	
+		SetTechnology(Technology_D3D9);
+		}
 
 	// Show window
 	ShowWindow(windowHandle_,SW_SHOW);
@@ -344,7 +346,7 @@ void Platform_Win32_3D::SetAmbientLight(unsigned int color)
 	technologyInstance_->SetAmbientLight(color);
 	}
 
-		
+
 //*** EnableLighting ***
 
 void Platform_Win32_3D::EnableLighting(bool enabled)
@@ -382,7 +384,7 @@ void Platform_Win32_3D::EnableZWrite(bool enabled)
 
 	technologyInstance_->EnableZWrite(enabled);
 	}
-		
+
 
 //*** SetTechnology ***
 
@@ -402,7 +404,7 @@ void Platform_Win32_3D::SetTechnology(Platform_Win32_3D::Technology technology)
 		{
 		return;
 		}
-	
+
 	switch(technology_)
 		{
 		case Technology_D3D9:
@@ -433,12 +435,12 @@ void Platform_Win32_3D::SetTechnology(Platform_Win32_3D::Technology technology)
 			textures_.Get(i)->Reset(technologyInstance_);
 			}
 
-		if (lastBoundVertexBuffer_)	
+		if (lastBoundVertexBuffer_)
 			{
 			lastBoundVertexBuffer_->Bind();
 			}
-	
-		if (lastBoundIndexBuffer_)	
+
+		if (lastBoundIndexBuffer_)
 			{
 			lastBoundIndexBuffer_->Bind();
 			}
@@ -463,7 +465,7 @@ void Platform_Win32_3D::DowngradeTechnology()
 	disableOnWmSize_++;
 
 	DebugPrint(("Method failed for technology %d, falling back on technology %d\n",technology_,technology_+1));
-	
+
 	if (technologyInstance_)
 		{
 		delete technologyInstance_;
@@ -471,14 +473,14 @@ void Platform_Win32_3D::DowngradeTechnology()
 		}
 
 	Technology newTechnology=(Technology)(technology_+1);
-	
+
 	if (newTechnology<Technology_Undefined)
 		{
 		SetTechnology(newTechnology);
 		disableOnWmSize_--;
 		return;
 		}
-	
+
 	technology_=Technology_Undefined;
 	technologyInstance_=0;
 
@@ -496,14 +498,14 @@ void Platform_Win32_3D::SetFullscreen(bool fullscreen)
 		}
 
 	fullscreen_=fullscreen;
-	
+
 	if (technologyInstance_)
 		{
 		disableOnWmSize_++;
 
 		delete technologyInstance_;
 		technologyInstance_=0;
-	
+
 		if (!GetFullscreen())
 			{
 			SetWindowSize();
@@ -528,7 +530,7 @@ bool Platform_Win32_3D::GetFullscreen()
 	return fullscreen_;
 	}
 
-		
+
 //*** SetSize ***
 
 void Platform_Win32_3D::SetSize(int width, int height)
@@ -539,14 +541,14 @@ void Platform_Win32_3D::SetSize(int width, int height)
 	if (technologyInstance_)
 		{
 		disableOnWmSize_++;
-	
+
 		delete technologyInstance_;
 		technologyInstance_=0;
 
-		if (!GetFullscreen())	
+		if (!GetFullscreen())
 			{
 			SetWindowSize();
-			}	
+			}
 
 		SetTechnology(technology_);
 
@@ -565,7 +567,7 @@ int Platform_Win32_3D::GetWidth()
 		{
 		return fullscreenWidth_;
 		}
-	
+
 	return windowedWidth_;
 	}
 
@@ -578,7 +580,7 @@ int Platform_Win32_3D::GetHeight()
 		{
 		return fullscreenHeight_;
 		}
-	
+
 	return windowedHeight_;
 	}
 
@@ -610,7 +612,7 @@ void Platform_Win32_3D::OnWmSize(int width, int height)
 		{
 		SetTechnology(technology_);
 		}
-*/	
+*/
 	windowedWidth_=width;
 	windowedHeight_=height;
 
@@ -747,7 +749,7 @@ void Platform_Win32_3D::TextureBound(int stage, Platform_Win32_3D_Texture* textu
 
 void Platform_Win32_3D::VertexBufferDeleted(Platform_Win32_3D_VertexBuffer* vertexBuffer)
 	{
-	if (lastBoundVertexBuffer_==vertexBuffer)	
+	if (lastBoundVertexBuffer_==vertexBuffer)
 		{
 		lastBoundVertexBuffer_=0;
 		}
@@ -763,7 +765,7 @@ void Platform_Win32_3D::VertexBufferDeleted(Platform_Win32_3D_VertexBuffer* vert
 
 void Platform_Win32_3D::IndexBufferDeleted(Platform_Win32_3D_IndexBuffer* indexBuffer)
 	{
-	if (lastBoundIndexBuffer_==indexBuffer)	
+	if (lastBoundIndexBuffer_==indexBuffer)
 		{
 		lastBoundIndexBuffer_=0;
 		}
@@ -795,3 +797,4 @@ void Platform_Win32_3D::TextureDeleted(Platform_Win32_3D_Texture* texture)
 		}
 	}
 
+}; // namespace pixie

@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_OS
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  * \todo	Have mouse cursor revert to default when placed over the window title bar or borders
  */
@@ -16,12 +16,12 @@
 #include "PlatformEventListener.h"
 
 // Forward declares
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #undef _WIN32_WINNT
 #define _WIN32_WINNT 0x0400
 #include <windows.h>
-
+namespace pixie {
 // Platform_Win32_OS
 class Platform_Win32_OS:public Platform_OS, PlatformEventListener
 	{
@@ -50,7 +50,7 @@ class Platform_Win32_OS:public Platform_OS, PlatformEventListener
 		virtual bool ExitRequested();
 
 		virtual void OnCustomEvent(const char* eventId, void* userData);
-		
+
 		HWND GetWindowHandle();
 
 	private:
@@ -82,5 +82,6 @@ class Platform_Win32_OS:public Platform_OS, PlatformEventListener
 		bool exitRequested_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_OS_H__ */

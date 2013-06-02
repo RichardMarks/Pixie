@@ -9,6 +9,7 @@
 #include "Platform_Win32_3D.h"
 #include "Platform_Win32_Sound.h"
 
+namespace pixie {
 
 void Platform_Win32()
 	{
@@ -21,3 +22,5 @@ void Platform_Win32()
 	Platform_Win32_3D(0);
 	Platform_Win32_Sound(0);
 	}
+
+	}; // namespace pixie

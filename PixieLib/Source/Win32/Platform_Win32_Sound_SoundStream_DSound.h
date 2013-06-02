@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Sound_SoundStream_DSound
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -18,20 +18,21 @@
 struct IDirectSound;
 struct IDirectSoundBuffer;
 
+namespace pixie {
 // Platform_Win32_Sound_SoundStream_DSound
 class Platform_Win32_Sound_SoundStream_DSound : public Platform_Sound_SoundStream
 	{
 	public:
 		Platform_Win32_Sound_SoundStream_DSound(
 			IDirectSound* directSound,
-			int channels, 
-			int frequency, 
-			int bitsPerSample, 
+			int channels,
+			int frequency,
+			int bitsPerSample,
 			int size
 			);
 		virtual ~Platform_Win32_Sound_SoundStream_DSound();
 
-	
+
 		virtual void Play();
 		virtual void Stop();
 
@@ -48,12 +49,12 @@ class Platform_Win32_Sound_SoundStream_DSound : public Platform_Sound_SoundStrea
 
 		virtual void SetVolume(float level);
 		virtual float GetVolume();
-	
+
 	private:
 		int ConvertLinearLevelToDirectSoundLevel(float level);
 
 	private:
-	    IDirectSoundBuffer* soundBuffer_;	
+	    IDirectSoundBuffer* soundBuffer_;
 		int channels_;
 		int frequency_;
 		int bitsPerSample_;
@@ -61,4 +62,5 @@ class Platform_Win32_Sound_SoundStream_DSound : public Platform_Sound_SoundStrea
 		float volume_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_Sound_SoundStream_DSound_H__ */

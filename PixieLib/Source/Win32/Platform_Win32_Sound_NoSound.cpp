@@ -3,6 +3,7 @@
 #include "Platform_Win32_Sound_NoSound.h"
 #include "Platform_Win32_Sound_SoundStream_NoSound.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Sound_NoSound::Platform_Win32_Sound_NoSound()
@@ -39,3 +40,5 @@ Platform_Sound_SoundStream* Platform_Win32_Sound_NoSound::CreateSoundStream(int 
 	{
 	return new Platform_Win32_Sound_SoundStream_NoSound(channels,frequency,bitsPerSample,size);
 	}
+
+}; // namespace pixie

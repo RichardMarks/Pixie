@@ -4,7 +4,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <d3d9.h>
 
@@ -12,6 +12,7 @@
 #include "Platform_Win32_3D_D3D9_IndexBuffer.h"
 #include "Platform_Win32_3D_D3D9_Texture.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_3D_D3D9::Platform_Win32_3D_D3D9(struct HWND__* windowHandle, bool fullscreen, int screenWidth, int screenHeight):
@@ -42,7 +43,7 @@ bool Platform_Win32_3D_D3D9::Setup()
 
 	// Create DirectDraw object
 	typedef IDirect3D9 * (WINAPI *Direct3DCreate9Definition)( unsigned int SDKVersion );
-	Direct3DCreate9Definition Direct3DCreate9=(Direct3DCreate9Definition)GetProcAddress((HMODULE)d3dDLL_, "Direct3DCreate9"); 
+	Direct3DCreate9Definition Direct3DCreate9=(Direct3DCreate9Definition)GetProcAddress((HMODULE)d3dDLL_, "Direct3DCreate9");
 	if (Direct3DCreate9==0)
 		{
 		DebugPrint(("Failed to find function entry point in d3d9.dll\n"));
@@ -111,7 +112,7 @@ bool Platform_Win32_3D_D3D9::Setup()
 	// Set device adapter to use
 	UINT AdapterToUse=D3DADAPTER_DEFAULT;
 	D3DDEVTYPE DeviceType=D3DDEVTYPE_HAL;
-		
+
 	// Look for 'NVIDIA NVPerfHUD' adapter
 	// If it is present, override default settings
 	for (UINT Adapter=0;Adapter<direct3D_->GetAdapterCount();Adapter++)
@@ -211,8 +212,8 @@ bool Platform_Win32_3D_D3D9::Setup()
 	mtrl.Specular.b=1.0f;
 	mtrl.Specular.a=1.0f;
 	device_->SetMaterial( &mtrl );
-	
-	
+
+
 	lightCount_=8;
 
 /*
@@ -280,7 +281,7 @@ Platform_Win32_3D_D3D9::~Platform_Win32_3D_D3D9()
 
 //*** IsCompressedTextureFormatOk ***
 /*
-bool Platform_Win32_3D_D3D9::IsCompressedTextureFormatOk( D3DFORMAT TextureFormat,  D3DFORMAT AdapterFormat ) 
+bool Platform_Win32_3D_D3D9::IsCompressedTextureFormatOk( D3DFORMAT TextureFormat,  D3DFORMAT AdapterFormat )
 	{
     HRESULT hr = device_->CheckDeviceFormat( D3DADAPTER_DEFAULT,
                                           D3DDEVTYPE_HAL,
@@ -396,7 +397,7 @@ void Platform_Win32_3D_D3D9::RenderFan(int startVertex, int vertexCount)
 
 void Platform_Win32_3D_D3D9::SetWorldMatrix(const float worldMatrix[16])
 	{
-	device_->SetTransform(D3DTS_WORLD,reinterpret_cast<const D3DMATRIX*>(worldMatrix));	
+	device_->SetTransform(D3DTS_WORLD,reinterpret_cast<const D3DMATRIX*>(worldMatrix));
 	}
 
 
@@ -404,7 +405,7 @@ void Platform_Win32_3D_D3D9::SetWorldMatrix(const float worldMatrix[16])
 
 void Platform_Win32_3D_D3D9::SetViewMatrix(const float viewMatrix[16])
 	{
-	device_->SetTransform(D3DTS_VIEW,reinterpret_cast<const D3DMATRIX*>(viewMatrix));	
+	device_->SetTransform(D3DTS_VIEW,reinterpret_cast<const D3DMATRIX*>(viewMatrix));
 	}
 
 
@@ -412,7 +413,7 @@ void Platform_Win32_3D_D3D9::SetViewMatrix(const float viewMatrix[16])
 
 void Platform_Win32_3D_D3D9::SetProjectionMatrix(const float projectionMatrix[16])
 	{
-	device_->SetTransform(D3DTS_PROJECTION,reinterpret_cast<const D3DMATRIX*>(projectionMatrix));	
+	device_->SetTransform(D3DTS_PROJECTION,reinterpret_cast<const D3DMATRIX*>(projectionMatrix));
 	}
 
 
@@ -523,4 +524,5 @@ void Platform_Win32_3D_D3D9::EnableZWrite(bool enabled)
 		device_->SetRenderState(D3DRS_ZWRITEENABLE,FALSE);
 		}
 	}
-		
+
+		}; // namespace pixie

@@ -4,7 +4,7 @@
 #include "Platform_Win32_Sound.h"
 #include "Platform_OS.h"
 
-//#define WIN32_LEAN_AND_MEAN 
+//#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 
 // DirectX version 3 is enough for sound
@@ -14,6 +14,7 @@
 
 #define ErrMsg(expression,message) if (!(expression))  Platform::GetPlatform_OS()->OutputDebugText(message);
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Sound_SoundStream_DSound::Platform_Win32_Sound_SoundStream_DSound(IDirectSound* directSound, int channels, int frequency, int bitsPerSample, int size):
@@ -24,31 +25,31 @@ Platform_Win32_Sound_SoundStream_DSound::Platform_Win32_Sound_SoundStream_DSound
 	size_(size),
 	volume_(1.0f)
 	{
-    // Set up wave format structure. 
-	WAVEFORMATEX format; 
-    memset(&format, 0, sizeof(WAVEFORMATEX)); 
-	format.wFormatTag=WAVE_FORMAT_PCM; 
-    format.nChannels=(WORD)channels; 
-    format.nSamplesPerSec=(DWORD)frequency; 
-    format.nBlockAlign=(WORD)((channels*bitsPerSample)/8); 
-    format.nAvgBytesPerSec=(DWORD)(frequency * format.nBlockAlign); 
-    format.wBitsPerSample=(WORD)bitsPerSample; 
+    // Set up wave format structure.
+	WAVEFORMATEX format;
+    memset(&format, 0, sizeof(WAVEFORMATEX));
+	format.wFormatTag=WAVE_FORMAT_PCM;
+    format.nChannels=(WORD)channels;
+    format.nSamplesPerSec=(DWORD)frequency;
+    format.nBlockAlign=(WORD)((channels*bitsPerSample)/8);
+    format.nAvgBytesPerSec=(DWORD)(frequency * format.nBlockAlign);
+    format.wBitsPerSample=(WORD)bitsPerSample;
     format.cbSize=0;
 
-	// Set up DSBUFFERDESC structure. 
-    DSBUFFERDESC dsbdesc; 
-    memset(&dsbdesc, 0, sizeof(DSBUFFERDESC)); // Zero it out. 
-    dsbdesc.dwSize=sizeof(DSBUFFERDESC); 
-    
-	// Need default controls (pan, volume, frequency). 
-    dsbdesc.dwFlags=DSBCAPS_CTRLPAN | DSBCAPS_CTRLVOLUME | DSBCAPS_CTRLFREQUENCY | DSBCAPS_GETCURRENTPOSITION2 | DSBCAPS_GLOBALFOCUS; 
-    
-    dsbdesc.dwBufferBytes=size; 
-    dsbdesc.lpwfxFormat=&format; 
-    
-	// Create buffer. 
-    HRESULT hr; 
-    hr=directSound->CreateSoundBuffer(&dsbdesc, &soundBuffer_, NULL); 
+	// Set up DSBUFFERDESC structure.
+    DSBUFFERDESC dsbdesc;
+    memset(&dsbdesc, 0, sizeof(DSBUFFERDESC)); // Zero it out.
+    dsbdesc.dwSize=sizeof(DSBUFFERDESC);
+
+	// Need default controls (pan, volume, frequency).
+    dsbdesc.dwFlags=DSBCAPS_CTRLPAN | DSBCAPS_CTRLVOLUME | DSBCAPS_CTRLFREQUENCY | DSBCAPS_GETCURRENTPOSITION2 | DSBCAPS_GLOBALFOCUS;
+
+    dsbdesc.dwBufferBytes=size;
+    dsbdesc.lpwfxFormat=&format;
+
+	// Create buffer.
+    HRESULT hr;
+    hr=directSound->CreateSoundBuffer(&dsbdesc, &soundBuffer_, NULL);
 	ErrMsg(SUCCEEDED(hr),"Couldn't create sound buffer\n");
 	}
 
@@ -70,7 +71,7 @@ void Platform_Win32_Sound_SoundStream_DSound::Play()
 		{
 		soundBuffer_->Play(0,0,DSBPLAY_LOOPING);
 		}
-	}	
+	}
 
 
 //*** Stop ***
@@ -81,11 +82,11 @@ void Platform_Win32_Sound_SoundStream_DSound::Stop()
 		{
 		soundBuffer_->Stop();
 		}
-	}	
+	}
 
 
 //*** GetPosition ***
-	
+
 int Platform_Win32_Sound_SoundStream_DSound::GetPosition()
 	{
 	DWORD position=0;
@@ -98,7 +99,7 @@ int Platform_Win32_Sound_SoundStream_DSound::GetPosition()
 
 
 //*** SetPosition ***
-	
+
 void Platform_Win32_Sound_SoundStream_DSound::SetPosition(int position)
 	{
 	if (soundBuffer_)
@@ -122,30 +123,30 @@ void Platform_Win32_Sound_SoundStream_DSound::CopySoundToBuffer(int bufferOffset
 
 	// Obtain memory address of write block. This will be in two parts
     // if the block wraps around.
-    LPVOID lpvPtr1; 
-    DWORD dwBytes1; 
-    LPVOID lpvPtr2; 
-    DWORD dwBytes2; 
-    HRESULT hr = soundBuffer_->Lock(bufferOffset, bytesToCopy, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0); 
- 
-    // If DSERR_BUFFERLOST is returned, restore and retry lock. 
-    if (hr==DSERR_BUFFERLOST) 
-		{ 
-        soundBuffer_->Restore(); 
-	    hr = soundBuffer_->Lock(bufferOffset, bytesToCopy, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0); 
-		} 
+    LPVOID lpvPtr1;
+    DWORD dwBytes1;
+    LPVOID lpvPtr2;
+    DWORD dwBytes2;
+    HRESULT hr = soundBuffer_->Lock(bufferOffset, bytesToCopy, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0);
+
+    // If DSERR_BUFFERLOST is returned, restore and retry lock.
+    if (hr==DSERR_BUFFERLOST)
+		{
+        soundBuffer_->Restore();
+	    hr = soundBuffer_->Lock(bufferOffset, bytesToCopy, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0);
+		}
     ErrMsg(SUCCEEDED(hr),"Couldn't lock sound buffer\n");
 
-	// Write to pointers.      
-	CopyMemory(lpvPtr1, soundData, dwBytes1);      
-	if(lpvPtr2) 
-		{ 
-        CopyMemory(lpvPtr2, static_cast<const char*>(soundData)+dwBytes1, dwBytes2); 
-	    } 
+	// Write to pointers.
+	CopyMemory(lpvPtr1, soundData, dwBytes1);
+	if(lpvPtr2)
+		{
+        CopyMemory(lpvPtr2, static_cast<const char*>(soundData)+dwBytes1, dwBytes2);
+	    }
 
-	// Release the data back to DirectSound. 
-    hr=soundBuffer_->Unlock(lpvPtr1, dwBytes1, lpvPtr2, dwBytes2); 
-	ErrMsg(SUCCEEDED(hr),"Couldn't unlock sound buffer\n");		
+	// Release the data back to DirectSound.
+    hr=soundBuffer_->Unlock(lpvPtr1, dwBytes1, lpvPtr2, dwBytes2);
+	ErrMsg(SUCCEEDED(hr),"Couldn't unlock sound buffer\n");
 	}
 
 
@@ -161,32 +162,32 @@ void Platform_Win32_Sound_SoundStream_DSound::ClearBuffer(int bufferOffset, int 
 
 	// Obtain memory address of write block. This will be in two parts
     // if the block wraps around.
-	LPVOID lpvPtr1; 
-    DWORD dwBytes1; 
-    LPVOID lpvPtr2; 
-    DWORD dwBytes2; 
-    HRESULT hr = soundBuffer_->Lock(bufferOffset, bytesToClear, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0); 
- 
-    // If DSERR_BUFFERLOST is returned, restore and retry lock. 
-    if (hr==DSERR_BUFFERLOST) 
-		{ 
-        soundBuffer_->Restore(); 
-	    hr = soundBuffer_->Lock(bufferOffset, bytesToClear, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0); 
-		} 
+	LPVOID lpvPtr1;
+    DWORD dwBytes1;
+    LPVOID lpvPtr2;
+    DWORD dwBytes2;
+    HRESULT hr = soundBuffer_->Lock(bufferOffset, bytesToClear, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0);
+
+    // If DSERR_BUFFERLOST is returned, restore and retry lock.
+    if (hr==DSERR_BUFFERLOST)
+		{
+        soundBuffer_->Restore();
+	    hr = soundBuffer_->Lock(bufferOffset, bytesToClear, &lpvPtr1, &dwBytes1, &lpvPtr2, &dwBytes2, 0);
+		}
     ErrMsg(SUCCEEDED(hr),"Couldn't lock sound buffer\n");
 
-	// Write to pointers.      
-	FillMemory(lpvPtr1, dwBytes1,0);      
-	if(lpvPtr2) 
-		{ 
-        FillMemory(lpvPtr2, dwBytes2, 0); 
-	    } 
+	// Write to pointers.
+	FillMemory(lpvPtr1, dwBytes1,0);
+	if(lpvPtr2)
+		{
+        FillMemory(lpvPtr2, dwBytes2, 0);
+	    }
 
-	// Release the data back to DirectSound. 
-    hr=soundBuffer_->Unlock(lpvPtr1, dwBytes1, lpvPtr2, dwBytes2); 
-	ErrMsg(SUCCEEDED(hr),"Couldn't unlock sound buffer\n");		
+	// Release the data back to DirectSound.
+    hr=soundBuffer_->Unlock(lpvPtr1, dwBytes1, lpvPtr2, dwBytes2);
+	ErrMsg(SUCCEEDED(hr),"Couldn't unlock sound buffer\n");
 	}
-	
+
 
 //*** GetChannels ***
 
@@ -253,3 +254,5 @@ float Platform_Win32_Sound_SoundStream_DSound::GetVolume()
 	{
 	return volume_;
 	}
+
+}; // namespace pixie

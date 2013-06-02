@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_Network_Server
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,6 +13,8 @@
 
 // Includes
 #include "Platform_Network_Server.h"
+
+namespace pixie {
 
 // Forward declares
 class Platform_Win32_Network;
@@ -33,13 +35,13 @@ class Platform_Win32_Network_Server: public Platform_Network_Server
 		virtual bool IsConnected();
 
 		virtual int SendData(
-			void* data, 
+			void* data,
 			int size
 			);
 
 		virtual int GetReceivedSize();
 		virtual int GetReceivedData(
-			void* buffer, 
+			void* buffer,
 			int size
 			);
 
@@ -54,5 +56,6 @@ class Platform_Win32_Network_Server: public Platform_Network_Server
 		bool isConnected_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Network_Server_H__ */

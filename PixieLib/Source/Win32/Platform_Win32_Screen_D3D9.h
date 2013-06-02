@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Screen_D3D9
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -18,7 +18,7 @@ struct IDirect3D9;
 struct IDirect3DDevice9;
 struct IDirect3DTexture9;
 
-
+namespace pixie {
 // Platform_Win32_Screen_D3D9
 class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 	{
@@ -36,7 +36,7 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			unsigned short modulate,
 			unsigned short backgroundColor
 			);
-	
+
 		virtual bool Present(
 			unsigned int* bitmapData,
 			int bitmapWidth,
@@ -61,8 +61,8 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			);
 
 		bool CopyBackBufferToFrontBuffer(
-			int bitmapWidth, 
-			int bitmapHeight, 
+			int bitmapWidth,
+			int bitmapHeight,
 			unsigned short modulate);
 
 		bool CopyBitmapToBackBuffer(
@@ -73,8 +73,8 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			);
 
 		bool CopyBackBufferToFrontBuffer(
-			int bitmapWidth, 
-			int bitmapHeight, 
+			int bitmapWidth,
+			int bitmapHeight,
 			unsigned int modulate);
 
 	private:
@@ -100,6 +100,6 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 		int lastPresentHeight_;
 	};
 
-		
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Screen_D3D9_H__ */

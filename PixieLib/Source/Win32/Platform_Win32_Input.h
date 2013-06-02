@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Input
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -13,15 +13,17 @@
 // Includes
 #include "Platform_Input.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 
 // Forward declares
+struct IDirectInputA;
+namespace pixie {
 class Platform_Win32_OS;
 class Platform_Win32_Input_KeyboardDevice;
 class Platform_Win32_Input_MouseDevice;
-struct IDirectInputA;
+
 
 // Platform_Win32_Input
 class Platform_Win32_Input:public Platform_Input,PlatformEventListener
@@ -44,9 +46,9 @@ class Platform_Win32_Input:public Platform_Input,PlatformEventListener
 
 	private:
 		struct HWND__* windowHandle_;
-		Platform_Win32_Input_KeyboardDevice* keyboardDevice_; 
-		Platform_Win32_Input_MouseDevice* mouseDevice_; 
-		
+		Platform_Win32_Input_KeyboardDevice* keyboardDevice_;
+		Platform_Win32_Input_MouseDevice* mouseDevice_;
+
 		static const int MaxCursors = 256;
 		int cursorCount_;
 		HCURSOR cursors_[MaxCursors];
@@ -54,4 +56,5 @@ class Platform_Win32_Input:public Platform_Input,PlatformEventListener
 		HCURSOR defaultCursor_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_Input_H__ */

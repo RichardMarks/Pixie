@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_VertexBuffer
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_3D_VertexBuffer.h"
-
+namespace pixie {
 // Forward declares
 class Platform_Win32_3D;
 class Platform_Win32_3D_Technology;
@@ -24,7 +24,7 @@ class Platform_Win32_3D_VertexBuffer: public Platform_3D_VertexBuffer
 	public:
 		Platform_Win32_3D_VertexBuffer(
 			Platform_Win32_3D* win32_3d,
-			int vertexFormat, 
+			int vertexFormat,
 			int vertexCount,
 			bool dynamic
 			);
@@ -67,7 +67,7 @@ class Platform_Win32_3D_VertexBuffer: public Platform_3D_VertexBuffer
 		bool ValidateVertexFormat(
 			int vertexFormat
 			);
-		
+
 		unsigned long CalculateFVF(
 			int vertexFormat
 			);
@@ -91,4 +91,5 @@ class Platform_Win32_3D_VertexBuffer: public Platform_3D_VertexBuffer
 		Platform_3D_VertexBuffer* technologyVertexBuffer_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_VertexBuffer_H__ */

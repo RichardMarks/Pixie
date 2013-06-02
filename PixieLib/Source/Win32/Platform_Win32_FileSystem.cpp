@@ -5,13 +5,13 @@
 #include "Platform_Win32_FileSystem_Directory.h"
 #include "Platform_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 
 #include "Platform_Win32_FileSystem_File.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_FileSystem::Platform_Win32_FileSystem():
@@ -37,7 +37,7 @@ void Platform_Win32_FileSystem::SetLogging(bool enabled)
 	logging_=enabled;
 	}
 
-		
+
 //*** GetDirectory ***
 
 Platform_FileSystem_Directory* Platform_Win32_FileSystem::CreateDirectoryObject(const char* path)
@@ -83,8 +83,8 @@ void Platform_Win32_FileSystem::RescanDevices()
 	// Get the list of logical drives from windows
 	char logicalDrives[256];
 	int len=GetLogicalDriveStrings(255, logicalDrives);
-	
-	// Parse through the list 
+
+	// Parse through the list
 	char deviceName[10];
 	int pos=0; // current position in deviceName
 
@@ -102,11 +102,11 @@ void Platform_Win32_FileSystem::RescanDevices()
 
 			// Create new device object
 			Platform_FileSystem_Device* device=new Platform_Win32_FileSystem_Device(deviceName);
-			
+
 			// Add the device to the internal list
 			devices_[deviceCount_]=device;
 			deviceCount_++;
-			
+
 			// Reset device name position, as we're now starting to parse a new device name
 			pos=0;
 			}
@@ -115,11 +115,11 @@ void Platform_Win32_FileSystem::RescanDevices()
 			// Increase the position
 			if (pos<10) // But make sure it don't increase too much (should only ever be 3 characters anyway, like "C:\")
 				{
-				pos++;			
+				pos++;
 				}
 			}
 		}
-		
+
 	}
 
 
@@ -152,6 +152,7 @@ const Platform_FileSystem_Device* Platform_Win32_FileSystem::GetDevice(int index
 		{
 		return 0;
 		}
-	
+
 	return devices_[index];
 	}
+	}; // namespace pixie

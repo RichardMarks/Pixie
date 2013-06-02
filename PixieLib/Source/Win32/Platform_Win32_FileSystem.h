@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_FileSystem
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_FileSystem.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_FileSystem
@@ -28,7 +28,7 @@ class Platform_Win32_FileSystem:public Platform_FileSystem
 
 		virtual Platform_FileSystem_Directory* CreateDirectoryObject(const char* path);
 		virtual Platform_FileSystem_File* CreateFileObject(const char* path);
-		
+
 		virtual void RescanDevices();
 		virtual int GetDeviceCount();
 		virtual const Platform_FileSystem_Device* GetDevice(int index);
@@ -38,9 +38,9 @@ class Platform_Win32_FileSystem:public Platform_FileSystem
 	private:
 		static const int MAX_DEVICES=64;
 		int deviceCount_;
-		Platform_FileSystem_Device* devices_[MAX_DEVICES]; 
+		Platform_FileSystem_Device* devices_[MAX_DEVICES];
 		bool logging_;
 
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_FileSystem_H__ */

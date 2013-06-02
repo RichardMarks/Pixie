@@ -2,13 +2,14 @@
 
 #include "Platform_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <malloc.h>
 
 #include "Platform_Win32_FileSystem_File.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_FileSystem_File::Platform_Win32_FileSystem_File(const char* path):
@@ -24,7 +25,7 @@ Platform_Win32_FileSystem_File::Platform_Win32_FileSystem_File(const char* path)
 		{
 		path_=strdup(path);
 		}
-	
+
 	}
 
 
@@ -36,7 +37,7 @@ Platform_Win32_FileSystem_File::~Platform_Win32_FileSystem_File()
 		{
 		free(path_);
 		}
-	
+
 	if (fileHandle_!=INVALID_HANDLE_VALUE)
 		{
 		CloseHandle(fileHandle_);
@@ -65,7 +66,7 @@ bool Platform_Win32_FileSystem_File::Exists()
 	HANDLE hFind = FindFirstFile(GetPath(), &findFileData);
 	if (hFind!=INVALID_HANDLE_VALUE && !(findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
-		FindClose(hFind);		
+		FindClose(hFind);
 		return true;
 		}
 
@@ -147,7 +148,7 @@ int Platform_Win32_FileSystem_File::GetPosition()
 //*** SetPosition ***
 
 int Platform_Win32_FileSystem_File::SetPosition(int position,SetPositionOrigin origin)
-	{	
+	{
 	if (fileHandle_==INVALID_HANDLE_VALUE)
 		{
 		Platform::GetPlatform_OS()->OutputDebugText("File not open\n");
@@ -265,7 +266,7 @@ int Platform_Win32_FileSystem_File::Write(const bool* value, int count)
 	}
 
 // No need for the write macro anymore, so undefine it
-#undef WRITEMACRO 
+#undef WRITEMACRO
 
 //*** READMACRO ***
 
@@ -354,3 +355,4 @@ int Platform_Win32_FileSystem_File::Read(bool* value, int count)
 // No need for the read macro anymore, so undefine it
 #undef READMACRO
 
+}; // namespace pixie

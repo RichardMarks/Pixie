@@ -3,11 +3,12 @@
 #include "Platform_Win32_Time.h"
 
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <time.h>
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Time::Platform_Win32_Time()
@@ -17,8 +18,8 @@ Platform_Win32_Time::Platform_Win32_Time()
 	QueryPerformanceFrequency(&f);
 	performanceFrequency_=(double)f.QuadPart;
 
-	// Store the initial value of the performance counter, so that 
-	// the time we returned is always measured from when the 
+	// Store the initial value of the performance counter, so that
+	// the time we returned is always measured from when the
 	// application was started, instead of from when the computer
 	// was last rebooted.
 	LARGE_INTEGER c;
@@ -60,7 +61,7 @@ Platform_Time::SystemTime Platform_Win32_Time::GetSystemTime(bool utcTime)
 		{
 		GetLocalTime(&sysTime);
 		}
-	
+
 	SystemTime result;
 	result.year=(short)sysTime.wYear;
 	result.month=(char)sysTime.wMonth;
@@ -72,3 +73,5 @@ Platform_Time::SystemTime Platform_Win32_Time::GetSystemTime(bool utcTime)
 
 	return result;
 	}
+
+	}; // namespace pixie

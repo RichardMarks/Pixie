@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_Texture
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_3D_Texture.h"
-
+namespace pixie {
 // Forward declares
 class Platform_Win32_3D;
 class Platform_Win32_3D_Technology;
@@ -58,4 +58,5 @@ class Platform_Win32_3D_Texture: public Platform_3D_Texture
 		Platform_3D_Texture* technologyTexture_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_Texture_H__ */

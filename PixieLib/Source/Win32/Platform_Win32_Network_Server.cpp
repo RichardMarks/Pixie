@@ -1,6 +1,6 @@
 //*** Platform_Win32_Network_Server.cpp ***
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <winsock2.h>
 
@@ -16,6 +16,7 @@
 #include "Debug.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
 
 //*** Constructor (listening) ***
 
@@ -28,13 +29,13 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Win32_Netw
 	socket_(0)
 	{
 	/*
-	-1. Initialize Winsock. 
-	-2. Create a socket. 
-	-3. Bind the socket. 
-	4. Listen on the socket for a client. 
-	5. Accept a connection from a client. 
-	6. Receive and send data. 
-	7. Disconnect. 
+	-1. Initialize Winsock.
+	-2. Create a socket.
+	-3. Bind the socket.
+	4. Listen on the socket for a client.
+	5. Accept a connection from a client.
+	6. Receive and send data.
+	7. Disconnect.
 	*/
 
 
@@ -46,13 +47,13 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Win32_Netw
 
 	if (mode_==Platform_Network::ConnectionMode_TCP)
 		{
-		hints.ai_socktype = SOCK_STREAM;	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism. 
+		hints.ai_socktype = SOCK_STREAM;	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism.
 		hints.ai_protocol = IPPROTO_TCP;	// Use Transmission Control Protocol (TCP).
 		}
 	else if (mode_==Platform_Network::ConnectionMode_UDP)
 		{
 		hints.ai_socktype = SOCK_DGRAM;		// Socket type that supports datagrams, which are connectionless, unreliable buffers of a fixed (typically small) maximum length.
-		hints.ai_protocol = IPPROTO_UDP;	// Use User Datagram Protocol (UDP). 
+		hints.ai_protocol = IPPROTO_UDP;	// Use User Datagram Protocol (UDP).
 		}
 
 	// Resolve the local address and port to be used by the server
@@ -65,7 +66,7 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Win32_Netw
 		network_->DisableNetworking();
 		return;
 		}
-	
+
 
 	// Create the socket
 	socket_ = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
@@ -116,11 +117,11 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Network::C
 	address_=StrDup(address);
 
 	//
-	//1. Initialize Winsock. 
-	//2. Create a socket. 
-	//3. Connect to the server. 
-	//4. Send and receive data. 
-	//5. Disconnect. 
+	//1. Initialize Winsock.
+	//2. Create a socket.
+	//3. Connect to the server.
+	//4. Send and receive data.
+	//5. Disconnect.
 	///
 
 	// Store information about the server
@@ -156,7 +157,7 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Network::C
 	if (mode_==Platform_Network::ConnectionMode_TCP)
 		{
 		socket_=socket(	AF_INET,		// The Internet Protocol version 4 (IPv4) address family.
-						SOCK_STREAM,	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism. 
+						SOCK_STREAM,	// Socket type that provides sequenced, reliable, two-way, connection-based byte streams with an OOB data transmission mechanism.
 						IPPROTO_TCP);	// Use Transmission Control Protocol (TCP).
 
 		}
@@ -164,11 +165,11 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Network::C
 		{
 		socket_=socket(	AF_INET,		// The Internet Protocol version 4 (IPv4) address family.
 						SOCK_DGRAM,		// Socket type that supports datagrams, which are connectionless, unreliable buffers of a fixed (typically small) maximum length.
-						IPPROTO_UDP);	// Use TUser Datagram Protocol (UDP). 
+						IPPROTO_UDP);	// Use TUser Datagram Protocol (UDP).
 
 		}
 
-	Assert(socket_!=INVALID_SOCKET,"Failed to create socket"); 
+	Assert(socket_!=INVALID_SOCKET,"Failed to create socket");
 
 
 	// Fill a SOCKADDR_IN struct with address information
@@ -211,7 +212,7 @@ Platform_Win32_Network_Server::Platform_Win32_Network_Server(Platform_Network::C
 
 Platform_Win32_Network_Server::~Platform_Win32_Network_Server()
 	{
-	
+
 	if (socket_!=INVALID_SOCKET)
 		{
 		closesocket(socket_);
@@ -363,9 +364,11 @@ void Platform_Win32_Network_Server::Update()
 		}
 
 */	}
-	
+
 
 bool Platform_Win32_Network_Server::Listen()
 	{
 	return true;
 	}
+
+}; // namespace pixie

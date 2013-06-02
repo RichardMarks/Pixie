@@ -7,7 +7,7 @@
 #define Assert(expression,message) if (!(expression))  Platform::GetPlatform_OS()->OutputDebugText(message);
 #define DebugPrint(x) Platform::GetPlatform_OS()->OutputDebugText x;
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 
 #define DIRECTDRAW_VERSION 0x0300
@@ -15,6 +15,7 @@
 
 #pragma comment (lib, "dxguid.lib")
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_Screen_DDraw::Platform_Win32_Screen_DDraw(struct HWND__* windowHandle, bool fullscreen, int screenWidth, int screenHeight):
@@ -25,8 +26,8 @@ Platform_Win32_Screen_DDraw::Platform_Win32_Screen_DDraw(struct HWND__* windowHa
 	screenHeight_(screenHeight),
 	ddrawDLL_(0),
 	directDraw_(0),
-	frontBuffer_(0), 
-	backBuffer_(0), 
+	frontBuffer_(0),
+	backBuffer_(0),
 	clipper_(0),
 	canUseAsyncBlt_(false),
 	pixelFormat16_(true),
@@ -54,7 +55,7 @@ bool Platform_Win32_Screen_DDraw::Setup()
 
 	// Create DirectDraw object
 	typedef HRESULT (WINAPI *DirectDrawCreateDefinition)( GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter );
-	DirectDrawCreateDefinition DirectDrawCreate=(DirectDrawCreateDefinition)GetProcAddress((HMODULE)ddrawDLL_, "DirectDrawCreate"); 
+	DirectDrawCreateDefinition DirectDrawCreate=(DirectDrawCreateDefinition)GetProcAddress((HMODULE)ddrawDLL_, "DirectDrawCreate");
 	if (DirectDrawCreate==0)
 		{
 		DebugPrint(("Failed to find function entry point in ddraw.dll\n"));
@@ -68,7 +69,7 @@ bool Platform_Win32_Screen_DDraw::Setup()
 		DebugPrint(("Failed to create DirectDraw object\n"));
 		return false;
 		}
-	
+
 	ddrval=ddrawObject->QueryInterface(IID_IDirectDraw2,reinterpret_cast<void**>(&directDraw_));
 	ddrawObject->Release();
 	if (FAILED(ddrval))
@@ -76,8 +77,8 @@ bool Platform_Win32_Screen_DDraw::Setup()
 		DebugPrint(("Failed to get DirectDraw2 object through QueryInterface\n"));
 		return false;
 		}
-                           
-	
+
+
 	if (fullscreen_)
 		{
 		SetWindowLong(windowHandle_,GWL_STYLE,WS_POPUPWINDOW|WS_VISIBLE);
@@ -89,7 +90,7 @@ bool Platform_Win32_Screen_DDraw::Setup()
 			DebugPrint(("Failed to set cooperative level\n"));
 			return false;
 			}
-			
+
 		// Set display mode to 16 bits, but keep the same screen resolution
 		ddrval = directDraw_->SetDisplayMode(screenWidth_, screenHeight_, 16, 60, 0);
 		if (FAILED(ddrval))
@@ -125,8 +126,8 @@ bool Platform_Win32_Screen_DDraw::Setup()
 		{
 		pixelFormat16_=false;
 		DebugPrint(("32 bit color mode\n"));
-		if (displayMode.ddpfPixelFormat.dwRBitMask!=0x00ff0000 || 
-			displayMode.ddpfPixelFormat.dwGBitMask!=0x0000ff00 || 
+		if (displayMode.ddpfPixelFormat.dwRBitMask!=0x00ff0000 ||
+			displayMode.ddpfPixelFormat.dwGBitMask!=0x0000ff00 ||
 			displayMode.ddpfPixelFormat.dwBBitMask!=0x000000ff)
 			{
 			DebugPrint(("Pixel format is 32 bit, but the bit masks are invalid\n"));
@@ -137,8 +138,8 @@ bool Platform_Win32_Screen_DDraw::Setup()
 		{
 		DebugPrint(("16 bit color mode\n"));
 		pixelFormat16_=true;
-		if (displayMode.ddpfPixelFormat.dwRBitMask!=0xf800 || 
-			displayMode.ddpfPixelFormat.dwGBitMask!=0x07e0 || 
+		if (displayMode.ddpfPixelFormat.dwRBitMask!=0xf800 ||
+			displayMode.ddpfPixelFormat.dwGBitMask!=0x07e0 ||
 			displayMode.ddpfPixelFormat.dwBBitMask!=0x001f)
 			{
 			DebugPrint(("Pixel format is 16 bit, but the bit masks are invalid\n"));
@@ -150,7 +151,7 @@ bool Platform_Win32_Screen_DDraw::Setup()
 		DebugPrint(("Pixel format is not 16 ot 32 bit\n"));
 		return false;
 		}
-	
+
 	// Check if asynchronous blits are supported
 	DDCAPS ddcaps;
 	memset(&ddcaps,0,sizeof(ddcaps));
@@ -257,7 +258,7 @@ bool Platform_Win32_Screen_DDraw::Setup()
 	return true;
 	}
 
-	
+
 //*** Destructor ***
 
 Platform_Win32_Screen_DDraw::~Platform_Win32_Screen_DDraw()
@@ -274,7 +275,7 @@ Platform_Win32_Screen_DDraw::~Platform_Win32_Screen_DDraw()
 		{
 		frontBuffer_->Release();
 		}
-		
+
 	if (directDraw_)
 		{
 		directDraw_->Release();
@@ -301,12 +302,12 @@ bool Platform_Win32_Screen_DDraw::Present(unsigned short* bitmapData, int bitmap
 
 	// Check if we need to clear the borders
 	bool clearBorders=false;
-	if (previousPresentColor_!=backgroundColor || previousPresentWidth_==-1 || previousPresentHeight_==-1 || 
+	if (previousPresentColor_!=backgroundColor || previousPresentWidth_==-1 || previousPresentHeight_==-1 ||
 		bitmapWidth<previousPresentWidth_ || bitmapHeight<previousPresentHeight_)
 		{
 		clearBorders=true;
 		}
-	
+
 	previousPresentColor_=backgroundColor;
 	previousPresentWidth_=bitmapWidth;
 	previousPresentHeight_=bitmapHeight;
@@ -402,7 +403,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferNoInterpolation(unsigned
 	rect.top=y1;
 	rect.right=x2;
 	rect.bottom=y2;
-	
+
 	HRESULT ddrval=backBuffer_->Lock(&rect,&ddsd,DDLOCK_SURFACEMEMORYPTR | DDLOCK_WRITEONLY | DDLOCK_DISCARDCONTENTS | DDLOCK_WAIT,0);
 	while (ddrval==DDERR_SURFACELOST)
 		{
@@ -441,7 +442,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferNoInterpolation(unsigned
 					{
 					memcpy(data,src,rowSize);
 					src+=width;
-					data+=conversionBufferPitchDelta;	
+					data+=conversionBufferPitchDelta;
 					}
 				}
 			else
@@ -573,7 +574,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferInterpolation(unsigned s
 	rect.top=y1;
 	rect.right=x2;
 	rect.bottom=y2;
-	
+
 	HRESULT ddrval=backBuffer_->Lock(&rect,&ddsd,DDLOCK_SURFACEMEMORYPTR | DDLOCK_WRITEONLY | DDLOCK_DISCARDCONTENTS | DDLOCK_WAIT,0);
 	while (ddrval==DDERR_SURFACELOST)
 		{
@@ -614,7 +615,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferInterpolation(unsigned s
 					{
 					memcpy(dst,src,rowSize);
 					src+=width;
-					dst+=conversionBufferPitchDelta;	
+					dst+=conversionBufferPitchDelta;
 					}
 				}
 			else
@@ -644,7 +645,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferInterpolation(unsigned s
 				}
 			}
 		}
-	else 
+	else
 		{
 		unsigned int* dst=static_cast<unsigned int*>(ddsd.lpSurface);
 		unsigned int pitch=ddsd.lPitch;
@@ -685,7 +686,7 @@ bool Platform_Win32_Screen_DDraw::CopyBitmapToBackBufferInterpolation(unsigned s
 
 
 //*** CopyBackBufferToFrontBufferNoInterpolation ***
-	
+
 bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferNoInterpolation()
 	{
 	RECT rect;
@@ -704,7 +705,7 @@ bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferNoInterpolation()
 	rect.left=pt1.x;
 	rect.top=pt1.y;
 	rect.right=pt2.x;
-	rect.bottom=pt2.y;	
+	rect.bottom=pt2.y;
 
 	int sourceWidth=screenWidth_;
 	int sourceHeight=screenHeight_;
@@ -741,7 +742,7 @@ bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferNoInterpolation()
 	source.left=0;
 	source.top=0;
 	source.right=sourceWidth;
-	source.bottom=sourceHeight;	
+	source.bottom=sourceHeight;
 
 	// Blit offscreen surface to primary surface
 
@@ -782,7 +783,7 @@ bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferNoInterpolation()
 
 
 //*** CopyBackBufferToFrontBufferInterpolation ***
-	
+
 bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferInterpolation(int width, int height, unsigned short backgroundColor, bool clearBorders)
 	{
 	float hscale=screenWidth_/(float)width;
@@ -808,7 +809,7 @@ bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferInterpolation(int w
 	rect.left=pt1.x;
 	rect.top=pt1.y;
 	rect.right=pt2.x;
-	rect.bottom=pt2.y;	
+	rect.bottom=pt2.y;
 
 	RECT dest=rect;
 	dest.left+=(int)hborder;
@@ -866,7 +867,7 @@ bool Platform_Win32_Screen_DDraw::CopyBackBufferToFrontBufferInterpolation(int w
 		{
 		fx.dwFillColor=RGB16TO32(backgroundColor);
 		}
-	
+
 	if (((int)vborder)>0)
 		{
 		RECT dest=rect;
@@ -900,7 +901,7 @@ bool Platform_Win32_Screen_DDraw::ClearBackBuffer(int x1, int y1, int x2, int y2
 	rect.top=y1;
 	rect.right=x2;
 	rect.bottom=y2;
-	
+
 	DDBLTFX bltfx;
 	bltfx.dwSize=sizeof(DDBLTFX);
 	if (pixelFormat16_)
@@ -940,7 +941,7 @@ bool Platform_Win32_Screen_DDraw::ClearBackBuffer(int x1, int y1, int x2, int y2
 
 
 
-//*** SetInterpolationMode *** 
+//*** SetInterpolationMode ***
 
 void Platform_Win32_Screen_DDraw::SetInterpolationMode(bool enabled)
 	{
@@ -980,3 +981,6 @@ void Platform_Win32_Screen_DDraw::TransformCursorCoordinates(float& x, float& y)
 	x=(x-hborder)/pixelScale;
 	y=(y-vborder)/pixelScale;
 	}
+
+
+}; // namespace pixie

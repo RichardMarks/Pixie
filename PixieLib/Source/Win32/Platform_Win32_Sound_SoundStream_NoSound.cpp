@@ -2,6 +2,7 @@
 
 #include "Platform_Win32_Sound_SoundStream_NoSound.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -23,18 +24,18 @@ Platform_Win32_Sound_SoundStream_NoSound::~Platform_Win32_Sound_SoundStream_NoSo
 
 void Platform_Win32_Sound_SoundStream_NoSound::Play()
 	{
-	}	
+	}
 
 
 //*** Stop ***
 
 void Platform_Win32_Sound_SoundStream_NoSound::Stop()
 	{
-	}	
+	}
 
 
 //*** GetPosition ***
-	
+
 int Platform_Win32_Sound_SoundStream_NoSound::GetPosition()
 	{
 	return 0;
@@ -42,7 +43,7 @@ int Platform_Win32_Sound_SoundStream_NoSound::GetPosition()
 
 
 //*** SetPosition ***
-	
+
 void Platform_Win32_Sound_SoundStream_NoSound::SetPosition(int position)
 	{
 	}
@@ -60,7 +61,7 @@ void Platform_Win32_Sound_SoundStream_NoSound::CopySoundToBuffer(int bufferOffse
 void Platform_Win32_Sound_SoundStream_NoSound::ClearBuffer(int bufferOffset, int bytesToClear)
 	{
 	}
-	
+
 
 //*** GetChannels ***
 
@@ -108,3 +109,4 @@ float Platform_Win32_Sound_SoundStream_NoSound::GetVolume()
 	{
 	return 1.0f;
 	}
+}; // namespace pixie

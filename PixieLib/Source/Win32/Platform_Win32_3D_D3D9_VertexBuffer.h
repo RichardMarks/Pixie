@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_3D_D3D9_VertexBuffer
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -18,13 +18,14 @@
 struct IDirect3DVertexBuffer9;
 struct IDirect3DDevice9;
 
+namespace pixie {
 // Platform_Win32_3D_D3D9_VertexBuffer
 class Platform_Win32_3D_D3D9_VertexBuffer: public Platform_3D_VertexBuffer
 	{
 	public:
 		Platform_Win32_3D_D3D9_VertexBuffer(
-			IDirect3DDevice9* device, 
-			int vertexFormat, 
+			IDirect3DDevice9* device,
+			int vertexFormat,
 			int vertexCount,
 			bool dynamic
 			);
@@ -65,7 +66,7 @@ class Platform_Win32_3D_D3D9_VertexBuffer: public Platform_3D_VertexBuffer
 		bool ValidateVertexFormat(
 			int vertexFormat
 			);
-		
+
 		unsigned long CalculateFVF(
 			int vertexFormat
 			);
@@ -84,9 +85,9 @@ class Platform_Win32_3D_D3D9_VertexBuffer: public Platform_3D_VertexBuffer
 		int vertexCount_;
 		bool dynamic_;
 		IDirect3DDevice9* device_;
-		unsigned long d3dFVF_; 
+		unsigned long d3dFVF_;
 		IDirect3DVertexBuffer9* d3dVertexBuffer_;
 		unsigned char* lockedData_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_Win32_3D_D3D9_VertexBuffer_H__ */

@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_FileSystem_File
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -14,6 +14,7 @@
 // Includes
 #include "Platform_FileSystem_File.h"
 
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_FileSystem_File
@@ -24,7 +25,7 @@ class Platform_Win32_FileSystem_File: public Platform_FileSystem_File
 		virtual ~Platform_Win32_FileSystem_File();
 
 		virtual const char* GetPath();
-		
+
 		virtual bool Exists();
 		virtual bool Create();
 		virtual bool Open();
@@ -62,4 +63,5 @@ class Platform_Win32_FileSystem_File: public Platform_FileSystem_File
 		HANDLE fileHandle_; ///<
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_FileSystem_File_H__ */

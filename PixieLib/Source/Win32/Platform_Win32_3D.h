@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_3D
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -13,6 +13,8 @@
 // Includes
 #include "Platform_3D.h"
 #include "Array.h"
+
+namespace pixie {
 
 // Forward declares
 class Platform_Win32_OS;
@@ -35,22 +37,22 @@ class Platform_Win32_3D:public Platform_3D
 		~Platform_Win32_3D();
 
 		virtual void BeginScene(
-			unsigned int color, 
-			float z, 
+			unsigned int color,
+			float z,
 			unsigned int stencil
 			);
 
 		virtual void EndScene();
 
 		virtual Platform_3D_VertexBuffer* CreateVertexBuffer(
-			int vertexFormat, 
-			int vertexCount, 
-			bool dynamic			
+			int vertexFormat,
+			int vertexCount,
+			bool dynamic
 			);
 
 		virtual Platform_3D_IndexBuffer* CreateIndexBuffer(
-			int indexCount, 
-			bool dynamic			
+			int indexCount,
+			bool dynamic
 			);
 
 		virtual Platform_3D_Texture* CreateTexture(
@@ -122,15 +124,15 @@ class Platform_Win32_3D:public Platform_3D
 		virtual bool GetFullscreen();
 
 		virtual void SetSize(int width, int height);
-		
+
 		virtual int GetWidth();
 
 		virtual int GetHeight();
 
 		void OnWmSize(int width, int height);
-		
+
 		void OnMinimize();
-		
+
 		void OnLoseFocus();
 
 		void OnGainFocus();
@@ -184,5 +186,6 @@ class Platform_Win32_3D:public Platform_3D
 		Array<Platform_Win32_3D_Texture*> textures_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_3D_H__ */

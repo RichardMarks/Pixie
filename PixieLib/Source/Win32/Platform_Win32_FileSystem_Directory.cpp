@@ -2,7 +2,7 @@
 
 #include "Platform_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <string.h>
@@ -10,7 +10,7 @@
 
 #include "Platform_Win32_FileSystem_Directory.h"
 
-
+namespace pixie {
 
 //*** Constructor ***
 
@@ -30,7 +30,7 @@ Platform_Win32_FileSystem_Directory::Platform_Win32_FileSystem_Directory(const c
 		{
 		path_=strdup(path);
 		}
-	
+
 	Rescan();
 	}
 
@@ -79,7 +79,7 @@ bool Platform_Win32_FileSystem_Directory::Exists()
 	HANDLE hFind = FindFirstFile(GetPath(), &findFileData);
 	if (hFind!=INVALID_HANDLE_VALUE && (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
-		FindClose(hFind);		
+		FindClose(hFind);
 		return true;
 		}
 
@@ -150,7 +150,7 @@ void Platform_Win32_FileSystem_Directory::Rescan()
 						{
 						subdirectoryMaxCount_*=2;
 						subdirectories_=static_cast<const char**>(realloc(subdirectories_,subdirectoryMaxCount_*sizeof(const char*)));
-						
+
 						}
 					subdirectories_[subdirectoryCount_]=strdup(findFileData.cFileName);
 					subdirectoryCount_++;
@@ -167,7 +167,7 @@ void Platform_Win32_FileSystem_Directory::Rescan()
 					{
 					fileMaxCount_*=2;
 					files_=static_cast<const char**>(realloc(files_,fileMaxCount_*sizeof(const char*)));
-					
+
 					}
 				files_[fileCount_]=strdup(findFileData.cFileName);
 				fileCount_++;
@@ -220,12 +220,12 @@ int Platform_Win32_FileSystem_Directory::GetSubdirectoryCount()
 //*** GetSubdirectory ***
 
 const char* Platform_Win32_FileSystem_Directory::GetSubdirectory(int index)
-	{	
+	{
 	if (index<0 || index>=subdirectoryCount_)
 		{
 		return 0;
 		}
-	
+
 	return subdirectories_[index];
 	}
 
@@ -241,11 +241,13 @@ int Platform_Win32_FileSystem_Directory::GetFileCount()
 //*** GetFile***
 
 const char* Platform_Win32_FileSystem_Directory::GetFile(int index)
-	{	
+	{
 	if (index<0 || index>=fileCount_)
 		{
 		return 0;
 		}
-	
+
 	return files_[index];
 	}
+
+}; // namespace pixie

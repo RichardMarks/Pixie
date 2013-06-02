@@ -8,12 +8,13 @@
 #include "Platform_Win32_OS.h"
 #include "Platform_Time.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <string.h>
 #include <malloc.h>
 #include <stdio.h>
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -73,14 +74,14 @@ Platform_Win32_Screen::Platform_Win32_Screen(Platform_Win32_OS* os):
 		fullscreenHeight_=desktopRect.bottom-desktopRect.top;
 
 		windowedWidth_=fullscreenWidth_-fullscreenWidth_/6;
-		windowedHeight_=fullscreenHeight_-fullscreenHeight_/6; 
+		windowedHeight_=fullscreenHeight_-fullscreenHeight_/6;
 		windowedX_=fullscreenWidth_-windowedWidth_;
 		windowedY_=fullscreenHeight_-windowedHeight_;
 		windowedX_/=2;
 		windowedY_/=2;
 		}
 
-	
+
 
 	}
 
@@ -125,8 +126,8 @@ void Platform_Win32_Screen::FirstTimeInitialize()
 		}
 	else
 		{
-		SetTechnology(Technology_D3D9); 
-		}	
+		SetTechnology(Technology_D3D9);
+		}
 
 	// Show window
 	ShowWindow(windowHandle_,SW_SHOW);
@@ -148,7 +149,7 @@ void Platform_Win32_Screen::Present(unsigned short* bitmapData, int bitmapWidth,
 		{
 		return;
 		}
-	
+
 	// Framerate counter
 	if (showfps_ && Platform::GetPlatform_Time())
 		{
@@ -208,7 +209,7 @@ void Platform_Win32_Screen::Present(unsigned int* bitmapData, int bitmapWidth, i
 		{
 		return;
 		}
-	
+
 	// Framerate counter
 	if (showfps_ && Platform::GetPlatform_Time())
 		{
@@ -272,7 +273,7 @@ void Platform_Win32_Screen::SetTechnology(Platform_Win32_Screen::Technology tech
 		{
 		return;
 		}
-	
+
 	switch(technology_)
 		{
 		case Technology_D3D9:
@@ -309,7 +310,7 @@ void Platform_Win32_Screen::DowngradeTechnology()
 	disableOnWmSize_++;
 
 	Platform::GetPlatform_OS()->OutputDebugText("Method failed for technology %d, falling back on technology %d\n",technology_,technology_+1);
-	
+
 	if (technologyInstance_)
 		{
 		delete technologyInstance_;
@@ -317,14 +318,14 @@ void Platform_Win32_Screen::DowngradeTechnology()
 		}
 
 	Technology newTechnology=(Technology)(technology_+1);
-	
+
 	if (newTechnology<Technology_Undefined)
 		{
 		SetTechnology(newTechnology);
 		disableOnWmSize_--;
 		return;
 		}
-	
+
 	technology_=Technology_Undefined;
 	technologyInstance_=0;
 
@@ -332,7 +333,7 @@ void Platform_Win32_Screen::DowngradeTechnology()
 	}
 
 
-//*** SetInterpolationMode *** 
+//*** SetInterpolationMode ***
 
 void Platform_Win32_Screen::SetInterpolationMode(bool enabled)
 	{
@@ -350,7 +351,7 @@ void Platform_Win32_Screen::SetInterpolationMode(bool enabled)
 	}
 
 
-//*** GetInterpolationMode *** 
+//*** GetInterpolationMode ***
 
 bool Platform_Win32_Screen::GetInterpolationMode()
 	{
@@ -368,14 +369,14 @@ void Platform_Win32_Screen::SetFullscreen(bool fullscreen)
 		}
 
 	fullscreen_=fullscreen;
-	
+
 	if (technologyInstance_)
 		{
 		disableOnWmSize_++;
 
 		delete technologyInstance_;
 		technologyInstance_=0;
-	
+
 		if (!GetFullscreen())
 			{
 			SetWindowSize();
@@ -400,7 +401,7 @@ bool Platform_Win32_Screen::GetFullscreen()
 	return fullscreen_;
 	}
 
-		
+
 //*** SetSize ***
 
 void Platform_Win32_Screen::SetSize(int width, int height)
@@ -411,14 +412,14 @@ void Platform_Win32_Screen::SetSize(int width, int height)
 	if (technologyInstance_)
 		{
 		disableOnWmSize_++;
-	
+
 		delete technologyInstance_;
 		technologyInstance_=0;
 
-		if (!GetFullscreen())	
+		if (!GetFullscreen())
 			{
 			SetWindowSize();
-			}	
+			}
 
 		SetTechnology(technology_);
 
@@ -437,7 +438,7 @@ int Platform_Win32_Screen::GetWidth()
 		{
 		return fullscreenWidth_;
 		}
-	
+
 	return windowedWidth_;
 	}
 
@@ -450,7 +451,7 @@ int Platform_Win32_Screen::GetHeight()
 		{
 		return fullscreenHeight_;
 		}
-	
+
 	return windowedHeight_;
 	}
 
@@ -531,7 +532,7 @@ void Platform_Win32_Screen::OnWmSize(int width, int height)
 		{
 		SetTechnology(technology_);
 		}
-	
+
 	windowedWidth_=width;
 	windowedHeight_=height;
 
@@ -690,7 +691,7 @@ void Platform_Win32_Screen::BlitCharacter(unsigned short* colorData, int hPitch,
 					}
 				}
 			}
-		}	
+		}
 	}
 
 //*** DebugText ***
@@ -745,12 +746,12 @@ void Platform_Win32_Screen::BlitCharacter(unsigned int* colorData, int hPitch, i
 					}
 				}
 			}
-		}	
+		}
 	}
 
 //*** DebugFontData ***
 
-unsigned int Platform_Win32_Screen::DebugFontData[] = 
+unsigned int Platform_Win32_Screen::DebugFontData[] =
 	{
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000180,0x00000000,0x00000000,0x00000000,0x0001c180,0x00000000,0x00000000,0x61983000,0x070363c3,0x0018300c,0x00000000,
 	0x61987800,0x0d8b6663,0x0030180c,0x00000000,0xf1987800,0x0d8dc067,0xb030180c,0x000000c1,0x60007800,0x070600c3,0xe0600c00,0x000000c0,0x60003000,0x01830183,0xf8600c00,0x0fc003f3,
@@ -785,3 +786,5 @@ unsigned int Platform_Win32_Screen::DebugFontData[] =
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000
 	};
+
+}; // namespace pixie

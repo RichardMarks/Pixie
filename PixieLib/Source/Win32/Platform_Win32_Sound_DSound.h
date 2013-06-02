@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Sound_DSound
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -15,6 +15,8 @@
 
 // Forward declares
 struct IDirectSound;
+
+namespace pixie {
 
 // Platform_Win32_Sound_DSound
 class Platform_Win32_Sound_DSound:public Platform_Win32_Sound_Technology
@@ -29,12 +31,14 @@ class Platform_Win32_Sound_DSound:public Platform_Win32_Sound_Technology
 		virtual void Update();
 
 		virtual Platform_Sound_SoundStream* CreateSoundStream(int channels, int frequency, int bitsPerSample, int size);
-		
+
 	private:
 		struct HWND__* windowHandle_;
 		void* dsoundDLL_;
-		IDirectSound* directSound_; 
+		IDirectSound* directSound_;
 
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Sound_DSound_H__ */

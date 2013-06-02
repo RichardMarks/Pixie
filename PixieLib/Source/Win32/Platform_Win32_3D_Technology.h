@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_3D_Technology
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -11,7 +11,7 @@
 #define __Platform_Win32_3D_Technology_H__
 
 // Includes
-
+namespace pixie {
 // Forward declares
 class Platform_3D_VertexBuffer;
 class Platform_3D_IndexBuffer;
@@ -30,22 +30,22 @@ class Platform_Win32_3D_Technology
 		virtual bool Setup() = 0;
 
 		virtual void BeginScene(
-			unsigned int color, 
-			float z, 
+			unsigned int color,
+			float z,
 			unsigned int stencil
 			) = 0;
 
 		virtual void EndScene() = 0;
 
 		virtual Platform_3D_VertexBuffer* CreateVertexBuffer(
-			int vertexFormat, 
-			int vertexCount, 
-			bool dynamic			
+			int vertexFormat,
+			int vertexCount,
+			bool dynamic
 			) = 0;
 
 		virtual Platform_3D_IndexBuffer* CreateIndexBuffer(
-			int indexCount, 
-			bool dynamic			
+			int indexCount,
+			bool dynamic
 			) = 0;
 
 		virtual Platform_3D_Texture* CreateTexture(
@@ -143,5 +143,6 @@ class Platform_Win32_3D_Technology
 	private:
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_3D_Technology_H__ */

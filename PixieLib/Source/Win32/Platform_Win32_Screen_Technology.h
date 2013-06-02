@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Screen_Technology
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  * \todo	Make RGBModulate16 and RGB16TO32 non-inline
  */
@@ -13,6 +13,7 @@
 
 // Includes
 
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_Screen_Technology
@@ -42,12 +43,12 @@ class Platform_Win32_Screen_Technology
 
 		virtual void SetInterpolationMode(bool enabled) = 0;
 
-	
+
 		virtual void TransformCursorCoordinates(float& x, float& y) = 0;
 
 
 		inline unsigned short RGBModulate16(
-			unsigned short color1, 
+			unsigned short color1,
 			unsigned short color2
 			)
 			{
@@ -64,7 +65,7 @@ class Platform_Win32_Screen_Technology
 			unsigned short color
 			)
 			{
-			return 
+			return
 				(((unsigned int)color & 0xf800)<<8) |
 				(((unsigned int)color & 0x07e0)<<5) |
 				(((unsigned int)color & 0x001f)<<3) |
@@ -73,5 +74,6 @@ class Platform_Win32_Screen_Technology
 	private:
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Screen_Technology_H__ */

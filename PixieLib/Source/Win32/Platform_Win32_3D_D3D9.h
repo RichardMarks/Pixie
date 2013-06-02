@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_3D_D3D9
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -19,6 +19,7 @@ struct IDirect3DDevice9;
 struct IDirect3DTexture9;
 //struct ID3DXEffect;
 
+namespace pixie {
 
 // Platform_Win32_3D_D3D9
 class Platform_Win32_3D_D3D9:public Platform_Win32_3D_Technology
@@ -31,22 +32,22 @@ class Platform_Win32_3D_D3D9:public Platform_Win32_3D_Technology
 		virtual bool Setup();
 
 		virtual void BeginScene(
-			unsigned int color, 
-			float z, 
+			unsigned int color,
+			float z,
 			unsigned int stencil
 			);
 
 		virtual void EndScene();
 
 		virtual Platform_3D_VertexBuffer* CreateVertexBuffer(
-			int vertexFormat, 
-			int vertexCount, 
-			bool dynamic			
+			int vertexFormat,
+			int vertexCount,
+			bool dynamic
 			);
 
 		virtual Platform_3D_IndexBuffer* CreateIndexBuffer(
-			int indexCount, 
-			bool dynamic			
+			int indexCount,
+			bool dynamic
 			);
 
 		virtual Platform_3D_Texture* CreateTexture(
@@ -140,7 +141,7 @@ class Platform_Win32_3D_D3D9:public Platform_Win32_3D_Technology
 			bool enabled
 			);
 
-	private: 
+	private:
 //		bool IsCompressedTextureFormatOk( D3DFORMAT TextureFormat,  D3DFORMAT AdapterFormat ) ;
 
 	private:
@@ -153,6 +154,7 @@ class Platform_Win32_3D_D3D9:public Platform_Win32_3D_Technology
 		IDirect3DDevice9* device_;
 		int lightCount_;
 	};
-		
+
+}; // namespace pixie
 
 #endif /* __Platform_Win32_3D_D3D9_H__ */

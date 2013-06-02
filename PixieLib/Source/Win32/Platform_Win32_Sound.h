@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Sound
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Sound.h"
-
+namespace pixie {
 // Forward declares
 class Platform_Win32_OS;
 class Platform_Win32_Sound_Technology;
@@ -28,7 +28,7 @@ class Platform_Win32_Sound:public Platform_Sound,PlatformEventListener
 		virtual void OnOsYield();
 
 		virtual Platform_Sound_SoundStream* CreateSoundStream(int channels, int frequency, int bitsPerSample, int size);
-		
+
 	private:
 		enum Technology
 			{
@@ -50,4 +50,5 @@ class Platform_Win32_Sound:public Platform_Sound,PlatformEventListener
 		Platform_Win32_Sound_Technology* technologyInstance_;
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_SOUND_H__ */

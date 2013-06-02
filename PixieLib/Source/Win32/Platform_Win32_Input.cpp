@@ -5,12 +5,13 @@
 #include "Platform_Win32_Input_MouseDevice.h"
 #include "Platform_Win32_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 
 #define DIRECTINPUT_VERSION 0x0300
 #include <dinput.h>
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -21,7 +22,7 @@ Platform_Win32_Input::Platform_Win32_Input(Platform_Win32_OS* os):
 	cursorCount_(0)
 	{
 	Platform::RegisterEventListener(this);
-	defaultCursor_=LoadCursor(NULL, IDC_ARROW); 
+	defaultCursor_=LoadCursor(NULL, IDC_ARROW);
 	}
 
 
@@ -116,9 +117,9 @@ int Platform_Win32_Input::CreateMouseCursor(int width, int height, int hotspotX,
 	//Create the AND and XOR masks for the bitmap
 
 	HDC hDC					= ::GetDC(NULL);
-	HDC hAndMaskDC			= ::CreateCompatibleDC(hDC); 
-	HDC hXorMaskDC			= ::CreateCompatibleDC(hDC); 
-	
+	HDC hAndMaskDC			= ::CreateCompatibleDC(hDC);
+	HDC hXorMaskDC			= ::CreateCompatibleDC(hDC);
+
 	HBITMAP hAndMask = ::CreateCompatibleBitmap(hDC,width,height);
 	HBITMAP hXorMask = ::CreateCompatibleBitmap(hDC,width,height);
 
@@ -150,7 +151,7 @@ int Platform_Win32_Input::CreateMouseCursor(int width, int height, int hotspotX,
 
 			}
 		}
-	
+
 	::SelectObject(hAndMaskDC,hOldAndMaskBitmap);
 	::SelectObject(hXorMaskDC,hOldXorMaskBitmap);
 
@@ -160,7 +161,7 @@ int Platform_Win32_Input::CreateMouseCursor(int width, int height, int hotspotX,
 	::ReleaseDC(NULL,hDC);
 
 
-	
+
 	//Create the cursor using the masks and the hotspot values provided
 	ICONINFO iconinfo = {0};
 	iconinfo.fIcon		= FALSE;
@@ -201,3 +202,4 @@ void Platform_Win32_Input::SetDefaultMouseCursor()
 	Platform::SendEvent_CustomEvent("SetCursor",defaultCursor_);
 	}
 
+}; // namespace pixie

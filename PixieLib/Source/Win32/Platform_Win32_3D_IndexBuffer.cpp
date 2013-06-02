@@ -6,6 +6,7 @@
 #include "StandardLibrary.h"
 #include "Debug.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -140,7 +141,7 @@ int Platform_Win32_3D_IndexBuffer::GetIndexStride()
 	return sizeof(unsigned short);
 	}
 
-		
+
 //*** Bind ***
 
 void Platform_Win32_3D_IndexBuffer::Bind()
@@ -153,7 +154,8 @@ void Platform_Win32_3D_IndexBuffer::Bind()
 		}
 
 	technologyIndexBuffer_->Bind();
-	
-	win32_3d_->IndexBufferBound(this);
-	}	
 
+	win32_3d_->IndexBufferBound(this);
+	}
+
+}; // namespace pixie

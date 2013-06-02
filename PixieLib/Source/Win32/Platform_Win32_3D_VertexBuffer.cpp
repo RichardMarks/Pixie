@@ -6,7 +6,7 @@
 #include "StandardLibrary.h"
 #include "Debug.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_3D_VertexBuffer::Platform_Win32_3D_VertexBuffer(Platform_Win32_3D* win32_3d, int vertexFormat, int vertexCount, bool dynamic):
@@ -101,9 +101,9 @@ void Platform_Win32_3D_VertexBuffer::Unlock()
 		}
 
 	// Copy the data to the actual vertex buffer. For the current technologies, we know we can do this with
-	// a straight MemCpy, but that might change if new implementations are added, and in that case, this code 
+	// a straight MemCpy, but that might change if new implementations are added, and in that case, this code
 	// needs to become more complex
-	void* data=0; 
+	void* data=0;
 	if (vertexFormat_ & VertexFormat_Position)
 		{
 		data=technologyVertexBuffer_->GetPositionData();
@@ -395,7 +395,7 @@ void Platform_Win32_3D_VertexBuffer::Bind()
 bool Platform_Win32_3D_VertexBuffer::ValidateVertexFormat(int vertexFormat)
 	{
 	int texturesetFlags=0;
-	
+
 	if (vertexFormat & VertexFormat_1TextureSets)
 		{
 		texturesetFlags++;
@@ -435,7 +435,7 @@ bool Platform_Win32_3D_VertexBuffer::ValidateVertexFormat(int vertexFormat)
 		{
 		texturesetFlags++;
 		}
-	
+
 	if (texturesetFlags>1)
 		{
 		return false;
@@ -582,3 +582,4 @@ int Platform_Win32_3D_VertexBuffer::GetNumberOfTextureSets(int vertexFormat)
 
 	return 0;
 	}
+	}; // namespace pixie

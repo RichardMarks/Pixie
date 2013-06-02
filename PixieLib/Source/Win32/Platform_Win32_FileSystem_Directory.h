@@ -1,10 +1,10 @@
 /**
  * \class	Platform_Win32_FileSystem_Directory
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_FileSystem_Directory.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_Win32_FileSystem_Directory
@@ -44,10 +44,11 @@ class Platform_Win32_FileSystem_Directory: public Platform_FileSystem_Directory
 		int subdirectoryCount_;
 		int subdirectoryMaxCount_;
 		const char** subdirectories_; ///< Array containing the names of all subdirectories
-		
+
 		int fileCount_;
 		int fileMaxCount_;
 		const char** files_; ///< Array containing the names of all files in this directory
 	};
 
+}; // namespace pixie
 #endif /* __Platform_Win32_FileSystem_Directory_H__ */

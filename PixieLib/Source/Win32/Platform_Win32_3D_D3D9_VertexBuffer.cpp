@@ -3,10 +3,11 @@
 #include "Platform_Win32_3D_D3D9_VertexBuffer.h"
 #include "Debug.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <d3d9.h>
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_Win32_3D_D3D9_VertexBuffer::Platform_Win32_3D_D3D9_VertexBuffer(IDirect3DDevice9* device, int vertexFormat, int vertexCount, bool dynamic):
@@ -344,7 +345,7 @@ void Platform_Win32_3D_D3D9_VertexBuffer::Bind()
 bool Platform_Win32_3D_D3D9_VertexBuffer::ValidateVertexFormat(int vertexFormat)
 	{
 	int texturesetFlags=0;
-	
+
 	if (vertexFormat & VertexFormat_1TextureSets)
 		{
 		texturesetFlags++;
@@ -384,7 +385,7 @@ bool Platform_Win32_3D_D3D9_VertexBuffer::ValidateVertexFormat(int vertexFormat)
 		{
 		texturesetFlags++;
 		}
-	
+
 	if (texturesetFlags>1)
 		{
 		return false;
@@ -606,3 +607,4 @@ int Platform_Win32_3D_D3D9_VertexBuffer::GetNumberOfTextureSets(int vertexFormat
 
 	return 0;
 	}
+	}; // namespace pixie

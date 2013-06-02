@@ -8,6 +8,8 @@
 #include "Asset.h"
 #include "StandardLibrary.h"
 
+namespace pixie {
+
 //*** Constructor ***
 
 Platform_Win32_3D_Texture::Platform_Win32_3D_Texture(Platform_Win32_3D* win32_3d, const Asset& asset):
@@ -200,3 +202,5 @@ int Platform_Win32_3D_Texture::GetPitch()
 
 	return technologyTexture_->GetPitch();
 	}
+
+}; // namespace pixie

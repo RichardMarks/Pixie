@@ -3,7 +3,7 @@
 #include "Platform_OS.h"
 
 #pragma warning( disable: 4201)
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 #include <mmsystem.h>
@@ -14,6 +14,7 @@
 #include "Platform_Win32_Sound_WMM.h"
 #include "Platform_Win32_Sound.h"
 
+namespace pixie {
 
 
 //*** waveCriticalSection ***
@@ -58,7 +59,7 @@ Platform_Win32_Sound_SoundStream_WMM::Platform_Win32_Sound_SoundStream_WMM(Platf
 	playing_(false)
 	{
     InitializeCriticalSection(&waveCriticalSection_);
- 
+
 	soundBuffer_=malloc(size);
 
 	// Allocate blocks
@@ -72,21 +73,21 @@ Platform_Win32_Sound_SoundStream_WMM::Platform_Win32_Sound_SoundStream_WMM(Platf
  		}
 
 
-	// Set up wave format structure. 
-	WAVEFORMATEX format; 
-    memset(&format, 0, sizeof(WAVEFORMATEX)); 
-	format.wFormatTag=WAVE_FORMAT_PCM; 
-    format.nChannels=(WORD)channels; 
-    format.nSamplesPerSec=(DWORD)frequency; 
-    format.nBlockAlign=(WORD)((channels*bitsPerSample)/8); 
-    format.nAvgBytesPerSec=(DWORD)(frequency * format.nBlockAlign); 
-    format.wBitsPerSample=(WORD)bitsPerSample; 
+	// Set up wave format structure.
+	WAVEFORMATEX format;
+    memset(&format, 0, sizeof(WAVEFORMATEX));
+	format.wFormatTag=WAVE_FORMAT_PCM;
+    format.nChannels=(WORD)channels;
+    format.nSamplesPerSec=(DWORD)frequency;
+    format.nBlockAlign=(WORD)((channels*bitsPerSample)/8);
+    format.nAvgBytesPerSec=(DWORD)(frequency * format.nBlockAlign);
+    format.wBitsPerSample=(WORD)bitsPerSample;
     format.cbSize=0;
-	
+
     // try to open the default wave device. WAVE_MAPPER is
     // a constant defined in mmsystem.h, it always points to the
     // default wave device on the system (some people have 2 or
-    // more sound cards).   
+    // more sound cards).
     MMRESULT result=waveOutOpen(&hWaveOut_, WAVE_MAPPER, &format, (DWORD_PTR)waveOutProc, (DWORD_PTR)&firstUsedWaveBlock_, CALLBACK_FUNCTION);
 	if(result!=MMSYSERR_NOERROR)
 		{
@@ -118,7 +119,7 @@ void Platform_Win32_Sound_SoundStream_WMM::Play()
 		}
 	for (int i=0; i<WaveBlockCount; i++)
 		{
-        if(waveBlocks_[i].dwFlags & WHDR_PREPARED) 
+        if(waveBlocks_[i].dwFlags & WHDR_PREPARED)
 			{
 			waveOutUnprepareHeader(hWaveOut_, &waveBlocks_[i], sizeof(WAVEHDR));
 			}
@@ -149,7 +150,7 @@ void Platform_Win32_Sound_SoundStream_WMM::Play()
         lastUsedWaveBlock_=WaveBlockCount-1;
 		}
 	playing_=true;
-	}	
+	}
 
 
 //*** Stop ***
@@ -180,8 +181,8 @@ void Platform_Win32_Sound_SoundStream_WMM::Stop()
 			Sleep(0);
 			}
 		}
-		
-    for (int i=0; i<WaveBlockCount; i++) 
+
+    for (int i=0; i<WaveBlockCount; i++)
 		{
 		if(waveBlocks_[i].dwFlags & WHDR_PREPARED)
 			{
@@ -189,11 +190,11 @@ void Platform_Win32_Sound_SoundStream_WMM::Stop()
 			}
 		}
 	playing_=false;
-	}	
+	}
 
 
 //*** GetPosition ***
-	
+
 int Platform_Win32_Sound_SoundStream_WMM::GetPosition()
 	{
 	return soundPosition_;
@@ -201,7 +202,7 @@ int Platform_Win32_Sound_SoundStream_WMM::GetPosition()
 
 
 //*** SetPosition ***
-	
+
 void Platform_Win32_Sound_SoundStream_WMM::SetPosition(int position)
 	{
 	soundPosition_=position;
@@ -214,7 +215,7 @@ void Platform_Win32_Sound_SoundStream_WMM::CopySoundToBuffer(int bufferOffset, c
 	{
 	memcpy(static_cast<unsigned char*>(soundBuffer_)+bufferOffset,soundData,bytesToCopy);
 	}
-	
+
 
 //*** Update ***
 
@@ -248,11 +249,11 @@ void Platform_Win32_Sound_SoundStream_WMM::Update()
 		{
 		lastBlockCorrected=(WaveBlockCount+lastBlockCorrected);
 		}
-	
+
 	if ((lastBlockCorrected-firstUsedWaveBlock_+1)<WaveBlockCount)
 		{
 		lastUsedWaveBlock_=(lastUsedWaveBlock_+1)%WaveBlockCount;
-        if(waveBlocks_[lastUsedWaveBlock_].dwFlags & WHDR_PREPARED) 
+        if(waveBlocks_[lastUsedWaveBlock_].dwFlags & WHDR_PREPARED)
 			{
 			waveOutUnprepareHeader(hWaveOut_, &waveBlocks_[lastUsedWaveBlock_], sizeof(WAVEHDR));
 			}
@@ -289,7 +290,7 @@ void Platform_Win32_Sound_SoundStream_WMM::ClearBuffer(int bufferOffset, int byt
 	memset(soundBuffer_,0,size_);
 	}
 
-	
+
 //*** GetChannels ***
 
 int Platform_Win32_Sound_SoundStream_WMM::GetChannels()
@@ -336,3 +337,5 @@ float Platform_Win32_Sound_SoundStream_WMM::GetVolume()
 	{
 	return 1.0f;
 	}
+
+}; // namespace pixie

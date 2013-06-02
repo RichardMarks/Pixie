@@ -7,9 +7,11 @@
 #include "Platform_Win32_Sound_NoSound.h"
 #include "Platform_Win32_OS.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <malloc.h>
+
+namespace pixie {
 
 //*** Constructor ***
 
@@ -54,8 +56,8 @@ Platform_Win32_Sound::Platform_Win32_Sound(Platform_Win32_OS* os):
 		}
 	else
 		{
-		SetTechnology(Technology_DSound); 
-		}	
+		SetTechnology(Technology_DSound);
+		}
 	}
 
 
@@ -86,7 +88,7 @@ void Platform_Win32_Sound::OnOsYield()
 	technologyInstance_->Update();
 	}
 
-		
+
 //*** CreateSoundStream ***
 
 Platform_Sound_SoundStream* Platform_Win32_Sound::CreateSoundStream(int channels, int frequency, int bitsPerSample, int size)
@@ -116,7 +118,7 @@ void Platform_Win32_Sound::SetTechnology(Platform_Win32_Sound::Technology techno
 		{
 		return;
 		}
-	
+
 	switch(technology_)
 		{
 		case Technology_DSound:
@@ -146,7 +148,7 @@ void Platform_Win32_Sound::SetTechnology(Platform_Win32_Sound::Technology techno
 void Platform_Win32_Sound::DowngradeTechnology()
 	{
 	Platform::GetPlatform_OS()->OutputDebugText("Method failed for technology %d, falling back on technology %d\n",technology_,technology_+1);
-	
+
 	if (technologyInstance_)
 		{
 		delete technologyInstance_;
@@ -154,15 +156,16 @@ void Platform_Win32_Sound::DowngradeTechnology()
 		}
 
 	Technology newTechnology=(Technology)(technology_+1);
-	
+
 	if (newTechnology<Technology_Undefined)
 		{
 		SetTechnology(newTechnology);
 		return;
 		}
-	
+
 	technology_=Technology_Undefined;
 	technologyInstance_=0;
 	}
 
 
+}; // namespace pixie

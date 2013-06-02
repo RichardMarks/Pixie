@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Screen
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Screen.h"
-
+namespace pixie {
 // Forward declares
 class Platform_Win32_OS;
 class Platform_Win32_Screen_Technology;
@@ -23,7 +23,7 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 	{
 
 	public:
-	
+
 		Platform_Win32_Screen(Platform_Win32_OS* os);
 		virtual ~Platform_Win32_Screen();
 
@@ -52,7 +52,7 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 		virtual bool GetFullscreen();
 
 		virtual void SetSize(int width, int height);
-		
+
 		virtual int GetWidth();
 
 		virtual int GetHeight();
@@ -60,9 +60,9 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 		virtual void TransformCursorCoordinates(float& x, float& y);
 
 		void OnWmSize(int width, int height);
-		
+
 		void OnMinimize();
-		
+
 		void OnRestore();
 
 		void OnLoseFocus();
@@ -118,5 +118,6 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 		bool firstTimeInitializeCalled_;
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Screen_H__ */

@@ -2,11 +2,12 @@
 
 #include "Platform_Win32_Screen_GDI.h"
 
-#define WIN32_LEAN_AND_MEAN 
+#define WIN32_LEAN_AND_MEAN
 #define VC_EXTRALEAN
 #include <windows.h>
 
- 
+namespace pixie {
+
  //*** Constructor ***
 
 Platform_Win32_Screen_GDI::Platform_Win32_Screen_GDI(struct HWND__* windowHandle, bool fullscreen, int screenWidth, int screenHeight):
@@ -74,7 +75,7 @@ bool Platform_Win32_Screen_GDI::Present(unsigned short* bitmapData, int bitmapWi
 	int scaleX=screenWidth_/bitmapWidth;
 	int scaleY=screenHeight_/bitmapHeight;
 	int scale=min(scaleX,scaleY);
-	
+
 	// Straight copy
 	if (dx==0 && dy==0)
 		{
@@ -354,7 +355,7 @@ void Platform_Win32_Screen_GDI::ModulateAndCropBitmap(unsigned short* bitmapData
 		{
 		for (int x=0; x<width; x++)
 			{
-			unsigned short pixel=RGBModulate16(*source,modulate);			
+			unsigned short pixel=RGBModulate16(*source,modulate);
 			*destination=pixel;
 			source++;
 			destination++;
@@ -364,8 +365,8 @@ void Platform_Win32_Screen_GDI::ModulateAndCropBitmap(unsigned short* bitmapData
 		}
 	}
 
-		
-//*** SetInterpolationMode *** 
+
+//*** SetInterpolationMode ***
 
 void Platform_Win32_Screen_GDI::SetInterpolationMode(bool enabled)
 	{
@@ -388,7 +389,7 @@ void Platform_Win32_Screen_GDI::SetDIBits(unsigned short* data, int width, int h
 	bmi.bV4V4Compression = BI_BITFIELDS;
 	bmi.bV4XPelsPerMeter = 72;
 	bmi.bV4YPelsPerMeter = 72;
-	bmi.bV4BitCount      = 16;    
+	bmi.bV4BitCount      = 16;
 	bmi.bV4SizeImage     = width*height*2;
 	bmi.bV4RedMask       = 31<<11;
 	bmi.bV4GreenMask     = 63<<5;
@@ -417,3 +418,5 @@ void Platform_Win32_Screen_GDI::TransformCursorCoordinates(float& x, float& y)
 	x=(x-hborder)/pixelScale;
 	y=(y-vborder)/pixelScale;
 	}
+
+}; // namespace pixie

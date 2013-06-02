@@ -1,9 +1,9 @@
 /**
  * \class	Platform_Win32_Screen_DDraw
- * 
+ *
  * \ingroup	win32
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -18,6 +18,7 @@ struct IDirectDraw2;
 struct IDirectDrawSurface;
 struct IDirectDrawClipper;
 
+namespace pixie {
 // Platform_Win32_Screen_DDraw
 class Platform_Win32_Screen_DDraw:public Platform_Win32_Screen_Technology
 	{
@@ -54,30 +55,30 @@ class Platform_Win32_Screen_DDraw:public Platform_Win32_Screen_Technology
 			int bitmapWidth,
 			int bitmapHeight,
 			unsigned short modulate
-			);	
+			);
 
 		bool CopyBitmapToBackBufferNoInterpolation(
 			unsigned short* bitmapData,
 			int bitmapWidth,
 			int bitmapHeight,
 			unsigned short modulate,
-			unsigned short 	backgroundColor, 
+			unsigned short 	backgroundColor,
 			bool clearBorders
-			);	
+			);
 
 		bool CopyBackBufferToFrontBufferInterpolation(
-			int width, 
-			int height, 
-			unsigned short backgroundColor, 
+			int width,
+			int height,
+			unsigned short backgroundColor,
 			bool clearBorder);
-		
+
 		bool CopyBackBufferToFrontBufferNoInterpolation();
 
 		bool ClearBackBuffer(
-			int x1, 
-			int y1, 
-			int x2, 
-			int y2, 
+			int x1,
+			int y1,
+			int x2,
+			int y2,
 			unsigned short color
 			);
 
@@ -88,9 +89,9 @@ class Platform_Win32_Screen_DDraw:public Platform_Win32_Screen_Technology
 		int screenWidth_;
 		int screenHeight_;
 		void* ddrawDLL_;
-		IDirectDraw2* directDraw_;           
-		IDirectDrawSurface* frontBuffer_; 
-		IDirectDrawSurface* backBuffer_; 
+		IDirectDraw2* directDraw_;
+		IDirectDrawSurface* frontBuffer_;
+		IDirectDrawSurface* backBuffer_;
 		IDirectDrawClipper* clipper_;
 		bool canUseAsyncBlt_;
 		bool pixelFormat16_;
@@ -101,5 +102,7 @@ class Platform_Win32_Screen_DDraw:public Platform_Win32_Screen_Technology
 		int lastPresentWidth_;
 		int lastPresentHeight_;
 	};
+
+}; // namespace pixie
 
 #endif /* __Platform_Win32_Screen_DDraw_H__ */
