@@ -2,6 +2,7 @@
 
 #include "Platform_NULL_Screen.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -17,14 +18,14 @@ void Platform_NULL_Screen::Present(unsigned short* bitmapData, int bitmapWidth, 
 	}
 
 
-//*** SetInterpolationMode *** 
+//*** SetInterpolationMode ***
 
 void Platform_NULL_Screen::SetInterpolationMode(bool enabled)
 	{
 	}
 
 
-//*** GetInterpolationMode *** 
+//*** GetInterpolationMode ***
 
 bool Platform_NULL_Screen::GetInterpolationMode()
 	{
@@ -46,7 +47,7 @@ bool Platform_NULL_Screen::GetFullscreen()
 	return false;
 	}
 
-		
+
 //*** SetSize ***
 
 void Platform_NULL_Screen::SetSize(int width, int height)
@@ -76,4 +77,4 @@ void Platform_NULL_Screen::TransformCursorCoordinates(float& x, float& y)
 	{
 	}
 
-
+}; // namespace pixie

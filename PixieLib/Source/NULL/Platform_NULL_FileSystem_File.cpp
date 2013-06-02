@@ -2,10 +2,11 @@
 
 #include "Platform_NULL_FileSystem_File.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_FileSystem_File::Platform_NULL_FileSystem_File()
-	{	
+	{
 	}
 
 
@@ -67,7 +68,7 @@ int Platform_NULL_FileSystem_File::GetPosition()
 //*** SetPosition ***
 
 int Platform_NULL_FileSystem_File::SetPosition(int position,SetPositionOrigin origin)
-	{	
+	{
 	return 0;
 	}
 
@@ -187,3 +188,4 @@ int Platform_NULL_FileSystem_File::Read(bool* value, int count)
 	return 0;
 	}
 
+}; // namespace pixie

@@ -1,7 +1,7 @@
 //*** Platform_NULL_Input_MouseDevice.cpp ***
 
 #include "Platform_NULL_Input_MouseDevice.h"
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_Input_MouseDevice::Platform_NULL_Input_MouseDevice()
@@ -31,3 +31,4 @@ bool Platform_NULL_Input_MouseDevice::IsRightButtonDown() const
 	return false;
 	}
 
+}; // namespace pixie

@@ -1,15 +1,16 @@
 /**
  * \class	Platform_NULL_OS
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
 #ifndef __Platform_NULL_OS_H__
 #define __Platform_NULL_OS_H__
 
+namespace pixie {
 // Includes
 #include "Platform_OS.h"
 
@@ -44,5 +45,6 @@ class Platform_NULL_OS:public Platform_OS
 	private:
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_NULL_OS_H__ */

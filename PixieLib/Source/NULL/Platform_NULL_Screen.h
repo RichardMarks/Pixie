@@ -1,9 +1,9 @@
 /**
  * \class	Platform_NULL_Screen
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Screen.h"
-
+namespace pixie {
 // Forward declares
 
 
@@ -48,7 +48,7 @@ class Platform_NULL_Screen:public Platform_Screen
 		virtual bool GetFullscreen();
 
 		virtual void SetSize(int width, int height);
-		
+
 		virtual int GetWidth();
 
 		virtual int GetHeight();
@@ -57,5 +57,6 @@ class Platform_NULL_Screen:public Platform_Screen
 
 	};
 
+}; // namespace pixie
 
 #endif /* __Platform_NULL_Screen_H__ */

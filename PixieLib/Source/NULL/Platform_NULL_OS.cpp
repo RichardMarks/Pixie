@@ -2,6 +2,7 @@
 
 #include "Platform_NULL_OS.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -28,7 +29,7 @@ void Platform_NULL_OS::SetApplicationName(const char* applicationName)
 
 const char* Platform_NULL_OS::GetCommandLineString()
 	{
-	return "";	
+	return "";
 	}
 
 
@@ -36,7 +37,7 @@ const char* Platform_NULL_OS::GetCommandLineString()
 
 const char* Platform_NULL_OS::GetExecutablePath()
 	{
-	return "";	
+	return "";
 	}
 
 
@@ -44,7 +45,7 @@ const char* Platform_NULL_OS::GetExecutablePath()
 
 bool Platform_NULL_OS::HasFocus()
 	{
-	return true;	
+	return true;
 	}
 
 
@@ -75,3 +76,4 @@ void Platform_NULL_OS::OutputDebugText(const char * formatstr, ...)
 void Platform_NULL_OS::ReportFatalError(const char* message, const char* file, int line)
 	{
 	}
+}; // namespace pixie

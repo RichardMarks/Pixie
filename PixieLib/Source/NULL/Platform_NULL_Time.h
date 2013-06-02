@@ -1,9 +1,9 @@
 /**
  * \class	Platform_NULL_Time
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Time.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_Time
@@ -30,6 +30,6 @@ class Platform_NULL_Time:public Platform_Time
 			);
 
 	};
-
+}; // namespace pixie
 
 #endif /* __Platform_NULL_Time_H__ */

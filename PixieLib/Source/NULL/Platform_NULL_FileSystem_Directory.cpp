@@ -2,7 +2,7 @@
 
 #include "Platform_NULL_FileSystem_Directory.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_FileSystem_Directory::Platform_NULL_FileSystem_Directory()
@@ -58,7 +58,7 @@ int Platform_NULL_FileSystem_Directory::GetSubdirectoryCount()
 //*** GetSubdirectory ***
 
 const char* Platform_NULL_FileSystem_Directory::GetSubdirectory(int index)
-	{	
+	{
 	return 0;
 	}
 
@@ -74,6 +74,8 @@ int Platform_NULL_FileSystem_Directory::GetFileCount()
 //*** GetFile***
 
 const char* Platform_NULL_FileSystem_Directory::GetFile(int index)
-	{	
+	{
 	return 0;
 	}
+
+}; // namespace pixie

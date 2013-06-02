@@ -1,9 +1,9 @@
 /**
  * \class	Platform_NULL_FileSystem
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,6 +12,7 @@
 
 // Includes
 #include "Platform_FileSystem.h"
+namespace pixie {
 
 // Forward declares
 
@@ -26,11 +27,11 @@ class Platform_NULL_FileSystem:public Platform_FileSystem
 
 		virtual Platform_FileSystem_Directory* CreateDirectoryObject(const char* path);
 		virtual Platform_FileSystem_File* CreateFileObject(const char* path);
-		
+
 		virtual void RescanDevices();
 		virtual int GetDeviceCount();
 		virtual const Platform_FileSystem_Device* GetDevice(int index);
 
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_FileSystem_H__ */

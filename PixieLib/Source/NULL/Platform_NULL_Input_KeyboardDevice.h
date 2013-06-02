@@ -1,10 +1,10 @@
 /**
  * \class	Platform_NULL_Input_KeyboardDevice
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Input_KeyboardDevice.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_Input_KeyboardDevice
@@ -29,5 +29,5 @@ class Platform_NULL_Input_KeyboardDevice: public Platform_Input_KeyboardDevice
 		virtual int GetBufferedCharacterCount() const;
 		virtual char GetBufferedCharacter(int index) const;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_Input_KeyboardDevice_H__ */

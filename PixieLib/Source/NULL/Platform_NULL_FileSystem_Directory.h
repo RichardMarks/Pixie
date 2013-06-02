@@ -1,10 +1,10 @@
 /**
  * \class	Platform_NULL_FileSystem_Directory
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_FileSystem_Directory.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_FileSystem_Directory
@@ -34,5 +34,5 @@ class Platform_NULL_FileSystem_Directory: public Platform_FileSystem_Directory
 		virtual int GetFileCount();
 		virtual const char* GetFile(int index);
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_FileSystem_Directory_H__ */

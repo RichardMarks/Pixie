@@ -1,9 +1,9 @@
 /**
  * \class	Platform_NULL_Input
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Input.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_Input
@@ -31,8 +31,8 @@ class Platform_NULL_Input:public Platform_Input
 
 		virtual void SetDefaultMouseCursor();
 	private:
-		Platform_Input_KeyboardDevice* keyboardDevice_; 
-		Platform_Input_MouseDevice* mouseDevice_; 
+		Platform_Input_KeyboardDevice* keyboardDevice_;
+		Platform_Input_MouseDevice* mouseDevice_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_Input_H__ */

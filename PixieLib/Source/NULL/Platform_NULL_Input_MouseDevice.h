@@ -1,10 +1,10 @@
 /**
  * \class	Platform_NULL_Input_MouseDevice
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Input_MouseDevice.h"
-
+namespace pixie {
 // Forward declares
 
 
@@ -28,5 +28,5 @@ class Platform_NULL_Input_MouseDevice: public Platform_Input_MouseDevice
 		virtual bool IsRightButtonDown() const;
 
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_Input_MouseDevice_H__ */

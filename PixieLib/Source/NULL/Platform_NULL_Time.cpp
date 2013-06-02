@@ -2,6 +2,7 @@
 
 #include "Platform_NULL_Time.h"
 
+namespace pixie {
 
 //*** Constructor ***
 
@@ -32,3 +33,4 @@ Platform_Time::SystemTime Platform_NULL_Time::GetSystemTime(bool utcTime)
 	result.year=0;
 	return result;
 	}
+	}; // namespace pixie

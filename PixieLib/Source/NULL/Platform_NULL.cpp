@@ -9,6 +9,7 @@
 //#include "Platform_NULL_3D.h"
 #include "Platform_NULL_Sound.h"
 
+namespace pixie {
 
 void Platform_NULL()
 	{
@@ -21,3 +22,4 @@ void Platform_NULL()
 //	Platform_NULL_3D();
 	Platform_NULL_Sound();
 	}
+	}; // namespace pixie

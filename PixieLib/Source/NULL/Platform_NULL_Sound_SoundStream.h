@@ -1,10 +1,10 @@
 /**
  * \class	Platform_NULL_Sound_SoundStream
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_Sound_SoundStream.h"
-
+namespace pixie {
 // Forward declares
 
 
@@ -22,12 +22,12 @@ class Platform_NULL_Sound_SoundStream : public Platform_Sound_SoundStream
 	{
 	public:
 		Platform_NULL_Sound_SoundStream(
-			int channels, 
-			int frequency, 
-			int bitsPerSample, 
+			int channels,
+			int frequency,
+			int bitsPerSample,
 			int size
 			);
-	
+
 		virtual void Play();
 		virtual void Stop();
 
@@ -52,5 +52,5 @@ class Platform_NULL_Sound_SoundStream : public Platform_Sound_SoundStream
 		int bitsPerSample_;
 		int size_;
 	};
-
+}; // namespace pixie
 #endif /* __Platform_NULL_Sound_SoundStream_H__ */

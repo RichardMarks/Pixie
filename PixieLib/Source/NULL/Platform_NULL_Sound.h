@@ -1,9 +1,9 @@
 /**
  * \class	Platform_NULL_Sound
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
+ * \brief
+ * \author	Mattias Gustavsson
  *
  */
 
@@ -12,7 +12,7 @@
 
 // Includes
 #include "Platform_Sound.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_Sound
@@ -23,7 +23,7 @@ class Platform_NULL_Sound:public Platform_Sound
 		Platform_NULL_Sound();
 
 		virtual Platform_Sound_SoundStream* CreateSoundStream(int channels, int frequency, int bitsPerSample, int size);
-		
-	};
 
+	};
+}; // namespace pixie
 #endif /* __Platform_NULL_Sound_H__ */

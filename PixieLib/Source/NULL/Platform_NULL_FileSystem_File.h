@@ -1,10 +1,10 @@
 /**
  * \class	Platform_NULL_FileSystem_File
- * 
+ *
  * \ingroup	platform_null
- * \brief	
- * \author	Mattias Gustavsson	
- * 
+ * \brief
+ * \author	Mattias Gustavsson
+ *
  *
  */
 
@@ -13,7 +13,7 @@
 
 // Includes
 #include "Platform_FileSystem_File.h"
-
+namespace pixie {
 // Forward declares
 
 // Platform_NULL_FileSystem_File
@@ -23,7 +23,7 @@ class Platform_NULL_FileSystem_File: public Platform_FileSystem_File
 		Platform_NULL_FileSystem_File();
 
 		virtual const char* GetPath();
-		
+
 		virtual bool Exists();
 		virtual bool Create();
 		virtual bool Open();
@@ -57,4 +57,5 @@ class Platform_NULL_FileSystem_File: public Platform_FileSystem_File
 		virtual int Read(bool* value, int count = 1);
 	};
 
+}; // namespace pixie
 #endif /* __Platform_NULL_FileSystem_File_H__ */

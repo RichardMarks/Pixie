@@ -2,6 +2,7 @@
 
 #include "Platform_NULL_Input_KeyboardDevice.h"
 
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_Input_KeyboardDevice::Platform_NULL_Input_KeyboardDevice()
@@ -48,3 +49,5 @@ char Platform_NULL_Input_KeyboardDevice::GetBufferedCharacter(int index) const
 	{
 	return 0;
 	}
+
+}; // namespace pixie

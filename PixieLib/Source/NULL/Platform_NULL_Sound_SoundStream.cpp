@@ -2,7 +2,7 @@
 
 #include "Platform_NULL_Sound_SoundStream.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_Sound_SoundStream::Platform_NULL_Sound_SoundStream(int channels, int frequency, int bitsPerSample, int size):
@@ -17,18 +17,18 @@ Platform_NULL_Sound_SoundStream::Platform_NULL_Sound_SoundStream(int channels, i
 
 void Platform_NULL_Sound_SoundStream::Play()
 	{
-	}	
+	}
 
 
 //*** Stop ***
 
 void Platform_NULL_Sound_SoundStream::Stop()
 	{
-	}	
+	}
 
 
 //*** GetPosition ***
-	
+
 int Platform_NULL_Sound_SoundStream::GetPosition()
 	{
 	return 0;
@@ -36,7 +36,7 @@ int Platform_NULL_Sound_SoundStream::GetPosition()
 
 
 //*** SetPosition ***
-	
+
 void Platform_NULL_Sound_SoundStream::SetPosition(int position)
 	{
 	}
@@ -47,7 +47,7 @@ void Platform_NULL_Sound_SoundStream::SetPosition(int position)
 void Platform_NULL_Sound_SoundStream::CopySoundToBuffer(int bufferOffset, const void* soundData, int bytesToCopy)
 	{
 	}
-	
+
 
 //*** ClearBuffer ***
 
@@ -55,7 +55,7 @@ void Platform_NULL_Sound_SoundStream::ClearBuffer(int bufferOffset, int bytesToC
 	{
 	}
 
-	
+
 //*** GetChannels ***
 
 int Platform_NULL_Sound_SoundStream::GetChannels()
@@ -101,3 +101,4 @@ float Platform_NULL_Sound_SoundStream::GetVolume()
 	{
 	return 0;
 	}
+}; // namespace pixie

@@ -4,7 +4,7 @@
 #include "Platform_NULL_Input_KeyboardDevice.h"
 #include "Platform_NULL_Input_MouseDevice.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_Input::Platform_NULL_Input():
@@ -80,3 +80,5 @@ void Platform_NULL_Input::SetDefaultMouseCursor()
 	{
 
 	}
+
+}; // namespace pixie

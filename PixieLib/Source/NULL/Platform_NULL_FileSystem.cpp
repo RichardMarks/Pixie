@@ -4,7 +4,7 @@
 #include "Platform_NULL_FileSystem_Directory.h"
 #include "Platform_NULL_FileSystem_File.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 Platform_NULL_FileSystem::Platform_NULL_FileSystem()
@@ -18,7 +18,7 @@ void Platform_NULL_FileSystem::SetLogging(bool enabled)
 	{
 	}
 
-		
+
 //*** GetDirectory ***
 
 Platform_FileSystem_Directory* Platform_NULL_FileSystem::CreateDirectoryObject(const char* path)
@@ -56,3 +56,5 @@ const Platform_FileSystem_Device* Platform_NULL_FileSystem::GetDevice(int index)
 	{
 	return 0;
 	}
+
+	}; // namespace pixie
