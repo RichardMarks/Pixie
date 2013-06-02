@@ -116,6 +116,33 @@ Bitmap_RLE8::~Bitmap_RLE8()
 		}
 	}
 
+//*** GetHPitch ***
+
+int Bitmap_RLE8::GetHPitch() const
+    {
+    return activeWidth_;
+    }
+
+//*** GetVPitch ***
+
+int Bitmap_RLE8::GetVPitch() const
+    {
+    return activeHeight_;
+    }
+
+//*** GetHOffset ***
+
+int Bitmap_RLE8::GetHOffset() const
+    {
+    return xOffset_;
+    }
+
+//*** GetVOffset ***
+
+int Bitmap_RLE8::GetVOffset() const
+    {
+    return yOffset_;
+    }
 
 //*** GetWidth ***
 

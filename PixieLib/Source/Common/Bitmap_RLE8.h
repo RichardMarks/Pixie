@@ -42,6 +42,11 @@ class Bitmap_RLE8:public Bitmap
 		virtual void Fill(int x1, int y1, int x2, int y2, unsigned short color,	unsigned char alpha = 255 );							
 		virtual void Fill(unsigned short color, unsigned char alpha = 255);
 
+        virtual int GetHPitch() const;
+        virtual int GetVPitch() const;
+        virtual int GetHOffset() const;
+        virtual int GetVOffset() const;
+
 		virtual int GetWidth(Transformation transformation = NoTransformation) const;		
 		virtual int GetHeight(Transformation transformation = NoTransformation) const;
 

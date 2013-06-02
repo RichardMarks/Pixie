@@ -13,6 +13,10 @@ private:
     static GameState* CreateInstance();
 
     Sprite bg;
+    Sprite pixieLogo;
+    Sprite heading;
+    Sprite credits;
+
     Button startButton;
     Button continueButton;
     Button quitButton;

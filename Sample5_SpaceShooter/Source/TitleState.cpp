@@ -20,6 +20,9 @@ TitleState::TitleState()
     InputManager::GetInstance()->SetCursor(0);
 
     bg.SetBitmap("Assets/MenuBackground.pix");
+    pixieLogo.SetBitmap("Assets/Title/TitlePixieLogo.pix");
+    heading.SetBitmap("Assets/Title/Heading.pix");
+    credits.SetBitmap("Assets/Title/TitleCredits.pix");
 
     startButton.SetEventId("Start");
     startButton.SetBitmap(Button::State_Normal, "Assets/Title/Start_Normal.pix");
