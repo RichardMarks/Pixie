@@ -11,7 +11,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 {
 	DefaultWinMain(hInstance,hPrevInstance,lpCmdLine,nCmdShow);
     GameHelper gameHelper("Space Shooter");
-    Screen screen(constants::WINDOW_WIDTH, constants::WINDOW_HEIGHT, false);
+    Screen screen(constants::WINDOW_WIDTH, constants::WINDOW_HEIGHT);
+    screen.MatchWindowToScreenSize();
 	FrameTime time;
 
     InputManager& input = *InputManager::GetInstance();

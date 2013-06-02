@@ -191,7 +191,7 @@ class Parent
 		Parent() {
 
 			}
-	virtual c() {};
+	virtual int c() {};
 	};
 
 class Parent2
@@ -200,7 +200,7 @@ class Parent2
 		Parent2() {
 
 			}
-	virtual d() {};
+	virtual int d() {};
 	};
 
 

@@ -118,7 +118,7 @@ Snake::~Snake() {}
 
 void Snake::Run(GameHelper& gameHelper)
 {
-	Screen screen(WINDOW_WIDTH, WINDOW_HEIGHT, false);
+	Screen screen(WINDOW_WIDTH, WINDOW_HEIGHT);
 	FrameTime time;
 
     infoText.SetPriority(FLOAT_MAX);
@@ -279,7 +279,7 @@ void Snake::MoveSnake()
 
     SnakeSegment nextsegment(headx + movex[direction], heady + movey[direction]);
     nextsegment.sprite.SetCel(0);
-    segments.InsertBefore(nextsegment, 0);
+    segments.InsertBefore(0, nextsegment);
 
     for (int i = 1; i < segments.GetItemCount(); i++)
     {

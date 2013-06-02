@@ -21,7 +21,8 @@ Sprite::Sprite():
 	color_(0xffff),
 	alpha_(0xff),
 	priority_(0),
-	cel_(0)
+	cel_(0),
+	selectionIndex_(-1)
 	{
 	if (SpriteSystem::IsInstanceCreated())
 		{
@@ -381,7 +382,23 @@ void Sprite::Render(Bitmap& bitmap)
 
 //*** OnMouseOver ***
 
-bool Sprite::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData)
+bool Sprite::OnMouseOver(int x, int y, bool button, StringId& eventId, void*& userData, bool forcehit)
 	{
 	return false;
+	}
+
+
+//*** SetSelectionIndex ***
+
+void Sprite::SetSelectionIndex( int index )
+	{
+	selectionIndex_ = index;
+	}
+
+
+//*** FetSelectionIndex ***
+
+int Sprite::GetSelectionIndex() const
+	{
+	return selectionIndex_;
 	}
