@@ -129,6 +129,7 @@ void SpriteManager::Update(float deltaTime)
 		StringId eventId;
 		void* userData=0;
 		currentHighlighted_->OnMouseOver(0,0,button,eventId,userData, false);
+        currentHighlighted_=0;
 		}
 
 	activatedHighlighted_ = false;

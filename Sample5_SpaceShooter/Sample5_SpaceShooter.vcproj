@@ -192,6 +192,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\Source\InGameState.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\InGameState.h"
+			>
+		</File>
+		<File
 			RelativePath=".\Source\Main.cpp"
 			>
 		</File>

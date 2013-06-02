@@ -18,6 +18,8 @@
 
 
 // Rectangle
+namespace pixie
+    {
 class Rectangle:public Sprite
 	{
 	public:
@@ -42,6 +44,7 @@ class Rectangle:public Sprite
 		float height_;
 		
 	};
+    };
 
 #endif /* __Rectangle_H__ */
 

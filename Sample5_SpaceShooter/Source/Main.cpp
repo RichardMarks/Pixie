@@ -6,6 +6,7 @@
 #include "Constants.h"
 #include "TitleState.h"
 #include "MissionDebriefState.h"
+#include "InGameState.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
@@ -20,10 +21,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     TitleState::Register(gsm);
     MissionDebriefState::Register(gsm);
+    InGameState::Register(gsm);
 
     input.CreateCursor(0, "Assets/PlanetCursor.pix", 16, 16);
 
     gsm.SwitchState(TitleState::ID);
+    //gsm.SwitchState(MissionDebriefState::ID);
 
     bool running = true;
 
@@ -32,10 +35,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	    float deltaTime = time.Update();
 	    running = gameHelper.UpdateGame(deltaTime, screen);
 
+#if 0
         if (input.WasKeyPressed(KEY_ESCAPE))
 		{
 		    running = false;
 		}
+#endif
 	}
 
     return 0;

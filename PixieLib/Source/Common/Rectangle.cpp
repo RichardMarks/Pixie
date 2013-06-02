@@ -2,6 +2,8 @@
 
 #include "Rectangle.h"
 
+namespace pixie 
+    {
 
 //*** Constructor ***
 
@@ -93,3 +95,5 @@ void Rectangle::Render(Bitmap& bitmap)
 		}
 
 	}
+
+    }; // *** namespace pixie ***

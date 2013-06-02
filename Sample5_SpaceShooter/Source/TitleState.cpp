@@ -42,11 +42,32 @@ TitleState::TitleState()
     startButton.UseBoundingBox(true);
     continueButton.UseBoundingBox(true);
     quitButton.UseBoundingBox(true);
+
+    startButton.SetSelectionIndex(0);
+    continueButton.SetSelectionIndex(1);
+    quitButton.SetSelectionIndex(2);
+
+    SpriteManager& sm = *siSpriteSystem->GetDefaultSpriteManager();
+    sm.HighlightNext();
 }
 
 void TitleState::Update(float deltaTime)
 {
+    InputManager& input = *siInputManager;
+    SpriteManager& sm = *siSpriteSystem->GetDefaultSpriteManager();
 
+    if (input.WasKeyPressed(KEY_UP))
+    {
+        sm.HighlightPrevious();
+    }
+    else if (input.WasKeyPressed(KEY_DOWN))
+    {
+        sm.HighlightNext();
+    }
+    else if (input.WasKeyPressed(KEY_SPACE) || input.WasKeyPressed(KEY_RETURN))
+    {
+        sm.SelectHighlighted();
+    }
 }
 
 void TitleState::OnSpriteEvent(StringId eventId, void* userData)

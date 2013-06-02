@@ -15,6 +15,7 @@ private:
     Sprite bg;
     Sprite heading;
     Sprite missionBox;
+    StaticText missionText;
 
     Button declineButton;
     Button acceptButton;
