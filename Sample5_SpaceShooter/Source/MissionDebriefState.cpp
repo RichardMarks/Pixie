@@ -23,19 +23,14 @@ MissionDebriefState::MissionDebriefState()
     InputManager::GetInstance()->SetCursor(0);
 
     bg.SetBitmap("Assets/MenuBackground.pix");
-
     heading.SetBitmap("Assets/MissionDebrief/Heading.pix");
-
     missionBox.SetBitmap("Assets/MissionDebrief/MissionBox.pix");
-    //float cx = (constants::WINDOW_WIDTH - missionBox.GetBitmap().GetWidth()) * 0.5f;
-    //float cy = (constants::WINDOW_HEIGHT - missionBox.GetBitmap().GetHeight()) * 0.5f;
-    //missionBox.SetPosition(cx, cy);
+    missionBox.SetPosition(-800, 0);
 
-#if 0
     SpriteController* controller = siSpriteControllerManager->AcquireSpriteController(&missionBox);
-    controller->AddAction(new SpriteAction_SmoothArrival(0, 0, 4), 0.5f);
+    controller->AddAction(new SpriteAction_SmoothArrival(0, 0, 4), 0.25f);
     siSpriteControllerManager->ReleaseSpriteController(controller);
-#endif
+
     // TODO: need to FGT a 16px font for mission text
 
     declineButton.SetEventId("Decline");
