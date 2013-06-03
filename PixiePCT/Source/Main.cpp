@@ -14,6 +14,7 @@
 #include <windows.h>
 
 //*** main ***
+using namespace pixie;
 
 int main(int argc, const char* argv[])
 	{

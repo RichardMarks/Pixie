@@ -17,6 +17,7 @@
 struct IDirect3D9;
 struct IDirect3DDevice9;
 struct IDirect3DTexture9;
+struct HWND__;
 
 namespace pixie {
 // Platform_Win32_Screen_D3D9
@@ -78,7 +79,7 @@ class Platform_Win32_Screen_D3D9:public Platform_Win32_Screen_Technology
 			unsigned int modulate);
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		bool interpolationMode_;
 		bool fullscreen_;
 		int screenWidth_;

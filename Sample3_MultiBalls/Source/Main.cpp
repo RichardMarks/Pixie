@@ -2,6 +2,8 @@
 #include "Pixie.h"
 #include <windows.h>
 
+using namespace pixie;
+
 // Groups all the data we need for a ball - it's just the sprite and the speeds
 struct Ball
 	{

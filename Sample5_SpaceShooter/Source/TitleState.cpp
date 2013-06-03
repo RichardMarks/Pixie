@@ -3,6 +3,8 @@
 #include "TitleState.h"
 #include "MissionDebriefState.h"
 
+using namespace pixie;
+
 const char* TitleState::ID = "Title State";
 
 void TitleState::Register(GameStateManager& gsm) 

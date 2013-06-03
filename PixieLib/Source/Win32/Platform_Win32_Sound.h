@@ -12,8 +12,12 @@
 
 // Includes
 #include "Platform_Sound.h"
-namespace pixie {
+
 // Forward declares
+struct HWND__;
+
+namespace pixie {
+
 class Platform_Win32_OS;
 class Platform_Win32_Sound_Technology;
 
@@ -45,7 +49,7 @@ class Platform_Win32_Sound:public Platform_Sound,PlatformEventListener
 		void DowngradeTechnology();
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		Technology technology_;
 		Platform_Win32_Sound_Technology* technologyInstance_;
 	};

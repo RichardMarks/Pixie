@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <cstdarg>
 
+using namespace pixie;
+
 static const unsigned ANTIALIAS_FACTOR = 16;
 static const unsigned ANTIALIAS_FACTOR_LESSONE = ANTIALIAS_FACTOR - 1;
 

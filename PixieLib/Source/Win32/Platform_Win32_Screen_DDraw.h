@@ -17,6 +17,7 @@
 struct IDirectDraw2;
 struct IDirectDrawSurface;
 struct IDirectDrawClipper;
+struct HWND__;
 
 namespace pixie {
 // Platform_Win32_Screen_DDraw
@@ -83,7 +84,7 @@ class Platform_Win32_Screen_DDraw:public Platform_Win32_Screen_Technology
 			);
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		bool interpolationMode_;
 		bool fullscreen_;
 		int screenWidth_;

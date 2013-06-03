@@ -21,6 +21,8 @@
 #include "Platform_FileSystem_Directory.h"
 #include "Platform_FileSystem_File.h"
 
+using namespace pixie;
+
 bool format16bit=false;
 bool format16bitAlpha=false;
 bool format16bitAlphaCrop=false;

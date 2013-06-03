@@ -2,6 +2,8 @@
 #include "Pixie.h"
 #include <windows.h>
 
+using namespace pixie;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 	{
 	// Setup the Pixie system to be using Windows

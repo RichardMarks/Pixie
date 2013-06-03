@@ -3,6 +3,8 @@
 #include "InGameState.h"
 #include "MissionDebriefState.h"
 
+using namespace pixie;
+
 const char* InGameState::ID = "In Game State";
 
 void InGameState::Register(GameStateManager& gsm) 

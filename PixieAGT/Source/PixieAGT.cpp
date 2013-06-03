@@ -18,6 +18,8 @@
 #include "Platform_FileSystem_Directory.h"
 #include "Platform_FileSystem_File.h"
 
+using namespace pixie;
+
 // Forward declares
 void ProgressReport(ArchiveGenerator::ProgressData& data);
 void DeflateArchive(const char* arg);

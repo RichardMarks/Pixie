@@ -8,6 +8,8 @@
 #include "MissionDebriefState.h"
 #include "InGameState.h"
 
+using namespace pixie;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	DefaultWinMain(hInstance,hPrevInstance,lpCmdLine,nCmdShow);

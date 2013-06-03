@@ -14,9 +14,11 @@
 #include "Platform_3D.h"
 #include "Array.h"
 
+// Forward declares
+struct HWND__;
+
 namespace pixie {
 
-// Forward declares
 class Platform_Win32_OS;
 class Platform_Win32_3D_Technology;
 class Platform_3D_VertexBuffer;
@@ -164,7 +166,7 @@ class Platform_Win32_3D:public Platform_3D
 		bool IsRunningOnWine();
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		Technology technology_;
 		Platform_Win32_3D_Technology* technologyInstance_;
 		bool fullscreen_;

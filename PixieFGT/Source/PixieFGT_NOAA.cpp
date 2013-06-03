@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <cstdarg>
 
+using namespace pixie;
+
 void PixieFGT::NOAA_CalculateMaximumGlyphSize(const char* fontname, int fontsize)
 {
     HDC hdc = CreateCompatibleDC(0);

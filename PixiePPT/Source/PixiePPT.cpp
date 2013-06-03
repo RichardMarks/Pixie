@@ -20,6 +20,8 @@
 
 #include "tinyxml2.h"
 
+using namespace pixie;
+
 // Forward declares
 
 //*** PixiePPTMain ***

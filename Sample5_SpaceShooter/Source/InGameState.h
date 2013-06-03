@@ -3,21 +3,21 @@
 
 #include "Pixie.h"
 
-class InGameState : public GameState, public SpriteEventListener
+class InGameState : public pixie::GameState, public pixie::SpriteEventListener
 {
 public:
     static const char* ID;
-    static void Register(GameStateManager&);
+    static void Register(pixie::GameStateManager&);
 
 private:
-    static GameState* CreateInstance();
+    static pixie::GameState* CreateInstance();
 
     pixie::Rectangle clearScreenRect;
 
     InGameState();
     virtual void Update(float deltaTime);
 
-    virtual void OnSpriteEvent(StringId eventId, void* userData);
+    virtual void OnSpriteEvent(pixie::StringId eventId, void* userData);
 
 };
 

@@ -18,6 +18,7 @@ struct IDirect3D9;
 struct IDirect3DDevice9;
 struct IDirect3DTexture9;
 //struct ID3DXEffect;
+struct HWND__;
 
 namespace pixie {
 
@@ -145,7 +146,7 @@ class Platform_Win32_3D_D3D9:public Platform_Win32_3D_Technology
 //		bool IsCompressedTextureFormatOk( D3DFORMAT TextureFormat,  D3DFORMAT AdapterFormat ) ;
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		bool fullscreen_;
 		int screenWidth_;
 		int screenHeight_;

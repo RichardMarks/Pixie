@@ -3,28 +3,28 @@
 
 #include "Pixie.h"
 
-class TitleState : public GameState, public SpriteEventListener
+class TitleState : public pixie::GameState, public pixie::SpriteEventListener
 {
 public:
     static const char* ID;
-    static void Register(GameStateManager&);
+    static void Register(pixie::GameStateManager&);
 
 private:
-    static GameState* CreateInstance();
+    static pixie::GameState* CreateInstance();
 
-    Sprite bg;
-    Sprite pixieLogo;
-    Sprite heading;
-    Sprite credits;
+    pixie::Sprite bg;
+    pixie::Sprite pixieLogo;
+    pixie::Sprite heading;
+    pixie::Sprite credits;
 
-    Button startButton;
-    Button continueButton;
-    Button quitButton;
+    pixie::Button startButton;
+    pixie::Button continueButton;
+    pixie::Button quitButton;
 
     TitleState();
     virtual void Update(float deltaTime);
 
-    virtual void OnSpriteEvent(StringId eventId, void* userData);
+    virtual void OnSpriteEvent(pixie::StringId eventId, void* userData);
 
 };
 

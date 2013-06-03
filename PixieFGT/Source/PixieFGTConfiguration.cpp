@@ -28,6 +28,8 @@
 #include "PixieFGTConfiguration.h"
 #include "tinyxml2.h"
 
+using namespace pixie;
+
 PixieFGTConfiguration::PixieFGTConfiguration()
 {
 }

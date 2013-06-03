@@ -14,6 +14,8 @@
 
 //*** main ***
 
+using namespace pixie;
+
 int main(int argc, const char* argv[])
 	{
 	// Enable windows memory leak detection

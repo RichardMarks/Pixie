@@ -12,6 +12,9 @@
 
 // Includes
 #include "Platform_Screen.h"
+
+struct HWND__;
+
 namespace pixie {
 // Forward declares
 class Platform_Win32_OS;
@@ -99,7 +102,7 @@ class Platform_Win32_Screen:public Platform_Screen, PlatformEventListener
 		void BlitCharacter(unsigned int* colorData, int hPitch, int vPitch, int sx, int sy, int dx, int dy, unsigned int color);
 	private:
 		static unsigned int Platform_Win32_Screen::DebugFontData[];
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		Technology technology_;
 		Platform_Win32_Screen_Technology* technologyInstance_;
 		bool fullscreen_;

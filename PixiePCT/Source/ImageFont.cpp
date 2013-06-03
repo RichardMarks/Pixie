@@ -9,7 +9,7 @@
 #include "Asset.h"
 #include "Bitmap.h"
 
-
+namespace pixie {
 //*** Constructor ***
 
 ImageFont::ImageFont():
@@ -222,3 +222,4 @@ void ImageFont::WriteToAsset(Asset* asset)
 		}
 	}
 
+}; // namespace pixie

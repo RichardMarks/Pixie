@@ -16,11 +16,11 @@
 
 // Includes
 
+namespace pixie {
+
 // Forward declares
 class Sprite;
 class SpriteController;
-
-namespace pixie {
 
 // SpriteAction
 class SpriteAction

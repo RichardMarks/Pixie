@@ -10,9 +10,11 @@
 #ifndef __Platform_NULL_OS_H__
 #define __Platform_NULL_OS_H__
 
-namespace pixie {
+
 // Includes
 #include "Platform_OS.h"
+
+namespace pixie {
 
 // Forward declares
 

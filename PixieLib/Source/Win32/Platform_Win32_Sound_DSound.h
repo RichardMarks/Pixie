@@ -15,6 +15,7 @@
 
 // Forward declares
 struct IDirectSound;
+struct HWND__;
 
 namespace pixie {
 
@@ -33,7 +34,7 @@ class Platform_Win32_Sound_DSound:public Platform_Win32_Sound_Technology
 		virtual Platform_Sound_SoundStream* CreateSoundStream(int channels, int frequency, int bitsPerSample, int size);
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		void* dsoundDLL_;
 		IDirectSound* directSound_;
 

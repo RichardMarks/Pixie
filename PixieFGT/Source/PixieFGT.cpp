@@ -4,6 +4,8 @@
 
 #include <windows.h>
 
+using namespace pixie;
+
 const char* PixieFGT::version = "2.0";
 
 PixieFGT::PixieFGT() 

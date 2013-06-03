@@ -33,6 +33,8 @@
 
 //*** WinMain ***
 
+using namespace pixie;
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 	{
 	// Enable windows memory leak detection (will report leaks in the Output window)

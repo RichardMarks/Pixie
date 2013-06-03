@@ -15,6 +15,7 @@
 
 // Forward declares
 struct HDC__;
+struct HWND__;
 
 namespace pixie {
 
@@ -98,7 +99,7 @@ class Platform_Win32_Screen_GDI:public Platform_Win32_Screen_Technology
 			);
 
 	private:
-		struct HWND__* windowHandle_;
+		HWND__* windowHandle_;
 		bool fullscreen_;
 		int screenWidth_;
 		int screenHeight_;

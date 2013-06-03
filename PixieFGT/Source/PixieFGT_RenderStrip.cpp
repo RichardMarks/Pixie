@@ -1,6 +1,8 @@
 
 #include "PixieFGT.h"
 
+using namespace pixie;
+
 void PixieFGT::RenderStrip(const char* filename, Array<struct Glyph*> glyphs, int spacing)
 {
     printf("Rendering Strip...\n");

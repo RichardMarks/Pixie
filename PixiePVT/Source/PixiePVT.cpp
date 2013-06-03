@@ -20,6 +20,8 @@
 #include "ColorHelper.h"
 #include "FrameTime.h"
 
+using namespace pixie;
+
 StringId GetPath(StringId filename);
 StringId GetFilename(StringId filename);
 bool VerifyFilename(const char* name);

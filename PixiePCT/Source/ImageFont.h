@@ -15,6 +15,8 @@
 #include "XMLObject.h"
 #include "Array.h"
 
+namespace pixie {
+
 // External classes
 class Image;
 class Bitmap;
@@ -78,6 +80,8 @@ class ImageFont:XMLObject
 		Array<Kerning> kerning_;
 		Array<char*> layerNames_;
 	};
+
+}; // namespace pixie
 
 #endif /* __ImageFont_H__ */
 

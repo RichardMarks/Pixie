@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <cstdarg>
 
+using namespace pixie;
+
 void ProgressMessage(const char* text, ...);
 
 void PixieFGT::FGTFontDefProcessor(const Array<pixietools::FGTFontDef>& fonts, unsigned fontcount)

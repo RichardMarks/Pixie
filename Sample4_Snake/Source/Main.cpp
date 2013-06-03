@@ -3,6 +3,8 @@
 #include "Pixie.h"
 #include <windows.h>
 
+using namespace pixie;
+
 static const unsigned WINDOW_WIDTH = 800;
 static const unsigned WINDOW_HEIGHT = 600;
 

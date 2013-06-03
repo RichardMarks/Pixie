@@ -40,14 +40,14 @@ public:
     PixieFGTConfiguration();
     ~PixieFGTConfiguration();
     bool Load(const char* filename);
-    const Array<pixietools::FGTFontDef>& GetFontArray() const;
-    const Array<pixietools::FGTFontDef>& GetScaleFontArray() const;
+    const pixie::Array<pixietools::FGTFontDef>& GetFontArray() const;
+    const pixie::Array<pixietools::FGTFontDef>& GetScaleFontArray() const;
     unsigned GetFontCount() const;
     unsigned GetScaleFontCount() const;
 
 private:
-    Array<pixietools::FGTFontDef> fonts;
-    Array<pixietools::FGTFontDef> scalefonts;
+    pixie::Array<pixietools::FGTFontDef> fonts;
+    pixie::Array<pixietools::FGTFontDef> scalefonts;
 
     bool ParseFontNode(tinyxml2::XMLElement* fontnode, pixietools::FGTFontDef& fontdef);
     bool ParseScaleFontNode(tinyxml2::XMLElement* fontnode, pixietools::FGTFontDef& fontdef);

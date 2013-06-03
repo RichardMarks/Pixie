@@ -3,27 +3,27 @@
 
 #include "Pixie.h"
 
-class MissionDebriefState : public GameState, public SpriteEventListener
+class MissionDebriefState : public pixie::GameState, public pixie::SpriteEventListener
 {
 public:
     static const char* ID;
-    static void Register(GameStateManager&);
+    static void Register(pixie::GameStateManager&);
 
 private:
-    static GameState* CreateInstance();
+    static pixie::GameState* CreateInstance();
 
-    Sprite bg;
-    Sprite heading;
-    Sprite missionBox;
-    StaticText missionText;
+    pixie::Sprite bg;
+    pixie::Sprite heading;
+    pixie::Sprite missionBox;
+    pixie::StaticText missionText;
 
-    Button declineButton;
-    Button acceptButton;
+    pixie::Button declineButton;
+    pixie::Button acceptButton;
 
     MissionDebriefState();
     virtual void Update(float deltaTime);
 
-    virtual void OnSpriteEvent(StringId eventId, void* userData);
+    virtual void OnSpriteEvent(pixie::StringId eventId, void* userData);
 
 };
 

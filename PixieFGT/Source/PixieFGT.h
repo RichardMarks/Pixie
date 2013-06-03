@@ -47,9 +47,9 @@ public:
 private:
 
     PixieFGTConfiguration cfgtool;
-    Array<Glyph*> glyphs;
-    Array<int> glyphWidths;
-    Array<Kerning> kerning;
+    pixie::Array<Glyph*> glyphs;
+    pixie::Array<int> glyphWidths;
+    pixie::Array<Kerning> kerning;
 	int glyphWidth;
 	int glyphHeight;
     int baseline;
@@ -58,7 +58,7 @@ private:
     bool ValidateRequestedFont(const char* fontname);
 
     // FontDef Processor
-    void FGTFontDefProcessor(const Array<pixietools::FGTFontDef>& fonts, unsigned fontcount);
+    void FGTFontDefProcessor(const pixie::Array<pixietools::FGTFontDef>& fonts, unsigned fontcount);
     void FGTFontDefProcessor(pixietools::FGTFontDef& fontdef);
 
     // Aliased
@@ -66,20 +66,20 @@ private:
     void NOAA_GetKerning(HDC hdc);
     void NOAA_BuildGlyphTable(const char* fontname, int fontsize);
     void NOAA_WriteXML(const char* xmlFilename, const char* fontFilename, const char* fontname, int fontsize);
-    Image* NOAA_GenerateGlyphImage(char ascii, HFONT hfont, const char* fontname, int width, int height);
-    Glyph* NOAA_CreateGlyph(char ascii, Image* image, int width, int& baseline);
+    pixie::Image* NOAA_GenerateGlyphImage(char ascii, HFONT hfont, const char* fontname, int width, int height);
+    Glyph* NOAA_CreateGlyph(char ascii, pixie::Image* image, int width, int& baseline);
 
     // Antialiased
     void AA_CalculateMaximumGlyphSize(const char* fontname, int fontsize);
     void AA_GetKerning(HDC hdc);
     void AA_BuildGlyphTable(const char* fontname, int fontsize);
     void AA_WriteXML(const char* xmlFilename, const char* fontFilename, const char* fontname, int fontsize);
-    Image* AA_GenerateGlyphImage(char ascii, HFONT hfont, const char* fontname, int width, int height);
-    Glyph* AA_CreateGlyph(char ascii, Image* image, int width, int& baseline);
+    pixie::Image* AA_GenerateGlyphImage(char ascii, HFONT hfont, const char* fontname, int width, int height);
+    Glyph* AA_CreateGlyph(char ascii, pixie::Image* image, int width, int& baseline);
     
     // Rendering
-    void RenderStrip(const char* filename, Array<struct Glyph*> glyphs, int spacing);
-    void RenderTexture(const char* filename, Array<struct Glyph*> glyphs, int spacing);
+    void RenderStrip(const char* filename, pixie::Array<struct Glyph*> glyphs, int spacing);
+    void RenderTexture(const char* filename, pixie::Array<struct Glyph*> glyphs, int spacing);
 };
 
 #endif /* __PixieFGT_H__ */
