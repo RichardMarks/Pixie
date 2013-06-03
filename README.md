@@ -1,4 +1,4 @@
-Pixie Game Engine v0.9f
+Pixie Game Engine v0.9g
 =======================
 Modified version of Pixie by Richard Marks www.ccpssolutions.com
 
@@ -20,18 +20,23 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
 
 ## Changes:
 
+### Update 4
+ + Backwards-compatibility-breaking-change: Refactored all of Pixie into the pixie namespace. 
+   To get your old code to work you need to just use a using namespace pixie statement or prefix
+   anything from Pixie with the pixie:: qualifier.
+
+### Update 3
  + Merged in 'BleedingEdge' version of PixieLib from Mattias Gustavsson
 
+### Update 2
  + PixieFGT completely refactored and now faster and has the ability to process multiple fonts via an XML configuration file. Will document the XML format soon.
  + Added New Sample (See Sample4_Snake directory)
  + (Ignore Sample5_SpaceShooter directory for now. It is incomplete.)
 
-
+### Update 1
  + Native MSVC 2008 Express vcproj and sln files
  + PixieFGT updated to use Array instead of now-non-existing DynamicArray.
  + Slight modifications to PixieLib to reduce excess warnings given by MSVC 2008 Express
-
-
 
 =======================
 ## Original readme.txt 
