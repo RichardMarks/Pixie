@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="Tools"
+	ProjectGUID="{100A0271-7056-4344-BBAA-6B2CF04E8759}"
+	RootNamespace="Tools"
+	TargetFrameworkVersion="196613"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="$(ProjectDir)"
+			IntermediateDirectory="$(ProjectDir)"
+			ConfigurationType="1"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Installing Pixie Tools"
+				CommandLine="copy &quot;$(SolutionDir)PixieAGT\BuildTemp\Debug\PixieAGT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixieFGT\BuildTemp\Debug\PixieFGT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixieIST\BuildTemp\Debug\PixieIST.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePCT\BuildTemp\Debug\PixiePCT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePPT\BuildTemp\Debug\PixiePPT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePVT\BuildTemp\Debug\PixiePVT.exe&quot; $(ProjectDir)&#x0D;&#x0A;"
+				Outputs="&quot;$(ProjectDir)PixieAGT.exe&quot;;&quot;$(ProjectDir)PixieFGT.exe&quot;;&quot;$(ProjectDir)PixieIST.exe&quot;;&quot;$(ProjectDir)PixiePCT.exe&quot;;&quot;$(ProjectDir)PixiePPT.exe&quot;;&quot;$(ProjectDir)PixiePVT.exe&quot; "
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="1"
+				WarningLevel="3"
+				DebugInformationFormat="0"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLinkerTool"
+				GenerateDebugInformation="true"
+				TargetMachine="1"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+				Description="Removing Dummy Outputs"
+				CommandLine="del &quot;$(ProjectDir)*.obj&quot;&#x0D;&#x0A;del &quot;$(ProjectDir)*.dep&quot;&#x0D;&#x0A;del &quot;$(ProjectDir)*.manifest&quot;&#x0D;&#x0A;del &quot;$(ProjectDir)*.ilk&quot;&#x0D;&#x0A;del &quot;$(ProjectDir)*.pdb&quot;&#x0D;&#x0A;del &quot;$(ProjectDir)$(TargetFileName)&quot;"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="$(ProjectDir)"
+			IntermediateDirectory="$(ProjectDir)"
+			ConfigurationType="10"
+			CharacterSet="2"
+			WholeProgramOptimization="1"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+				Description="Installing Pixie Tools"
+				CommandLine="copy &quot;$(SolutionDir)PixieAGT\BuildTemp\Debug\PixieAGT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixieFGT\BuildTemp\Debug\PixieFGT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixieIST\BuildTemp\Debug\PixieIST.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePCT\BuildTemp\Debug\PixiePCT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePPT\BuildTemp\Debug\PixiePPT.exe&quot; $(ProjectDir)&#x0D;&#x0A;copy &quot;$(SolutionDir)PixiePVT\BuildTemp\Debug\PixiePVT.exe&quot; $(ProjectDir)&#x0D;&#x0A;"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<File
+			RelativePath=".\toolbuilddummy.cpp"
+			>
+		</File>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

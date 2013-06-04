@@ -13,3 +13,6 @@ Pixie*/BuildTemp/
 Sample*/BuildTemp/
 
 Sample5*/Content/
+
+Tools/*.exe
+Tools/*.htm
