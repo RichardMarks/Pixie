@@ -5,6 +5,13 @@
 
 #include "Player.h"
 
+struct Star
+{
+    pixie::Sprite sprite;
+    float velocityX;
+    float velocityY;
+};
+
 class InGameState : public pixie::GameState, public pixie::SpriteEventListener
 {
 public:
@@ -14,10 +21,18 @@ public:
 private:
     static pixie::GameState* CreateInstance();
 
-    pixie::Rectangle clearScreenRect;
-    Player player;
+    static void StarsRenderCallback(pixie::Bitmap&, pixie::RenderCall*, void*);
+
+    pixie::Rectangle myClearScreenRect;
+
+    pixie::RenderCall myStarsRenderer;
+    Star* myStars;
+    float myDT;
+
+    Player myPlayer;
 
     InGameState();
+    ~InGameState();
     virtual void Update(float deltaTime);
 
     virtual void OnSpriteEvent(pixie::StringId eventId, void* userData);

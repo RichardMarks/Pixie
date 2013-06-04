@@ -15,6 +15,9 @@ public:
     float GetPositionX();
     float GetPositionY();
 
+    float GetVelocityX();
+    float GetVelocityY();
+
     void SetAngle(int angle);
     int GetAngle();
 

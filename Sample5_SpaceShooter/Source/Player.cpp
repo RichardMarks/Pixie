@@ -17,6 +17,8 @@ Player::Player()
 
     mySprite.SetBitmap("Assets/InGame/TempPlayerSpriteSheet.pix");
     mySprite.SetOrigin(96 * 0.5f, 96 * 0.5f);
+    mySprite.SetPriority(2);
+    mySprite.SetPosition(constants::WINDOW_WIDTH * 0.5f, constants::WINDOW_HEIGHT * 0.5f);
 }
 
 Player::~Player()
@@ -50,7 +52,7 @@ void Player::Update(float deltaTime)
 
 
     mySprite.SetCel((float)myAngle);
-    mySprite.SetPosition(myPositionX, myPositionY);
+    //mySprite.SetPosition(myPositionX, myPositionY);
 }
 
 void Player::SetPosition(float x, float y)
@@ -67,6 +69,16 @@ float Player::GetPositionX()
 float Player::GetPositionY()
 {
     return myPositionY;
+}
+
+float Player::GetVelocityX()
+{
+    return myVelocityX;
+}
+
+float Player::GetVelocityY()
+{
+    return myVelocityY;
 }
 
 void Player::SetAngle(int angle)

@@ -7,6 +7,8 @@ namespace constants
     static const unsigned WINDOW_HEIGHT = 600;
 
     static const float MAXIMUM_PLAYER_SPEED = 30.0f;
+
+    static const unsigned STARFIELD_DENSITY = 150;
 };
 
 #endif // __Constants_H__
