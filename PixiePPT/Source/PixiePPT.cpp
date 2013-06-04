@@ -99,7 +99,7 @@ void BackupFile(const char* srcFilename)
 
 void PixiePPTMain(const char* commandLine)
 {
-    printf("Pixie Project Patch Tool 1.0\n\n");
+    printf("Pixie Project Patch Tool 1.1\n\n");
 
 	CommandLine cmd(commandLine);
 	if (cmd.GetCommandLineStringCount() != 2)
@@ -185,6 +185,8 @@ void PixiePPTMain(const char* commandLine)
             compilertoolnode->SetAttribute("WarningLevel", "4");
             // patch warn as error
             compilertoolnode->SetAttribute("WarnAsError", "true");
+            // patch runtime
+            compilertoolnode->SetAttribute("RuntimeLibrary", "1");
             printf("Done.\n");
         }
         else
@@ -236,6 +238,8 @@ void PixiePPTMain(const char* commandLine)
             compilertoolnode->SetAttribute("WarningLevel", "4");
             // patch warn as error
             compilertoolnode->SetAttribute("WarnAsError", "true");
+            // patch runtime
+            compilertoolnode->SetAttribute("RuntimeLibrary", "0");
             printf("Done.\n");
         }
         else

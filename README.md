@@ -12,6 +12,7 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
   + PixiePCT - Pixie Picture Conversion Tool
   + PixiePPT - Pixie Project Patch Tool
   + PixiePVT - Pixie Pix Viewer Tool (previously known as PixView)
+  + PixieIST - Pixie Image Slicing Tool
  + Pixie Samples
   + Hello World
   + Bouncing Ball
@@ -19,6 +20,10 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
   + Snake
 
 ## Changes:
+
+### Update 5
+ + PixiePPT - Projects now use static linkage.
+ + Added New Tool PixieIST for slicing up sprite sheets into individual image files
 
 ### Update 4
  + Backwards-compatibility-breaking-change: Refactored all of Pixie into the pixie namespace. 
