@@ -2,6 +2,8 @@
 
 #include "InGameState.h"
 #include "MissionDebriefState.h"
+#include "Constants.h"
+#include "GameMaths.h"
 
 using namespace pixie;
 
@@ -19,14 +21,17 @@ GameState* InGameState::CreateInstance()
 
 InGameState::InGameState()
 {
+    gamemaths::tables::Init();
+
     InputManager::GetInstance()->HideCursor();
 
     clearScreenRect.SetColor(0);
     clearScreenRect.SetPriority(0);
     clearScreenRect.SetAlpha(255);
+    clearScreenRect.SetSize(1.0f * constants::WINDOW_WIDTH, 1.0f * constants::WINDOW_HEIGHT);
 
-    player.SetBitmap("Assets/InGame/TempPlayerSpriteSheet.pix");
-    player.SetCel(1);
+    player.SetPosition(constants::WINDOW_WIDTH * 0.5f, constants::WINDOW_HEIGHT * 0.5f);
+
 }
 
 void InGameState::Update(float deltaTime)
@@ -38,6 +43,25 @@ void InGameState::Update(float deltaTime)
         SwitchState(MissionDebriefState::ID, 1, 0.5);
     }
 
+    if (input.IsKeyDown(KEY_UP))
+    {
+        player.Accelerate();
+    }
+    else
+    {
+        player.Drag();
+    }
+    
+    if (input.IsKeyDown(KEY_LEFT))
+    {
+        player.YawLeft();
+    }
+    else if (input.IsKeyDown(KEY_RIGHT))
+    {
+        player.YawRight();
+    }
+
+    player.Update(deltaTime);
 
 }
 

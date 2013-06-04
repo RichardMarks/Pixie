@@ -27,8 +27,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     input.CreateCursor(0, "Assets/PlanetCursor.pix", 16, 16);
 
-    gsm.SwitchState(TitleState::ID);
+    //gsm.SwitchState(TitleState::ID);
     //gsm.SwitchState(MissionDebriefState::ID);
+    gsm.SwitchState(InGameState::ID);
 
     bool running = true;
 

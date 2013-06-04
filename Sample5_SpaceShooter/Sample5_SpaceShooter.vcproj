@@ -192,6 +192,14 @@
 			>
 		</File>
 		<File
+			RelativePath=".\Source\GameMaths.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\GameMaths.h"
+			>
+		</File>
+		<File
 			RelativePath=".\Source\InGameState.cpp"
 			>
 		</File>
@@ -209,6 +217,14 @@
 		</File>
 		<File
 			RelativePath=".\Source\MissionDebriefState.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\Player.cpp"
+			>
+		</File>
+		<File
+			RelativePath=".\Source\Player.h"
 			>
 		</File>
 		<File

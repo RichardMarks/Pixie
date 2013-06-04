@@ -3,6 +3,8 @@
 
 #include "Pixie.h"
 
+#include "Player.h"
+
 class InGameState : public pixie::GameState, public pixie::SpriteEventListener
 {
 public:
@@ -13,7 +15,7 @@ private:
     static pixie::GameState* CreateInstance();
 
     pixie::Rectangle clearScreenRect;
-    pixie::Sprite player;
+    Player player;
 
     InGameState();
     virtual void Update(float deltaTime);
