@@ -27,9 +27,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     input.CreateCursor(0, "Assets/PlanetCursor.pix", 16, 16);
 
-    //gsm.SwitchState(TitleState::ID);
+    gsm.SwitchState(TitleState::ID);
     //gsm.SwitchState(MissionDebriefState::ID);
-    gsm.SwitchState(InGameState::ID);
+    //gsm.SwitchState(InGameState::ID);
 
     bool running = true;
 
@@ -39,7 +39,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	    running = gameHelper.UpdateGame(deltaTime, screen);
 
 #if 0
-        if (input.WasKeyPressed(KEY_ESCAPE))
+        if (input.WasKeyPressed(KEY_F9))
 		{
 		    running = false;
 		}
