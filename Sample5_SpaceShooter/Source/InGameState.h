@@ -13,6 +13,7 @@ private:
     static pixie::GameState* CreateInstance();
 
     pixie::Rectangle clearScreenRect;
+    pixie::Sprite player;
 
     InGameState();
     virtual void Update(float deltaTime);

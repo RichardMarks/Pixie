@@ -24,6 +24,9 @@ InGameState::InGameState()
     clearScreenRect.SetColor(0);
     clearScreenRect.SetPriority(0);
     clearScreenRect.SetAlpha(255);
+
+    player.SetBitmap("Assets/InGame/TempPlayerSpriteSheet.pix");
+    player.SetCel(1);
 }
 
 void InGameState::Update(float deltaTime)
