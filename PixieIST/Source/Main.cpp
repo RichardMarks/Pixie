@@ -1,6 +1,6 @@
 //*** Main.cpp ***
 
-#include "PixiePCT.h"
+#include "PixieIST.h"
 
 
 // Win32 Platform Includes
@@ -46,7 +46,8 @@ int main(int argc, const char* argv[])
 		}
 
 	// Run the converter
-	PixiePCTMain(commandLine);
+    PixieIST tool;
+    tool.Main(commandLine);
 	
 
 	// Exit
