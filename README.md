@@ -1,6 +1,9 @@
-Pixie Game Engine v0.9g
+Pixie Game Engine v0.100
 =======================
-Modified version of Pixie by Richard Marks www.ccpssolutions.com
+
+Pixie is a public domain 2D game engine for C++, created by Mattias Gustavsson.
+This modified version of Pixie is being further developed and maintained by Richard Marks.
+www.ccpssolutions.com
 
 ## Includes:
 
@@ -13,19 +16,25 @@ Modified version of Pixie by Richard Marks www.ccpssolutions.com
   + PixiePPT - Pixie Project Patch Tool
   + PixiePVT - Pixie Pix Viewer Tool (previously known as PixView)
   + PixieIST - Pixie Image Slicing Tool
+  + Pixie GameWizard - Code Generator
  + Pixie Samples
   + Hello World
   + Bouncing Ball
   + Multi Balls
   + Snake
+  + Space Shooter (Currently Incomplete and should be ignored for now)
 
 ## Changes:
+
+### Update 6 (Marked git tag v0.100)
+ + Added New Tool Pixie GameWizard for generating your GameState source and header files instantly.
+ + Added New Project to Solution which just copies the Pixie Toolset into a common Tools folder.
 
 ### Update 5
  + PixiePPT - Projects now use static linkage.
  + Added New Tool PixieIST for slicing up sprite sheets into individual image files
 
-### Update 4
+### Update 4 (Marked git tag v0.9g)
  + Backwards-compatibility-breaking-change: Refactored all of Pixie into the pixie namespace. 
    To get your old code to work you need to just use a using namespace pixie statement or prefix
    anything from Pixie with the pixie:: qualifier.
