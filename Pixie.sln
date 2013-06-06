@@ -68,6 +68,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tools", "Tools\Tools.vcproj
 		{B7C6D7CE-E448-4536-9F44-F3F3E7D269D0} = {B7C6D7CE-E448-4536-9F44-F3F3E7D269D0}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PixieGameWizard", "PixieGameWizard\PixieGameWizard.vcproj", "{B08E6DF5-B143-4975-96D6-44519542633A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5A4F45F1-D06B-4819-9406-0EEC9E70001D} = {5A4F45F1-D06B-4819-9406-0EEC9E70001D}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -126,6 +131,10 @@ Global
 		{100A0271-7056-4344-BBAA-6B2CF04E8759}.Debug|Win32.Build.0 = Debug|Win32
 		{100A0271-7056-4344-BBAA-6B2CF04E8759}.Release|Win32.ActiveCfg = Release|Win32
 		{100A0271-7056-4344-BBAA-6B2CF04E8759}.Release|Win32.Build.0 = Release|Win32
+		{B08E6DF5-B143-4975-96D6-44519542633A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B08E6DF5-B143-4975-96D6-44519542633A}.Debug|Win32.Build.0 = Debug|Win32
+		{B08E6DF5-B143-4975-96D6-44519542633A}.Release|Win32.ActiveCfg = Release|Win32
+		{B08E6DF5-B143-4975-96D6-44519542633A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
